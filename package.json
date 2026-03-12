@@ -35,7 +35,6 @@
   "reactSnap": {
     "source": "dist",
     "inlineCss": true,
-    "puppeteerExecutablePath": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
     "minifyHtml": {
       "collapseWhitespace": false,
       "removeComments": false
