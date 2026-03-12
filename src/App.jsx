@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Careers from './pages/Careers';
 import Articles from './pages/Articles';
+import ArticlePage from './pages/ArticlePage';
 import DepartmentDetail from './pages/DepartmentDetail';
 import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
@@ -37,6 +38,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/articles" element={<Articles />} />
+              <Route path="/articles/:slug" element={<ArticlePage />} />
               <Route path="/department/:id" element={<DepartmentDetail />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />
