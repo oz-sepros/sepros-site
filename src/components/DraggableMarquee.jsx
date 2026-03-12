@@ -62,6 +62,9 @@ const DraggableMarquee = ({ children, speed = 40, direction = 'rtl' }) => {
                 ref={carouselRef}
                 drag="x"
                 dragConstraints={{ right: 0, left: 0 }} // Let it drag freely
+                dragElastic={1} // Prevents resistance when dragging
+                dragMomentum={true} // Add natural momentum
+                dragTransition={{ bounceStiffness: 50, bounceDamping: 10, power: 0.8 }} // Make swipe smoother and faster
                 style={{ x }}
                 animate={controls}
                 onDragStart={handleDragStart}
