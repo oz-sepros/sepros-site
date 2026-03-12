@@ -10,6 +10,7 @@ import Careers from './pages/Careers';
 import Articles from './pages/Articles';
 import DepartmentDetail from './pages/DepartmentDetail';
 import Contact from './pages/Contact';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 import PageTransition from './components/PageTransition';
 
@@ -38,6 +39,7 @@ function App() {
               <Route path="/articles" element={<Articles />} />
               <Route path="/department/:id" element={<DepartmentDetail />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
             </Routes>
           </PageTransition>
         </main>

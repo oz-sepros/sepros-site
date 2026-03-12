@@ -77,11 +77,7 @@ body {
   animation: marquee-scroll 40s linear infinite;
 }
 
-@media (max-width: 768px) {
-  .marquee-track {
-    animation: none;
-  }
-}
+
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;

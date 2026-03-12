@@ -40,7 +40,7 @@ const Footer = () => (
                         <h4 className="text-white font-black tracking-widest text-[10px] border-b border-white/10 pb-2 inline-block">משפטי</h4>
                         <ul className="space-y-2 text-gray-500 font-bold text-xs md:text-sm">
                             <li><button className="hover:text-white transition-colors">תנאי שימוש</button></li>
-                            <li><button className="hover:text-white transition-colors">מדיניות פרטיות</button></li>
+                            <li><Link to="/privacy" className="hover:text-white transition-colors">מדיניות פרטיות</Link></li>
                             <li><button className="hover:text-white transition-colors">הצהרת נגישות</button></li>
                         </ul>
                     </div>

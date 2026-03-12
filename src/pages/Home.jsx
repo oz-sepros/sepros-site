@@ -5,6 +5,7 @@ import StatsCounter from '../components/StatsCounter';
 import AboutSection from '../components/AboutSection';
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
+import DraggableMarquee from '../components/DraggableMarquee';
 
 const Hero = () => {
     const containerRef = useRef(null);
@@ -99,15 +100,13 @@ const ClientsMarquee = () => {
             <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
             <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
             <p className="text-[#4e77fc] uppercase tracking-[0.4em] text-[10px] mb-4 z-20 font-black">Trusted By Leaders</p>
-            <div className="w-full overflow-x-auto hide-scrollbar sm:overflow-hidden touch-pan-x cursor-grab">
-                <div className="marquee-track flex gap-10 md:gap-20 items-center px-8 md:pl-20">
-                    {[...clients, ...clients, ...clients].map((client, i) => (
-                        <div key={i} className="text-2xl md:text-3xl font-black text-white/20 hover:text-white transition-colors duration-300 uppercase tracking-widest cursor-default">
-                            {client}
-                        </div>
-                    ))}
-                </div>
-            </div>
+            <DraggableMarquee speed={30} direction="ltr">
+                {clients.map((client, i) => (
+                    <div key={i} className="text-2xl md:text-3xl font-black text-white/20 hover:text-white transition-colors duration-300 uppercase tracking-widest cursor-grab active:cursor-grabbing px-4 md:px-8">
+                        {client}
+                    </div>
+                ))}
+            </DraggableMarquee>
         </div>
     );
 };
@@ -188,17 +187,15 @@ const PlatformsMarquee = () => {
 
             <p className="text-[#4e77fc] uppercase tracking-[0.4em] text-[10px] mb-4 z-20 font-black">שותפי פרסום</p>
 
-            <div className="w-full overflow-x-auto hide-scrollbar sm:overflow-hidden touch-pan-x cursor-grab">
-                <div className="marquee-track flex gap-12 md:gap-24 items-center px-10 md:pl-24">
-                    {[...platforms, ...platforms, ...platforms].map((plat, i) => (
-                        <div key={i} title={plat.name} className={`group text-white/20 transition-colors duration-300 cursor-pointer ${plat.color}`}>
-                            <svg viewBox="0 0 24 24" className="w-12 h-12 md:w-16 md:h-16 group-hover:scale-110 transition-transform">
-                                {plat.svg}
-                            </svg>
-                        </div>
-                    ))}
-                </div>
-            </div>
+            <DraggableMarquee speed={35} direction="ltr">
+                {platforms.map((plat, i) => (
+                    <div key={i} title={plat.name} className={`group text-white/20 transition-colors duration-300 cursor-grab active:cursor-grabbing px-6 md:px-12 ${plat.color}`}>
+                        <svg viewBox="0 0 24 24" className="w-12 h-12 md:w-16 md:h-16 group-hover:scale-110 transition-transform">
+                            {plat.svg}
+                        </svg>
+                    </div>
+                ))}
+            </DraggableMarquee>
         </div>
     );
 };
