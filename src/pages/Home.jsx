@@ -15,49 +15,33 @@ const Hero = () => {
     const navigate = useNavigate();
 
     return (
-        <section
-            className="relative min-h-screen flex flex-col items-center justify-between overflow-hidden pt-24 md:pt-32 pb-0"
-            style={{
-                background: `linear-gradient(
-    180deg, #09102c 0%,
-    #141c48 18%,
-    #2b3991 38%,
-    #4a50b5 52%,
-    #6a6ac6 62%,
-    #9084cb 70%,
-    #a9a1d8 74%,
-    #bfb8e3 76.5%,
-    #d4cfed 78.5%,
-    #e6e2f6 80%,
-    #f3f1fb 81%,
-    #ffffff 82%,
-    #ffffff 100%
-  )` }}
-        >
-            <div className="max-w-[1400px] mx-auto px-6 text-center z-10 flex-col flex justify-start pt-4 md:pt-10 w-full relative mb-auto">
-                <h1 className="text-5xl md:text-7xl lg:text-[70px] xl:text-[76px] mb-6 md:mb-10 mt-0 text-white font-semibold tracking-tight leading-[1.1]">
-                    <div className="reveal active">שיווק דיגיטלי</div>
-                    <div className="reveal active" style={{ transitionDelay: '0.2s' }}>שמביא תוצאות.</div>
-                </h1>
+        <div className="max-w-[1400px] mx-auto px-6 text-center z-10 flex-col flex justify-start pt-28 md:pt-40 w-full relative mb-auto">
+            <h1 className="text-5xl md:text-7xl lg:text-[70px] xl:text-[76px] mb-6 md:mb-10 mt-0 text-white font-semibold tracking-tight leading-[1.1]">
+                <div className="reveal active">שיווק דיגיטלי</div>
+                <div className="reveal active" style={{ transitionDelay: '0.2s' }}>שמביא תוצאות.</div>
+            </h1>
 
-                <p className="text-white/90 text-xl max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
-                    ספרוס משלבת דאטה, מדיה וקריאייטיב כדי להצמיח עסקים בעידן החדש. אנחנו לא רק מנהלים קמפיינים – אנחנו בונים את עתיד המותג שלכם.
-                </p>
+            <p className="text-white/90 text-xl max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
+                ספרוס משלבת דאטה, מדיה וקריאייטיב כדי להצמיח עסקים בעידן החדש. אנחנו לא רק מנהלים קמפיינים – אנחנו בונים את עתיד המותג שלכם.
+            </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button id="home_services_btn" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} className="group bg-[#040b29] text-white px-10 py-5 font-bold text-base tracking-wide flex items-center justify-center gap-3 hover:bg-[#11205c] transition-all rounded-full shadow-lg">
-                        השירותים שלנו <ArrowUpLeft size={18} className="group-hover:-translate-x-1 group-hover:translate-y-1 transition-transform" />
-                    </button>
-                    <button id="home_contact_btn" onClick={() => navigate('/contact')} className="bg-white text-[#0f173b] px-10 py-5 font-bold text-base tracking-wide hover:bg-gray-100 transition-all rounded-full shadow-lg">
-                        בואו נדבר
-                    </button>
-                </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button id="home_services_btn" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} className="group bg-[#040b29] text-white px-10 py-5 font-bold text-base tracking-wide flex items-center justify-center gap-3 hover:bg-[#11205c] transition-all rounded-full shadow-lg">
+                    השירותים שלנו <ArrowUpLeft size={18} className="group-hover:-translate-x-1 group-hover:translate-y-1 transition-transform" />
+                </button>
+                <button id="home_contact_btn" onClick={() => navigate('/contact')} className="bg-white text-[#0f173b] px-10 py-5 font-bold text-base tracking-wide hover:bg-gray-100 transition-all rounded-full shadow-lg">
+                    בואו נדבר
+                </button>
             </div>
+        </div>
+    );
+};
 
-            <div className="w-full mt-auto relative z-10 py-6">
-                <ClientsMarquee />
-            </div>
-        </section>
+const ClientsSection = () => {
+    return (
+        <div className="w-full mt-auto relative z-10 py-6 pb-12">
+            <ClientsMarquee />
+        </div>
     );
 };
 
@@ -75,7 +59,28 @@ const homeFaqData = [
 const Home = () => {
     return (
         <div className="pt-0">
-            <Hero />
+            <section
+                className="relative min-h-screen flex flex-col items-center justify-between overflow-hidden"
+                style={{
+                    background: `linear-gradient(
+        180deg, #09102c 0%,
+        #141c48 18%,
+        #2b3991 38%,
+        #4a50b5 52%,
+        #6a6ac6 62%,
+        #9084cb 70%,
+        #a9a1d8 74%,
+        #bfb8e3 76.5%,
+        #d4cfed 78.5%,
+        #e6e2f6 80%,
+        #f3f1fb 81%,
+        #ffffff 82%,
+        #ffffff 100%
+      )` }}
+            >
+                <Hero />
+                <ClientsSection />
+            </section>
             <ServicesCarousel />
             <CaseStudiesSection />
             <PlatformsMarquee />

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
+import LogoImage from '../assets/Logo.svg';
 
 const SocialCarousel = () => {
     const [active, setActive] = useState(2);
@@ -134,7 +135,7 @@ const DepartmentDetail = () => {
                     </div>
                     {/* Replaced broken SeprosLogo with simple fallback styling */}
                     <div className="aspect-square md:aspect-[4/5] bg-gray-50 border border-gray-100 flex items-center justify-center p-8 rounded-xl shadow-sm">
-                        <img src="/src/assets/logo.png" alt="Sepros Icon" className="w-32 h-32 object-contain filter invert opacity-30 blur-[2px]" />
+                        <img src={LogoImage} alt="Sepros Icon" className="w-32 h-32 object-contain filter invert opacity-30 blur-[2px]" />
                     </div>
                 </div>
 

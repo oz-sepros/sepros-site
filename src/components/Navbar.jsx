@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import LogoImage from '../assets/Logo.svg';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +47,7 @@ const Navbar = () => {
                     className="flex items-center cursor-pointer group hover:opacity-80 transition-opacity"
                 >
                     <img
-                        src="/src/assets/Logo.svg"
+                        src={LogoImage}
                         alt="Sepros Logo"
                         className={`h-8 md:h-10 object-contain transition-all duration-300 ${isSolid ? '' : 'brightness-0 invert'
                             }`}

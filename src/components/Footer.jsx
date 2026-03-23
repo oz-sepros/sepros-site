@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Linkedin, Instagram } from 'lucide-react';
+import LogoImage from '../assets/Logo.svg';
 
 const Footer = () => (
     <footer className="bg-gray-50 pt-16 md:pt-20 pb-8 border-t border-gray-200">
@@ -7,7 +8,7 @@ const Footer = () => (
             <div className="flex flex-col lg:flex-row justify-between gap-12 mb-12">
                 <div className="space-y-4 max-w-sm text-right">
                     <Link to="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity">
-                        <img src="/src/assets/logo.png" alt="Sepros Logo" className="h-8 md:h-10 object-contain filter invert opacity-90" />
+                        <img src={LogoImage} alt="Sepros Logo" className="h-8 md:h-10 object-contain filter invert opacity-90" />
                     </Link>
                     <p className="text-gray-600 text-sm md:text-base font-light leading-relaxed pt-2">
                         ספרוס דיגיטל. <br /> לא רק עוקבים אחרי טרנדים. אנחנו מייצרים אותם.
