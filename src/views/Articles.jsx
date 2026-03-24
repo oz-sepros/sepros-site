@@ -1,17 +1,18 @@
+"use client";
 import { ChevronLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
 import PageTransition from '../components/PageTransition';
 
 const Articles = () => {
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const articles = [
-        { slug: 'technical-seo-2026', title: "המדריך המלא ל-SEO טכני ב-2026", date: "15 מרץ, 2026", desc: "כל מה שצריך לדעת על Core Web Vitals, סריקה של גוגל ואיך להכין את האתר שלכם לעידן ה-AI.", tag: "SEO" },
-        { slug: 'double-your-roas', title: "איך להכפיל את ה-ROAS בקמפיינים בגוגל", date: "2 מרץ, 2026", desc: "סודות האופטימיזציה שסוכנויות לא מגלות: חלוקת תקציב חכמה, טיוב המרות ובידינג מבוסס ערך.", tag: "PPC" },
-        { slug: 'tiktok-or-instagram', title: "טיקטוק או אינסטגרם? איפה הקהל שלכם נמצא", date: "28 פברואר, 2026", desc: "ניתוח מעמיק של פלטפורמות הסושיאל המובילות וכיצד לבנות אסטרטגיית תוכן שפוגעת בול במטרה.", tag: "סושיאל" },
-        { slug: 'ux-color-psychology', title: "עיצוב UX שמוכר: פסיכולוגיה של צבעים וממשק", date: "10 פברואר, 2026", desc: "איך למקם כפתורי הנעה לפעולה, באילו צבעים להשתמש ואיך לבנות אמון דרך חוויית משתמש מושלמת.", tag: "UX/UI" },
+        { slug: 'technical-seo-2026', title: "המדריך המלא ל-SEO טכני ב-2026", date: "15 מרץ, 2026", desc: "כל מה שצריך לדעת על Core Web Vitals, סריקה של גוגל ואיך להכין את האתר שלכם לעידן ה-AI.", tag: "SEO", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" },
+        { slug: 'double-your-roas', title: "איך להכפיל את ה-ROAS בקמפיינים בגוגל", date: "2 מרץ, 2026", desc: "סודות האופטימיזציה שסוכנויות לא מגלות: חלוקת תקציב חכמה, טיוב המרות ובידינג מבוסס ערך.", tag: "PPC", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" },
+        { slug: 'tiktok-or-instagram', title: "טיקטוק או אינסטגרם? איפה הקהל שלכם נמצא", date: "28 פברואר, 2026", desc: "ניתוח מעמיק של פלטפורמות הסושיאל המובילות וכיצד לבנות אסטרטגיית תוכן שפוגעת בול במטרה.", tag: "סושיאל", image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=800" },
+        { slug: 'ux-color-psychology', title: "עיצוב UX שמוכר: פסיכולוגיה של צבעים וממשק", date: "10 פברואר, 2026", desc: "איך למקם כפתורי הנעה לפעולה, באילו צבעים להשתמש ואיך לבנות אמון דרך חוויית משתמש מושלמת.", tag: "UX/UI", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800" },
     ];
 
     return (
@@ -24,9 +25,9 @@ const Articles = () => {
                     </p>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {articles.map((art, i) => (
-                            <div key={i} onClick={() => navigate(`/articles/${art.slug}`)} className="bg-white hover:shadow-lg shadow-sm border border-gray-100 group cursor-pointer hover:border-[#2f4ea1]/30 transition-all rounded-xl overflow-hidden flex flex-col">
+                            <div key={i} onClick={() => router.push(`/articles/${art.slug}`)} className="bg-white hover:shadow-lg shadow-sm border border-gray-100 group cursor-pointer hover:border-[#2f4ea1]/30 transition-all rounded-xl overflow-hidden flex flex-col">
                                 <div className="aspect-video bg-gray-50 relative overflow-hidden">
-                                    <img src={`https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&q=80&w=600&sig=${i}`} alt={art.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
+                                    <img src={art.image} alt={art.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
                                     <div className="absolute top-4 right-4 bg-[#2f4ea1] text-white text-[10px] font-bold px-3 py-1 tracking-widest rounded-sm">{art.tag}</div>
                                 </div>
                                 <div className="p-6 flex-grow flex flex-col">

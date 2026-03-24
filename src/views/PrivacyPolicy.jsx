@@ -1,3 +1,4 @@
+"use client";
 import { useEffect } from 'react';
 import PageTransition from '../components/PageTransition';
 

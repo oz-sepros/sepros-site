@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+"use client";
+import { useEffect, useRef, useState } from 'react'; 
+import { trackEvent } from '../utils/analytics';
+import { useRouter } from 'next/navigation';
 import { ArrowUpLeft, Plus, Minus } from 'lucide-react';
 import StatsCounter from '../components/StatsCounter';
 import AboutSection from '../components/AboutSection';
@@ -12,24 +14,24 @@ import PlatformsMarquee from '../components/PlatformsMarquee';
 import FAQ from '../components/FAQ';
 
 const Hero = () => {
-    const navigate = useNavigate();
+    const router = useRouter();
 
     return (
-        <div className="max-w-[1400px] mx-auto px-6 text-center z-10 flex-col flex justify-start pt-28 md:pt-40 w-full relative mb-auto">
-            <h1 className="text-5xl md:text-7xl lg:text-[70px] xl:text-[76px] mb-6 md:mb-10 mt-0 text-white font-semibold tracking-tight leading-[1.1]">
+        <div className="max-w-[1400px] mx-auto px-6 text-center z-10 flex-col flex justify-center flex-grow w-full relative pt-24 pb-8">
+            <h1 className="text-5xl md:text-7xl lg:text-[70px] xl:text-[76px] mb-4 md:mb-10 mt-0 text-white font-semibold tracking-tight leading-[1.1]">
                 <div className="reveal active">שיווק דיגיטלי</div>
                 <div className="reveal active" style={{ transitionDelay: '0.2s' }}>שמביא תוצאות.</div>
             </h1>
 
-            <p className="text-white/90 text-xl max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
+            <p className="text-white/90 text-lg md:text-xl max-w-3xl mx-auto mb-6 md:mb-10 leading-relaxed font-normal">
                 ספרוס משלבת דאטה, מדיה וקריאייטיב כדי להצמיח עסקים בעידן החדש. אנחנו לא רק מנהלים קמפיינים – אנחנו בונים את עתיד המותג שלכם.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button id="home_services_btn" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} className="group bg-[#040b29] text-white px-10 py-5 font-bold text-base tracking-wide flex items-center justify-center gap-3 hover:bg-[#11205c] transition-all rounded-full shadow-lg">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+                <button id="home_services_btn" onClick={() => { trackEvent('click_hero_services'); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }} className="group bg-[#040b29] text-white px-8 md:px-10 py-4 md:py-5 font-bold text-base tracking-wide flex items-center justify-center gap-3 hover:bg-[#11205c] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(47,78,161,0.3)] transition-all duration-300 rounded-full shadow-lg">
                     השירותים שלנו <ArrowUpLeft size={18} className="group-hover:-translate-x-1 group-hover:translate-y-1 transition-transform" />
                 </button>
-                <button id="home_contact_btn" onClick={() => navigate('/contact')} className="bg-white text-[#0f173b] px-10 py-5 font-bold text-base tracking-wide hover:bg-gray-100 transition-all rounded-full shadow-lg">
+                <button id="home_contact_btn" onClick={() => { trackEvent('click_hero_contact'); router.push('/contact'); }} className="bg-white text-[#0f173b] px-8 md:px-10 py-4 md:py-5 font-bold text-base tracking-wide hover:bg-gray-100 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 rounded-full shadow-lg">
                     בואו נדבר
                 </button>
             </div>
@@ -60,7 +62,7 @@ const Home = () => {
     return (
         <div className="pt-0">
             <section
-                className="relative min-h-screen flex flex-col items-center justify-between overflow-hidden"
+                className="relative min-h-[100dvh] flex flex-col items-center justify-between overflow-hidden"
                 style={{
                     background: `linear-gradient(
         180deg, #09102c 0%,

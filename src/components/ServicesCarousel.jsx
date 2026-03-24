@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+"use client";
+import { useEffect, useRef, useState } from 'react'; 
+import { trackEvent } from '../utils/analytics';
+import { useRouter } from 'next/navigation';
 import { Target, Share2, Palette, Code, Search, BarChart3, ArrowUpLeft, ChevronRight, ChevronLeft } from 'lucide-react';
 
 const ServicesCarousel = () => {
@@ -15,7 +17,7 @@ const ServicesCarousel = () => {
     const scrollRef = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const handleScroll = () => {
         if (!scrollRef.current) return;
@@ -76,11 +78,11 @@ const ServicesCarousel = () => {
                 <div
                     ref={scrollRef}
                     onScroll={handleScroll}
-                    className="flex gap-4 md:gap-6 overflow-x-auto overflow-y-visible snap-x snap-mandatory scrollbar-hide py-6 touch-pan-x px-4 md:px-12"
+                    className="flex gap-4 md:gap-6 overflow-x-auto overflow-y-visible snap-x snap-mandatory scrollbar-hide py-6 px-4 md:px-12"
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
                     {departments.map((dept, i) => (
-                        <div key={i} onClick={() => navigate(`/department/${dept.id}`)} className="min-w-[85vw] md:min-w-[400px] h-[480px] md:h-[500px] snap-center shrink-0 relative rounded-[2rem] overflow-hidden group transition-all duration-500 cursor-pointer shadow-xl hover:shadow-2xl border border-[#09102c]/5">
+                        <div key={i} onClick={() => { trackEvent('click_service_card', { service_id: dept.id }); router.push(`/department/${dept.id}`); }} className="min-w-[85vw] md:min-w-[400px] h-[480px] md:h-[500px] snap-center shrink-0 relative rounded-[2rem] overflow-hidden group transition-all duration-500 cursor-pointer shadow-xl hover:shadow-2xl border border-[#09102c]/5">
                             {/* Full Background Image */}
                             <img src={dept.image} alt={dept.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1500ms]" />
 

@@ -1,9 +1,10 @@
+"use client";
 import { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useRouter } from 'next/navigation';
 import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
-import LogoImage from '../assets/Logo.svg';
+
 
 const SocialCarousel = () => {
     const [active, setActive] = useState(2);
@@ -102,7 +103,7 @@ const DepartmentPortfolio = ({ category }) => {
 
 const DepartmentDetail = () => {
     const { id } = useParams();
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const data = {
         ppc: { title: "PPC וביצועים", long: "אנחנו מנהלים תקציבי ענק באופטימיזציה מקסימלית. הגישה שלנו ל-PPC היא מדעית: ניתוח קהלים, שיפור יחס המרה ושימוש בכלי AI לניהול בידים.", services: ["חיפוש ורשת המדיה בגוגל", "ניהול מטא (פייסבוק/אינסטגרם)", "קמפיינים בטיקטוק ולינקדאין", "רימרקטינג דינמי"] },
@@ -117,7 +118,7 @@ const DepartmentDetail = () => {
     return (
         <Reveal className="min-h-screen bg-white pt-32 md:pt-40 pb-20 text-right">
             <div className="max-w-[1400px] mx-auto px-6">
-                <button onClick={() => navigate('/')} className="group text-[#2f4ea1] flex items-center gap-2 mb-8 font-black tracking-widest text-xs">
+                <button onClick={() => router.push('/')} className="group text-[#2f4ea1] flex items-center gap-2 mb-8 font-black tracking-widest text-xs">
                     חזרה לדף הבית <ArrowUpLeft className="rotate-90 group-hover:translate-x-2 transition-transform" />
                 </button>
                 <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-start">
@@ -135,7 +136,7 @@ const DepartmentDetail = () => {
                     </div>
                     {/* Replaced broken SeprosLogo with simple fallback styling */}
                     <div className="aspect-square md:aspect-[4/5] bg-gray-50 border border-gray-100 flex items-center justify-center p-8 rounded-xl shadow-sm">
-                        <img src={LogoImage} alt="Sepros Icon" className="w-32 h-32 object-contain filter invert opacity-30 blur-[2px]" />
+                        <img src="/logos/Logo.svg" alt="לוגו תצוגה" className="w-32 h-32 object-contain filter invert opacity-30 blur-[2px]" />
                     </div>
                 </div>
 
@@ -144,7 +145,7 @@ const DepartmentDetail = () => {
                 <div className="mt-20 md:mt-24 p-8 md:p-12 bg-gray-50 border border-[#2f4ea1]/20 text-gray-900 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-right rounded-2xl shadow-lg relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-[#2f4ea1]/10 to-transparent pointer-events-none"></div>
                     <h4 className="text-2xl md:text-3xl font-black relative z-10 text-[#2f4ea1]">מוכנים להתחיל לעבוד?</h4>
-                    <button id="dept_contact_btn" onClick={() => navigate('/contact')} className="bg-[#2f4ea1] text-white px-8 py-4 font-black tracking-widest hover:bg-[#0747cc] transition-all rounded-full relative z-10 shadow-md">בואו נתחיל</button>
+                    <button id="dept_contact_btn" onClick={() => router.push('/contact')} className="bg-[#2f4ea1] text-white px-8 py-4 font-black tracking-widest hover:bg-[#0747cc] transition-all rounded-full relative z-10 shadow-md">בואו נתחיל</button>
                 </div>
             </div>
         </Reveal>

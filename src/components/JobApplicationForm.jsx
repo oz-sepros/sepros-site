@@ -1,11 +1,13 @@
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+"use client";
+import { useState } from 'react'; 
+import { trackEvent } from '../utils/analytics';
+import { usePathname } from 'next/navigation';
 import Reveal from './Reveal';
 
 const JobApplicationForm = ({ jobTitle, onClose }) => {
     const [formData, setFormData] = useState({ fullName: '', phone: '', email: '', linkedin: '', portfolio: '', msg: '' });
     const [status, setStatus] = useState('idle');
-    const location = useLocation();
+    const pathname = usePathname();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -56,43 +58,43 @@ const JobApplicationForm = ({ jobTitle, onClose }) => {
     };
 
     return (
-        <Reveal className="bg-[#0a0a0a] border border-white/10 p-6 rounded-xl mt-6 relative">
-            <h4 className="text-xl font-black text-white mb-6 tracking-wide">הגשת מועמדות: <span className="text-[#4e77fc]">{jobTitle}</span></h4>
-            <form className="space-y-5 text-right" onSubmit={handleSubmit}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div className="space-y-1">
-                        <label className="text-gray-500 text-[10px] font-black tracking-widest">שם מלא</label>
-                        <input required type="text" value={formData.fullName} onChange={e => setFormData({ ...formData, fullName: e.target.value })} className="w-full bg-transparent border-b border-white/10 py-2 text-white focus:border-[#4e77fc] outline-none transition-colors" placeholder="ישראל ישראלי" />
+        <Reveal className="bg-gray-50 border border-gray-200 p-6 md:p-8 rounded-xl mt-8 relative shadow-sm">
+            <h4 className="text-xl font-black text-[#09102c] mb-6 tracking-wide">הגשת מועמדות: <span className="text-[#2f4ea1]">{jobTitle}</span></h4>
+            <form className="space-y-6 text-right" onSubmit={handleSubmit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                        <label className="text-[#09102c] text-sm font-bold tracking-wide">שם מלא</label>
+                        <input required type="text" value={formData.fullName} onChange={e => setFormData({ ...formData, fullName: e.target.value })} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="ישראל ישראלי" />
                     </div>
-                    <div className="space-y-1">
-                        <label className="text-gray-500 text-[10px] font-black tracking-widest">טלפון</label>
-                        <input required type="tel" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} className="w-full bg-transparent border-b border-white/10 py-2 text-white focus:border-[#4e77fc] outline-none transition-colors dir-ltr text-right" placeholder="050-0000000" />
-                    </div>
-                </div>
-
-                <div className="space-y-1">
-                    <label className="text-gray-500 text-[10px] font-black tracking-widest">אימייל</label>
-                    <input required type="email" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} className="w-full bg-transparent border-b border-white/10 py-2 text-white focus:border-[#4e77fc] outline-none transition-colors" placeholder="email@gmail.com" />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div className="space-y-1">
-                        <label className="text-gray-500 text-[10px] font-black tracking-widest">קישור ללינקדאין</label>
-                        <input required type="url" value={formData.linkedin} onChange={e => setFormData({ ...formData, linkedin: e.target.value })} className="w-full bg-transparent border-b border-white/10 py-2 text-white focus:border-[#4e77fc] outline-none transition-colors dir-ltr text-right" placeholder="https://linkedin.com/in/..." />
-                    </div>
-                    <div className="space-y-1">
-                        <label className="text-gray-500 text-[10px] font-black tracking-widest">תיק עבודות / אתר (רשות)</label>
-                        <input type="url" value={formData.portfolio} onChange={e => setFormData({ ...formData, portfolio: e.target.value })} className="w-full bg-transparent border-b border-white/10 py-2 text-white focus:border-[#4e77fc] outline-none transition-colors dir-ltr text-right" placeholder="https://..." />
+                    <div className="space-y-2">
+                        <label className="text-[#09102c] text-sm font-bold tracking-wide">טלפון</label>
+                        <input required type="tel" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all dir-ltr text-right" placeholder="050-0000000" />
                     </div>
                 </div>
 
-                <div className="space-y-1">
-                    <label className="text-gray-500 text-[10px] font-black tracking-widest">ספרו לנו קצת על עצמכם למה אתם מתאימים?</label>
-                    <textarea required rows="3" value={formData.msg} onChange={e => setFormData({ ...formData, msg: e.target.value })} className="w-full bg-transparent border-b border-white/10 py-2 text-white focus:border-[#4e77fc] outline-none transition-colors" placeholder="הניסיון שלי כולל..."></textarea>
+                <div className="space-y-2">
+                    <label className="text-[#09102c] text-sm font-bold tracking-wide">אימייל</label>
+                    <input required type="email" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="email@gmail.com" />
                 </div>
 
-                <button type="submit" id="submit_job_form" disabled={status === 'loading' || status === 'success'} className={`w-full text-white font-black py-4 tracking-widest text-sm transition-all ${status === 'success' ? 'bg-green-500' : status === 'error' ? 'bg-red-500' : 'bg-[#4e77fc] hover:bg-white hover:text-black'}`}>
-                    {status === 'loading' ? 'שולח...' : status === 'success' ? 'המועמדות נשלחה! ניצור קשר בהקדם.' : status === 'error' ? 'שגיאה בשליחה' : 'שלח מועמדות'}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                        <label className="text-[#09102c] text-sm font-bold tracking-wide">קישור ללינקדאין</label>
+                        <input required type="url" value={formData.linkedin} onChange={e => setFormData({ ...formData, linkedin: e.target.value })} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all dir-ltr text-right" placeholder="https://linkedin.com/in/..." />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-[#09102c] text-sm font-bold tracking-wide">תיק עבודות / אתר (רשות)</label>
+                        <input type="url" value={formData.portfolio} onChange={e => setFormData({ ...formData, portfolio: e.target.value })} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all dir-ltr text-right" placeholder="https://..." />
+                    </div>
+                </div>
+
+                <div className="space-y-2">
+                    <label className="text-[#09102c] text-sm font-bold tracking-wide">ספרו לנו קצת על עצמכם למה אתם מתאימים?</label>
+                    <textarea required rows="4" value={formData.msg} onChange={e => setFormData({ ...formData, msg: e.target.value })} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all resize-none" placeholder="הניסיון שלי כולל..."></textarea>
+                </div>
+
+                <button type="submit" id="submit_job_form" disabled={status === 'loading' || status === 'success'} className={`w-full mt-4 text-white font-black py-4 tracking-widest text-lg transition-all rounded-lg ${status === 'success' ? 'bg-green-500 hover:bg-green-600' : status === 'error' ? 'bg-red-500 hover:bg-red-600' : 'bg-[#2f4ea1] hover:bg-[#1c3166] hover:-translate-y-1 shadow-lg hover:shadow-xl'}`}>
+                    {status === 'loading' ? 'שולח...' : status === 'success' ? 'המועמדות נשלחה! ניצור קשר בהקדם.' : status === 'error' ? 'שגיאה בשליחה' : 'שלחו מועמדות'}
                 </button>
             </form>
         </Reveal>

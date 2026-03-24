@@ -1,11 +1,13 @@
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+"use client";
+import { useState } from 'react'; 
+import { trackEvent } from '../utils/analytics';
+import { usePathname } from 'next/navigation';
 import Reveal from './Reveal';
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({ fullName: '', company: '', email: '', msg: '' });
     const [status, setStatus] = useState('idle');
-    const location = useLocation();
+    const pathname = usePathname();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -72,11 +74,7 @@ const ContactForm = () => {
                         </Reveal>
 
                         <Reveal className="space-y-10">
-                            <div className="group cursor-pointer flex flex-col items-start">
-                                <p className="text-gray-500 text-sm font-bold tracking-widest mb-2 uppercase">דברו איתנו</p>
-                                <p className="text-[#09102c] text-3xl md:text-4xl font-black group-hover:text-[#2f4ea1] transition-colors dir-ltr">03-6253333</p>
-                            </div>
-                            <div className="group cursor-pointer flex flex-col items-start pt-6 border-t border-gray-100 w-3/4">
+                            <div className="group cursor-pointer flex flex-col items-start w-3/4">
                                 <p className="text-gray-500 text-sm font-bold tracking-widest mb-2 uppercase">שלחו מייל</p>
                                 <p className="text-[#09102c] text-2xl md:text-3xl font-black group-hover:text-[#2f4ea1] transition-colors">HELLO@SEPROS.CO.IL</p>
                             </div>

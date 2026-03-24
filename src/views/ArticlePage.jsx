@@ -1,4 +1,5 @@
-import { useParams, useNavigate } from 'react-router-dom';
+"use client";
+import { useParams, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
@@ -10,7 +11,7 @@ const articleData = {
         title: "המדריך המלא ל-SEO טכני ב-2026",
         date: "15 מרץ, 2026",
         tag: "SEO",
-        image: "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&q=80&w=1200",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
         content: `
             <h2>הקדמה ל-SEO טכני בעידן ה-AI</h2>
             <p>שנת 2026 מביאה איתה אתגרים חדשים בעולם קידום האתרים. מנועי החיפוש החכמים של היום לא מסתפקים רק בתוכן איכותי, אלא דורשים תשתית טכנית חסרת פשרות. במאמר זה נסקור את שלושת עמודי התווך של ה-SEO הטכני המודרני.</p>
@@ -51,7 +52,7 @@ const articleData = {
         title: "טיקטוק או אינסטגרם? איפה הקהל שלכם נמצא",
         date: "28 פברואר, 2026",
         tag: "סושיאל",
-        image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=1200",
+        image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=1200",
         content: `
             <h2>הקרב הגדול על תשומת הלב</h2>
             <p>השאלה הכי נפוצה שאנחנו שומעים מלקוחות שרוצים לבנות מותג מאפס היא: איפה לשים את הכסף והאנרגיה? באינסטגרם שכולם כבר מכירים, או בטיקטוק שמושכת מיליוני צפיות אורגניות? התשובה, כמו תמיד, תלויה בקהל היעד שלכם ובסוג התוכן שאתם מסוגלים לייצר.</p>
@@ -93,7 +94,7 @@ const articleData = {
 
 const ArticlePage = () => {
     const { slug } = useParams();
-    const navigate = useNavigate();
+    const router = useRouter();
     const article = articleData[slug];
 
     useEffect(() => {
@@ -104,7 +105,7 @@ const ArticlePage = () => {
         return (
             <div className="min-h-screen bg-[#F5F7FA] flex flex-col items-center justify-center text-gray-900">
                 <h1 className="text-4xl font-black mb-4">מאמר לא נמצא</h1>
-                <button onClick={() => navigate('/articles')} className="text-[#2f4ea1] hover:underline">חזרה לבלוג</button>
+                <button onClick={() => router.push('/articles')} className="text-[#2f4ea1] hover:underline">חזרה לבלוג</button>
             </div>
         );
     }
@@ -117,9 +118,9 @@ const ArticlePage = () => {
                     <div className="flex items-center gap-2 text-gray-500 text-sm font-bold mb-8 self-end">
                         <span className="text-gray-900">{article.title}</span>
                         <ChevronRight size={14} />
-                        <button onClick={() => navigate('/articles')} className="hover:text-[#2f4ea1] transition-colors">מאמרים</button>
+                        <button onClick={() => router.push('/articles')} className="hover:text-[#2f4ea1] transition-colors">מאמרים</button>
                         <ChevronRight size={14} />
-                        <button onClick={() => navigate('/')} className="hover:text-[#2f4ea1] transition-colors">ראשי</button>
+                        <button onClick={() => router.push('/')} className="hover:text-[#2f4ea1] transition-colors">ראשי</button>
                     </div>
 
                     <div className="text-right mb-12">
@@ -153,7 +154,7 @@ const ArticlePage = () => {
                             <h3 className="text-2xl font-black text-gray-900 mb-2">רוצים לקחת את המותג שלכם שלב אחד קדימה?</h3>
                             <p className="text-gray-600 font-light max-w-md">הצוות המשפטי והקריאייטיב שלנו זמין להתייעצות קצרה וממוקדת, ללא עלות.</p>
                         </div>
-                        <button onClick={() => navigate('/contact')} className="bg-[#2f4ea1] text-white px-8 py-4 font-black whitespace-nowrap hover:bg-[#1c3166] rounded-full transition-all shadow-md group-hover:-translate-y-1 w-full md:w-auto">
+                        <button onClick={() => router.push('/contact')} className="bg-[#2f4ea1] text-white px-8 py-4 font-black whitespace-nowrap hover:bg-[#1c3166] rounded-full transition-all shadow-md group-hover:-translate-y-1 w-full md:w-auto">
                             דברו איתנו עכשיו
                         </button>
                     </div>

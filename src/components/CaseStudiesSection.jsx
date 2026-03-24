@@ -1,7 +1,12 @@
-import { Target, BarChart3, Zap, Search, ArrowUpLeft } from 'lucide-react';
+"use client";
+import { Target, BarChart3, Zap, Search, ArrowUpLeft } from 'lucide-react'; 
+import { trackEvent } from '../utils/analytics';
+import { useRouter } from 'next/navigation';
 import Reveal from './Reveal';
+import SpotlightCard from './SpotlightCard';
 
 const CaseStudiesSection = () => {
+    const router = useRouter();
     const cases = [
         { name: "TechFlow SaaS", metric: "גידול של 350% בלידים B2B", desc: "בניית משפך שיווקי בלינקדאין שהוביל להכפלת כמות הדמואים תוך רבעון.", icon: Target },
         { name: "EcoSmart", metric: "ירידה של 45% ב-CPA", desc: "אופטימיזציה חכמה לקמפיינים במטא, שימוש בדאטה למיקוד ויצירת קריאייטיב ממיר.", icon: BarChart3 },
@@ -24,21 +29,22 @@ const CaseStudiesSection = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 dir-rtl">
                     {cases.map((c, i) => (
-                        <div
-                            key={i}
-                            style={{ background: 'linear-gradient(135deg, #09102c 0%, #1e3082 50%, #6869ba 100%)' }}
-                            className="group relative overflow-hidden p-8 lg:p-10 rounded-[2rem] cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 flex flex-col h-[420px]"
-                        >
-                            {/* Decorative immense background icon */}
-                            <c.icon size={280} className="absolute -bottom-16 -right-16 text-white opacity-[0.03] group-hover:scale-110 group-hover:opacity-10 active:scale-[1.15] active:opacity-[0.12] transition-all duration-[1200ms] pointer-events-none" />
+                        <div key={i} onClick={() => { trackEvent('click_case_study', { case_name: c.name }); router.push(`/casestudies/demo-project-${i}`); }}>
+                            <SpotlightCard
+                                style={{ background: 'linear-gradient(135deg, #09102c 0%, #1e3082 50%, #6869ba 100%)' }}
+                                className="group p-8 lg:p-10 rounded-[2rem] cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 h-[420px]"
+                            >
+                                {/* Decorative immense background icon */}
+                                <c.icon size={280} className="absolute -bottom-16 -right-16 text-white opacity-[0.03] group-hover:scale-110 group-hover:opacity-10 active:scale-[1.15] active:opacity-[0.12] transition-all duration-[1200ms] pointer-events-none" />
 
-                            <h4 className="text-2xl font-bold text-white mb-6 leading-tight relative z-10">{c.name}: <br />{c.metric}</h4>
-                            <p className="text-white/90 text-sm md:text-base leading-relaxed relative z-10">{c.desc}</p>
-                            <div className="mt-auto self-end relative z-10">
-                                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center group-hover:scale-110 shadow-lg text-gray-900 transition-transform">
-                                    <ArrowUpLeft size={24} className="group-hover:-translate-x-1 group-hover:translate-y-1 transition-transform" />
+                                <h4 className="text-2xl font-bold text-white mb-6 leading-tight">{c.name}: <br />{c.metric}</h4>
+                                <p className="text-white/90 text-sm md:text-base leading-relaxed">{c.desc}</p>
+                                <div className="mt-auto self-end">
+                                    <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center group-hover:scale-110 shadow-lg text-gray-900 transition-transform">
+                                        <ArrowUpLeft size={24} className="group-hover:-translate-x-1 group-hover:translate-y-1 transition-transform" />
+                                    </div>
                                 </div>
-                            </div>
+                            </SpotlightCard>
                         </div>
                     ))}
                 </div>

@@ -1,16 +1,20 @@
+"use client";
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import LogoImage from '../assets/Logo.svg';
+import { trackEvent } from '../utils/analytics';
+
+import Image from 'next/image';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const navigate = useNavigate();
-    const location = useLocation();
+    const router = useRouter();
+    const pathname = usePathname();
 
-    const isHomePage = location.pathname === '/';
+    const isHomePage = pathname === '/';
     const isSolid = isScrolled || !isHomePage;
 
     useEffect(() => {
@@ -29,7 +33,8 @@ const Navbar = () => {
     ];
 
     const handleDeptSelect = (id) => {
-        navigate(`/department/${id}`);
+        trackEvent('click_nav_department', { department_id: id });
+        router.push(`/department/${id}`);
         setIsDropdownOpen(false);
         setIsOpen(false);
     };
@@ -42,21 +47,14 @@ const Navbar = () => {
                 }`}
         >
             <div className="max-w-[1400px] mx-auto px-6 flex justify-between items-center">
-                <Link
-                    to="/"
+                <Link href="/"
                     className="flex items-center cursor-pointer group hover:opacity-80 transition-opacity"
                 >
-                    <img
-                        src={LogoImage}
-                        alt="Sepros Logo"
-                        className={`h-8 md:h-10 object-contain transition-all duration-300 ${isSolid ? '' : 'brightness-0 invert'
-                            }`}
-                    />
+                    <img src="/logos/Logo.svg" alt="לוגו ספרוס" className={`h-8 md:h-10 w-auto object-contain transition-all duration-300 ${isSolid ? '' : 'brightness-0 invert'}`} />
                 </Link>
 
                 <div className="hidden lg:flex items-center gap-8 xl:gap-10">
-                    <Link
-                        to="/"
+                    <Link href="/"
                         className={`text-sm font-bold transition-colors ${isSolid
                                 ? 'text-gray-700 hover:text-[#2f4ea1]'
                                 : 'text-white/90 hover:text-white'
@@ -104,8 +102,7 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    <Link
-                        to="/articles"
+                    <Link href="/articles"
                         className={`text-sm font-bold transition-colors ${isSolid
                                 ? 'text-gray-700 hover:text-[#2f4ea1]'
                                 : 'text-white/90 hover:text-white'
@@ -114,8 +111,7 @@ const Navbar = () => {
                         מאמרים
                     </Link>
 
-                    <Link
-                        to="/about"
+                    <Link href="/about"
                         className={`text-sm font-bold transition-colors ${isSolid
                                 ? 'text-gray-700 hover:text-[#2f4ea1]'
                                 : 'text-white/90 hover:text-white'
@@ -124,8 +120,7 @@ const Navbar = () => {
                         אודות
                     </Link>
 
-                    <Link
-                        to="/careers"
+                    <Link href="/careers"
                         className={`text-sm font-bold transition-colors ${isSolid
                                 ? 'text-gray-700 hover:text-[#2f4ea1]'
                                 : 'text-white/90 hover:text-white'
@@ -134,9 +129,8 @@ const Navbar = () => {
                         דרושים
                     </Link>
 
-                    <Link
-                        to="/contact"
-                        id="nav_contact_us_btn"
+                    <Link href="/contact"
+                        id="nav_contact_us_btn" onClick={() => trackEvent('click_nav_contact_btn_desktop')}
                         className={`px-8 py-2.5 font-bold text-sm rounded-full transition-all inline-block shadow-sm ${isSolid
                                 ? 'bg-[#2f4ea1] text-white hover:bg-[#1c3166]'
                                 : 'bg-white text-[#0b1638] hover:bg-gray-100'
@@ -174,16 +168,11 @@ const Navbar = () => {
                                 <X size={28} />
                             </button>
 
-                            <img
-                                src="/src/assets/Logo.svg"
-                                alt="Sepros Logo"
-                                className="h-8 object-contain"
-                            />
+                            <img src="/logos/Logo.svg" alt="לוגו ספרוס" className={`h-8 md:h-10 w-auto object-contain transition-all duration-300 ${isSolid ? '' : 'brightness-0 invert'}`} />
                         </div>
 
                         <div className="flex flex-col items-end space-y-6">
-                            <Link
-                                to="/"
+                            <Link href="/"
                                 onClick={() => setIsOpen(false)}
                                 className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
                             >
@@ -208,32 +197,28 @@ const Navbar = () => {
                                 </div>
                             </div>
 
-                            <Link
-                                to="/articles"
+                            <Link href="/articles"
                                 onClick={() => setIsOpen(false)}
                                 className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
                             >
                                 מאמרים
                             </Link>
 
-                            <Link
-                                to="/about"
+                            <Link href="/about"
                                 onClick={() => setIsOpen(false)}
                                 className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
                             >
                                 אודות
                             </Link>
 
-                            <Link
-                                to="/careers"
+                            <Link href="/careers"
                                 onClick={() => setIsOpen(false)}
                                 className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
                             >
                                 דרושים
                             </Link>
 
-                            <Link
-                                to="/contact"
+                            <Link href="/contact"
                                 onClick={() => setIsOpen(false)}
                                 className="mt-4 w-full text-center bg-[#2f4ea1] text-white px-6 py-3 rounded-full font-bold text-lg hover:bg-[#1c3166] transition-colors"
                             >

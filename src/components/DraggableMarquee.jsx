@@ -1,56 +1,80 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, useAnimation, useMotionValue } from 'framer-motion';
 
-const DraggableMarquee = ({ children, speed = 40, direction = 'rtl' }) => {
-    const [width, setWidth] = useState(0);
+const DraggableMarquee = ({ children, speed = 40, direction = 'ltr' }) => {
+    const [contentWidth, setContentWidth] = useState(0);
     const carouselRef = useRef(null);
     const controls = useAnimation();
     const x = useMotionValue(0);
 
-    // Duplicate children to ensure seamless loop
     const childrenArray = Array.isArray(children) ? children : [children];
-    // Create 3 sets so it fills the screen and has enough content to loop
-    // Ensure we spread the array of nodes correctly inside the track
+    // Create 4 sets to ensure smooth endless looping
     const content = [...childrenArray, ...childrenArray, ...childrenArray, ...childrenArray];
 
-    useEffect(() => {
+    const updateWidth = useCallback(() => {
         if (!carouselRef.current) return;
-        // Total width of the track to know when to loop back
-        setWidth(carouselRef.current.scrollWidth / 4);
-    }, [children]);
+        // Total track size / 4 represents the exact length of one single children loop
+        const measuredWidth = carouselRef.current.scrollWidth / 4;
+        if (measuredWidth > 0 && measuredWidth !== contentWidth) {
+            setContentWidth(measuredWidth);
+        }
+    }, [contentWidth]);
 
-    const startAnimation = () => {
+    useEffect(() => {
+        updateWidth();
+        window.addEventListener('resize', updateWidth);
+        
+        let observer = null;
+        if (carouselRef.current && window.ResizeObserver) {
+            observer = new ResizeObserver(updateWidth);
+            observer.observe(carouselRef.current);
+        }
+        
+        // Timeout to catch late-painting images if ResizeObserver fails
+        const t = setTimeout(updateWidth, 300);
+
+        return () => {
+            window.removeEventListener('resize', updateWidth);
+            if (observer) observer.disconnect();
+            clearTimeout(t);
+        };
+    }, [updateWidth]);
+
+    const startAnimation = useCallback(() => {
+        if (contentWidth === 0) return;
+        
         const currentX = x.get();
-        const distance = direction === 'ltr' ? -width - currentX : width - currentX;
+        const distance = direction === 'ltr' ? -contentWidth - currentX : contentWidth - currentX;
+        const duration = speed * (Math.abs(distance) / contentWidth) || speed;
         
         controls.start({
-            x: direction === 'ltr' ? -width : width,
+            x: direction === 'ltr' ? -contentWidth : contentWidth,
             transition: {
-                duration: speed * (Math.abs(distance) / width) || speed, 
+                duration: duration,
                 ease: 'linear',
                 repeat: Infinity,
                 repeatType: "loop"
             }
         });
-    };
+    }, [contentWidth, direction, speed, controls, x]);
 
     useEffect(() => {
-        if (width > 0) {
+        if (contentWidth > 0) {
             startAnimation();
         }
-    }, [width, direction, speed]);
+    }, [contentWidth, startAnimation]);
 
     const handleDragStart = () => {
         controls.stop();
     };
 
     const handleDragEnd = (_, info) => {
-        // Calculate the new duration based on remaining distance to keep speed constant
+        if (contentWidth === 0) return;
         const currentPosition = x.get();
-        // If dragged past boundary, reset taking modulo
-        let newPosition = currentPosition % width;
-        if (newPosition > 0 && direction === 'ltr') newPosition -= width;
-        if (newPosition < 0 && direction === 'rtl') newPosition += width;
+        let newPosition = currentPosition % contentWidth;
+        
+        if (newPosition > 0 && direction === 'ltr') newPosition -= contentWidth;
+        if (newPosition < 0 && direction === 'rtl') newPosition += contentWidth;
         
         x.set(newPosition);
         startAnimation();
@@ -61,17 +85,16 @@ const DraggableMarquee = ({ children, speed = 40, direction = 'rtl' }) => {
             <motion.div
                 ref={carouselRef}
                 drag="x"
-                dragConstraints={{ right: 0, left: 0 }} // Let it drag freely
-                dragElastic={1} // Prevents resistance when dragging
-                dragMomentum={true} // Add natural momentum
-                dragTransition={{ bounceStiffness: 50, bounceDamping: 10, power: 0.8 }} // Make swipe smoother and faster
+                dragConstraints={{ right: 0, left: 0 }}
+                dragElastic={1}
+                dragMomentum={true}
+                dragTransition={{ bounceStiffness: 50, bounceDamping: 10, power: 0.8 }}
                 style={{ x }}
                 animate={controls}
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
-                // Optional: stop on hover
                 onMouseEnter={() => controls.stop()}
-                onMouseLeave={() => startAnimation()}
+                onMouseLeave={startAnimation}
                 className={`flex w-max items-center gap-10 md:gap-20 px-4 md:px-10 ${direction === 'rtl' ? 'flex-row-reverse' : ''}`}
             >
                 {content.map((child, i) => (

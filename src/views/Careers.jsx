@@ -1,5 +1,6 @@
+"use client";
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { Plus, Minus } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import JobApplicationForm from '../components/JobApplicationForm';
@@ -7,7 +8,7 @@ import Reveal from '../components/Reveal';
 
 const Careers = () => {
     const [expandedJob, setExpandedJob] = useState(null);
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const jobs = [
         {
@@ -52,7 +53,7 @@ const Careers = () => {
                                     </div>
                                 </div>
 
-                                <div className={`overflow-hidden transition-all duration-500 ease-in-out ${expandedJob === i ? 'max-h-[500px] mt-6 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                <div className={`overflow-hidden transition-all duration-500 ease-in-out ${expandedJob === i ? 'max-h-[1500px] mt-6 opacity-100' : 'max-h-0 opacity-0'}`}>
                                     <p className="text-gray-600 text-sm leading-relaxed mb-4">{job.fullDesc}</p>
                                     <h5 className="text-gray-900 font-bold text-sm mb-2">דרישות סף:</h5>
                                     <ul className="list-disc pl-4 pr-6 text-gray-500 text-sm space-y-1 mb-6">
