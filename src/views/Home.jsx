@@ -60,7 +60,13 @@ const homeFaqData = [
 
 const Home = () => {
     return (
-        <div className="pt-0">
+        <div className="pt-0 relative">
+            {/* Subtle Figma-style dot pattern overlay */}
+            <div className="absolute inset-0 z-[50] pointer-events-none" style={{
+                backgroundImage: 'radial-gradient(#09102c 1.5px, transparent 1.5px)',
+                backgroundSize: '24px 24px',
+                opacity: 0.04
+            }}></div>
             <section
                 className="relative min-h-[100dvh] flex flex-col items-center justify-between overflow-hidden"
                 style={{

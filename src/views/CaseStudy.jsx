@@ -1,11 +1,45 @@
 "use client";
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { ArrowUpLeft, Target, BarChart3, TrendingUp, CheckCircle2 } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import Reveal from '../components/Reveal';
 import ContactForm from '../components/ContactForm';
 
+const AnimatedMetric = ({ prefix = "", end, suffix = "" }) => {
+    const [count, setCount] = useState(0);
+    const ref = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) setIsVisible(true);
+        }, { threshold: 0.5 });
+        if (ref.current) observer.observe(ref.current);
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (!isVisible) return;
+        let start = 0;
+        const duration = 2000;
+        const increment = end / (duration / 16);
+        const timer = setInterval(() => {
+            start += increment;
+            if (start >= end) { setCount(end); clearInterval(timer); }
+            else { setCount(start); }
+        }, 16);
+        return () => clearInterval(timer);
+    }, [isVisible, end]);
+
+    const formattedCount = Math.floor(count).toLocaleString('he-IL');
+
+    return (
+        <span ref={ref} className="inline-block">
+            {prefix}{formattedCount}{suffix}
+        </span>
+    );
+};
 const CaseStudy = () => {
     const { slug } = useParams();
     const router = useRouter();
@@ -50,17 +84,17 @@ const CaseStudy = () => {
                     <Reveal className="bg-white rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-100 flex flex-col md:flex-row justify-between items-center gap-8 mb-20 dir-rtl">
                         <div className="text-center w-full md:w-1/3 border-b md:border-b-0 md:border-l border-gray-100 pb-8 md:pb-0 md:pl-8">
                             <TrendingUp size={40} className="text-[#2f4ea1] mx-auto mb-4" />
-                            <div className="text-5xl font-black text-gray-900 mb-2 dir-ltr">+350%</div>
+                            <div className="text-5xl font-black text-gray-900 mb-2 dir-ltr"><AnimatedMetric prefix="+" end={350} suffix="%" /></div>
                             <div className="text-gray-500 font-bold text-sm tracking-wide">עלייה בלידים איכותיים</div>
                         </div>
                         <div className="text-center w-full md:w-1/3 border-b md:border-b-0 md:border-l border-gray-100 pb-8 md:pb-0 md:pl-8">
                             <Target size={40} className="text-[#2f4ea1] mx-auto mb-4" />
-                            <div className="text-5xl font-black text-gray-900 mb-2 dir-ltr">-45%</div>
+                            <div className="text-5xl font-black text-gray-900 mb-2 dir-ltr"><AnimatedMetric prefix="-" end={45} suffix="%" /></div>
                             <div className="text-gray-500 font-bold text-sm tracking-wide">ירידה בעלות רכישת לקוח (CPA)</div>
                         </div>
                         <div className="text-center w-full md:w-1/3">
                             <BarChart3 size={40} className="text-[#2f4ea1] mx-auto mb-4" />
-                            <div className="text-5xl font-black text-gray-900 mb-2 dir-ltr">X4</div>
+                            <div className="text-5xl font-black text-gray-900 mb-2 dir-ltr"><AnimatedMetric prefix="X" end={4} suffix="" /></div>
                             <div className="text-gray-500 font-bold text-sm tracking-wide">החזר השקעה (ROAS)</div>
                         </div>
                     </Reveal>

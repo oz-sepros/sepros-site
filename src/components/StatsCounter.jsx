@@ -38,7 +38,7 @@ export const StatItem = ({ end, label, suffix = "" }) => {
 };
 
 const StatsCounter = () => (
-    <section className="py-10 md:py-12 bg-white relative z-10">
+    <section className="py-10 md:py-12 bg-[#F5F7FA] relative z-10">
         <div className="max-w-[1400px] mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <StatItem end={150} label="לקוחות פעילים" suffix="+" />

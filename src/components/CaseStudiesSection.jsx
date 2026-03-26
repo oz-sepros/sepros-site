@@ -4,7 +4,6 @@ import { trackEvent } from '../utils/analytics';
 import { useRouter } from 'next/navigation';
 import Reveal from './Reveal';
 import SpotlightCard from './SpotlightCard';
-
 const CaseStudiesSection = () => {
     const router = useRouter();
     const cases = [
@@ -15,7 +14,7 @@ const CaseStudiesSection = () => {
     ];
 
     return (
-        <section className="pt-16 md:pt-24 pb-24 md:pb-32 bg-white relative overflow-hidden text-right">
+        <section id="case-studies" className="pt-16 md:pt-24 pb-24 md:pb-32 bg-white relative overflow-hidden text-right">
             <div className="max-w-[1400px] mx-auto px-6 relative z-10">
                 <Reveal>
                     <div className="mb-6 flex items-center justify-center md:justify-start gap-2 dir-rtl">

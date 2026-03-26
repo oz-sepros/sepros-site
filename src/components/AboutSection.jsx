@@ -8,7 +8,7 @@ const AboutSection = () => (
                     <div className="w-2.5 h-2.5 rounded-full bg-[#2f4ea1] opacity-90"></div>
                     <span className="text-[#2f4ea1] font-extrabold text-base tracking-widest uppercase">על ספרוס</span>
                 </div>
-                <h3 className="text-4xl md:text-6xl font-black text-gray-900 mb-10 leading-tight">בוטיק של תוצאות <br /> <span className="outline-text opacity-40">בעולם של דאטה.</span></h3>
+                <h3 className="text-4xl md:text-6xl font-black text-gray-900 mb-10 leading-tight">בוטיק של תוצאות <br /> <span>בעולם של דאטה.</span></h3>
                 <p className="text-gray-600 text-lg md:text-xl font-light leading-relaxed mb-8">
                     ספרוס הוקמה מתוך מטרה אחת: לגשר על הפער שבין קריאייטיב מרהיב למספרים בשורה התחתונה. אנחנו מאמינים שבעידן הנוכחי, שיווק דיגיטלי חייב להיות מבוסס נתונים אך מונע על ידי רגש.
                 </p>

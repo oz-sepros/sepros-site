@@ -40,13 +40,14 @@ const Navbar = () => {
     };
 
     return (
-        <nav
-            className={`fixed w-full z-[100] transition-all duration-500 ${isSolid
-                    ? 'bg-white/90 backdrop-blur-xl py-3 border-b border-gray-200/50 shadow-sm'
-                    : 'bg-transparent py-6 md:py-8'
-                }`}
-        >
-            <div className="max-w-[1400px] mx-auto px-6 flex justify-between items-center">
+        <>
+            <nav
+                className={`fixed w-full z-[100] transition-all duration-500 ${isSolid
+                        ? 'bg-white/80 backdrop-blur-xl py-3 border-b border-gray-200/50 shadow-sm'
+                        : 'bg-transparent py-6 md:py-8'
+                    }`}
+            >
+            <div className="max-w-[1400px] mx-auto px-6 flex flex-row-reverse lg:flex-row justify-between items-center">
                 <Link href="/"
                     className="flex items-center cursor-pointer group hover:opacity-80 transition-opacity"
                 >
@@ -102,6 +103,15 @@ const Navbar = () => {
                         </div>
                     </div>
 
+                    <Link href="/#case-studies"
+                        className={`text-sm font-bold transition-colors ${isSolid
+                                ? 'text-gray-700 hover:text-[#2f4ea1]'
+                                : 'text-white/90 hover:text-white'
+                            }`}
+                    >
+                        קייס סטאדי
+                    </Link>
+
                     <Link href="/articles"
                         className={`text-sm font-bold transition-colors ${isSolid
                                 ? 'text-gray-700 hover:text-[#2f4ea1]'
@@ -141,94 +151,109 @@ const Navbar = () => {
                 </div>
 
                 <button
-                    className={`lg:hidden ${isSolid ? 'text-gray-800' : 'text-white'}`}
-                    onClick={() => setIsOpen(!isOpen)}
-                    aria-label="Toggle menu"
+                    className={`lg:hidden transition-opacity duration-300 ${isSolid ? 'text-gray-800' : 'text-white'} ${isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+                    onClick={() => setIsOpen(true)}
+                    aria-label="Open menu"
                 >
-                    {isOpen ? <X size={28} /> : <Menu size={28} />}
+                    <Menu size={28} />
                 </button>
             </div>
 
-            {isOpen && (
+            </nav>
+
+            <div
+                className={`fixed inset-0 z-[150] transition-opacity duration-300 lg:hidden ${
+                    isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+                }`}
+            >
                 <div
-                    className="fixed inset-0 z-[150] bg-black/40 lg:hidden"
+                    className="absolute inset-0 bg-black/40"
                     onClick={() => setIsOpen(false)}
+                />
+                
+                <div
+                    dir="rtl"
+                    className={`absolute inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl p-6 overflow-y-auto transition-transform duration-500 ease-out ${
+                        isOpen ? 'translate-x-0' : 'translate-x-full'
+                    }`}
+                    onClick={(e) => e.stopPropagation()}
                 >
-                    <div
-                        dir="rtl"
-                        className="absolute inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl p-6 overflow-y-auto"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <div className="flex flex-row-reverse items-center justify-between mb-8">
-                            <button
-                                className="text-gray-800"
-                                onClick={() => setIsOpen(false)}
-                                aria-label="Close menu"
-                            >
-                                <X size={28} />
-                            </button>
+                    <div className="flex items-center justify-between mb-8">
+                        <button
+                            className="text-gray-800"
+                            onClick={() => setIsOpen(false)}
+                            aria-label="Close menu"
+                        >
+                            <X size={28} />
+                        </button>
 
-                            <img src="/logos/Logo.svg" alt="לוגו ספרוס" className={`h-8 md:h-10 w-auto object-contain transition-all duration-300 ${isSolid ? '' : 'brightness-0 invert'}`} />
-                        </div>
+                        <img src="/logos/Logo.svg" alt="לוגו ספרוס" className={`h-8 md:h-10 w-auto object-contain transition-all duration-300 ${isSolid ? '' : 'brightness-0 invert'}`} />
+                    </div>
 
-                        <div className="flex flex-col items-end space-y-6">
-                            <Link href="/"
-                                onClick={() => setIsOpen(false)}
-                                className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
-                            >
-                                בית
-                            </Link>
+                    <div className="flex flex-col items-end space-y-4">
+                        <Link href="/"
+                            onClick={() => setIsOpen(false)}
+                            className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
+                        >
+                            בית
+                        </Link>
 
-                            <div className="w-full border-t border-gray-200 pt-6">
-                                <p className="text-sm font-bold text-[#2f4ea1] mb-4 text-right">
-                                    שירותים
-                                </p>
+                        <div className="w-full border-t border-gray-200 pt-6">
+                            <p className="text-sm font-bold text-[#2f4ea1] mb-4 text-right">
+                                שירותים
+                            </p>
 
-                                <div className="flex flex-col items-end space-y-3">
-                                    {departments.map((dept) => (
-                                        <button
-                                            key={dept.id}
-                                            onClick={() => handleDeptSelect(dept.id)}
-                                            className="w-full text-right text-lg font-bold text-gray-700 hover:text-[#2f4ea1] transition-colors"
-                                        >
-                                            {dept.label}
-                                        </button>
-                                    ))}
-                                </div>
+                            <div className="flex flex-col items-end space-y-3">
+                                {departments.map((dept) => (
+                                    <button
+                                        key={dept.id}
+                                        onClick={() => handleDeptSelect(dept.id)}
+                                        className="w-full text-right text-lg font-bold text-gray-700 hover:text-[#2f4ea1] transition-colors"
+                                    >
+                                        {dept.label}
+                                    </button>
+                                ))}
                             </div>
-
-                            <Link href="/articles"
-                                onClick={() => setIsOpen(false)}
-                                className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
-                            >
-                                מאמרים
-                            </Link>
-
-                            <Link href="/about"
-                                onClick={() => setIsOpen(false)}
-                                className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
-                            >
-                                אודות
-                            </Link>
-
-                            <Link href="/careers"
-                                onClick={() => setIsOpen(false)}
-                                className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
-                            >
-                                דרושים
-                            </Link>
-
-                            <Link href="/contact"
-                                onClick={() => setIsOpen(false)}
-                                className="mt-4 w-full text-center bg-[#2f4ea1] text-white px-6 py-3 rounded-full font-bold text-lg hover:bg-[#1c3166] transition-colors"
-                            >
-                                בואו נדבר
-                            </Link>
                         </div>
+
+                        <Link href="/#case-studies"
+                            onClick={() => setIsOpen(false)}
+                            className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
+                        >
+                            קייס סטאדי
+                        </Link>
+
+                        <Link href="/articles"
+                            onClick={() => setIsOpen(false)}
+                            className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
+                        >
+                            מאמרים
+                        </Link>
+
+                        <Link href="/about"
+                            onClick={() => setIsOpen(false)}
+                            className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
+                        >
+                            אודות
+                        </Link>
+
+                        <Link href="/careers"
+                            onClick={() => setIsOpen(false)}
+                            className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
+                        >
+                            דרושים
+                        </Link>
+
+                        <Link href="/contact"
+                            onClick={() => setIsOpen(false)}
+                            className="mt-4 w-full text-center bg-[#2f4ea1] text-white px-6 py-3 rounded-full font-bold text-lg hover:bg-[#1c3166] transition-colors"
+                        >
+                            בואו נדבר
+                        </Link>
                     </div>
                 </div>
-            )}
-        </nav>
+            </div>
+        </>
     );
 };
 
