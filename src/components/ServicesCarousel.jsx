@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from 'react'; 
+import { useEffect, useRef, useState } from 'react';
 import { trackEvent } from '../utils/analytics';
 import { useRouter } from 'next/navigation';
 import { Target, Share2, Palette, Code, Search, BarChart3, ArrowUpLeft, ChevronRight, ChevronLeft } from 'lucide-react';
@@ -16,42 +16,56 @@ const ServicesCarousel = () => {
 
     const scrollRef = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
     const router = useRouter();
 
     const handleScroll = () => {
         if (!scrollRef.current) return;
-        const scrollLeft = Math.abs(scrollRef.current.scrollLeft);
-        const cardWidth = 400 + 24; // min-w-[400px] + gap-6
+        const carousel = scrollRef.current;
+        const firstChild = carousel.children[0];
+        if (!firstChild) return;
+
+        const gap = parseFloat(window.getComputedStyle(carousel).gap) || 0;
+        const cardWidth = firstChild.offsetWidth + gap;
+
+        const scrollLeft = Math.abs(carousel.scrollLeft);
         const newIndex = Math.min(Math.max(Math.round(scrollLeft / cardWidth), 0), departments.length - 1);
         setActiveIndex(newIndex);
     };
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(([entry]) => {
+            setIsVisible(entry.isIntersecting);
+        }, { threshold: 0.3 });
+        if (scrollRef.current) observer.observe(scrollRef.current);
+        return () => observer.disconnect();
+    }, []);
 
     useEffect(() => {
         const carousel = scrollRef.current;
         if (!carousel) return;
 
         let interval;
-        if (!isHovered) {
+        if (!isHovered && isVisible) {
             interval = setInterval(() => {
                 const isRTL = window.getComputedStyle(carousel).direction === 'rtl';
-                if (isRTL) {
-                    if (Math.abs(carousel.scrollLeft) >= carousel.scrollWidth - carousel.clientWidth - 10) {
-                        carousel.scrollTo({ left: 0, behavior: 'smooth' });
-                    } else {
-                        carousel.scrollBy({ left: -424, behavior: 'smooth' });
-                    }
+                const firstChild = carousel.children[0];
+                if (!firstChild) return;
+
+                const gap = parseFloat(window.getComputedStyle(carousel).gap) || 0;
+                const cardWidth = firstChild.offsetWidth + gap;
+
+                if (Math.abs(carousel.scrollLeft) >= carousel.scrollWidth - carousel.clientWidth - 10) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
                 } else {
-                    if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 10) {
-                        carousel.scrollTo({ left: 0, behavior: 'smooth' });
-                    } else {
-                        carousel.scrollBy({ left: 424, behavior: 'smooth' });
-                    }
+                    const scrollAmount = isRTL ? -cardWidth : cardWidth;
+                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
                 }
-            }, 3500);
+            }, 3000); // 3 seconds per rotation
         }
         return () => clearInterval(interval);
-    }, [isHovered]);
+    }, [isHovered, isVisible]);
 
     return (
         <section className="pt-24 md:pt-32 pb-10 md:pb-16 bg-[#F5F7FA] border-b border-gray-100" id="services" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onTouchStart={() => setIsHovered(true)} onTouchEnd={() => setIsHovered(false)}>
@@ -65,10 +79,22 @@ const ServicesCarousel = () => {
                 </div>
                 {/* Desktop arrows moved up */}
                 <div className="hidden md:flex gap-4 dir-ltr">
-                    <button onClick={() => scrollRef.current?.scrollBy({ left: -424, behavior: 'smooth' })} className="w-12 h-12 rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm flex items-center justify-center hover:bg-gray-50 transition-colors">
+                    <button onClick={() => {
+                        const carousel = scrollRef.current;
+                        if (!carousel) return;
+                        const firstChild = carousel.children[0];
+                        const gap = parseFloat(window.getComputedStyle(carousel).gap) || 0;
+                        carousel.scrollBy({ left: -(firstChild.offsetWidth + gap), behavior: 'smooth' });
+                    }} className="w-12 h-12 rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm flex items-center justify-center hover:bg-gray-50 transition-colors">
                         <ChevronLeft size={24} />
                     </button>
-                    <button onClick={() => scrollRef.current?.scrollBy({ left: 424, behavior: 'smooth' })} className="w-12 h-12 rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm flex items-center justify-center hover:bg-gray-50 transition-colors">
+                    <button onClick={() => {
+                        const carousel = scrollRef.current;
+                        if (!carousel) return;
+                        const firstChild = carousel.children[0];
+                        const gap = parseFloat(window.getComputedStyle(carousel).gap) || 0;
+                        carousel.scrollBy({ left: (firstChild.offsetWidth + gap), behavior: 'smooth' });
+                    }} className="w-12 h-12 rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm flex items-center justify-center hover:bg-gray-50 transition-colors">
                         <ChevronRight size={24} />
                     </button>
                 </div>
@@ -113,10 +139,22 @@ const ServicesCarousel = () => {
 
                 {/* Mobile arrows aligned exactly like desktop */}
                 <div className="flex md:hidden items-center justify-center gap-4 mt-6 dir-ltr">
-                    <button onClick={() => scrollRef.current?.scrollBy({ left: -424, behavior: 'smooth' })} className="w-12 h-12 shrink-0 rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm flex items-center justify-center hover:bg-gray-50 transition-all active:scale-95">
+                    <button onClick={() => {
+                        const carousel = scrollRef.current;
+                        if (!carousel) return;
+                        const firstChild = carousel.children[0];
+                        const gap = parseFloat(window.getComputedStyle(carousel).gap) || 0;
+                        carousel.scrollBy({ left: -(firstChild.offsetWidth + gap), behavior: 'smooth' });
+                    }} className="w-12 h-12 shrink-0 rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm flex items-center justify-center hover:bg-gray-50 transition-all active:scale-95">
                         <ChevronLeft size={24} />
                     </button>
-                    <button onClick={() => scrollRef.current?.scrollBy({ left: 424, behavior: 'smooth' })} className="w-12 h-12 shrink-0 rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm flex items-center justify-center hover:bg-gray-50 transition-all active:scale-95">
+                    <button onClick={() => {
+                        const carousel = scrollRef.current;
+                        if (!carousel) return;
+                        const firstChild = carousel.children[0];
+                        const gap = parseFloat(window.getComputedStyle(carousel).gap) || 0;
+                        carousel.scrollBy({ left: (firstChild.offsetWidth + gap), behavior: 'smooth' });
+                    }} className="w-12 h-12 shrink-0 rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm flex items-center justify-center hover:bg-gray-50 transition-all active:scale-95">
                         <ChevronRight size={24} />
                     </button>
                 </div>

@@ -31,16 +31,20 @@ const CaseStudiesSection = () => {
                         <div key={i} onClick={() => { trackEvent('click_case_study', { case_name: c.name }); router.push(`/casestudies/demo-project-${i}`); }}>
                             <SpotlightCard
                                 style={{ background: 'linear-gradient(135deg, #09102c 0%, #1e3082 50%, #6869ba 100%)' }}
-                                className="group p-8 lg:p-10 rounded-[2rem] cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 h-[420px]"
+                                className="group p-5 md:p-8 lg:p-10 rounded-[1.5rem] md:rounded-[2rem] cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 h-[130px] md:h-[420px] text-right"
                             >
-                                {/* Decorative immense background icon */}
-                                <c.icon size={280} className="absolute -bottom-16 -right-16 text-white opacity-[0.03] group-hover:scale-110 group-hover:opacity-10 active:scale-[1.15] active:opacity-[0.12] transition-all duration-[1200ms] pointer-events-none" />
+                                <div className="grid grid-cols-[1fr_auto] md:flex md:flex-col justify-between items-center md:items-start h-full w-full">
+                                    {/* Decorative immense background icon */}
+                                    <c.icon size={280} className="absolute -bottom-10 -right-10 md:-bottom-16 md:-right-16 text-white opacity-[0.03] group-hover:scale-110 group-hover:opacity-10 active:scale-[1.15] active:opacity-[0.12] transition-all duration-[1200ms] pointer-events-none" />
 
-                                <h4 className="text-2xl font-bold text-white mb-6 leading-tight">{c.name}: <br />{c.metric}</h4>
-                                <p className="text-white/90 text-sm md:text-base leading-relaxed">{c.desc}</p>
-                                <div className="mt-auto self-end">
-                                    <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center group-hover:scale-110 shadow-lg text-gray-900 transition-transform">
-                                        <ArrowUpLeft size={24} className="group-hover:-translate-x-1 group-hover:translate-y-1 transition-transform" />
+                                    <div className="flex flex-col justify-center md:justify-start h-full z-10">
+                                        <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-0 md:mb-6 leading-tight max-w-[95%]">{c.name}: <span className="md:hidden"> </span><br className="hidden md:block" /> {c.metric}</h4>
+                                        <p className="hidden md:block text-white/90 text-sm md:text-base leading-relaxed">{c.desc}</p>
+                                    </div>
+                                    <div className="z-10 mt-auto mb-auto md:mb-0 md:self-end">
+                                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center group-hover:scale-110 shadow-lg text-gray-900 transition-transform">
+                                            <ArrowUpLeft size={24} className="group-hover:-translate-x-1 group-hover:translate-y-1 transition-transform w-[18px] h-[18px] md:w-6 md:h-6" />
+                                        </div>
                                     </div>
                                 </div>
                             </SpotlightCard>
