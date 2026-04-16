@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
@@ -7,84 +7,167 @@ import Reveal from '../components/Reveal';
 
 
 const SocialCarousel = () => {
-    const [active, setActive] = useState(2);
-    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [active, setActive] = useState(0);
+    const [playing, setPlaying] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+    const [touchStart, setTouchStart] = useState(null);
+    const [touchEnd, setTouchEnd] = useState(null);
+    const [autoPlay, setAutoPlay] = useState(true);
     
-    // פלייסאהולדרים של סרטוני יוטיוב לדוגמה לשורטס/רילס
-    const items = [
-        { id: "M7lc1UVf-VE" }, 
-        { id: "tgbNymZ7vqY" },
-        { id: "LXb3EKWsInQ" },
-        { id: "aqz-KE-bpKQ" },
-        { id: "zpOULjyy-n8" }
+    // הסרטונים האמיתיים (YouTube Shorts) של הלקוח
+    const baseItems = [
+        { id: "8l4iphxZurc" }, 
+        { id: "ABEaNtb2oeA" },
+        { id: "uc110NcS9zc" },
+        { id: "bggmFXyPUYE" },
+        { id: "CUV3z0Ify9Y" },
+        { id: "L0T-QWKvLqU" },
+        { id: "i2D0NOb4IZ8" }
     ];
+    // נכפיל את המערך כדי למנוע קפיצות ויזואליות במצב מעגל אינסופי
+    const items = [...baseItems, ...baseItems];
 
-    const handleNext = () => setActive((prev) => (prev + 1) % items.length);
-    const handlePrev = () => setActive((prev) => (prev - 1 + items.length) % items.length);
+    const handleNext = () => {
+        setActive((prev) => (prev + 1) % items.length);
+        setPlaying(false);
+    };
+    const handlePrev = () => {
+        setActive((prev) => (prev - 1 + items.length) % items.length);
+        setPlaying(false);
+    };
+
+    useEffect(() => {
+        let interval;
+        if (!isHovered && !playing && autoPlay) {
+            interval = setInterval(() => {
+                handleNext();
+            }, 3500); // 3.5 שניות, לא מהיר מידי
+        }
+        return () => clearInterval(interval);
+    }, [isHovered, playing, autoPlay, items.length]);
+
+    // Touch Handlers למובייל
+    const onTouchStart = (e) => {
+        setTouchEnd(null);
+        setTouchStart(e.targetTouches[0].clientX);
+        setAutoPlay(false); // הפסקת סיבוב אוטומטי כשנוגעים
+    };
+
+    const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) {
+            setAutoPlay(true);
+            return;
+        }
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > 50;
+        const isRightSwipe = distance < -50;
+        
+        // בעברית RTL: החלקת ימינה מביאה מהצד השמאלי (Next). החלקת שמאלה מביאה מהצד הימני (Prev)
+        if (isRightSwipe) handleNext();
+        if (isLeftSwipe) handlePrev();
+        
+        // החזרת הניגון האוטומטי אחרי כמה שניות של חוסר מגע
+        setTimeout(() => setAutoPlay(true), 2500);
+    };
+
+    // פונקציה לחישוב המרחק של כל סרטון מהמרכז
+    const getOffset = (index) => {
+        let offset = index - active;
+        // מציאת הנתיב הקצר ביותר במעגל
+        if (offset > Math.floor(items.length / 2)) offset -= items.length;
+        if (offset < -Math.floor(items.length / 2)) offset += items.length;
+        return offset;
+    };
 
     return (
-        <div className="relative w-full flex flex-col items-center justify-center py-16 md:py-24 mt-6 md:mt-10 overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 rounded-[2.5rem] border border-gray-100 shadow-sm border-t-4 border-t-[#2f4ea1]">
+        <div 
+            className="relative w-full flex flex-col items-center justify-center pb-12 md:pb-20 pt-8 md:pt-14 mt-4 md:mt-8 overflow-hidden touch-pan-y"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+        >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-[800px] h-[300px] bg-[#2f4ea1]/5 blur-[80px] rounded-full pointer-events-none"></div>
             
-            <h3 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 md:mb-6 text-center relative z-10 tracking-tight">ככה נראה סושיאל מנצח.</h3>
-            <p className="text-gray-500 text-lg md:text-xl text-center max-w-3xl mb-12 relative z-10 px-6 font-medium">הצצה להפקות וידאו שוברות רשת ולסרטוני שורטס וטיקטוק שמייצרים חשיפה ויראלית ומאות לידים ללקוחות שלנו בעולמות B2B ו-B2C.</p>
+            <h3 className="text-4xl md:text-5xl font-black text-[#2f4ea1] mb-2 md:mb-4 text-center relative z-10 tracking-tight text-balance">הצצה לתוכן שאנחנו יוצרים</h3>
+            <p className="text-gray-600 text-lg md:text-xl text-center max-w-2xl mb-6 md:mb-10 relative z-10 px-6 font-medium text-balance">תוכן שמניע לפעולה - UGC, רילסים, פרסומות קצרות, טרנדים, לפני/אחרי.</p>
 
-            <button onClick={handlePrev} className="absolute right-2 md:right-8 top-1/2 translate-y-1/2 z-30 p-2 md:p-4 bg-white/90 shadow-lg text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-colors"><ChevronRight size={24} /></button>
+            <div className="relative flex items-center justify-center w-full h-[420px] md:h-[550px] max-w-[1200px] mx-auto">
+                <button onClick={handlePrev} className="absolute right-2 md:right-12 top-1/2 z-40 p-3 md:p-4 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.15)] text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-all hover:scale-110 -translate-y-1/2"><ChevronRight size={24} /></button>
+                <button onClick={handleNext} className="absolute left-2 md:left-12 top-1/2 z-40 p-3 md:p-4 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.15)] text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-all hover:scale-110 -translate-y-1/2"><ChevronLeft size={24} /></button>
 
-            <div className="flex items-center justify-center gap-2 md:gap-6 w-full px-4 md:px-24 h-[400px] md:h-[500px]">
                 {items.map((item, i) => {
-                    const isActive = i === active;
-                    if (Math.abs(i - active) > 2) return null;
+                    const offset = getOffset(i);
+                    const isActive = offset === 0;
+
+                    let classNames = '';
+                    switch (offset) {
+                        case 0:
+                            classNames = 'translate-x-0 scale-100 md:scale-110 z-30 opacity-100 shadow-[0_20px_50px_rgba(47,78,161,0.25)] border-[4px] md:border-[6px] border-white';
+                            break;
+                        case 1:
+                            classNames = '-translate-x-[140px] md:-translate-x-[240px] scale-100 z-20 opacity-60 blur-[1px] hover:opacity-100 hover:blur-none cursor-pointer shadow-lg';
+                            break;
+                        case -1:
+                            classNames = 'translate-x-[140px] md:translate-x-[240px] scale-100 z-20 opacity-60 blur-[1px] hover:opacity-100 hover:blur-none cursor-pointer shadow-lg';
+                            break;
+                        case 2:
+                            classNames = '-translate-x-[240px] md:-translate-x-[420px] scale-100 z-10 opacity-30 blur-[3px] shadow-sm';
+                            break;
+                        case -2:
+                            classNames = 'translate-x-[240px] md:translate-x-[420px] scale-100 z-10 opacity-30 blur-[3px] shadow-sm';
+                            break;
+                        default:
+                            classNames = offset > 0 
+                                ? '-translate-x-[320px] md:-translate-x-[600px] scale-100 z-0 opacity-0 pointer-events-none' 
+                                : 'translate-x-[320px] md:translate-x-[600px] scale-100 z-0 opacity-0 pointer-events-none';
+                            break;
+                    }
 
                     return (
                         <div key={i}
-                            onClick={() => isActive ? setLightboxOpen(true) : setActive(i)}
-                            className={`group relative transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer flex-shrink-0 aspect-[9/16] rounded-[2rem] overflow-hidden bg-black
-                              ${isActive
-                                    ? 'w-[200px] md:w-[280px] scale-110 md:scale-110 opacity-100 z-20 shadow-[0_20px_50px_rgba(47,78,161,0.25)] border-[6px] border-white'
-                                    : 'w-[140px] md:w-[200px] scale-90 opacity-30 hover:opacity-60 blur-[1px] md:blur-[2px] z-10 shadow-lg'}`}>
+                            onClick={() => {
+                                if (isActive) setPlaying(true);
+                                else { setActive(i); setPlaying(false); }
+                            }}
+                            className={`absolute transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] w-[210px] md:w-[280px] aspect-[9/16] rounded-2xl md:rounded-[2rem] overflow-hidden bg-black ${classNames}`}>
                             
-                            <img src={`https://img.youtube.com/vi/${item.id}/hqdefault.jpg`} alt="שורטס - דוגמה" loading="lazy" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-                            <div className={`absolute inset-0 transition-colors duration-500 flex items-center justify-center ${isActive ? 'bg-black/10 hover:bg-black/20' : 'bg-black/40'}`}>
-                                {isActive && (
-                                    <div className="w-16 h-16 md:w-20 md:h-20 bg-white/95 backdrop-blur-md rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(0,0,0,0.3)] hover:scale-110 hover:bg-white transition-transform duration-300">
-                                        <svg className="w-6 h-6 md:w-8 md:h-8 ml-1 md:ml-1.5 text-[#2f4ea1]" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6V4z"></path></svg>
+                            {isActive && playing ? (
+                                <iframe 
+                                    className="w-full h-full object-cover"
+                                    src={`https://www.youtube.com/embed/${item.id}?autoplay=1&mute=0&controls=1&rel=0`} 
+                                    title="YouTube Shorts" 
+                                    frameBorder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowFullScreen>
+                                </iframe>
+                            ) : (
+                                <>
+                                    <img src={`https://img.youtube.com/vi/${item.id}/hqdefault.jpg`} alt="שורטס - דוגמה" loading="lazy" className="w-full h-full object-cover transition-transform duration-1000 md:group-hover:scale-105" />
+                                    <div className={`absolute inset-0 transition-colors duration-500 flex items-center justify-center ${isActive ? 'bg-black/10 hover:bg-black/20' : 'bg-black/40'}`}>
+                                        {isActive && (
+                                            <div className="w-16 h-16 md:w-20 md:h-20 bg-white/95 backdrop-blur-md rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(0,0,0,0.3)] hover:scale-110 hover:bg-white transition-transform duration-300">
+                                                <svg className="w-6 h-6 md:w-8 md:h-8 ml-1 md:ml-1.5 text-[#2f4ea1]" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6V4z"></path></svg>
+                                            </div>
+                                        )}
                                     </div>
-                                )}
-                            </div>
+                                </>
+                            )}
                         </div>
                     )
                 })}
             </div>
 
-            <button onClick={handleNext} className="absolute left-2 md:left-8 top-1/2 translate-y-1/2 z-30 p-2 md:p-4 bg-white/90 shadow-lg text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-colors"><ChevronLeft size={24} /></button>
-
-            {/* Lightbox Overlay */}
-            {lightboxOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 md:p-10" onClick={() => setLightboxOpen(false)}>
-                    <button className="absolute top-6 right-6 md:top-10 md:right-10 text-white bg-white/10 hover:bg-white/20 p-4 rounded-full transition-colors z-[60]" onClick={() => setLightboxOpen(false)}>
-                        <ArrowLeft className="rotate-180" size={24} />
-                    </button>
-                    
-                    <div className="relative w-full max-w-[420px] aspect-[9/16] bg-black rounded-3xl overflow-hidden shadow-[0_0_80px_rgba(47,78,161,0.4)] border border-white/10" onClick={(e) => e.stopPropagation()}>
-                        <iframe 
-                            className="w-full h-full"
-                            src={`https://www.youtube.com/embed/${items[active].id}?autoplay=1&mute=0&controls=1&rel=0`} 
-                            title="YouTube Shorts" 
-                            frameBorder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowFullScreen>
-                        </iframe>
-                    </div>
-                </div>
-            )}
         </div>
     )
 }
-
+const DepartmentPortfolio = ({ category }) => {
     if (category === 'social') {
         return (
-            <div className="mt-16 md:mt-24 w-full">
+            <div className="mt-10 md:mt-16 w-full">
                 <SocialCarousel />
             </div>
         );
@@ -155,22 +238,23 @@ const DepartmentDetail = () => {
                 <button onClick={() => router.push('/')} className="group text-[#2f4ea1] flex items-center gap-2 mb-8 font-black tracking-widest text-xs">
                     חזרה לדף הבית <ArrowUpLeft className="rotate-90 group-hover:translate-x-2 transition-transform" />
                 </button>
-                <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-start">
-                    <div>
-                        <h1 className="text-4xl md:text-5xl font-black uppercase mb-6 text-[#2f4ea1]">{dept.title}</h1>
-                        <p className="text-gray-600 text-lg md:text-xl font-light mb-8 leading-relaxed">{dept.long}</p>
+                <div className="flex flex-col lg:flex-row gap-12 md:gap-16 items-stretch">
+                    <div className="lg:w-[60%] flex flex-col justify-center">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase mb-6 text-[#2f4ea1] leading-tight">{dept.title}</h1>
+                        <p className="text-gray-600 text-xl md:text-2xl font-normal mb-10 leading-relaxed text-balance">{dept.long}</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {dept.services.map((s, i) => (
-                                <div key={i} className="flex items-center gap-3 bg-gray-50 p-4 md:p-5 border border-gray-100 rounded-md">
-                                    <CheckCircle2 className="text-[#2f4ea1] shrink-0" size={18} />
-                                    <span className="font-bold text-gray-800 text-sm">{s}</span>
+                                <div key={i} className="flex items-center gap-3 bg-gray-50 p-4 md:p-6 border border-gray-100 rounded-lg transition-transform hover:-translate-y-1">
+                                    <CheckCircle2 className="text-[#2f4ea1] shrink-0" size={22} />
+                                    <span className="font-bold text-gray-800 text-base md:text-lg">{s}</span>
                                 </div>
                             ))}
                         </div>
                     </div>
-                    {/* Replaced broken SeprosLogo with simple fallback styling */}
-                    <div className="aspect-square md:aspect-[4/5] bg-gray-50 border border-gray-100 flex items-center justify-center p-8 rounded-xl shadow-sm">
-                        <img src="/logos/Logo.svg" alt="לוגו תצוגה" className="w-32 h-32 object-contain filter invert opacity-30 blur-[2px]" />
+                    {/* Replaced broken SeprosLogo with simple fallback styling - Container will now stretch to perfectly match text height */}
+                    <div className="lg:w-[40%] w-full hidden lg:flex bg-gray-50 border border-gray-100 items-center justify-center p-8 rounded-2xl shadow-sm relative overflow-hidden group">
+                        <div className="absolute inset-0 bg-gradient-to-tr from-[#2f4ea1]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <img src="/logos/Logo.svg" alt="לוגו תצוגה" className="w-24 h-24 md:w-40 md:h-40 object-contain filter invert opacity-20 blur-[1px] group-hover:blur-none group-hover:opacity-30 transition-all duration-500 group-hover:scale-110" />
                     </div>
                 </div>
 
