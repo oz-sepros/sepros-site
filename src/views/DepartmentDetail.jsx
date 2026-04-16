@@ -95,7 +95,7 @@ const SocialCarousel = () => {
             <h3 className="text-4xl md:text-5xl font-black text-[#2f4ea1] mb-2 md:mb-4 text-center relative z-10 tracking-tight text-balance">הצצה לתוכן שאנחנו יוצרים</h3>
             <p className="text-gray-600 text-lg md:text-xl text-center max-w-2xl mb-6 md:mb-10 relative z-10 px-6 font-medium text-balance">תוכן שמניע לפעולה - UGC, רילסים, פרסומות קצרות, טרנדים, לפני/אחרי.</p>
 
-            <div className="relative flex items-center justify-center w-full h-[420px] md:h-[550px] max-w-[1200px] mx-auto">
+            <div className="relative flex items-center justify-center w-full h-[460px] md:h-[550px] max-w-[1200px] mx-auto">
                 <button onClick={handlePrev} className="absolute right-2 md:right-12 top-1/2 z-40 p-3 md:p-4 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.15)] text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-all hover:scale-110 -translate-y-1/2"><ChevronRight size={24} /></button>
                 <button onClick={handleNext} className="absolute left-2 md:left-12 top-1/2 z-40 p-3 md:p-4 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.15)] text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-all hover:scale-110 -translate-y-1/2"><ChevronLeft size={24} /></button>
 
@@ -109,21 +109,21 @@ const SocialCarousel = () => {
                             classNames = 'translate-x-0 scale-100 md:scale-110 z-30 opacity-100 shadow-[0_20px_50px_rgba(47,78,161,0.25)] border-[4px] md:border-[6px] border-white';
                             break;
                         case 1:
-                            classNames = '-translate-x-[140px] md:-translate-x-[240px] scale-100 z-20 opacity-60 blur-[1px] hover:opacity-100 hover:blur-none cursor-pointer shadow-lg';
+                            classNames = '-translate-x-[150px] md:-translate-x-[240px] scale-100 z-20 opacity-60 blur-[1px] hover:opacity-100 hover:blur-none cursor-pointer shadow-lg';
                             break;
                         case -1:
-                            classNames = 'translate-x-[140px] md:translate-x-[240px] scale-100 z-20 opacity-60 blur-[1px] hover:opacity-100 hover:blur-none cursor-pointer shadow-lg';
+                            classNames = 'translate-x-[150px] md:translate-x-[240px] scale-100 z-20 opacity-60 blur-[1px] hover:opacity-100 hover:blur-none cursor-pointer shadow-lg';
                             break;
                         case 2:
-                            classNames = '-translate-x-[240px] md:-translate-x-[420px] scale-100 z-10 opacity-30 blur-[3px] shadow-sm';
+                            classNames = '-translate-x-[260px] md:-translate-x-[420px] scale-100 z-10 opacity-30 blur-[3px] shadow-sm';
                             break;
                         case -2:
-                            classNames = 'translate-x-[240px] md:translate-x-[420px] scale-100 z-10 opacity-30 blur-[3px] shadow-sm';
+                            classNames = 'translate-x-[260px] md:translate-x-[420px] scale-100 z-10 opacity-30 blur-[3px] shadow-sm';
                             break;
                         default:
                             classNames = offset > 0 
-                                ? '-translate-x-[320px] md:-translate-x-[600px] scale-100 z-0 opacity-0 pointer-events-none' 
-                                : 'translate-x-[320px] md:translate-x-[600px] scale-100 z-0 opacity-0 pointer-events-none';
+                                ? '-translate-x-[340px] md:-translate-x-[600px] scale-100 z-0 opacity-0 pointer-events-none' 
+                                : 'translate-x-[340px] md:translate-x-[600px] scale-100 z-0 opacity-0 pointer-events-none';
                             break;
                     }
 
@@ -133,7 +133,7 @@ const SocialCarousel = () => {
                                 if (isActive) setPlaying(true);
                                 else { setActive(i); setPlaying(false); }
                             }}
-                            className={`absolute transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] w-[210px] md:w-[280px] aspect-[9/16] rounded-2xl md:rounded-[2rem] overflow-hidden bg-black ${classNames}`}>
+                            className={`absolute transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] w-[240px] md:w-[280px] aspect-[9/16] rounded-2xl md:rounded-[2rem] overflow-hidden bg-black ${classNames}`}>
                             
                             {isActive && playing ? (
                                 <iframe 
@@ -235,9 +235,6 @@ const DepartmentDetail = () => {
     return (
         <Reveal className="min-h-screen bg-white pt-32 md:pt-40 pb-20 text-right">
             <div className="max-w-[1400px] mx-auto px-6">
-                <button onClick={() => router.push('/')} className="group text-[#2f4ea1] flex items-center gap-2 mb-8 font-black tracking-widest text-xs">
-                    חזרה לדף הבית <ArrowUpLeft className="rotate-90 group-hover:translate-x-2 transition-transform" />
-                </button>
                 <div className="flex flex-col lg:flex-row gap-12 md:gap-16 items-stretch">
                     <div className="lg:w-[60%] flex flex-col justify-center">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase mb-6 text-[#2f4ea1] leading-tight">{dept.title}</h1>

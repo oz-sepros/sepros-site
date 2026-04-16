@@ -11,6 +11,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
     const router = useRouter();
     const pathname = usePathname();
 
@@ -18,8 +19,28 @@ const Navbar = () => {
     const isSolid = isScrolled || !isHomePage;
 
     useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 50);
-        window.addEventListener('scroll', handleScroll);
+        let lastScrollY = window.scrollY;
+
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            
+            // זיהוי גלילה ראשונית לאפקט השקיפות
+            setIsScrolled(currentScrollY > 50);
+
+            // זיהוי כיוון גלילה כדי להסתיר/להציג את הניווט (Smart Header)
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                // גוללים למטה בתוך הדף (המון תוכן) - נעלם
+                setIsVisible(false);
+                setIsDropdownOpen(false); // סוגר תפריט קופץ אם היה פתוח
+            } else if (currentScrollY < lastScrollY) {
+                // גוללים ההפך (למעלה לכיוון החלק העליון) - מופיע
+                setIsVisible(true);
+            }
+
+            lastScrollY = currentScrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -42,7 +63,9 @@ const Navbar = () => {
     return (
         <>
             <nav
-                className={`fixed w-full z-[100] transition-all duration-500 ${isSolid
+                className={`fixed w-full z-[100] transition-all duration-500 ${
+                        isVisible ? 'translate-y-0' : '-translate-y-full'
+                    } ${isSolid
                         ? 'bg-white/80 backdrop-blur-xl py-3 border-b border-gray-200/50 shadow-sm'
                         : 'bg-transparent py-6 md:py-8'
                     }`}
