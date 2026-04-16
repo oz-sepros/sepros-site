@@ -8,49 +8,83 @@ import Reveal from '../components/Reveal';
 
 const SocialCarousel = () => {
     const [active, setActive] = useState(2);
-    const items = [0, 1, 2, 3, 4];
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    
+    // פלייסאהולדרים של סרטוני יוטיוב לדוגמה לשורטס/רילס
+    const items = [
+        { id: "M7lc1UVf-VE" }, 
+        { id: "tgbNymZ7vqY" },
+        { id: "LXb3EKWsInQ" },
+        { id: "aqz-KE-bpKQ" },
+        { id: "zpOULjyy-n8" }
+    ];
 
     const handleNext = () => setActive((prev) => (prev + 1) % items.length);
     const handlePrev = () => setActive((prev) => (prev - 1 + items.length) % items.length);
 
     return (
-        <div className="relative w-full flex items-center justify-center py-6 md:py-10 mt-6 md:mt-10 overflow-hidden">
-            {/* Left Arrow (Visual Right in RTL, but we use logic for generic prev/next) */}
-            <button onClick={handlePrev} className="absolute right-2 md:right-8 z-30 p-2 md:p-4 bg-black/60 text-white rounded-full hover:bg-[#2f4ea1] transition-colors"><ChevronRight size={24} /></button>
+        <div className="relative w-full flex flex-col items-center justify-center py-16 md:py-24 mt-6 md:mt-10 overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 rounded-[2.5rem] border border-gray-100 shadow-sm border-t-4 border-t-[#2f4ea1]">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-[800px] h-[300px] bg-[#2f4ea1]/5 blur-[80px] rounded-full pointer-events-none"></div>
+            
+            <h3 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 md:mb-6 text-center relative z-10 tracking-tight">ככה נראה סושיאל מנצח.</h3>
+            <p className="text-gray-500 text-lg md:text-xl text-center max-w-3xl mb-12 relative z-10 px-6 font-medium">הצצה להפקות וידאו שוברות רשת ולסרטוני שורטס וטיקטוק שמייצרים חשיפה ויראלית ומאות לידים ללקוחות שלנו בעולמות B2B ו-B2C.</p>
 
-            <div className="flex items-center justify-center gap-4 md:gap-8 w-full px-12 md:px-24 h-[350px] md:h-[450px]">
+            <button onClick={handlePrev} className="absolute right-2 md:right-8 top-1/2 translate-y-1/2 z-30 p-2 md:p-4 bg-white/90 shadow-lg text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-colors"><ChevronRight size={24} /></button>
+
+            <div className="flex items-center justify-center gap-2 md:gap-6 w-full px-4 md:px-24 h-[400px] md:h-[500px]">
                 {items.map((item, i) => {
                     const isActive = i === active;
-                    // Hide items too far away to keep center focus clean
                     if (Math.abs(i - active) > 2) return null;
 
                     return (
                         <div key={i}
-                            onClick={() => setActive(i)}
-                            className={`relative transition-all duration-500 ease-in-out cursor-pointer flex-shrink-0 aspect-[9/16] rounded-2xl overflow-hidden
+                            onClick={() => isActive ? setLightboxOpen(true) : setActive(i)}
+                            className={`group relative transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer flex-shrink-0 aspect-[9/16] rounded-[2rem] overflow-hidden bg-black
                               ${isActive
-                                    ? 'w-[180px] md:w-[260px] scale-100 opacity-100 z-20 shadow-[0_0_30px_rgba(11,92,255,0.4)] border-2 border-[#2f4ea1]'
-                                    : 'w-[140px] md:w-[180px] scale-90 opacity-60 blur-[1px] z-10 hover:opacity-80'}`}>
-                            <img src={`https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=400&sig=${i}`} alt="Social Reel" loading="lazy" className="w-full h-full object-cover" />
-                            <div className="absolute inset-0 bg-white/10 flex items-center justify-center">
-                                {isActive && <PlayCircle size={60} className="text-white hover:scale-110 transition-transform drop-shadow-xl" />}
+                                    ? 'w-[200px] md:w-[280px] scale-110 md:scale-110 opacity-100 z-20 shadow-[0_20px_50px_rgba(47,78,161,0.25)] border-[6px] border-white'
+                                    : 'w-[140px] md:w-[200px] scale-90 opacity-30 hover:opacity-60 blur-[1px] md:blur-[2px] z-10 shadow-lg'}`}>
+                            
+                            <img src={`https://img.youtube.com/vi/${item.id}/hqdefault.jpg`} alt="שורטס - דוגמה" loading="lazy" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                            <div className={`absolute inset-0 transition-colors duration-500 flex items-center justify-center ${isActive ? 'bg-black/10 hover:bg-black/20' : 'bg-black/40'}`}>
+                                {isActive && (
+                                    <div className="w-16 h-16 md:w-20 md:h-20 bg-white/95 backdrop-blur-md rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(0,0,0,0.3)] hover:scale-110 hover:bg-white transition-transform duration-300">
+                                        <svg className="w-6 h-6 md:w-8 md:h-8 ml-1 md:ml-1.5 text-[#2f4ea1]" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6V4z"></path></svg>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     )
                 })}
             </div>
 
-            {/* Right Arrow */}
-            <button onClick={handleNext} className="absolute left-2 md:left-8 z-30 p-2 md:p-4 bg-black/60 text-white rounded-full hover:bg-[#2f4ea1] transition-colors"><ChevronLeft size={24} /></button>
+            <button onClick={handleNext} className="absolute left-2 md:left-8 top-1/2 translate-y-1/2 z-30 p-2 md:p-4 bg-white/90 shadow-lg text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-colors"><ChevronLeft size={24} /></button>
+
+            {/* Lightbox Overlay */}
+            {lightboxOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 md:p-10" onClick={() => setLightboxOpen(false)}>
+                    <button className="absolute top-6 right-6 md:top-10 md:right-10 text-white bg-white/10 hover:bg-white/20 p-4 rounded-full transition-colors z-[60]" onClick={() => setLightboxOpen(false)}>
+                        <ArrowLeft className="rotate-180" size={24} />
+                    </button>
+                    
+                    <div className="relative w-full max-w-[420px] aspect-[9/16] bg-black rounded-3xl overflow-hidden shadow-[0_0_80px_rgba(47,78,161,0.4)] border border-white/10" onClick={(e) => e.stopPropagation()}>
+                        <iframe 
+                            className="w-full h-full"
+                            src={`https://www.youtube.com/embed/${items[active].id}?autoplay=1&mute=0&controls=1&rel=0`} 
+                            title="YouTube Shorts" 
+                            frameBorder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowFullScreen>
+                        </iframe>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
 
-const DepartmentPortfolio = ({ category }) => {
     if (category === 'social') {
         return (
-            <div className="mt-16 md:mt-24">
-                <h4 className="text-white font-black text-2xl md:text-3xl mb-4 border-r-4 border-[#2f4ea1] pr-4">הפקות וידאו למובייל</h4>
+            <div className="mt-16 md:mt-24 w-full">
                 <SocialCarousel />
             </div>
         );
@@ -107,7 +141,7 @@ const DepartmentDetail = () => {
 
     const data = {
         ppc: { title: "PPC וביצועים", long: "אנחנו מנהלים תקציבי ענק באופטימיזציה מקסימלית. הגישה שלנו ל-PPC היא מדעית: ניתוח קהלים, שיפור יחס המרה ושימוש בכלי AI לניהול בידים.", services: ["חיפוש ורשת המדיה בגוגל", "ניהול מטא (פייסבוק/אינסטגרם)", "קמפיינים בטיקטוק ולינקדאין", "רימרקטינג דינמי"] },
-        social: { title: "סושיאל וקריאייטיב", long: "הסיפור שלכם צריך להיות מסופר נכון. אנחנו יוצרים שפה ויזואלית שגורמת למשתמשים לעצור את הגלילה ולהתחבר רגשית למותג שלכם.", services: ["הפקת Reels ו-TikTok", "שיווק משפיענים", "ניהול קהילות", "אסטרטגיה קריאייטיבית"] },
+        social: { title: "סושיאל דומיננטי וקריאייטיב מדויק", long: "הסיפור שלכם צריך לפגוש את הלקוחות בדיוק במקום שבו הם נמצאים. אנחנו לוקחים מותגים והופכים אותם לתופעת רשת בעזרת שפה ויזואלית ייחודית, הפקות וידאו ויראליות בסגנון Shorts ו-TikTok, ואסטרטגיית סושיאל שעוצרת את הגלילה (Scroll-stoppers). העידן החדש דורש תוכן מהיר, חד, ומבוסס דאטה.", services: ["הפקת Reels ו-TikTok", "קריאייטיב וצילום מוצרים", "פיתוח שפה מותגית אותנטית", "שיווק משפיענים"] },
         design: { title: "סטודיו ו-UX/UI", long: "עיצוב פרימיום הוא לא מותרות – הוא הכרח. אנחנו מאפיינים ומעצבים ממשקים שמרגישים טבעיים למשתמש ומייצרים אמון מיידי במותג.", services: ["מחקר ואסטרטגיית UX", "עיצוב UI מודרני", "זהות ומיתוג תאגידי", "בניית שפה עיצובית"] },
         tech: { title: "פיתוח אתרים", long: "האתר הוא הבית שלכם בדיגיטל. אנחנו בונים אתרים בטכנולוגיות מתקדמות כדי להבטיח מהירות שיא, קידום אורגני וחווית ניהול נוחה.", services: ["אפליקציות React/Next.js", "איקומרס מתקדם", "חיבורי API", "אבטחה ותחזוקה"] },
         seo: { title: "קידום אורגני (SEO)", long: "להיות בראש תוצאות החיפוש זו ריצה למרחקים ארוכים. אנחנו משלבים SEO טכני עמוק עם אסטרטגיית תוכן שבונה סמכות מול גוגל.", services: ["בדיקת SEO טכנית", "מחקר מילות מפתח", "בניית פרופיל קישורים", "אסטרטגיית תוכן"] },
