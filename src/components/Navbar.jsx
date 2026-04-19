@@ -50,7 +50,7 @@ const Navbar = () => {
         { id: 'design', label: 'סטודיו וקריאייטיב' },
         { id: 'tech', label: 'בניית אתרים' },
         { id: 'seo', label: 'SEO & GEO' },
-        { id: 'strategy', label: 'אסטרטגיה' },
+        { id: 'strategy', label: 'אסטרטגיה שיווקית' },
         { id: 'analytics', label: 'אנליטיקס ודאטה' },
     ];
 

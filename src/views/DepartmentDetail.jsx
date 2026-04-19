@@ -216,11 +216,14 @@ const DepartmentPortfolio = ({ category }) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {webProjects.map((project, i) => (
                         <div key={i} onClick={() => window.open(project.link, '_blank')} className="bg-white border border-gray-100 shadow-sm p-4 group cursor-pointer relative overflow-hidden rounded-lg hover:shadow-md transition-shadow">
-                            <div className="aspect-video bg-gray-100 overflow-hidden relative rounded-md">
-                                <img src={`https://image.thum.io/get/width/800/crop/600/noanimate/${project.link}`} alt={project.title} loading="lazy" className="w-full h-full object-top object-cover opacity-90 group-hover:scale-105 transition-transform duration-700" />
-                                <div className="absolute inset-0 bg-[#2f4ea1]/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="aspect-video bg-gray-100 overflow-hidden relative rounded-xl">
+                                {/* Live Site Thumbnail using iframe scaling trick */}
+                                <div className="absolute inset-0 pointer-events-none z-0">
+                                    <iframe src={project.link} className="w-[400%] h-[400%] border-0 origin-top-left transition-transform duration-700 group-hover:scale-[0.26]" style={{ transform: 'scale(0.25)' }} loading="lazy" scrolling="no" tabIndex="-1" />
+                                </div>
+                                <div className="absolute inset-0 bg-[#2f4ea1]/90 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                                     <ExternalLink size={32} className="text-white mb-2" />
-                                    <span className="text-white font-bold tracking-widest text-sm">צפו בפרויקט</span>
+                                    <span className="text-white font-bold tracking-widest text-sm text-center px-4">{project.title}</span>
                                 </div>
                             </div>
                         </div>
@@ -303,7 +306,7 @@ const DepartmentDetail = () => {
             ]
         },
         strategy: {
-            title: "אסטרטגיה",
+            title: "אסטרטגיה שיווקית",
             long: "כל הצלחה דיגיטלית מתחילה בתוכנית ברורה המבוססת על יעדים מדידים. אנחנו מנתחים את השוק, קהלי היעד וסביבת המתחרים בכדי לייצר מנוע צמיחה ומתודולוגיה ממוקדת שתלווה את כל הפעילות העסקית.",
             services: ["מחקר שוק וקהלי יעד", "ליווי אסטרטגי בהשקות מוצר", "אפיון מסעות לקוח ומשפכי המרה", "סינרגיה דיגיטלית רב-ערוצית"],
             faqs: [

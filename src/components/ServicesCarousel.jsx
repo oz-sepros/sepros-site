@@ -11,7 +11,7 @@ const ServicesCarousel = () => {
         { id: 'design', icon: Palette, title: 'סטודיו וקריאייטיב', desc: 'עיצוב UI/UX פרימיום ושפה חזותית מנצחת.', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&auto=format&fit=crop&q=60' },
         { id: 'tech', icon: Code, title: 'בניית אתרים', desc: 'בניית מערכות ווב מורכבות המתקדמות ביותר.', image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop&q=60' },
         { id: 'seo', icon: Search, title: 'SEO & GEO', desc: 'אסטרטגיית תוכן שמביאה למקומות הראשונים.', image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&auto=format&fit=crop&q=60' },
-        { id: 'strategy', icon: Lightbulb, title: 'אסטרטגיה', desc: 'בניית מותג מנצח ותוכנית עבודה חדה.', image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=60' },
+        { id: 'strategy', icon: Lightbulb, title: 'אסטרטגיה שיווקית', desc: 'בניית מותג מנצח ותוכנית עבודה חדה.', image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=60' },
         { id: 'analytics', icon: BarChart3, title: 'אנליטיקס ודאטה', desc: 'הפיכת הררי מידע להחלטות שוות כסף.', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60' }
     ];
 
