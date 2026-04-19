@@ -496,7 +496,7 @@ const DepartmentPortfolio = ({ category }) => {
              <div className="mt-16 md:mt-24">
                  <div className="mb-14">
                      <h4 className="text-gray-900 font-black text-2xl md:text-4xl mb-5 border-r-4 border-[#2f4ea1] pr-4">אקוסיסטם של המרות</h4>
-                     <p className="text-gray-600 text-lg md:text-xl font-medium leading-relaxed max-w-4xl text-balance">
+                     <p className="text-gray-600 text-lg md:text-xl font-medium leading-relaxed max-w-4xl">
                          יצירת נוכחות דיגיטלית רב-ערוצית היא קריטית לשמירה על עליונות (Top Of Mind) אצל הלקוח. אנחנו פורסים את המסרים שלכם על פני כל הפלטפורמות החמות ביותר – החל מקמפיינים מבוססי החלטה בגוגל חיפוש, דרך וידאו ברשתות המטא, וכלה בלינקדאין ו-TikTok. המודעות יעטפו את הגולש מכל עבר באמצעות רימרקטינג דינמי חכם.
                      </p>
                  </div>
@@ -865,16 +865,15 @@ const DepartmentDetail = () => {
                     <div className="lg:w-[60%] flex flex-col justify-center">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase mb-6 text-[#2f4ea1] leading-tight">{dept.title}</h1>
                         {Array.isArray(dept.long) ? (
-                            <div className="flex flex-col gap-5 mb-10">
+                            <div className="flex flex-col gap-6 mb-12">
                                 {dept.long.map((text, i) => (
-                                    <p key={i} className="text-gray-600 text-lg md:text-xl font-normal leading-relaxed text-balance relative">
-                                        {i === 0 && <span className="absolute -right-4 top-2 md:top-3 w-1.5 h-1.5 bg-[#2f4ea1] rounded-full"></span>}
-                                        {text}
-                                    </p>
+                                    <div key={i} className={`text-gray-600 font-normal leading-relaxed ${i === 0 ? 'text-xl md:text-2xl font-medium border-r-4 border-[#2f4ea1] pr-5 text-gray-900' : 'text-lg md:text-xl md:pr-6'}`}>
+                                        <p>{text}</p>
+                                    </div>
                                 ))}
                             </div>
                         ) : (
-                            <p className="text-gray-600 text-xl md:text-2xl font-normal mb-10 leading-relaxed text-balance">{dept.long}</p>
+                            <p className="text-gray-600 text-xl md:text-2xl font-normal mb-10 leading-relaxed border-r-4 border-[#2f4ea1] pr-5">{dept.long}</p>
                         )}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {dept.services.map((s, i) => (
