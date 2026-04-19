@@ -1,11 +1,38 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe } from 'lucide-react';
+import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
 import FAQ from '../components/FAQ';
 import PlatformsMarquee from '../components/PlatformsMarquee';
+
+const ProcessTimeline = ({ title, subtitle, steps }) => {
+    if (!steps || steps.length === 0) return null;
+    return (
+        <div className="mt-20 md:mt-28 w-full border-t border-gray-100 pt-20">
+            <div className="text-center mb-12 md:mb-16">
+                <h4 className="text-[#0b1638] font-black text-3xl md:text-4xl text-balance">{title}</h4>
+                <p className="text-[#2f4ea1] font-bold mt-2 tracking-widest text-sm md:text-base">{subtitle}</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 relative max-w-6xl mx-auto px-4">
+                <div className="hidden md:block absolute top-[2.25rem] left-[12%] right-[12%] h-1 bg-gray-100 z-0 rounded">
+                    <div className="h-full bg-gradient-to-r from-transparent via-[#2f4ea1]/20 to-transparent w-full"></div>
+                </div>
+                {steps.map((step, idx) => (
+                    <div key={idx} className="relative z-10 flex flex-col items-center text-center group">
+                        <div className="w-20 h-20 rounded-full bg-white border-2 border-gray-100 group-hover:border-[#2f4ea1] text-[#2f4ea1] flex items-center justify-center mb-6 shadow-sm group-hover:shadow-md transition-all duration-300 relative">
+                            {step.icon}
+                            <div className="absolute -top-1 -right-1 w-7 h-7 rounded-full bg-[#2f4ea1] text-white text-xs font-black flex items-center justify-center shadow-md transform group-hover:scale-110 transition-transform">{idx + 1}</div>
+                        </div>
+                        <h5 className="font-black text-lg text-gray-900 mb-2 group-hover:text-[#2f4ea1] transition-colors">{step.title}</h5>
+                        <p className="text-gray-500 text-sm md:text-[15px] leading-relaxed max-w-[250px] text-balance">{step.desc}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
 
 
 const SocialCarousel = () => {
@@ -211,12 +238,7 @@ const DepartmentPortfolio = ({ category }) => {
             { id: "azorim-melach", title: "אזורים - מלח הארץ", link: "https://lp.azorim.co.il/minisite_melach_haaretz/", image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=800&auto=format&fit=crop" },
             { id: "azorim-main", title: "אזורים", link: "https://www.azorim.co.il/", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop" }
         ];
-        const techProcess = [
-            { title: "אפיון ועיצוב UX/UI", desc: "חקר קהל יעד, בניית מפות מסע משתמש, ועיצוב דפי נחיתה וממשקים ברזולוציית פיקסל-פרפקט.", icon: <MonitorSmartphone size={24} /> },
-            { title: "פיתוח קדמי מתקדם", desc: "כתיבת קוד נקי, סמנטי ומהיר בטכנולוגיות חדישות לטובת ביצועים מקסימליים וחוויה חלקה ב-120fps.", icon: <Code2 size={24} /> },
-            { title: "אבטחה ובקרה (QA)", desc: "בדיקות מעמיקות ושבירת המערכת במגוון דפדפנים ומכשירים בכדי לוודא שאין צווארי בקבוק ותקלות.", icon: <CheckCircle2 size={24} /> },
-            { title: "השקה וניטור", desc: "עלייה חגיגית לאוויר, חיבור לאנליטיקס ופיקסלים, ותפעול שרת המבטיח יציבות של 99.9% Uptime.", icon: <Globe size={24} /> }
-        ];
+
 
         return (
             <div className="mt-16 md:mt-24">
@@ -255,29 +277,7 @@ const DepartmentPortfolio = ({ category }) => {
                     ))}
                 </div>
 
-                {/* Tech Process Timeline */}
-                <div className="mt-24 md:mt-32">
-                    <div className="text-center mb-12 md:mb-16">
-                        <h4 className="text-[#0b1638] font-black text-3xl md:text-4xl text-balance">איך אנחנו בונים אתרים?</h4>
-                        <p className="text-gray-500 font-bold mt-2 tracking-widest text-sm md:text-base">התהליך שמאחורי הקלעים</p>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 relative max-w-5xl mx-auto">
-                        {/* Connecting line for desktop */}
-                        <div className="hidden md:block absolute top-[2.25rem] left-[12%] right-[12%] h-1 bg-gray-100 z-0 rounded">
-                            <div className="h-full bg-gradient-to-r from-transparent via-[#2f4ea1]/20 to-transparent w-full"></div>
-                        </div>
-                        {techProcess.map((step, idx) => (
-                            <div key={idx} className="relative z-10 flex flex-col items-center text-center group">
-                                <div className="w-20 h-20 rounded-full bg-white border-2 border-gray-100 group-hover:border-[#2f4ea1] text-[#2f4ea1] flex items-center justify-center mb-6 shadow-sm group-hover:shadow-md transition-all duration-300 relative">
-                                    {step.icon}
-                                    <div className="absolute -top-1 -right-1 w-7 h-7 rounded-full bg-[#2f4ea1] text-white text-xs font-black flex items-center justify-center shadow-md transform group-hover:scale-110 transition-transform">{idx + 1}</div>
-                                </div>
-                                <h5 className="font-black text-lg text-gray-900 mb-2 group-hover:text-[#2f4ea1] transition-colors">{step.title}</h5>
-                                <p className="text-gray-500 text-sm md:text-[15px] leading-relaxed max-w-[250px]">{step.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+
 
                 {/* Tech Stack Segment */}
                 <div className="mt-16 md:mt-24 pt-16 border-t border-gray-100">
@@ -374,6 +374,14 @@ const DepartmentDetail = () => {
             title: "ניהול מדיה", 
             long: "אנחנו מנהלים תקציבי ענק באופטימיזציה מקסימלית. הגישה שלנו לניהול מדיה היא מדעית: ניתוח קהלים, שיפור יחס המרה ושימוש בכלי AI לניהול בידים.", 
             services: ["חיפוש ורשת המדיה בגוגל", "ניהול מטא (פייסבוק/אינסטגרם)", "קמפיינים בטיקטוק ולינקדאין", "רימרקטינג דינמי"],
+            processTitle: "איך מתנהל קמפיין ברמה גבוהה?",
+            processSubtitle: "השיטה המדעית מאחורי הלקוחות שלנו",
+            process: [
+                { title: "מחקר ואסטרטגיה", desc: "ניתוח מקיף של נתוני השוק, זיהוי קהלי מטרה רלוונטיים ומחקר מילות מפתח ליצירת יתרון תחרותי.", icon: <Search size={28} /> },
+                { title: "בניית סטאפ", desc: "הגדרת קמפיינים מדויקת, פילוח פיקסלים קפדני וחלוקת תקציבים אסטרטגית המוכוונת תוצאות מקסימליות.", icon: <Settings size={28} /> },
+                { title: "השקה וטסטים (A/B)", desc: "העלאת קריאייטיבים לאוויר תחת בקרת תקציב מחמירה ובדיקת וריאציות לאיתור המודעה האפקטיבית ביותר.", icon: <Target size={28} /> },
+                { title: "אופטימיזציה וסקייל", desc: "שיפור יחס ה-ROAS מיום ליום ושכפול רוחבי של קמפיינים רווחיים לתקציבים גבוהים משמעותית.", icon: <TrendingUp size={28} /> }
+            ],
             faqs: [
                 { q: "תוך כמה זמן נראה תוצאות מהקמפיינים?", a: "קמפיינים ממומנים מתחילים להביא תנועה באופן מיידי עם עלייתם לאוויר. בדרך כלל לוקח 2-4 שבועות של איסוף נתונים ואופטימיזציה עד שמגיעים ליציבות וליחסי המרה אופטימליים, תלוי בתקציב, במתחרים ובתחום." },
                 { q: "באילו פלטפורמות אתם מנהלים קמפיינים?", a: "אנו מנהלים קמפיינים במגוון רחב של פלטפורמות בהתאם לקהל היעד שלכם: גוגל (חיפוש, מדיה, שופינג, יוטיוב), מטא (פייסבוק ואינסטגרם), טיקטוק, לינקדאין ועוד. לכל פלטפורמה אסטרטגיה מותאמת." },
@@ -384,6 +392,14 @@ const DepartmentDetail = () => {
             title: "סושיאל ו-UGC", 
             long: "הסיפור שלכם צריך לפגוש את הלקוחות בדיוק במקום שבו הם נמצאים. אנחנו לוקחים מותגים והופכים אותם לתופעת רשת בעזרת שפה ויזואלית ייחודית, הפקות וידאו ויראליות, ואסטרטגיית סושיאל שעוצרת את הגלילה (Scroll-stoppers). העידן החדש דורש תוכן מהיר, חד, ומבוסס דאטה.", 
             services: ["הפקת Reels ו-TikTok", "צילום UGC איכותי למותגים", "פיתוח שפה מותגית אותנטית", "שיווק משפיענים"],
+            processTitle: "המתכון להפוך לוויראלי",
+            processSubtitle: "איך עובדת מחלקת הסושיאל שלנו",
+            process: [
+                { title: "קריאייטיב וסטוריטלינג", desc: "ראיונות עומק ופיצוח רעיוני לכל סרטון, כתיבת תסריטים מרתקים שמחזיקים במיוחד את זמן הצפייה של דור ה-Z.", icon: <Lightbulb size={28} /> },
+                { title: "ימי צילום והפקת UGC", desc: "הקלטות שטח איכותיות עם קריינים, משפיענים או לקוחות, המייצרות אותנטיות מוכחת המניעה לפעולה.", icon: <Camera size={28} /> },
+                { title: "עריכה דינמית", desc: "עריכת פוסט-פרודקשן קצבית הכוללת אנימציות וטקסטים דינמיים שמונעים מהגולש להמשיך לגלול הלאה.", icon: <Video  size={28} /> },
+                { title: "הפצה רוחבית ברשת", desc: "תזמון מדויק של הפוסטים בחוקיות האלגוריתם כדי לייצר תפוצה אורגנית וממומנת מקסימלית במקביל.", icon: <Users size={28} /> }
+            ],
             faqs: [
                 { q: "מה ההבדל בין ניהול סושיאל רגיל למה שאתם עושים?", a: "אנחנו לא רק מעלים פוסטים עיצוביים. אנחנו מייצרים שפה, אסטרטגיה ותוכן וידאו קצר שמבוסס על טרנדים והבנה עמוקה של האלגוריתמים, במטרה להגיע לוויראליות אמיתית ולהמיר צופים ללקוחות." },
                 { q: "האם אתם מפיקים את סרטוני הוידאו והרילסים?", a: "בהחלט. יש לנו צוות קריאייטיב וצילום שדואג להכל מהקצה לקצה: החל מרמת הקונספט, מתן ערך דרך UGC אותנטי, ועד יום צילומים מעשי בשטח הדואג שהתוכן יהיה מניע לפעולה." }
@@ -393,6 +409,14 @@ const DepartmentDetail = () => {
             title: "סטודיו וקריאייטיב", 
             long: "אנחנו מאפיינים ומעצבים ממשקים ותוצרים שיווקיים שמרגישים טבעיים למשתמש, יחד עם עיצוב פרימיום שמייצר אמון מיידי במותג. אנחנו מעניקים מעטפת מלאה של הסטודיו לכלל הפרויקטים שלנו.", 
             services: ["שפה חזותית וקונספט", "עיצוב ויצירת מסרים", "זהות תאגידית", "בניית מארזי UI/UX"],
+            processTitle: "תהליך העיצוב שלנו",
+            processSubtitle: "לייצר חוויה ויזואלית מדויקת ללקוח",
+            process: [
+                { title: "בריף וגיבוש קונספט", desc: "הבנת ערכי המותג, גיבוש קהל היעד ובניית לוח השראה חזותי המגדיר את הפאליטה והאווירה הכללית.", icon: <FileText size={28} /> },
+                { title: "יצירת זהות (Branding)", desc: "עיצוב ויצירת מסרים, טיפוגרפיה ושפה גרפית שמשלבים מראה ויזואלי מהוקצע שעוזר לעורר אמינות רגשית.", icon: <Palette size={28} /> },
+                { title: "פרוטוטייפים לאישור", desc: "בניית מוקאפים, דפי נחיתה אינטראקטיביים או מצגות מותג בכדי לחוש את העיצוב בדיוק כפי שהלקוח יחווה.", icon: <Layout size={28} /> },
+                { title: "מסירה מנוהלת (Handoff)", desc: "אריזת כלל מרכיבי הסטודיו לתיק אחיד והעברת הקבצים למחלקת הפיתוח תוך ליווי טכני שוטף.", icon: <Briefcase size={28} /> }
+            ],
             faqs: [
                 { q: "מה כולל תהליך הסטודיו אצלכם?", a: "התהליך מתחיל במחקר שפותר את הנקודות הכואבות אצל הלקוח בהיבט הוויזואלי וקריאייטיבי. לאחר מכן נעבור למסע בו נתרגם את הסיפור למסכים מעבר לפרוטוטייפ האינטראקטיבי או חומרים טיוטליים בקמפיינים." }
             ]
@@ -401,6 +425,14 @@ const DepartmentDetail = () => {
             title: "בניית אתרים", 
             long: "האתר הוא הבית שלכם בדיגיטל. אנחנו בונים מערכות ווב מורכבות המתקדמות ביותר בסביבת הלקוח תוך שימת דגש תמידית לביצועים ולטכנולוגיה.", 
             services: ["אפליקציות אינטרנט מתקדמות", "דפי נחיתה חכמים לאיקומרס", "חיבורי API ל-CRM הקיים", "אבטחה ותחזוקה"],
+            processTitle: "איך אנחנו בונים אתרים?",
+            processSubtitle: "התהליך שמאחורי הפיתוח של נברטי הדיגיטל",
+            process: [
+                { title: "אפיון ועיצוב UX/UI", desc: "חקר קהל יעד, בניית מפות מסע משתמש, ועיצוב דפי נחיתה וממשקים ברזולוציית פיקסל-פרפקט.", icon: <MonitorSmartphone size={28} /> },
+                { title: "פיתוח קדמי וקוד", desc: "כתיבת קוד נקי, סמנטי ומהיר בטכנולוגיות חדישות לטובת ביצועים מקסימליים וחוויה חלקה ב-120fps.", icon: <Code2 size={28} /> },
+                { title: "אבטחה ובקרה (QA)", desc: "בדיקות מעמיקות ושבירת המערכת במגוון דפדפנים ומכשירים בכדי לוודא שאין צווארי בקבוק ותקלות.", icon: <CheckCircle2 size={28} /> },
+                { title: "השקה וניטור רציף", desc: "עלייה חגיגית לאוויר, חיבור לאנליטיקס ופיקסלים, ותפעול שרת המבטיח יציבות של 99.9% גם בתנועה גדולה.", icon: <Globe size={28} /> }
+            ],
             faqs: [
                 { q: "באיזו טכנולוגיות אתם מפתחים אתרים?", a: "אנחנו בונים על גבי טכנולוגיות מתקדמות כמו React ו-Next.js המאפשרות מהירות יוצאת דופן (באתרים תדמיתיים מורכבים), או לחליפין בעזרת וורדפרס תחת מבנה קוד נקי ותקני, בהחלטה אסטרטגית המותאמת במדויק לצרכי הלקוח והניהול העתידי של צוות ההזנה." },
                 { q: "כמה זמן לוקח לאתר להיות באוויר?", a: "הזמן משתנה בהתאם לנפח ולמורכבות. עמודי נחיתה איכותיים מאוד יכולים להיות מוכנים תוך כשבועיים. אתרים תדמיתיים מורכבים במיוחד וכמובן חנויות איקומרס ינועו לרוב בממוצע של שבין 4 ל-10 שבועות, לאחר סגירת הקונספט ואפיון משותף." },
@@ -413,6 +445,14 @@ const DepartmentDetail = () => {
             title: "SEO & GEO", 
             long: "להיות בראש תוצאות החיפוש זו ריצה למרחקים ארוכים. אנחנו משלבים איכויות טכניות באסטרטגיית תוכן שבונה מומנטום של סמכות מוכחת גם עבור ביטויים ותוכן מקומי או גלובאלי.", 
             services: ["בדיקות טכניות שוטפות", "שיפור תנועה ספציפית וקרוס-זונג", "בניית פרופיל קישורים פוטנטי", "אופטימיזציית מפות אזוריות (GEO)"],
+            processTitle: "איך למצב את עצמכם בטופ?",
+            processSubtitle: "התהליך האורגני שלנו",
+            process: [
+                { title: "אודיט טכני וליבת התוכן", desc: "סריקה מלאה של קודי האתר לאיתור שגיאות קריטיות לצד מציאת הזדמנויות של ביטויי מפתח ממוקדים שלא מנוצלים.", icon: <Search size={28} /> },
+                { title: "אופטימיזציה מקומית (On-Page)", desc: "התאמת תוכן כירורגית: שיפור מהירויות טעינה, כותרות H1/H2 תקינות ועדכון תגיות מטא באופן שוטף.", icon: <Code2 size={28} /> },
+                { title: "בניית תוכן עשיר לגולש", desc: "הפקת מאמרים, עמודי נחיתה ומדריכים שמובילים באופן טבעי את הגולש לתשובה אותה הוא מעוניין לקרוא.", icon: <MessageSquare size={28} /> },
+                { title: "פרופיל קישורים ואוטוריטה", desc: "רכישת קישורים איכותיים מאתרים חזקים ברשת (Off-Page) ובניית אזכורים (GEO) במפות כדי לבנות את סמכות הדומיין שלכם.", icon: <TrendingUp size={28} /> }
+            ],
             faqs: [
                 { q: "מה זה GEO לעומת SEO?", a: "GEO אלו הן טכניקות מיקום ספציפיות המצליבים כלי מפות וכלים חכמים מבוססי ארצות כדי להקל על הניווט הפიზו-וירטואלי אל העסק. זה כמובן בנוסף ל- SEO שמכסה את השאילתות הטקסטואליות." }
             ]
@@ -421,6 +461,14 @@ const DepartmentDetail = () => {
             title: "אסטרטגיה שיווקית",
             long: "כל הצלחה דיגיטלית מתחילה בתוכנית ברורה המבוססת על יעדים מדידים. אנחנו מנתחים את השוק, קהלי היעד וסביבת המתחרים בכדי לייצר מנוע צמיחה ומתודולוגיה ממוקדת שתלווה את כל הפעילות העסקית.",
             services: ["מחקר שוק וקהלי יעד", "ליווי אסטרטגי בהשקות מוצר", "אפיון מסעות לקוח ומשפכי המרה", "סינרגיה דיגיטלית רב-ערוצית"],
+            processTitle: "הנוסחה להצלחה בדיגיטל",
+            processSubtitle: "כיצד נראית העבודה על אסטרטגיה מקיפה",
+            process: [
+                { title: "סדנת פיצוח עם ההנהלה", desc: "מפגש מעמיק בו אנו צוללים אל השטח, מגדירים יעדים ברורים (פיננסיים ושיווקיים) ומבינים את התיוג הפסיכולוגי של המוצר.", icon: <Target size={28} /> },
+                { title: "ניתוח השוק והמתחרים", desc: "איתור פערים במרחב התחרותי (Blue Ocean), ניתוח תמחיר אל מול אחוזי ההמרה וגיבוש בידול מובהק למותג.", icon: <LineChart size={28} /> },
+                { title: "שרטוט מסעות לקוח", desc: "פיתוח שלבים מובנים, החל מחשיפה ראשונית דרך יצירת ביקושים ועד לשלב ההנעה לרכישה (Funnel Mapping).", icon: <Compass size={28} /> },
+                { title: "מתווה עבודה קומפלט", desc: "העברת מקל מקצועית לצוותי הסטודיו והמדיה להוצאה לפועל של התוכנית עם לו\"זים, מיקומים וגאנטים מדויקים.", icon: <CheckCircle2 size={28} /> }
+            ],
             faqs: [
                 { q: "למה אני צריך אסטרטגיה? אי אפשר פשוט לפרסם?", a: "פרסום שרץ ללא אסטרטגיה הוא תוצר נקודתי קצר טווח. ברגע שאסטרטגיה מותווית - חושבים שלושה צעדים קדימה ויודעים לקרוא את מכלול הנתונים גם כאשר האלגוריתם או השוק משתנים." },
                 { q: "איך מתבצע תהליך בניית האסטרטגיה?", a: "אנו מתחילים בסדנאות עם ההנהלה כדי להבין את רצפות העסק והמוצר לעומק. לאחר מכן נצא לתהליך ניתוח דאטה נרחב שבסופו מתווה מקיף שעליו יישענו כלל ערוצי הסטודיו, המדיה והפיתוח." }
@@ -430,6 +478,14 @@ const DepartmentDetail = () => {
             title: "אנליטיקס ודאטה", 
             long: "בלי מדידה אין שיפור. אנחנו עוזרים לכם להבין בדיוק מה קורה באתר, מאיפה מגיעים הלקוחות הרווחיים ואיך לייעל את התקציב.", 
             services: ["הטמעת GA4 ו-Tag Manager", "דאשבורדים בזמן אמת", "מעקב המרות מתקדם", "BigQuery"],
+            processTitle: "שליטה מלאה על הדאטה שלכם",
+            processSubtitle: "איך אנליטיקס אמיתי צריך להראות",
+            process: [
+                { title: "מיפוי KPI והגדרות", desc: "הבנת כלל המדדים הדרושים שעוקבים אחר הלקוח - מלחיצת החשיפה הראשונה דרך הכנסת מוצרים לסל, ועד קליטת הטופס ב-CRM.", icon: <Target size={28} /> },
+                { title: "הטמעות טכניות מתקדמות", desc: "פריסה אירועים (Events) באמצעות Google Tag Manager (GTM) שרת-צד כדי לנקות חריגות הנגרמות עקב חוסמי פרסומות.", icon: <Settings size={28} /> },
+                { title: "דאשבורדים מותאמים אישית", desc: "בניית מסך יפיפה אחד קל לקליטה ב-Looker Studio המשלב את מקורות התנועה המורכבים ביותר למקום יעיל לעבודה שוטפת.", icon: <BarChart size={28} /> },
+                { title: "ניתוח ואופטימיזציה", desc: "סקירה חזותית שבועית על הביצועים המוכיחה איזה אפיק מביא את ההחזר הכספי המדויק והגבוה ביותר (החזר על שקל בודד).", icon: <TrendingUp size={28} /> }
+            ],
             faqs: [
                 { q: "למה אנחנו צריכים מדידה אנליטית מתקדמת?", a: "אנליטיקס הוא הבסיס לקבלת החלטות עסקיות חכמות. ללא מדידה מתקדמת (מעקבי המרות, eCommerce ב-GA4) אתם בעצם מחליטים באופן עיוור. המדידה תראה לנו איזה קמפיין מביא רווח ואיזה ערוץ פחות משתלם." },
                 { q: "תוכלו לתקן לנו נתוני המרות שגויים?", a: "בהחלט. אנו מבצעים בניית דאטה קפדנית כדי למצוא טעויות במעקבי המרות, תקלות בהטמעת Facebook Pixel, כפילויות באירועים ושגיאות במעקב דרך Tag Manager." },
@@ -463,6 +519,12 @@ const DepartmentDetail = () => {
                 </div>
 
                 <DepartmentPortfolio category={id || 'ppc'} />
+
+                {dept.process && (
+                    <Reveal delay={0.1}>
+                        <ProcessTimeline title={dept.processTitle} subtitle={dept.processSubtitle} steps={dept.process} />
+                    </Reveal>
+                )}
 
                 {dept.faqs && dept.faqs.length > 0 && (
                     <FAQ title={`שאלות נפוצות`} data={dept.faqs} className="bg-transparent !py-0 mt-20 md:mt-24" />
