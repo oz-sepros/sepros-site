@@ -2,13 +2,13 @@
 import { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 
-const FAQ = ({ title = "שאלות נפוצות", data = [] }) => {
+const FAQ = ({ title = "שאלות נפוצות", data = [], className = "" }) => {
     const [openIndex, setOpenIndex] = useState(-1);
 
     if (!data || data.length === 0) return null;
 
     return (
-        <section className="py-24 md:py-32 bg-[#F5F7FA]">
+        <section className={`py-24 md:py-32 bg-[#F5F7FA] ${className}`}>
             <div className="max-w-4xl mx-auto px-6 text-right">
                 <div className="text-center mb-16">
                     <h3 className="text-3xl md:text-5xl font-bold text-gray-900 tracking-tight">{title}</h3>
