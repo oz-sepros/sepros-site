@@ -649,7 +649,24 @@ const DepartmentPortfolio = ({ category }) => {
     }
 
     if (category === 'seo') {
-        return <AnimatedSeoGraph />;
+        return (
+            <div className="mt-10 md:mt-16 w-full">
+                 <AnimatedSeoGraph />
+                 <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                    {[
+                        { label: "עלייה בטראפיק אורגני", val: "+280%" },
+                        { label: "מיקומים בעמוד 1", val: "150+" },
+                        { label: "עליה בהמרות מהאורגני", val: "+75%" }
+                    ].map((stat, i) => (
+                        <div key={i} className="bg-white shadow-sm hover:shadow-md transition-shadow border border-gray-100 p-8 text-center rounded-lg relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-2 h-full bg-[#2f4ea1] scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-300"></div>
+                            <div className="text-5xl font-black text-[#2f4ea1] mb-2 dir-ltr">{stat.val}</div>
+                            <div className="text-gray-500 text-sm font-bold tracking-widest">{stat.label}</div>
+                        </div>
+                    ))}
+                 </div>
+            </div>
+        );
     }
 
     if (category === 'ppc') {
@@ -665,6 +682,19 @@ const DepartmentPortfolio = ({ category }) => {
                      <PlatformsMarquee />
                  </div>
                  <SponsoredPpcGraph />
+                 <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {[
+                        { label: "צמיחה במכירות", val: "+350%" },
+                        { label: "ירידה בעלות לליד (CPL)", val: "-45%" },
+                        { label: "החזר השקעה (ROAS)", val: "x4.5" }
+                    ].map((stat, i) => (
+                        <div key={i} className="bg-white shadow-sm hover:shadow-md transition-shadow border border-gray-100 p-8 text-center rounded-lg relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-2 h-full bg-green-500 scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-300"></div>
+                            <div className="text-5xl font-black text-green-600 mb-2 dir-ltr">{stat.val}</div>
+                            <div className="text-gray-500 text-sm font-bold tracking-widest">{stat.label}</div>
+                        </div>
+                    ))}
+                 </div>
              </div>
         );
     }
@@ -1014,10 +1044,10 @@ const DepartmentDetail = () => {
         <Reveal className="min-h-screen bg-white pt-32 md:pt-40 pb-20 text-right">
             <div className="max-w-[1400px] mx-auto px-6">
                 <div className="flex flex-col lg:flex-row gap-12 md:gap-16 items-stretch">
-                    <div className="lg:w-[60%] flex flex-col justify-center">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase mb-6 text-[#2f4ea1] leading-tight">{dept.title}</h1>
-                        <p className="text-gray-600 text-xl md:text-2xl font-normal mb-10 leading-relaxed text-balance">{dept.long}</p>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="lg:w-[60%] flex flex-col justify-center order-last lg:order-first mt-2 lg:mt-0">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase mb-6 text-[#2f4ea1] leading-tight flex flex-col-reverse relative z-10">{dept.title}</h1>
+                        <p className="text-gray-600 text-xl md:text-2xl font-normal mb-10 leading-relaxed text-balance relative z-10">{dept.long}</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
                             {dept.services.map((s, i) => (
                                 <div key={i} className="flex items-center gap-3 bg-gray-50 p-4 md:p-6 border border-gray-100 rounded-lg transition-transform hover:-translate-y-1">
                                     <CheckCircle2 className="text-[#2f4ea1] shrink-0" size={22} />
@@ -1027,7 +1057,7 @@ const DepartmentDetail = () => {
                         </div>
                     </div>
                     {/* Premium Abstract Dynamic Visual matching Department category */}
-                    <div className="lg:w-[40%] w-full flex bg-gray-50/0 border-transparent items-center justify-center p-0 rounded-3xl relative overflow-hidden">
+                    <div className="lg:w-[40%] w-full flex bg-gray-50/0 border-transparent items-center justify-center p-0 rounded-3xl relative overflow-visible order-first lg:order-last min-h-[220px] md:min-h-[300px]">
                         <DepartmentHeroVisual category={id || 'ppc'} />
                     </div>
                 </div>
