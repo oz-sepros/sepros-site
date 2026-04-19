@@ -494,7 +494,13 @@ const DepartmentPortfolio = ({ category }) => {
     if (category === 'ppc') {
         return (
              <div className="mt-16 md:mt-24">
-                 <div className="mb-16 -mx-6 md:mx-0 rounded-2xl overflow-hidden">
+                 <div className="mb-14">
+                     <h4 className="text-gray-900 font-black text-2xl md:text-4xl mb-5 border-r-4 border-[#2f4ea1] pr-4">אקוסיסטם של המרות</h4>
+                     <p className="text-gray-600 text-lg md:text-xl font-medium leading-relaxed max-w-4xl text-balance">
+                         יצירת נוכחות דיגיטלית רב-ערוצית היא קריטית לשמירה על עליונות (Top Of Mind) אצל הלקוח. אנחנו פורסים את המסרים שלכם על פני כל הפלטפורמות החמות ביותר – החל מקמפיינים מבוססי החלטה בגוגל חיפוש, דרך וידאו ברשתות המטא, וכלה בלינקדאין ו-TikTok. המודעות יעטפו את הגולש מכל עבר באמצעות רימרקטינג דינמי חכם.
+                     </p>
+                 </div>
+                 <div className="mb-16 -mx-6 md:mx-0 rounded-3xl overflow-hidden py-10 bg-gray-50 border border-gray-100 shadow-inner">
                      <PlatformsMarquee />
                  </div>
                  <SponsoredPpcGraph />
@@ -707,7 +713,11 @@ const DepartmentDetail = () => {
     const data = {
         ppc: { 
             title: "ניהול מדיה", 
-            long: "אנחנו מנהלים תקציבי ענק באופטימיזציה מקסימלית. הגישה שלנו לניהול מדיה היא מדעית: ניתוח קהלים, שיפור יחס המרה ושימוש בכלי AI לניהול בידים.", 
+            long: [
+                "ניהול קמפיינים ממומנים היום הוא כבר לא רק לחיצות במנהל המודעות. בעולם תחרותי ומציף, הגישה שלנו חייבת להיות מדעית, אגרסיבית ואנליטית. אנחנו לא פועלים מתוך ניחושים, אלא מתבססים על ניתוח עמוק של פסיכולוגיית הצרכן, כוונת הרכישה האמיתית, ובניית ארכיטקטורת קמפיינים מורכבת שנותנת למותג שלכם יתרון בלתי הוגן מול המתחרים.",
+                "המטרה המרכזית במחלקת המדיה שלנו היא לא לספק לכם טראפיק זול - אלא להוזיל את עלות הרכישה לאורך זמן (CPA) ולמקסם את שורת הרווח (ROAS). באמצעות אלגוריתמים חכמים, ניהול בידים מבוסס AI, ומבחני A/B אגרסיביים על קריאייטיבים, אנו דואגים שכל שקל שתשקיעו במדיה יעבוד חזק ככל האפשר.",
+                "אנו מנהלים תקציבי צמיחה באחריות מלאה. יודעים לזהות מגמות בשוק, ולבצע תהליכי Scalability אסטרטגיים. להגדיל את תקציבי הפרסום בצורה יציבה לרוחב לטובת לקוחות שרוצים צמיחה אמיתית של הפעילות."
+            ], 
             services: ["חיפוש ורשת המדיה בגוגל", "ניהול מטא (פייסבוק/אינסטגרם)", "קמפיינים בטיקטוק ולינקדאין", "רימרקטינג דינמי"],
             processTitle: "איך מתנהל קמפיין ברמה גבוהה?",
             processSubtitle: "השיטה המדעית מאחורי הלקוחות שלנו",
@@ -854,7 +864,18 @@ const DepartmentDetail = () => {
                 <div className="flex flex-col lg:flex-row gap-12 md:gap-16 items-stretch">
                     <div className="lg:w-[60%] flex flex-col justify-center">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase mb-6 text-[#2f4ea1] leading-tight">{dept.title}</h1>
-                        <p className="text-gray-600 text-xl md:text-2xl font-normal mb-10 leading-relaxed text-balance">{dept.long}</p>
+                        {Array.isArray(dept.long) ? (
+                            <div className="flex flex-col gap-5 mb-10">
+                                {dept.long.map((text, i) => (
+                                    <p key={i} className="text-gray-600 text-lg md:text-xl font-normal leading-relaxed text-balance relative">
+                                        {i === 0 && <span className="absolute -right-4 top-2 md:top-3 w-1.5 h-1.5 bg-[#2f4ea1] rounded-full"></span>}
+                                        {text}
+                                    </p>
+                                ))}
+                            </div>
+                        ) : (
+                            <p className="text-gray-600 text-xl md:text-2xl font-normal mb-10 leading-relaxed text-balance">{dept.long}</p>
+                        )}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {dept.services.map((s, i) => (
                                 <div key={i} className="flex items-center gap-3 bg-gray-50 p-4 md:p-6 border border-gray-100 rounded-lg transition-transform hover:-translate-y-1">
