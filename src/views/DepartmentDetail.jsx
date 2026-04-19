@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search } from 'lucide-react';
+import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
 import FAQ from '../components/FAQ';
@@ -211,13 +211,24 @@ const DepartmentPortfolio = ({ category }) => {
             { id: "azorim-melach", title: "אזורים - מלח הארץ", link: "https://lp.azorim.co.il/minisite_melach_haaretz/", image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=800&auto=format&fit=crop" },
             { id: "azorim-main", title: "אזורים", link: "https://www.azorim.co.il/", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop" }
         ];
+        const techProcess = [
+            { title: "אפיון ועיצוב UX/UI", desc: "חקר קהל יעד, בניית מפות מסע משתמש, ועיצוב דפי נחיתה וממשקים ברזולוציית פיקסל-פרפקט.", icon: <MonitorSmartphone size={24} /> },
+            { title: "פיתוח קדמי מתקדם", desc: "כתיבת קוד נקי, סמנטי ומהיר בטכנולוגיות חדישות לטובת ביצועים מקסימליים וחוויה חלקה ב-120fps.", icon: <Code2 size={24} /> },
+            { title: "אבטחה ובקרה (QA)", desc: "בדיקות מעמיקות ושבירת המערכת במגוון דפדפנים ומכשירים בכדי לוודא שאין צווארי בקבוק ותקלות.", icon: <CheckCircle2 size={24} /> },
+            { title: "השקה וניטור", desc: "עלייה חגיגית לאוויר, חיבור לאנליטיקס ופיקסלים, ותפעול שרת המבטיח יציבות של 99.9% Uptime.", icon: <Globe size={24} /> }
+        ];
+
         return (
             <div className="mt-16 md:mt-24">
                 <h4 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">פרויקטים נבחרים (Web)</h4>
                 <p className="text-gray-500 mb-8 font-medium">כדי לראות את איכות הפיתוח המלאה, לחצו על הפרויקטים וצפו בהם באוויר.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {webProjects.map((project, i) => (
-                        <div key={i} onClick={() => window.open(project.link, '_blank')} className="bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] p-0 group cursor-pointer relative overflow-hidden rounded-xl border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block">
+                        <div key={i} 
+                             onClick={() => window.open(project.link, '_blank')} 
+                             onMouseEnter={(e) => { const v = e.currentTarget.querySelector('video'); if (v) v.play().catch(()=>{}); }}
+                             onMouseLeave={(e) => { const v = e.currentTarget.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } }}
+                             className="bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] p-0 group cursor-pointer relative overflow-hidden rounded-xl border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block">
                             {/* Browser Top Bar */}
                             <div className="h-7 md:h-8 bg-[#F5F7FA] border-b border-gray-200 flex items-center px-4 gap-2 z-20 relative">
                                 <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
@@ -228,9 +239,12 @@ const DepartmentPortfolio = ({ category }) => {
                                 </div>
                             </div>
                             <div className="aspect-video bg-gray-100 overflow-hidden relative">
-                                <img src={`/portfolio/${project.id}.webp`} onError={(e) => { e.target.onerror = null; e.target.src = project.image; }} alt={project.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#09102c]/90 to-transparent flex flex-col justify-end p-4 transition-opacity group-hover:opacity-0">
-                                    <span className="text-white font-bold tracking-wide text-sm">{project.title}</span>
+                                <img src={`/portfolio/${project.id}.webp`} onError={(e) => { e.target.onerror = null; e.target.src = project.image; }} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                {/* Video Hover Layout */}
+                                <video src={`/portfolio/${project.id}.mp4`} muted loop playsInline preload="none" className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" onError={(e) => { e.target.style.display = 'none'; }} />
+                                
+                                <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#09102c]/90 via-[#09102c]/40 to-transparent flex flex-col justify-end p-4 transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
+                                    <span className="text-white font-bold tracking-wide text-sm drop-shadow-md">{project.title}</span>
                                 </div>
                                 <div className="absolute inset-0 bg-[#2f4ea1]/90 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 backdrop-blur-[2px]">
                                     <ExternalLink size={32} className="text-white mb-2" />
@@ -239,6 +253,30 @@ const DepartmentPortfolio = ({ category }) => {
                             </div>
                         </div>
                     ))}
+                </div>
+
+                {/* Tech Process Timeline */}
+                <div className="mt-24 md:mt-32">
+                    <div className="text-center mb-12 md:mb-16">
+                        <h4 className="text-[#0b1638] font-black text-3xl md:text-4xl text-balance">איך אנחנו בונים אתרים?</h4>
+                        <p className="text-gray-500 font-bold mt-2 tracking-widest text-sm md:text-base">התהליך שמאחורי הקלעים</p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 relative max-w-5xl mx-auto">
+                        {/* Connecting line for desktop */}
+                        <div className="hidden md:block absolute top-[2.25rem] left-[12%] right-[12%] h-1 bg-gray-100 z-0 rounded">
+                            <div className="h-full bg-gradient-to-r from-transparent via-[#2f4ea1]/20 to-transparent w-full"></div>
+                        </div>
+                        {techProcess.map((step, idx) => (
+                            <div key={idx} className="relative z-10 flex flex-col items-center text-center group">
+                                <div className="w-20 h-20 rounded-full bg-white border-2 border-gray-100 group-hover:border-[#2f4ea1] text-[#2f4ea1] flex items-center justify-center mb-6 shadow-sm group-hover:shadow-md transition-all duration-300 relative">
+                                    {step.icon}
+                                    <div className="absolute -top-1 -right-1 w-7 h-7 rounded-full bg-[#2f4ea1] text-white text-xs font-black flex items-center justify-center shadow-md transform group-hover:scale-110 transition-transform">{idx + 1}</div>
+                                </div>
+                                <h5 className="font-black text-lg text-gray-900 mb-2 group-hover:text-[#2f4ea1] transition-colors">{step.title}</h5>
+                                <p className="text-gray-500 text-sm md:text-[15px] leading-relaxed max-w-[250px]">{step.desc}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Tech Stack Segment */}
