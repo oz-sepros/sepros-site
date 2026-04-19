@@ -342,17 +342,45 @@ const DepartmentPortfolio = ({ category }) => {
     }
 
     if (category === 'design') {
+        const designProjects = [
+            { id: "brand_1", title: 'קמפיין השקה', type: 'Brand Identity', spanClass: 'md:col-span-2 md:row-span-2', image: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=1000&auto=format&fit=crop' },
+            { id: "social_1", title: 'פיד אינסטגרם אורגני', type: 'Social Media', spanClass: 'md:col-span-1 md:row-span-2', image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop' },
+            { id: "banner_1", title: 'באנר נדל"ן (Remarketing)', type: 'Web Banners', spanClass: 'md:col-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1541462608143-67571c6738dd?q=80&w=800&auto=format&fit=crop' },
+            { id: "ux_1", title: 'UX/UI אפליקציה', type: 'Interface', spanClass: 'md:col-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop' },
+            { id: "story_1", title: 'סדרת מודעות סטורי', type: 'Performance', spanClass: 'md:col-span-1 md:row-span-2', image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800&auto=format&fit=crop' },
+            { id: "banner_2", title: 'קריאייטיב אופליין / כנסים', type: 'Print & Merch', spanClass: 'md:col-span-2 md:row-span-1', image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000&auto=format&fit=crop' }
+        ];
+
         return (
             <div className="mt-16 md:mt-24">
-                <h4 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">ספרי מותג ו-UI/UX</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {[1, 2].map(i => (
-                        <div key={i} className="bg-white border border-gray-100 shadow-sm p-4 group cursor-pointer relative overflow-hidden rounded-lg">
-                            <div className="aspect-video bg-gray-100 overflow-hidden relative rounded-md">
-                                <img src={`https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800&sig=${i}`} alt="Project" loading="lazy" className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700" />
-                                <div className="absolute inset-0 bg-[#2f4ea1]/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <ExternalLink size={32} className="text-white mb-2" />
-                                    <span className="text-white font-bold tracking-widest text-sm">צפו בפרויקט</span>
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                    <div>
+                        <h4 className="text-gray-900 font-black text-3xl md:text-4xl mb-3 border-r-4 border-[#2f4ea1] pr-4 tracking-tight">שפה ויזואלית מנצחת</h4>
+                        <p className="text-gray-500 font-medium max-w-2xl text-balance">מספרי מותג, דרך באנרים מניעים לפעולה (Performance) ועד ממשקי משתמש מורכבים.</p>
+                    </div>
+                </div>
+
+                {/* Advanced Masonry Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[250px] md:auto-rows-[300px] grid-flow-row-dense">
+                    {designProjects.map((project, i) => (
+                        <div key={i} className={`relative group overflow-hidden rounded-2xl md:rounded-[2rem] bg-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer border border-gray-200/50 ${project.spanClass}`}>
+                            {/* The Image (uses local folder fallback, unplash placeholder initially) */}
+                            <img 
+                                src={`/portfolio/${project.id}.webp`} 
+                                onError={(e) => { e.target.onerror = null; e.target.src = project.image; }} 
+                                alt={project.title} 
+                                loading="lazy" 
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+                            />
+                            
+                            {/* Hover Overlay Container */}
+                            <div className="absolute inset-x-0 bottom-0 h-[80%] bg-gradient-to-t from-[#0b1638] via-[#0b1638]/50 to-transparent flex flex-col justify-end p-6 md:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span className="text-blue-400 font-extrabold text-xs md:text-sm tracking-widest uppercase mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">{project.type}</span>
+                                <h5 className="text-white font-black text-xl md:text-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{project.title}</h5>
+                                
+                                {/* Link Button */}
+                                <div className="absolute top-6 left-6 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-500 delay-150 hover:bg-[#2f4ea1]">
+                                    <ExternalLink size={20} className="text-white ml-0.5" />
                                 </div>
                             </div>
                         </div>
