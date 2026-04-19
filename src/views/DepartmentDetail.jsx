@@ -8,17 +8,30 @@ import FAQ from '../components/FAQ';
 import PlatformsMarquee from '../components/PlatformsMarquee';
 
 const ProcessTimeline = ({ title, subtitle, steps }) => {
-    const [lineVisible, setLineVisible] = useState(false);
-    const lineRef = useRef(null);
+    const [progress, setProgress] = useState(0);
+    const containerRef = useRef(null);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
-                setLineVisible(true);
-            }
-        }, { threshold: 0.3 });
-        if (lineRef.current) observer.observe(lineRef.current);
-        return () => observer.disconnect();
+        const handleScroll = () => {
+            if (!containerRef.current) return;
+            const rect = containerRef.current.getBoundingClientRect();
+            const viewHeight = window.innerHeight;
+            
+            // Starts tracking when the top of the container crosses the center of the viewport
+            const start = rect.top - viewHeight / 2;
+            // Finishes when the bottom crosses the center
+            const end = rect.bottom - viewHeight / 2;
+            const total = end - start;
+            
+            let currentProgress = (-start / total) * 100;
+            currentProgress = Math.max(0, Math.min(100, currentProgress));
+            
+            setProgress(currentProgress);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     if (!steps || steps.length === 0) return null;
@@ -28,14 +41,21 @@ const ProcessTimeline = ({ title, subtitle, steps }) => {
                 <h4 className="text-[#0b1638] font-black text-3xl md:text-4xl text-balance">{title}</h4>
                 <p className="text-[#2f4ea1] font-bold mt-2 tracking-widest text-sm md:text-base">{subtitle}</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 relative max-w-6xl mx-auto px-4" ref={lineRef}>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-4 relative max-w-6xl mx-auto px-4 mt-8 md:mt-0" ref={containerRef}>
+                
+                {/* Desktop Scroll Progress Line */}
                 <div className="hidden md:block absolute top-[2.25rem] left-[12%] right-[12%] h-[2px] bg-gray-100 z-0 overflow-hidden rounded-full">
                     <div 
-                        className="h-full bg-[#2f4ea1] transition-all duration-[1500ms] ease-[cubic-bezier(0.22,1,0.36,1)]" 
-                        style={{ 
-                            width: lineVisible ? '100%' : '0%',
-                            marginLeft: 'auto'
-                        }} 
+                        className="h-full bg-[#2f4ea1]" 
+                        style={{ width: `${progress}%`, marginLeft: 'auto' }} 
+                    ></div>
+                </div>
+
+                {/* Mobile Vertical Scroll Progress Line */}
+                <div className="block md:hidden absolute top-[2.5rem] bottom-[2.5rem] right-1/2 translate-x-1/2 w-[2px] bg-gray-100 z-0 overflow-hidden rounded-full">
+                    <div 
+                        className="w-full bg-[#2f4ea1]" 
+                        style={{ height: `${progress}%` }} 
                     ></div>
                 </div>
                 {steps.map((step, idx) => (
