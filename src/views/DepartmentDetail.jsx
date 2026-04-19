@@ -5,6 +5,7 @@ import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, Arro
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
 import FAQ from '../components/FAQ';
+import PlatformsMarquee from '../components/PlatformsMarquee';
 
 
 const SocialCarousel = () => {
@@ -178,6 +179,11 @@ const DepartmentPortfolio = ({ category }) => {
         const isPPC = category === 'ppc';
         return (
             <div className="mt-16 md:mt-24">
+                {isPPC && (
+                    <div className="mb-16 -mx-6 md:mx-0 rounded-2xl overflow-hidden">
+                        <PlatformsMarquee />
+                    </div>
+                )}
                 <h4 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">נתונים שמדברים</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {[

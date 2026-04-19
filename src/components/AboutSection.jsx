@@ -1,7 +1,7 @@
 import Reveal from './Reveal';
 
 const AboutSection = () => (
-    <section className="py-20 md:py-32 bg-white">
+    <section className="py-12 md:py-20 bg-white">
         <div className="max-w-[1400px] mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <Reveal className="text-right">
                 <div className="mb-6 flex items-center justify-start gap-2 dir-rtl">

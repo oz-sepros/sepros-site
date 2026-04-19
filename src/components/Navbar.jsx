@@ -126,14 +126,7 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    <Link href="/casestudies"
-                        className={`text-sm font-bold transition-colors ${isSolid
-                                ? 'text-gray-700 hover:text-[#2f4ea1]'
-                                : 'text-white/90 hover:text-white'
-                            }`}
-                    >
-                        קייס סטאדי
-                    </Link>
+
 
                     <Link href="/articles"
                         className={`text-sm font-bold transition-colors ${isSolid
@@ -239,12 +232,7 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        <Link href="/casestudies"
-                            onClick={() => setIsOpen(false)}
-                            className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
-                        >
-                            קייס סטאדי
-                        </Link>
+
 
                         <Link href="/articles"
                             onClick={() => setIsOpen(false)}

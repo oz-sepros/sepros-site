@@ -90,7 +90,6 @@ const Home = () => {
                 <ClientsSection />
             </section>
             <ServicesCarousel />
-            <CaseStudiesSection />
             <PlatformsMarquee />
             <StatsCounter />
             <AboutSection />

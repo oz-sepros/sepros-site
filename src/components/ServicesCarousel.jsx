@@ -68,7 +68,7 @@ const ServicesCarousel = () => {
     }, [isHovered, isVisible]);
 
     return (
-        <section className="pt-24 md:pt-32 pb-10 md:pb-16 bg-[#F5F7FA] border-b border-gray-100" id="services" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onTouchStart={() => setIsHovered(true)} onTouchEnd={() => setIsHovered(false)}>
+        <section className="pt-16 md:pt-24 pb-8 md:pb-12 bg-[#F5F7FA] border-b border-gray-100" id="services" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onTouchStart={() => setIsHovered(true)} onTouchEnd={() => setIsHovered(false)}>
             <div className="max-w-[1400px] mx-auto px-6 mb-12 flex flex-col md:flex-row items-center md:items-end justify-between gap-6 dir-rtl">
                 <div className="text-center md:text-right">
                     <div className="mb-4 flex items-center justify-center md:justify-start gap-2 dir-rtl">
