@@ -659,7 +659,6 @@ const DepartmentPortfolio = ({ category }) => {
                         { label: "המרות מאורגני (CR)", val: "+75%" }
                     ].map((stat, i) => (
                         <div key={i} className="bg-white shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 p-8 text-center rounded-2xl relative overflow-hidden group">
-                            <div className="absolute top-0 right-0 w-2 h-full bg-[#2f4ea1] scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-300"></div>
                             <div className="text-5xl md:text-6xl font-black text-[#2f4ea1] mb-2 dir-ltr">{stat.val}</div>
                             <div className="text-gray-500 text-sm font-bold tracking-widest uppercase">{stat.label}</div>
                         </div>
@@ -689,7 +688,6 @@ const DepartmentPortfolio = ({ category }) => {
                         { label: "צמיחה במכירות", val: "+350%" }
                     ].map((stat, i) => (
                         <div key={i} className="bg-white shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 p-8 text-center rounded-2xl relative overflow-hidden group">
-                            <div className="absolute top-0 right-0 w-2 h-full bg-[#2f4ea1] scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-300"></div>
                             <div className="text-5xl md:text-6xl font-black text-[#2f4ea1] mb-2 dir-ltr">{stat.val}</div>
                             <div className="text-gray-500 text-sm font-bold tracking-widest uppercase">{stat.label}</div>
                         </div>
