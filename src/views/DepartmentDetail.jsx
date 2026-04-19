@@ -321,19 +321,19 @@ const AnimatedSeoGraph = () => {
                         </svg>
 
                         {/* Tooltips */}
-                        <div className="absolute top-[320px] left-[0%] w-5 h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0s', opacity: 0 }}>
+                        <div className="absolute top-[80%] left-[0%] w-5 h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0s', opacity: 0 }}>
                             <div className="absolute top-8 left-0 md:left-1/2 md:-translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">2,100 כניסות</div>
                         </div>
-                        <div className="absolute top-[280px] left-[25%] w-5 h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0.6s', opacity: 0 }}>
+                        <div className="absolute top-[70%] left-[25%] w-5 h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0.6s', opacity: 0 }}>
                             <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">3,850 כניסות</div>
                         </div>
-                        <div className="absolute top-[180px] left-[50%] w-5 h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.2s', opacity: 0 }}>
+                        <div className="absolute top-[45%] left-[50%] w-5 h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.2s', opacity: 0 }}>
                             <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">5,900 כניסות</div>
                         </div>
-                        <div className="absolute top-[50px] left-[85%] w-5 h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.8s', opacity: 0 }}>
+                        <div className="absolute top-[12.5%] left-[85%] w-5 h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.8s', opacity: 0 }}>
                             <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">9,420 כניסות</div>
                         </div>
-                        <div className="absolute top-[20px] left-[100%] w-8 h-8 bg-[#2f4ea1] border-[6px] border-white rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-110 cursor-pointer shadow-lg transition-all group/pt z-20" style={{ animation: 'pulsePoint 2s infinite', opacity: 0, animationDelay: '2.5s' }}>
+                        <div className="absolute top-[5%] left-[100%] w-8 h-8 bg-[#2f4ea1] border-[6px] border-white rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-110 cursor-pointer shadow-lg transition-all group/pt z-20" style={{ animation: 'pulsePoint 2s infinite', opacity: 0, animationDelay: '2.5s' }}>
                             <div className="absolute top-12 right-0 md:left-1/2 md:-translate-x-1/2 bg-[#2f4ea1] text-white text-[15px] font-black py-2 px-4 rounded shadow-xl opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none flex flex-col items-center">
                                 <span>12,800 כניסות</span>
                                 <span className="text-blue-200 text-xs mt-0.5">כיום</span>
@@ -364,6 +364,117 @@ const AnimatedSeoGraph = () => {
     );
 };
 
+const SponsoredPpcGraph = () => {
+    return (
+        <div className="mt-16 w-full bg-transparent">
+            {/* Header */}
+            <div className="text-center mb-10 md:mb-16">
+                <span className="inline-block bg-[url('#')] bg-[#2f4ea1]/10 text-[#2f4ea1] px-4 py-2 rounded-full text-sm font-bold tracking-widest mb-4 uppercase shadow-sm">דוגמה לנתוני לקוח</span>
+                <h4 className="text-[#0b1638] font-black text-3xl md:text-5xl text-balance">לכבוש את החיפושים שמוכרים</h4>
+                <p className="text-gray-500 font-medium max-w-2xl mx-auto mt-4 md:mt-6 text-balance md:text-lg">המטרה שלנו היא לא רק טראפיק, אלא המרות שורות תחתונות. ככה נראית השתלטות ממומנת שמביאה לידים חמים ומכפילה את החזר ההשקעה.</p>
+            </div>
+
+            <div className="flex flex-col lg:flex-row gap-6 md:gap-10 items-stretch">
+                {/* Search Mockup */}
+                <div className="lg:w-[45%] w-full bg-[#f8f9fa] rounded-3xl p-6 md:p-10 border border-gray-200/60 shadow-inner flex flex-col justify-center">
+                    <div className="text-right mb-8">
+                        <h5 className="font-bold text-gray-900 text-2xl tracking-tight">ככה נראית מודעה מנצחת</h5>
+                        <p className="text-gray-500 text-base mt-2">תוצאות ממומנות בגוגל (PPC)</p>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm transition-all hover:shadow-lg cursor-pointer group mb-6 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-2 h-full bg-[#2f4ea1]"></div>
+                        <div className="flex items-center gap-2 mb-3 dir-ltr justify-end">
+                            <span className="text-sm text-gray-800 tracking-wide font-medium">https://www.your-domain.co.il</span>
+                            <span className="text-xs font-black text-gray-900 mx-1">ממומן</span>
+                        </div>
+                        <h3 className="text-[#1a0dab] font-normal text-2xl md:text-3xl group-hover:underline mb-2 font-arial dir-rtl text-right">השירות שאתם מציעים - האתר שלכם</h3>
+                        <p className="text-[#4d5156] text-sm md:text-base leading-relaxed font-arial dir-rtl text-right">קופירייטינג מדויק שמבוסס על פסיכולוגיה צרכנית, עם הנעה לפעולה שגורמת ללקוח ללחוץ ולהשאיר פרטים אצלכם.</p>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm opacity-60 filter grayscale scale-[0.98]">
+                        <div className="flex items-center gap-2 mb-3 dir-ltr justify-end">
+                            <span className="text-sm text-gray-800 tracking-wide">https://www.competitor.co.il</span>
+                            <span className="text-xs font-black text-gray-900 mx-1">ממומן</span>
+                        </div>
+                        <h3 className="text-[#1a0dab] font-normal text-xl md:text-2xl mb-2 font-arial dir-rtl text-right">מודעות של מתחרים בענף</h3>
+                        <p className="text-[#4d5156] text-sm md:text-base leading-relaxed font-arial dir-rtl text-right">עוד מודעה בנאלית וכללית ששורפת תקציב וקליקים בלי אסטרטגית המרות מותאמת.</p>
+                    </div>
+                </div>
+
+                {/* The Graph */}
+                <div className="lg:w-[55%] w-full bg-white rounded-3xl p-6 md:p-10 border border-gray-100 shadow-[0_20px_50px_rgba(47,78,161,0.05)] flex flex-col justify-center relative group">
+                    <div className="flex justify-between items-end mb-8">
+                        <div className="text-right">
+                             <h5 className="font-bold text-gray-900 text-2xl tracking-tight">החזר השקעה בפרסום (ROAS)</h5>
+                        </div>
+                        <div className="bg-[#2f4ea1]/5 text-[#2f4ea1] font-black text-2xl md:text-4xl px-5 py-3 rounded-xl dir-ltr text-center shadow-inner border border-[#2f4ea1]/10">
+                            x4.5
+                        </div>
+                    </div>
+
+                    <div className="relative w-full h-[250px] md:h-[350px] mt-4 rounded-xl overflow-visible">
+                        <svg className="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 1000 400">
+                            <line x1="0" y1="100" x2="1000" y2="100" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
+                            <line x1="0" y1="200" x2="1000" y2="200" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
+                            <line x1="0" y1="300" x2="1000" y2="300" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
+                            
+                            <path
+                                d="M0,350 L0,300 C150,300 200,250 350,220 C500,190 600,150 750,100 C880,50 950,20 1000,20 L1000,400 Z"
+                                fill="url(#ppc-gradient)"
+                                className="opacity-0 transition-opacity duration-1000"
+                                style={{ animation: 'fadeInUp 2s cubic-bezier(0.22,1,0.36,1) forwards', animationDelay: '0.5s' }}
+                            />
+
+                            <path
+                                d="M0,300 C150,300 200,250 350,220 C500,190 600,150 750,100 C880,50 950,20 1000,20"
+                                fill="none"
+                                stroke="#2f4ea1"
+                                strokeWidth="6"
+                                strokeLinecap="round"
+                                strokeDasharray="1500"
+                                strokeDashoffset="1500"
+                                style={{ animation: 'drawGraph 2.5s cubic-bezier(0.22,1,0.36,1) forwards' }} 
+                            />
+
+                            <defs>
+                                <linearGradient id="ppc-gradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor="#2f4ea1" stopOpacity="0.25" />
+                                    <stop offset="100%" stopColor="#2f4ea1" stopOpacity="0" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+
+                        {/* Tooltips */}
+                        <div className="absolute top-[75%] left-[0%] w-5 h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0s', opacity: 0 }}>
+                            <div className="absolute top-8 left-0 md:left-1/2 md:-translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">ROAS x1.2</div>
+                        </div>
+                        <div className="absolute top-[55%] left-[35%] w-5 h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0.6s', opacity: 0 }}>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">ROAS x2.5</div>
+                        </div>
+                        <div className="absolute top-[25%] left-[75%] w-5 h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.2s', opacity: 0 }}>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">ROAS x3.8</div>
+                        </div>
+                        <div className="absolute top-[5%] left-[100%] w-8 h-8 bg-[#2f4ea1] border-[6px] border-white rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-110 cursor-pointer shadow-lg transition-all group/pt z-20" style={{ animation: 'pulsePoint 2s infinite', opacity: 0, animationDelay: '2.5s' }}>
+                            <div className="absolute top-12 right-0 md:left-1/2 md:-translate-x-1/2 bg-[#2f4ea1] text-white text-[15px] font-black py-2 px-4 rounded shadow-xl opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none flex flex-col items-center">
+                                <span>ROAS x4.5</span>
+                                <span className="text-blue-200 text-xs mt-0.5">כיום</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex justify-between items-center text-gray-400 font-bold text-xs md:text-sm mt-8 dir-ltr px-2 uppercase tracking-widest relative z-0 pointer-events-none">
+                        <span>Q1</span>
+                        <span>Q2</span>
+                        <span>Q3</span>
+                        <span>Q4</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const DepartmentPortfolio = ({ category }) => {
     const [showAllDesign, setShowAllDesign] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
@@ -380,8 +491,18 @@ const DepartmentPortfolio = ({ category }) => {
         return <AnimatedSeoGraph />;
     }
 
-    if (category === 'ppc' || category === 'analytics') {
-        const isPPC = category === 'ppc';
+    if (category === 'ppc') {
+        return (
+             <div className="mt-16 md:mt-24">
+                 <div className="mb-16 -mx-6 md:mx-0 rounded-2xl overflow-hidden">
+                     <PlatformsMarquee />
+                 </div>
+                 <SponsoredPpcGraph />
+             </div>
+        );
+    }
+
+    if (category === 'analytics') {
         return (
             <div className="mt-16 md:mt-24">
                 {isPPC && (
@@ -392,8 +513,8 @@ const DepartmentPortfolio = ({ category }) => {
                 <h4 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">נתונים שמדברים</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {[
-                        { label: isPPC ? "החזר השקעה (ROAS)" : "גידול בטראפיק", val: isPPC ? "x4.5" : "+280%" },
-                        { label: isPPC ? "עלות לליד (CPL)" : "מיקומים בעמוד 1", val: isPPC ? "-35%" : "150+" },
+                        { label: "גידול בטראפיק", val: "+280%" },
+                        { label: "מיקומים בעמוד 1", val: "150+" },
                         { label: "יחס המרה (CR)", val: "+12%" }
                     ].map((stat, i) => (
                         <div key={i} className="bg-white shadow-sm hover:shadow-md transition-shadow border border-gray-100 p-8 text-center rounded-lg">
@@ -667,17 +788,17 @@ const DepartmentDetail = () => {
         seo: { 
             title: "SEO & GEO", 
             long: "להיות בראש תוצאות החיפוש זו ריצה למרחקים ארוכים. אנחנו משלבים איכויות טכניות באסטרטגיית תוכן שבונה מומנטום של סמכות מוכחת גם עבור ביטויים ותוכן מקומי או גלובאלי.", 
-            services: ["בדיקות טכניות שוטפות", "שיפור תנועה ספציפית וקרוס-זונג", "בניית פרופיל קישורים פוטנטי", "אופטימיזציית מפות אזוריות (GEO)"],
+            services: ["בדיקות טכניות שוטפות", "שיפור תנועה ספציפית וקרוס-זונג", "בניית פרופיל קישורים פוטנטי", "אופטימיזציה למנועי בינה מלאכותית (GEO)"],
             processTitle: "איך למצב את עצמכם בטופ?",
             processSubtitle: "התהליך האורגני שלנו",
             process: [
                 { title: "אודיט טכני וליבת התוכן", desc: "סריקה מלאה של קודי האתר לאיתור שגיאות קריטיות לצד מציאת הזדמנויות של ביטויי מפתח ממוקדים שלא מנוצלים.", icon: <Search size={28} /> },
                 { title: "אופטימיזציה מקומית (On-Page)", desc: "התאמת תוכן כירורגית: שיפור מהירויות טעינה, כותרות H1/H2 תקינות ועדכון תגיות מטא באופן שוטף.", icon: <Code2 size={28} /> },
                 { title: "בניית תוכן עשיר לגולש", desc: "הפקת מאמרים, עמודי נחיתה ומדריכים שמובילים באופן טבעי את הגולש לתשובה אותה הוא מעוניין לקרוא.", icon: <MessageSquare size={28} /> },
-                { title: "פרופיל קישורים ואוטוריטה", desc: "רכישת קישורים איכותיים מאתרים חזקים ברשת (Off-Page) ובניית אזכורים (GEO) במפות כדי לבנות את סמכות הדומיין שלכם.", icon: <TrendingUp size={28} /> }
+                { title: "פרופיל קישורים ואוטוריטה", desc: "רכישת קישורים איכותיים מאתרים חזקים ברשת (Off-Page) ובניית סמכות מותג למנועי הבינה המלאכותית (GEO) כדי לקבע נוכחות בתשובות ה-AI.", icon: <TrendingUp size={28} /> }
             ],
             faqs: [
-                { q: "מה זה GEO לעומת SEO?", a: "GEO אלו הן טכניקות מיקום ספציפיות המצליבים כלי מפות וכלים חכמים מבוססי ארצות כדי להקל על הניווט הפიზו-וירטואלי אל העסק. זה כמובן בנוסף ל- SEO שמכסה את השאילתות הטקסטואליות." },
+                { q: "מה זה GEO לעומת SEO?", a: "GEO (Generative Engine Optimization) מתייחס להתאמת התוכן שלכם למנועי החיפוש החדשים המבוססים על בינה מלאכותית (כמו ChatGPT, Perplexity, וגוגל SGE). בזמן ש-SEO מתמקד בדירוג הקלאסי לצד המתחרים, GEO מוודא שה-AI ימליץ עליכם כתשובה המוחלטת." },
                 { q: "תוך כמה זמן נראה השפעה של תהליך SEO?", a: "תהליך קידום אורגני הוא השקעה אסטרטגית עמוקה. תוצאות תנודותיות לרוב יורגשו לאחר 3 חודשים, כאשר קפיצות מובהקות ותשואת ה-ROI המרכזית צפות במלוא עוצמתן תוך 6 עד 9 חודשים." },
                 { q: "האם אתם כותבים גם את המאמרים לאתר?", a: "חד משמעית. מחלקת ה-SEO שלנו כוללת למעשה תא תוכן סגור שמכיל קופירייטרים בעלי רקע מוטה SEO שמייצרים טקסט בעל ערך אמיתי לגולשים שגם נסרק ומאונדקס בצורה אופטימלית על ידי גוגל." },
                 { q: "איך אתם מודדים ובונים קישורים חיצוניים?", a: "אנו לא עושים שימוש ב'חוות קישורים' פאסיביות שעלולות לגרור ענישה. הגישה מתבססת על Digital PR: קשר רצוף עם בורד עיתונאים לפרסום אורגני במגזינים אקטואליים רבי עוצמה ברמות שונות של סמכות (DA)." },
