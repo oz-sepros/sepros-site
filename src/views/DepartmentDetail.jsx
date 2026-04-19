@@ -194,6 +194,8 @@ const SocialCarousel = () => {
     )
 }
 const DepartmentPortfolio = ({ category }) => {
+    const [showAllDesign, setShowAllDesign] = useState(false);
+
     if (category === 'social') {
         return (
             <div className="mt-10 md:mt-16 w-full">
@@ -351,6 +353,8 @@ const DepartmentPortfolio = ({ category }) => {
             { id: "banner_2", title: 'קריאייטיב אופליין / כנסים', type: 'Print & Merch', spanClass: 'md:col-span-2 md:row-span-1', image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000&auto=format&fit=crop' }
         ];
 
+        const visibleProjects = showAllDesign ? designProjects : designProjects.slice(0, 6);
+
         return (
             <div className="mt-16 md:mt-24">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
@@ -362,8 +366,8 @@ const DepartmentPortfolio = ({ category }) => {
 
                 {/* Advanced Masonry Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[250px] md:auto-rows-[300px] grid-flow-row-dense">
-                    {designProjects.map((project, i) => (
-                        <div key={i} className={`relative group overflow-hidden rounded-2xl md:rounded-[2rem] bg-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer border border-gray-200/50 ${project.spanClass}`}>
+                    {visibleProjects.map((project, i) => (
+                        <div key={i} className={`relative group overflow-hidden rounded-2xl md:rounded-[2rem] bg-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-200/50 ${project.spanClass}`}>
                             {/* The Image (uses local folder fallback, unplash placeholder initially) */}
                             <img 
                                 src={`/portfolio/${project.id}.webp`} 
@@ -377,15 +381,18 @@ const DepartmentPortfolio = ({ category }) => {
                             <div className="absolute inset-x-0 bottom-0 h-[80%] bg-gradient-to-t from-[#0b1638] via-[#0b1638]/50 to-transparent flex flex-col justify-end p-6 md:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <span className="text-blue-400 font-extrabold text-xs md:text-sm tracking-widest uppercase mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">{project.type}</span>
                                 <h5 className="text-white font-black text-xl md:text-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{project.title}</h5>
-                                
-                                {/* Link Button */}
-                                <div className="absolute top-6 left-6 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-500 delay-150 hover:bg-[#2f4ea1]">
-                                    <ExternalLink size={20} className="text-white ml-0.5" />
-                                </div>
                             </div>
                         </div>
                     ))}
                 </div>
+
+                {!showAllDesign && designProjects.length >= 6 && (
+                    <div className="flex justify-center mt-12 mb-4">
+                        <button onClick={() => setShowAllDesign(true)} className="px-8 py-3 bg-white border border-gray-200 text-[#2f4ea1] font-bold rounded-full shadow-sm hover:border-[#2f4ea1] transition-colors">
+                            הצג עבודות נוספות
+                        </button>
+                    </div>
+                )}
             </div>
         );
     }
@@ -546,13 +553,13 @@ const DepartmentDetail = () => {
                     </div>
                 </div>
 
-                <DepartmentPortfolio category={id || 'ppc'} />
-
                 {dept.process && (
                     <Reveal delay={0.1}>
                         <ProcessTimeline title={dept.processTitle} subtitle={dept.processSubtitle} steps={dept.process} />
                     </Reveal>
                 )}
+
+                <DepartmentPortfolio category={id || 'ppc'} />
 
                 {dept.faqs && dept.faqs.length > 0 && (
                     <FAQ title={`שאלות נפוצות`} data={dept.faqs} className="bg-transparent !py-0 mt-20 md:mt-24" />
