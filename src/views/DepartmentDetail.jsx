@@ -491,7 +491,7 @@ const AnimatedSeoGraph = () => {
                         </div>
                         <div className="absolute top-[5%] left-[100%] w-8 h-8 md:w-8 md:h-8 bg-[#2f4ea1] border-[6px] border-white rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-110 cursor-pointer shadow-lg transition-all group/pt z-20" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '2.5s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none"></div>
-                            <div className="absolute top-12 right-0 md:left-1/2 md:-translate-x-1/2 bg-[#2f4ea1] text-white text-[15px] font-black py-2 px-4 rounded shadow-xl opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none flex flex-col items-center">
+                            <div className="absolute top-1/2 right-[120%] -translate-y-1/2 bg-[#2f4ea1] text-white text-[15px] font-black py-2 px-4 rounded shadow-xl opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap w-max pointer-events-none flex flex-col items-center">
                                 <span>12,800 כניסות</span>
                                 <span className="text-blue-200 text-xs mt-0.5">כיום</span>
                             </div>
@@ -617,7 +617,7 @@ const SponsoredPpcGraph = () => {
                         </div>
                         <div className="absolute top-[5%] left-[100%] w-8 h-8 md:w-8 md:h-8 bg-[#2f4ea1] border-[6px] border-white rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-110 cursor-pointer shadow-lg transition-all group/pt z-20" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '2.5s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none"></div>
-                            <div className="absolute top-12 right-0 md:left-1/2 md:-translate-x-1/2 bg-[#2f4ea1] text-white text-[15px] font-black py-2 px-4 rounded shadow-xl opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none flex flex-col items-center">
+                            <div className="absolute top-1/2 right-[120%] -translate-y-1/2 bg-[#2f4ea1] text-white text-[15px] font-black py-2 px-4 rounded shadow-xl opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap w-max pointer-events-none flex flex-col items-center">
                                 <span>ROAS x4.5</span>
                                 <span className="text-blue-200 text-xs mt-0.5">כיום</span>
                             </div>
@@ -672,11 +672,6 @@ const DepartmentPortfolio = ({ category }) => {
     if (category === 'analytics') {
         return (
             <div className="mt-16 md:mt-24">
-                {isPPC && (
-                    <div className="mb-16 -mx-6 md:mx-0 rounded-2xl overflow-hidden">
-                        <PlatformsMarquee />
-                    </div>
-                )}
                 <h4 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">נתונים שמדברים</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {[
