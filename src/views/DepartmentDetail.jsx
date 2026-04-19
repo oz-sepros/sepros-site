@@ -234,6 +234,81 @@ const SocialCarousel = () => {
         </div>
     )
 }
+
+const AnimatedSeoGraph = () => {
+    return (
+        <div className="mt-16 md:mt-24 w-full bg-white border border-gray-100 rounded-2xl p-6 md:p-12 shadow-[0_20px_50px_rgba(47,78,161,0.05)] overflow-hidden text-right">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
+                <div>
+                    <h4 className="text-gray-900 font-black text-3xl md:text-4xl mb-3 border-r-4 border-[#2f4ea1] pr-4">צמיחה אורגנית לאורך זמן</h4>
+                    <p className="text-gray-500 font-medium max-w-lg text-balance">ככה נראה גרף של לקוח שיודע לעבוד נכון. תהליך SEO איכותי שמייצר סמכות ברשת ומכפיל את כמות הכניסות האורגניות.</p>
+                </div>
+                <div className="bg-[#2f4ea1]/5 text-[#2f4ea1] font-black text-4xl md:text-5xl px-8 py-6 rounded-2xl dir-ltr text-center shrink-0 border border-[#2f4ea1]/10 shadow-inner">
+                    +345%
+                    <span className="block text-sm font-bold uppercase tracking-widest mt-2 text-[#2f4ea1]/80">Organic Growth</span>
+                </div>
+            </div>
+
+            <div className="relative w-full h-[250px] md:h-[400px] mt-8 group rounded-xl overflow-hidden bg-gray-50/50">
+                <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1000 400">
+                    <line x1="0" y1="100" x2="1000" y2="100" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
+                    <line x1="0" y1="200" x2="1000" y2="200" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
+                    <line x1="0" y1="300" x2="1000" y2="300" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
+                    
+                    <path
+                        d="M0,400 L0,320 C100,320 150,330 250,280 C350,230 400,260 500,180 C600,100 700,150 850,50 C950,0 1000,20 1000,20 L1000,400 Z"
+                        fill="url(#seo-gradient)"
+                        className="opacity-0 transition-opacity duration-1000"
+                        style={{ animation: 'fadeInUp 2s cubic-bezier(0.22,1,0.36,1) forwards', animationDelay: '0.5s' }}
+                    />
+
+                    <path
+                        d="M0,320 C100,320 150,330 250,280 C350,230 400,260 500,180 C600,100 700,150 850,50 C950,0 1000,20 1000,20"
+                        fill="none"
+                        stroke="#2f4ea1"
+                        strokeWidth="6"
+                        strokeLinecap="round"
+                        strokeDasharray="1500"
+                        strokeDashoffset="1500"
+                        style={{ animation: 'drawGraph 2.5s cubic-bezier(0.22,1,0.36,1) forwards' }} 
+                    />
+
+                    <defs>
+                        <linearGradient id="seo-gradient" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#2f4ea1" stopOpacity="0.25" />
+                            <stop offset="100%" stopColor="#2f4ea1" stopOpacity="0" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <div className="absolute top-[320px] left-[0%] w-4 h-4 bg-white border-4 border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 hover:scale-150 cursor-pointer shadow-md transition-transform" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0s', opacity: 0 }}></div>
+                <div className="absolute top-[280px] left-[25%] w-4 h-4 bg-white border-4 border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 hover:scale-150 cursor-pointer shadow-md transition-transform" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0.6s', opacity: 0 }}></div>
+                <div className="absolute top-[180px] left-[50%] w-4 h-4 bg-white border-4 border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 hover:scale-150 cursor-pointer shadow-md transition-transform" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.2s', opacity: 0 }}></div>
+                <div className="absolute top-[50px] left-[85%] w-4 h-4 bg-white border-4 border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 hover:scale-150 cursor-pointer shadow-md transition-transform" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.8s', opacity: 0 }}></div>
+                <div className="absolute top-[20px] left-[100%] w-6 h-6 bg-[#2f4ea1] border-[6px] border-white rounded-full -translate-x-1/2 -translate-y-1/2 shadow-lg" style={{ animation: 'pulsePoint 2s infinite', opacity: 0, animationDelay: '2.5s' }}></div>
+
+                <style dangerouslySetInnerHTML={{__html:`
+                    @keyframes drawGraph { to { stroke-dashoffset: 0; } }
+                    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+                    @keyframes pulsePoint {
+                        0% { transform: translate(-50%, -50%) scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(47,78,161,0.7); }
+                        70% { transform: translate(-50%, -50%) scale(1); opacity: 1; box-shadow: 0 0 0 15px rgba(47,78,161,0); }
+                        100% { transform: translate(-50%, -50%) scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(47,78,161,0); }
+                    }
+                `}} />
+            </div>
+
+            <div className="flex justify-between items-center text-gray-400 font-bold text-xs md:text-sm mt-6 dir-ltr px-2 uppercase tracking-widest">
+                <span>Jan</span>
+                <span>Mar</span>
+                <span>Jun</span>
+                <span>Sep</span>
+                <span>Dec</span>
+            </div>
+        </div>
+    );
+};
+
 const DepartmentPortfolio = ({ category }) => {
     const [showAllDesign, setShowAllDesign] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
@@ -244,6 +319,10 @@ const DepartmentPortfolio = ({ category }) => {
                 <SocialCarousel />
             </div>
         );
+    }
+
+    if (category === 'seo') {
+        return <AnimatedSeoGraph />;
     }
 
     if (category === 'ppc' || category === 'analytics') {
