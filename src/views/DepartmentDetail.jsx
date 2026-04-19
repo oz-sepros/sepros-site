@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
@@ -8,6 +8,19 @@ import FAQ from '../components/FAQ';
 import PlatformsMarquee from '../components/PlatformsMarquee';
 
 const ProcessTimeline = ({ title, subtitle, steps }) => {
+    const [lineVisible, setLineVisible] = useState(false);
+    const lineRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setLineVisible(true);
+            }
+        }, { threshold: 0.3 });
+        if (lineRef.current) observer.observe(lineRef.current);
+        return () => observer.disconnect();
+    }, []);
+
     if (!steps || steps.length === 0) return null;
     return (
         <div className="mt-20 md:mt-28 w-full border-t border-gray-100 pt-20">
@@ -15,9 +28,15 @@ const ProcessTimeline = ({ title, subtitle, steps }) => {
                 <h4 className="text-[#0b1638] font-black text-3xl md:text-4xl text-balance">{title}</h4>
                 <p className="text-[#2f4ea1] font-bold mt-2 tracking-widest text-sm md:text-base">{subtitle}</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 relative max-w-6xl mx-auto px-4">
-                <div className="hidden md:block absolute top-[2.25rem] left-[12%] right-[12%] h-1 bg-gray-100 z-0 rounded">
-                    <div className="h-full bg-gradient-to-r from-transparent via-[#2f4ea1]/20 to-transparent w-full"></div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 relative max-w-6xl mx-auto px-4" ref={lineRef}>
+                <div className="hidden md:block absolute top-[2.25rem] left-[12%] right-[12%] h-[2px] bg-gray-100 z-0 overflow-hidden rounded-full">
+                    <div 
+                        className="h-full bg-[#2f4ea1] transition-all duration-[1500ms] ease-[cubic-bezier(0.22,1,0.36,1)]" 
+                        style={{ 
+                            width: lineVisible ? '100%' : '0%',
+                            marginLeft: 'auto'
+                        }} 
+                    ></div>
                 </div>
                 {steps.map((step, idx) => (
                     <div key={idx} className="relative z-10 flex flex-col items-center text-center group">
@@ -388,14 +407,13 @@ const DepartmentPortfolio = ({ category }) => {
 
                 {/* Lightbox Modal Overlay */}
                 {selectedImage && (
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#09102c]/95 p-4 md:p-10 backdrop-blur-sm transition-opacity" onClick={() => setSelectedImage(null)}>
+                    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#09102c]/95 p-4 md:p-8 backdrop-blur-md transition-opacity" onClick={() => setSelectedImage(null)}>
                         <button className="absolute top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-white transition-colors z-[110]" onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}>
                             <svg className="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg>
                         </button>
-                        <div className="relative max-w-[95vw] max-h-[85vh]">
-                            <img src={`/portfolio/${selectedImage.id}.webp`} onError={(e) => { e.target.onerror = null; e.target.src = selectedImage.fallback; }} className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)]" alt={selectedImage.title} onClick={(e) => e.stopPropagation()} />
-                            <div className="absolute -bottom-10 left-0 right-0 text-center text-white/70 font-medium tracking-wide text-sm">{selectedImage.title}</div>
-                        </div>
+                        
+                        <img src={`/portfolio/${selectedImage.id}.webp`} onError={(e) => { e.target.onerror = null; e.target.src = selectedImage.fallback; }} className="max-w-[90vw] max-h-[75vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)]" alt={selectedImage.title} onClick={(e) => e.stopPropagation()} />
+                        <h3 className="text-white tracking-widest mt-6 font-bold text-lg md:text-xl">{selectedImage.title}</h3>
                     </div>
                 )}
             </div>
