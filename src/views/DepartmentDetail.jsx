@@ -234,7 +234,6 @@ const SocialCarousel = () => {
         </div>
     )
 }
-}
 
 const DepartmentHeroVisual = ({ category }) => {
     switch (category) {
