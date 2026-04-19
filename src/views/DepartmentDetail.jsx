@@ -431,7 +431,7 @@ const AnimatedSeoGraph = () => {
 
                 {/* The Graph */}
                 <div className="lg:w-[55%] w-full bg-white rounded-3xl p-6 md:p-10 border border-gray-100 shadow-[0_20px_50px_rgba(47,78,161,0.05)] flex flex-col justify-center relative group">
-                    <div className="flex justify-between items-end mb-8">
+                    <div className="flex justify-between items-end mb-8 relative z-10 w-full">
                         <div className="text-right">
                              <h5 className="font-bold text-gray-900 text-2xl tracking-tight">נפח תנועה אורגנית (כניסות)</h5>
                         </div>
@@ -561,7 +561,7 @@ const SponsoredPpcGraph = () => {
 
                 {/* The Graph */}
                 <div className="lg:w-[55%] w-full bg-white rounded-3xl p-6 md:p-10 border border-gray-100 shadow-[0_20px_50px_rgba(47,78,161,0.05)] flex flex-col justify-center relative group">
-                    <div className="flex justify-between items-end mb-8">
+                    <div className="flex justify-between items-end mb-8 relative z-10 w-full">
                         <div className="text-right">
                              <h5 className="font-bold text-gray-900 text-2xl tracking-tight">החזר השקעה בפרסום (ROAS)</h5>
                         </div>
@@ -605,20 +605,20 @@ const SponsoredPpcGraph = () => {
                         {/* Tooltips */}
                         <div className="absolute top-[75%] left-[0%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none"></div>
-                            <div className="absolute top-8 left-0 md:left-1/2 md:-translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">ROAS x1.2</div>
+                            <div className="absolute top-8 left-0 md:left-1/2 md:-translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">₪11,500 הכנסות</div>
                         </div>
                         <div className="absolute top-[55%] left-[35%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0.6s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none" style={{ animationDelay: '0.6s' }}></div>
-                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">ROAS x2.5</div>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">₪38,200 הכנסות</div>
                         </div>
                         <div className="absolute top-[25%] left-[75%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.2s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none" style={{ animationDelay: '1.2s' }}></div>
-                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">ROAS x3.8</div>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">₪82,000 הכנסות</div>
                         </div>
                         <div className="absolute top-[5%] left-[100%] w-8 h-8 md:w-8 md:h-8 bg-[#2f4ea1] border-[6px] border-white rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-110 cursor-pointer shadow-lg transition-all group/pt z-20" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '2.5s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none"></div>
                             <div className="absolute top-1/2 right-[120%] -translate-y-1/2 bg-[#2f4ea1] text-white text-[15px] font-black py-2 px-4 rounded shadow-xl opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap w-max pointer-events-none flex flex-col items-center">
-                                <span>ROAS x4.5</span>
+                                <span>₪154,500 הכנסות</span>
                                 <span className="text-blue-200 text-xs mt-0.5">כיום</span>
                             </div>
                         </div>
@@ -652,16 +652,16 @@ const DepartmentPortfolio = ({ category }) => {
         return (
             <div className="mt-10 md:mt-16 w-full">
                  <AnimatedSeoGraph />
-                 <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                 <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 w-full lg:w-[95%] mx-auto">
                     {[
-                        { label: "עלייה בטראפיק אורגני", val: "+280%" },
-                        { label: "מיקומים בעמוד 1", val: "150+" },
-                        { label: "עליה בהמרות מהאורגני", val: "+75%" }
+                        { label: "צמיחה בטראפיק", val: "+280%" },
+                        { label: "עמוד ראשון", val: "150+" },
+                        { label: "המרות מאורגני (CR)", val: "+75%" }
                     ].map((stat, i) => (
-                        <div key={i} className="bg-white shadow-sm hover:shadow-md transition-shadow border border-gray-100 p-8 text-center rounded-lg relative overflow-hidden group">
+                        <div key={i} className="bg-white shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 p-8 text-center rounded-2xl relative overflow-hidden group">
                             <div className="absolute top-0 right-0 w-2 h-full bg-[#2f4ea1] scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-300"></div>
-                            <div className="text-5xl font-black text-[#2f4ea1] mb-2 dir-ltr">{stat.val}</div>
-                            <div className="text-gray-500 text-sm font-bold tracking-widest">{stat.label}</div>
+                            <div className="text-5xl md:text-6xl font-black text-[#2f4ea1] mb-2 dir-ltr">{stat.val}</div>
+                            <div className="text-gray-500 text-sm font-bold tracking-widest uppercase">{stat.label}</div>
                         </div>
                     ))}
                  </div>
@@ -682,16 +682,16 @@ const DepartmentPortfolio = ({ category }) => {
                      <PlatformsMarquee />
                  </div>
                  <SponsoredPpcGraph />
-                 <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+                 <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 w-full lg:w-[95%] mx-auto">
                     {[
-                        { label: "צמיחה במכירות", val: "+350%" },
-                        { label: "ירידה בעלות לליד (CPL)", val: "-45%" },
-                        { label: "החזר השקעה (ROAS)", val: "x4.5" }
+                        { label: "החזר השקעה (ROAS)", val: "x4.5" },
+                        { label: "ירידה בעלות לליד", val: "-45%" },
+                        { label: "צמיחה במכירות", val: "+350%" }
                     ].map((stat, i) => (
-                        <div key={i} className="bg-white shadow-sm hover:shadow-md transition-shadow border border-gray-100 p-8 text-center rounded-lg relative overflow-hidden group">
-                            <div className="absolute top-0 right-0 w-2 h-full bg-green-500 scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-300"></div>
-                            <div className="text-5xl font-black text-green-600 mb-2 dir-ltr">{stat.val}</div>
-                            <div className="text-gray-500 text-sm font-bold tracking-widest">{stat.label}</div>
+                        <div key={i} className="bg-white shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 p-8 text-center rounded-2xl relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-2 h-full bg-[#2f4ea1] scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-300"></div>
+                            <div className="text-5xl md:text-6xl font-black text-[#2f4ea1] mb-2 dir-ltr">{stat.val}</div>
+                            <div className="text-gray-500 text-sm font-bold tracking-widest uppercase">{stat.label}</div>
                         </div>
                     ))}
                  </div>
