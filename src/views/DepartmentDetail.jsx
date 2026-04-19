@@ -237,73 +237,128 @@ const SocialCarousel = () => {
 
 const AnimatedSeoGraph = () => {
     return (
-        <div className="mt-16 md:mt-24 w-full bg-white border border-gray-100 rounded-2xl p-6 md:p-12 shadow-[0_20px_50px_rgba(47,78,161,0.05)] overflow-hidden text-right">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
-                <div>
-                    <h4 className="text-gray-900 font-black text-3xl md:text-4xl mb-3 border-r-4 border-[#2f4ea1] pr-4">צמיחה אורגנית לאורך זמן</h4>
-                    <p className="text-gray-500 font-medium max-w-lg text-balance">ככה נראה גרף של לקוח שיודע לעבוד נכון. תהליך SEO איכותי שמייצר סמכות ברשת ומכפיל את כמות הכניסות האורגניות.</p>
-                </div>
-                <div className="bg-[#2f4ea1]/5 text-[#2f4ea1] font-black text-4xl md:text-5xl px-8 py-6 rounded-2xl dir-ltr text-center shrink-0 border border-[#2f4ea1]/10 shadow-inner">
-                    +345%
-                    <span className="block text-sm font-bold uppercase tracking-widest mt-2 text-[#2f4ea1]/80">Organic Growth</span>
-                </div>
+        <div className="mt-16 w-full bg-transparent">
+            {/* Header */}
+            <div className="text-center mb-10 md:mb-16">
+                <span className="inline-block bg-[#2f4ea1]/10 text-[#2f4ea1] px-4 py-2 rounded-full text-sm font-bold tracking-widest mb-4 uppercase shadow-sm">דוגמה לנתוני לקוח</span>
+                <h4 className="text-[#0b1638] font-black text-3xl md:text-5xl text-balance">לכבוש את המקומות שמוכרים</h4>
+                <p className="text-gray-500 font-medium max-w-2xl mx-auto mt-4 md:mt-6 text-balance md:text-lg">תהליך ה-SEO שלנו מייצר סמכות אמיתית ברשת. ככה נראית השתלטות על הביטויים התחרותיים בענף שמכפיל את כמות הכניסות ממשלמים פוטנציאלים.</p>
             </div>
 
-            <div className="relative w-full h-[250px] md:h-[400px] mt-8 group rounded-xl overflow-hidden bg-gray-50/50">
-                <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1000 400">
-                    <line x1="0" y1="100" x2="1000" y2="100" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
-                    <line x1="0" y1="200" x2="1000" y2="200" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
-                    <line x1="0" y1="300" x2="1000" y2="300" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
-                    
-                    <path
-                        d="M0,400 L0,320 C100,320 150,330 250,280 C350,230 400,260 500,180 C600,100 700,150 850,50 C950,0 1000,20 1000,20 L1000,400 Z"
-                        fill="url(#seo-gradient)"
-                        className="opacity-0 transition-opacity duration-1000"
-                        style={{ animation: 'fadeInUp 2s cubic-bezier(0.22,1,0.36,1) forwards', animationDelay: '0.5s' }}
-                    />
+            <div className="flex flex-col lg:flex-row gap-6 md:gap-10 items-stretch">
+                {/* Search Mockup */}
+                <div className="lg:w-[45%] w-full bg-[#f8f9fa] rounded-3xl p-6 md:p-10 border border-gray-200/60 shadow-inner flex flex-col justify-center">
+                    <div className="text-right mb-8">
+                        <h5 className="font-bold text-gray-900 text-2xl tracking-tight">ככה זה נראה במקום הראשון</h5>
+                        <p className="text-gray-500 text-base mt-2">תוצאות אורגניות בגוגל (ללא קידום ממומן)</p>
+                    </div>
 
-                    <path
-                        d="M0,320 C100,320 150,330 250,280 C350,230 400,260 500,180 C600,100 700,150 850,50 C950,0 1000,20 1000,20"
-                        fill="none"
-                        stroke="#2f4ea1"
-                        strokeWidth="6"
-                        strokeLinecap="round"
-                        strokeDasharray="1500"
-                        strokeDashoffset="1500"
-                        style={{ animation: 'drawGraph 2.5s cubic-bezier(0.22,1,0.36,1) forwards' }} 
-                    />
+                    <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm transition-all hover:shadow-lg cursor-pointer group mb-6 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-2 h-full bg-[#2f4ea1]"></div>
+                        <div className="flex items-center gap-3 mb-3 dir-ltr justify-end">
+                            <span className="text-sm text-gray-800 tracking-wide font-medium">https://www.your-domain.co.il</span>
+                            <div className="w-7 h-7 bg-gray-100 rounded-full flex items-center justify-center shrink-0">
+                                <Globe size={14} className="text-[#2f4ea1]" />
+                            </div>
+                        </div>
+                        <h3 className="text-[#1a0dab] font-normal text-2xl md:text-3xl group-hover:underline mb-2 font-arial dir-rtl text-right">השירות שאתם מציעים - האתר שלכם</h3>
+                        <p className="text-[#4d5156] text-sm md:text-base leading-relaxed font-arial dir-rtl text-right">כאן מופיע תיאור מושך של העסק שלכם שגורם ללקוח ללחוץ ולהיכנס דווקא לאתר שלכם ולא לאף אחד מתוך כל המתחרים בעמוד הראשון בגוגל.</p>
+                    </div>
 
-                    <defs>
-                        <linearGradient id="seo-gradient" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stopColor="#2f4ea1" stopOpacity="0.25" />
-                            <stop offset="100%" stopColor="#2f4ea1" stopOpacity="0" />
-                        </linearGradient>
-                    </defs>
-                </svg>
+                    <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm opacity-60 filter grayscale scale-[0.98]">
+                        <div className="flex items-center gap-3 mb-3 dir-ltr justify-end">
+                            <span className="text-sm text-gray-800 tracking-wide">https://www.competitor.co.il</span>
+                            <div className="w-7 h-7 bg-gray-100 rounded-full flex items-center justify-center shrink-0">
+                                <Globe size={14} className="text-gray-500" />
+                            </div>
+                        </div>
+                        <h3 className="text-[#1a0dab] font-normal text-xl md:text-2xl mb-2 font-arial dir-rtl text-right">המתחרה הכי גדול שלכם</h3>
+                        <p className="text-[#4d5156] text-sm md:text-base leading-relaxed font-arial dir-rtl text-right">תיאור העסק של המתחרה שנמצא מתחתיכם ומאבד את מרבית הטראפיק בענף ממש ברגעים אלו.</p>
+                    </div>
+                </div>
 
-                <div className="absolute top-[320px] left-[0%] w-4 h-4 bg-white border-4 border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 hover:scale-150 cursor-pointer shadow-md transition-transform" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0s', opacity: 0 }}></div>
-                <div className="absolute top-[280px] left-[25%] w-4 h-4 bg-white border-4 border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 hover:scale-150 cursor-pointer shadow-md transition-transform" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0.6s', opacity: 0 }}></div>
-                <div className="absolute top-[180px] left-[50%] w-4 h-4 bg-white border-4 border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 hover:scale-150 cursor-pointer shadow-md transition-transform" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.2s', opacity: 0 }}></div>
-                <div className="absolute top-[50px] left-[85%] w-4 h-4 bg-white border-4 border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 hover:scale-150 cursor-pointer shadow-md transition-transform" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.8s', opacity: 0 }}></div>
-                <div className="absolute top-[20px] left-[100%] w-6 h-6 bg-[#2f4ea1] border-[6px] border-white rounded-full -translate-x-1/2 -translate-y-1/2 shadow-lg" style={{ animation: 'pulsePoint 2s infinite', opacity: 0, animationDelay: '2.5s' }}></div>
+                {/* The Graph */}
+                <div className="lg:w-[55%] w-full bg-white rounded-3xl p-6 md:p-10 border border-gray-100 shadow-[0_20px_50px_rgba(47,78,161,0.05)] flex flex-col justify-center relative group">
+                    <div className="flex justify-between items-end mb-8">
+                        <div className="text-right">
+                             <h5 className="font-bold text-gray-900 text-2xl tracking-tight">נפח תנועה אורגנית (כניסות)</h5>
+                        </div>
+                        <div className="bg-[#2f4ea1]/5 text-[#2f4ea1] font-black text-2xl md:text-4xl px-5 py-3 rounded-xl dir-ltr text-center shadow-inner border border-[#2f4ea1]/10">
+                            +345%
+                        </div>
+                    </div>
 
-                <style dangerouslySetInnerHTML={{__html:`
-                    @keyframes drawGraph { to { stroke-dashoffset: 0; } }
-                    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-                    @keyframes pulsePoint {
-                        0% { transform: translate(-50%, -50%) scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(47,78,161,0.7); }
-                        70% { transform: translate(-50%, -50%) scale(1); opacity: 1; box-shadow: 0 0 0 15px rgba(47,78,161,0); }
-                        100% { transform: translate(-50%, -50%) scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(47,78,161,0); }
-                    }
-                `}} />
-            </div>
+                    <div className="relative w-full h-[250px] md:h-[350px] mt-4 rounded-xl overflow-visible">
+                        <svg className="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 1000 400">
+                            <line x1="0" y1="100" x2="1000" y2="100" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
+                            <line x1="0" y1="200" x2="1000" y2="200" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
+                            <line x1="0" y1="300" x2="1000" y2="300" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
+                            
+                            <path
+                                d="M0,400 L0,320 C100,320 150,330 250,280 C350,230 400,260 500,180 C600,100 700,150 850,50 C950,0 1000,20 1000,20 L1000,400 Z"
+                                fill="url(#seo-gradient)"
+                                className="opacity-0 transition-opacity duration-1000"
+                                style={{ animation: 'fadeInUp 2s cubic-bezier(0.22,1,0.36,1) forwards', animationDelay: '0.5s' }}
+                            />
 
-            <div className="flex justify-between items-center text-gray-400 font-bold text-xs md:text-sm mt-6 dir-ltr px-2 uppercase tracking-widest">
-                <span>Jan</span>
-                <span>Mar</span>
-                <span>Jun</span>
-                <span>Sep</span>
-                <span>Dec</span>
+                            <path
+                                d="M0,320 C100,320 150,330 250,280 C350,230 400,260 500,180 C600,100 700,150 850,50 C950,0 1000,20 1000,20"
+                                fill="none"
+                                stroke="#2f4ea1"
+                                strokeWidth="6"
+                                strokeLinecap="round"
+                                strokeDasharray="1500"
+                                strokeDashoffset="1500"
+                                style={{ animation: 'drawGraph 2.5s cubic-bezier(0.22,1,0.36,1) forwards' }} 
+                            />
+
+                            <defs>
+                                <linearGradient id="seo-gradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor="#2f4ea1" stopOpacity="0.25" />
+                                    <stop offset="100%" stopColor="#2f4ea1" stopOpacity="0" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+
+                        {/* Tooltips */}
+                        <div className="absolute top-[320px] left-[0%] w-5 h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0s', opacity: 0 }}>
+                            <div className="absolute top-8 left-0 md:left-1/2 md:-translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">2,100 כניסות</div>
+                        </div>
+                        <div className="absolute top-[280px] left-[25%] w-5 h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0.6s', opacity: 0 }}>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">3,850 כניסות</div>
+                        </div>
+                        <div className="absolute top-[180px] left-[50%] w-5 h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.2s', opacity: 0 }}>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">5,900 כניסות</div>
+                        </div>
+                        <div className="absolute top-[50px] left-[85%] w-5 h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.8s', opacity: 0 }}>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">9,420 כניסות</div>
+                        </div>
+                        <div className="absolute top-[20px] left-[100%] w-8 h-8 bg-[#2f4ea1] border-[6px] border-white rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-110 cursor-pointer shadow-lg transition-all group/pt z-20" style={{ animation: 'pulsePoint 2s infinite', opacity: 0, animationDelay: '2.5s' }}>
+                            <div className="absolute top-12 right-0 md:left-1/2 md:-translate-x-1/2 bg-[#2f4ea1] text-white text-[15px] font-black py-2 px-4 rounded shadow-xl opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none flex flex-col items-center">
+                                <span>12,800 כניסות</span>
+                                <span className="text-blue-200 text-xs mt-0.5">כיום</span>
+                            </div>
+                        </div>
+
+                        <style dangerouslySetInnerHTML={{__html:`
+                            @keyframes drawGraph { to { stroke-dashoffset: 0; } }
+                            @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+                            @keyframes pulsePoint {
+                                0% { box-shadow: 0 0 0 0 rgba(47,78,161,0.5); }
+                                70% { box-shadow: 0 0 0 20px rgba(47,78,161,0); }
+                                100% { box-shadow: 0 0 0 0 rgba(47,78,161,0); }
+                            }
+                        `}} />
+                    </div>
+
+                    <div className="flex justify-between items-center text-gray-400 font-bold text-xs md:text-sm mt-8 dir-ltr px-2 uppercase tracking-widest relative z-0 pointer-events-none">
+                        <span>Jan</span>
+                        <span>Mar</span>
+                        <span>Jun</span>
+                        <span>Sep</span>
+                        <span>Dec</span>
+                    </div>
+                </div>
             </div>
         </div>
     );
