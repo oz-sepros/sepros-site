@@ -203,17 +203,18 @@ const DepartmentPortfolio = ({ category }) => {
 
     if (category === 'tech') {
         const webProjects = [
-            { title: "ישראל קנדה - Toronto", link: "https://lp.israel-canada.co.il/english/toronto_israel_canada/" },
-            { title: "רנובו - מגדל ביאליק", link: "https://lp.renovo.co.il/bialik_ramat_hasharon/" },
-            { title: "מדברנד - פנים", link: "https://madbrand.co.il/" },
-            { title: "ישראל קנדה - Midtown Jerusalem", link: "https://lp.israel-canada.co.il/midtown_jerusalem/" },
-            { title: "כלמוביל אנרגיה", link: "https://lp.colmobil-energy.co.il/haver_mevi_haver/" },
-            { title: "אזורים - מלח הארץ", link: "https://lp.azorim.co.il/minisite_melach_haaretz/" },
-            { title: "אזורים", link: "https://www.azorim.co.il/" }
+            { id: "toronto", title: "ישראל קנדה - Toronto", link: "https://lp.israel-canada.co.il/english/toronto_israel_canada/", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop" },
+            { id: "renovo", title: "רנובו - מגדל ביאליק", link: "https://lp.renovo.co.il/bialik_ramat_hasharon/", image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop" },
+            { id: "madbrand", title: "מדברנד - פנים", link: "https://madbrand.co.il/", image: "https://images.unsplash.com/photo-1542004143822-26139ceea0d7?q=80&w=800&auto=format&fit=crop" },
+            { id: "midtown", title: "ישראל קנדה - Midtown Jerusalem", link: "https://lp.israel-canada.co.il/midtown_jerusalem/", image: "https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=800&auto=format&fit=crop" },
+            { id: "colmobil", title: "כלמוביל אנרגיה", link: "https://lp.colmobil-energy.co.il/haver_mevi_haver/", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" },
+            { id: "azorim-melach", title: "אזורים - מלח הארץ", link: "https://lp.azorim.co.il/minisite_melach_haaretz/", image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=800&auto=format&fit=crop" },
+            { id: "azorim-main", title: "אזורים", link: "https://www.azorim.co.il/", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop" }
         ];
         return (
             <div className="mt-16 md:mt-24">
                 <h4 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">פרויקטים נבחרים (Web)</h4>
+                <p className="text-gray-500 mb-8 font-medium">כדי לראות את איכות הפיתוח המלאה, לחצו על הפרויקטים וצפו בהם באוויר.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {webProjects.map((project, i) => (
                         <div key={i} onClick={() => window.open(project.link, '_blank')} className="bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] p-0 group cursor-pointer relative overflow-hidden rounded-xl border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block">
@@ -222,15 +223,18 @@ const DepartmentPortfolio = ({ category }) => {
                                 <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
                                 <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
                                 <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+                                <div className="mx-auto flex-1 flex justify-center opacity-0 md:opacity-100">
+                                    <div className="h-4 w-1/2 bg-gray-200 rounded-full"></div>
+                                </div>
                             </div>
                             <div className="aspect-video bg-gray-100 overflow-hidden relative">
-                                {/* Live Site Thumbnail using iframe scaling trick */}
-                                <div className="absolute inset-x-0 top-0 pointer-events-none z-0" style={{ bottom: '-10px' }}>
-                                    <iframe src={project.link} className="w-[400%] h-[400%] border-0 origin-top-left transition-transform duration-700 group-hover:scale-[0.26]" style={{ transform: 'scale(0.25)' }} loading="lazy" scrolling="no" tabIndex="-1" />
+                                <img src={`/portfolio/${project.id}.webp`} onError={(e) => { e.target.onerror = null; e.target.src = project.image; }} alt={project.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#09102c]/90 to-transparent flex flex-col justify-end p-4 transition-opacity group-hover:opacity-0">
+                                    <span className="text-white font-bold tracking-wide text-sm">{project.title}</span>
                                 </div>
-                                <div className="absolute inset-0 bg-[#2f4ea1]/90 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                                <div className="absolute inset-0 bg-[#2f4ea1]/90 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 backdrop-blur-[2px]">
                                     <ExternalLink size={32} className="text-white mb-2" />
-                                    <span className="text-white font-bold tracking-widest text-sm text-center px-4">{project.title}</span>
+                                    <span className="text-white font-bold tracking-widest text-sm text-center px-4">צפו באתר החי</span>
                                 </div>
                             </div>
                         </div>
@@ -255,22 +259,44 @@ const DepartmentPortfolio = ({ category }) => {
 
     if (category === 'seo') {
         return (
-            <div className="mt-16 md:mt-24">
+            <div className="mt-16 md:mt-24 group">
                 <h4 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">אסטרטגיה אורגנית שמנצחת את האלגוריתם</h4>
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-                    <div className="bg-white rounded-[2rem] p-8 md:p-12 border border-gray-100 flex flex-col justify-center items-center text-center shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="w-20 h-20 rounded-full bg-green-50 text-green-500 flex items-center justify-center mb-6 shadow-sm border border-green-100">
-                            <TrendingUp size={36} strokeWidth={2.5} />
+                    <div className="bg-white rounded-[2rem] p-8 md:p-12 border border-gray-100 flex flex-col justify-end items-center overflow-hidden relative shadow-lg hover:shadow-xl transition-shadow group-hover:border-[#2f4ea1]/20">
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#F5F7FA]/80 pointer-events-none z-0"></div>
+                        
+                        {/* CSS Bar Chart Mockup */}
+                        <div className="w-full h-32 flex items-end justify-between gap-1 md:gap-2 mb-8 opacity-90 relative z-10 px-0 md:px-4">
+                            {[15, 25, 30, 45, 60, 100].map((h, idx) => (
+                                <div key={idx} className={`w-full rounded-t flex-shrink-0 transition-all duration-1000 origin-bottom ${idx === 5 ? 'bg-[#2f4ea1] relative scale-105' : 'bg-[#2f4ea1]/20 group-hover:bg-[#2f4ea1]/30'}`} style={{ height: `${h}%` }}>
+                                    {idx === 5 && <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-green-500 text-white font-bold px-3 py-1.5 rounded-lg text-sm whitespace-nowrap shadow-lg flex items-center gap-1.5"><TrendingUp size={16} /> +340%</div>}
+                                </div>
+                            ))}
                         </div>
-                        <div className="text-6xl md:text-7xl font-black text-[#0b1638] mb-4 tracking-tighter" dir="ltr">+340%</div>
-                        <div className="text-gray-500 font-extrabold text-lg max-w-[200px] leading-snug text-balance uppercase tracking-wider">צמיחה אורגנית שנתית ממוצעת ללקוח</div>
+
+                        <div className="text-4xl md:text-5xl font-black text-[#0b1638] mb-2 tracking-tighter relative z-10 hover:text-[#2f4ea1] transition-colors">צמיחה אורגנית</div>
+                        <div className="text-gray-500 font-extrabold text-sm uppercase tracking-widest relative z-10">טראפיק איכותי שמייצר לידים</div>
                     </div>
-                    <div className="bg-white rounded-[2rem] p-8 md:p-12 border border-gray-100 flex flex-col justify-center items-center text-center shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="w-20 h-20 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center mb-6 shadow-sm border border-blue-100">
-                            <Search size={36} strokeWidth={2.5} />
+
+                    <div className="bg-[#2f4ea1] rounded-[2rem] p-8 md:p-12 border border-[#2f4ea1] flex flex-col justify-center items-center shadow-lg hover:shadow-xl transition-shadow relative overflow-hidden">
+                        {/* A Mockup of Google Search Result */}
+                        <div className="w-full bg-white rounded-xl p-5 md:p-6 mb-8 text-right shadow-[0_10px_30px_rgba(0,0,0,0.2)] dir-rtl relative z-10 transform transition-transform duration-700 hover:scale-105">
+                            <div className="flex items-center gap-3 mb-3">
+                                <div className="w-8 h-8 rounded-full bg-[#0b1638] flex-shrink-0 flex items-center justify-center p-1.5">
+                                    <Search className="text-white w-full h-full" strokeWidth={3} />
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-xs text-gray-800 font-bold">sepros.co.il</span>
+                                    <span className="text-[11px] text-gray-500 truncate mt-0.5">https://www.sepros.co.il</span>
+                                </div>
+                            </div>
+                            <div className="text-[#1a0dab] text-lg md:text-xl font-bold mb-2 hover:underline cursor-pointer tracking-tight">ספרוס - סוכנות הדיגיטל המובילה בישראל</div>
+                            <div className="text-sm text-[#4d5156] leading-relaxed">הגענו למקום הראשון בתוצאות החיפוש עבור הביטויים הקשים ביותר. אלגוריתם או לא, אנחנו יודעים איך למקם מותגים...</div>
                         </div>
-                        <div className="text-6xl md:text-7xl font-black text-[#0b1638] mb-4 tracking-tighter" dir="ltr">#1</div>
-                        <div className="text-gray-500 font-extrabold text-lg max-w-[200px] leading-snug text-balance uppercase tracking-wider">מיקומים תחרותיים בתוצאות החיפוש</div>
+
+                        <div className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tighter relative z-10 text-center" dir="ltr">#1 Ranking</div>
+                        <div className="text-white/80 font-extrabold text-sm uppercase tracking-widest relative z-10 text-center text-balance">שליטה אבסולוטית בביטויי מפתח</div>
                     </div>
                 </div>
             </div>
@@ -338,7 +364,11 @@ const DepartmentDetail = () => {
             long: "האתר הוא הבית שלכם בדיגיטל. אנחנו בונים מערכות ווב מורכבות המתקדמות ביותר בסביבת הלקוח תוך שימת דגש תמידית לביצועים ולטכנולוגיה.", 
             services: ["אפליקציות אינטרנט מתקדמות", "דפי נחיתה חכמים לאיקומרס", "חיבורי API ל-CRM הקיים", "אבטחה ותחזוקה"],
             faqs: [
-                { q: "באיזו מערכת אתם מפתחים אתרים?", a: "אנחנו בונים על גבי טכנולוגיות Web מתקדמות וסביבות ידידותיות למשתמש תוך התאמה מלאה למפרט הלקוח הדואג לאבטחה מהירות טעינה וממשק ניהול משוכלל." }
+                { q: "באיזו טכנולוגיות אתם מפתחים אתרים?", a: "אנחנו בונים על גבי טכנולוגיות מתקדמות כמו React ו-Next.js המאפשרות מהירות יוצאת דופן (באתרים תדמיתיים מורכבים), או לחליפין בעזרת וורדפרס תחת מבנה קוד נקי ותקני, בהחלטה אסטרטגית המותאמת במדויק לצרכי הלקוח והניהול העתידי של צוות ההזנה." },
+                { q: "כמה זמן לוקח לאתר להיות באוויר?", a: "הזמן משתנה בהתאם לנפח ולמורכבות. עמודי נחיתה איכותיים מאוד יכולים להיות מוכנים תוך כשבועיים. אתרים תדמיתיים מורכבים במיוחד וכמובן חנויות איקומרס ינועו לרוב בממוצע של שבין 4 ל-10 שבועות, לאחר סגירת הקונספט ואפיון משותף." },
+                { q: "האם אוכל לנהל את תוכן האתר בעצמי?", a: "בוודאי. אנו מקפידים לפתח אתרים עם ממשקי ניהול (CMS) סופר נוחים אשר מותאמים אישית לשפה העסקית שלכם. בסיום הבנייה התכנותית אנו דואגים להדריך אתכם באופן מקיף, כך שתוכלו לעדכן טקסטים, תמונות ואפילו פרויקטים בקלי קלות." },
+                { q: "האם אתם גם קונים ומתחזקים את האחסון?", a: "אנחנו יכולים. ספרוס מציעה שירותי ריטיינר הכוללים חבילות אחסון שרתי פרימיום סופר מהירים (כולל עמדות CDN), גיבויים קבועים, עדכוני אבטחה ברמת השרת, וכמובן מעקב טכני שמבטיח שקט רוחני לניהול השוטף של האתר." },
+                { q: "הקוד מותאם לקידום בגוגל?", a: "באופן מוחלט. אנחנו קודם כל סוכנות שיווק. בניית אתר שאינו משרת SEO או יחסי המרה חוטא למטרה בעינינו. לאתרים שלנו יש תגיות סמנטיות מובנות, תמונות ברזולוציית WebP וקוד קליל שתורם ישירות לדרישות הליבה (Core Web Vitals) של גוגל." }
             ]
         },
         seo: { 
