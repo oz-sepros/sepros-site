@@ -45,11 +45,12 @@ const Navbar = () => {
     }, []);
 
     const departments = [
-        { id: 'ppc', label: 'PPC וביצועים' },
-        { id: 'social', label: 'סושיאל וקריאייטיב' },
-        { id: 'design', label: 'סטודיו ומיתוג' },
-        { id: 'tech', label: 'פיתוח אתרים' },
-        { id: 'seo', label: 'קידום אורגני (SEO)' },
+        { id: 'ppc', label: 'ניהול מדיה' },
+        { id: 'social', label: 'סושיאל ו-UGC' },
+        { id: 'design', label: 'סטודיו וקריאייטיב' },
+        { id: 'tech', label: 'בניית אתרים' },
+        { id: 'seo', label: 'SEO & GEO' },
+        { id: 'strategy', label: 'אסטרטגיה' },
         { id: 'analytics', label: 'אנליטיקס ודאטה' },
     ];
 
