@@ -52,20 +52,22 @@ const ProcessTimeline = ({ title, subtitle, steps }) => {
                 </div>
 
                 {/* Mobile Vertical Scroll Progress Line */}
-                <div className="block md:hidden absolute top-[2.5rem] bottom-[2.5rem] right-1/2 translate-x-1/2 w-[2px] bg-gray-100 z-0 overflow-hidden rounded-full">
+                <div className="block md:hidden absolute top-[2.5rem] bottom-[2.5rem] right-[48px] w-[2px] bg-gray-100 z-0 overflow-hidden rounded-full">
                     <div 
                         className="w-full bg-[#2f4ea1]" 
                         style={{ height: `${progress}%` }} 
                     ></div>
                 </div>
                 {steps.map((step, idx) => (
-                    <div key={idx} className="relative z-10 flex flex-col items-center text-center group">
-                        <div className="w-20 h-20 rounded-full bg-white border-2 border-gray-100 group-hover:border-[#2f4ea1] text-[#2f4ea1] flex items-center justify-center mb-6 shadow-sm group-hover:shadow-md transition-all duration-300 relative">
+                    <div key={idx} className="relative z-10 flex flex-row md:flex-col items-center md:items-center text-right md:text-center group">
+                        <div className="w-16 h-16 md:w-20 md:h-20 shrink-0 ml-6 md:ml-0 rounded-full bg-white border-2 border-gray-100 group-hover:border-[#2f4ea1] text-[#2f4ea1] flex items-center justify-center mb-0 md:mb-6 shadow-sm group-hover:shadow-md transition-all duration-300 relative">
                             {step.icon}
-                            <div className="absolute -top-1 -right-1 w-7 h-7 rounded-full bg-[#2f4ea1] text-white text-xs font-black flex items-center justify-center shadow-md transform group-hover:scale-110 transition-transform">{idx + 1}</div>
+                            <div className="absolute -top-1 -right-1 w-6 h-6 md:w-7 md:h-7 rounded-full bg-[#2f4ea1] text-white text-[10px] md:text-xs font-black flex items-center justify-center shadow-md transform group-hover:scale-110 transition-transform">{idx + 1}</div>
                         </div>
-                        <h5 className="font-black text-lg text-gray-900 mb-2 group-hover:text-[#2f4ea1] transition-colors">{step.title}</h5>
-                        <p className="text-gray-500 text-sm md:text-[15px] leading-relaxed max-w-[250px] text-balance">{step.desc}</p>
+                        <div>
+                            <h5 className="font-black text-lg md:text-xl text-gray-900 mb-1 md:mb-2 group-hover:text-[#2f4ea1] transition-colors">{step.title}</h5>
+                            <p className="text-gray-500 text-sm md:text-[15px] leading-relaxed max-w-[250px] md:mx-auto text-balance">{step.desc}</p>
+                        </div>
                     </div>
                 ))}
             </div>
