@@ -208,7 +208,8 @@ const DepartmentPortfolio = ({ category }) => {
             { title: "מדברנד - פנים", link: "https://madbrand.co.il/" },
             { title: "ישראל קנדה - Midtown Jerusalem", link: "https://lp.israel-canada.co.il/midtown_jerusalem/" },
             { title: "כלמוביל אנרגיה", link: "https://lp.colmobil-energy.co.il/haver_mevi_haver/" },
-            { title: "אזורים - מלח הארץ", link: "https://lp.azorim.co.il/minisite_melach_haaretz/" }
+            { title: "אזורים - מלח הארץ", link: "https://lp.azorim.co.il/minisite_melach_haaretz/" },
+            { title: "אזורים", link: "https://www.azorim.co.il/" }
         ];
         return (
             <div className="mt-16 md:mt-24">
