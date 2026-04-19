@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft } from 'lucide-react';
+import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
 import FAQ from '../components/FAQ';
@@ -175,7 +175,7 @@ const DepartmentPortfolio = ({ category }) => {
         );
     }
 
-    if (category === 'ppc' || category === 'seo' || category === 'analytics') {
+    if (category === 'ppc' || category === 'analytics') {
         const isPPC = category === 'ppc';
         return (
             <div className="mt-16 md:mt-24">
@@ -216,10 +216,16 @@ const DepartmentPortfolio = ({ category }) => {
                 <h4 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">פרויקטים נבחרים (Web)</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {webProjects.map((project, i) => (
-                        <div key={i} onClick={() => window.open(project.link, '_blank')} className="bg-white border border-gray-100 shadow-sm p-4 group cursor-pointer relative overflow-hidden rounded-lg hover:shadow-md transition-shadow">
-                            <div className="aspect-video bg-gray-100 overflow-hidden relative rounded-xl">
+                        <div key={i} onClick={() => window.open(project.link, '_blank')} className="bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] p-0 group cursor-pointer relative overflow-hidden rounded-xl border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block">
+                            {/* Browser Top Bar */}
+                            <div className="h-7 md:h-8 bg-[#F5F7FA] border-b border-gray-200 flex items-center px-4 gap-2 z-20 relative">
+                                <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+                                <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+                                <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+                            </div>
+                            <div className="aspect-video bg-gray-100 overflow-hidden relative">
                                 {/* Live Site Thumbnail using iframe scaling trick */}
-                                <div className="absolute inset-0 pointer-events-none z-0">
+                                <div className="absolute inset-x-0 top-0 pointer-events-none z-0" style={{ bottom: '-10px' }}>
                                     <iframe src={project.link} className="w-[400%] h-[400%] border-0 origin-top-left transition-transform duration-700 group-hover:scale-[0.26]" style={{ transform: 'scale(0.25)' }} loading="lazy" scrolling="no" tabIndex="-1" />
                                 </div>
                                 <div className="absolute inset-0 bg-[#2f4ea1]/90 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
@@ -229,6 +235,43 @@ const DepartmentPortfolio = ({ category }) => {
                             </div>
                         </div>
                     ))}
+                </div>
+
+                {/* Tech Stack Segment */}
+                <div className="mt-16 md:mt-24 pt-16 border-t border-gray-100">
+                    <div className="text-center mb-10">
+                        <h4 className="text-[#0b1638] font-black text-2xl md:text-4xl text-balance">מובילים טכנולוגית</h4>
+                        <p className="text-gray-500 font-bold mt-2 tracking-widest">הכלים שאנחנו עובדים איתם</p>
+                    </div>
+                    <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto" dir="ltr">
+                        {['React', 'Next.js', 'Node.js', 'Tailwind CSS', 'Vercel', 'AWS', 'Shopify', 'WordPress Elementor'].map(tech => (
+                            <span key={tech} className="px-6 py-3 bg-white border border-gray-200 text-gray-700 font-bold rounded-full shadow-sm text-sm hover:border-[#2f4ea1] hover:text-[#2f4ea1] hover:shadow-md transition-all cursor-default">{tech}</span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (category === 'seo') {
+        return (
+            <div className="mt-16 md:mt-24">
+                <h4 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">אסטרטגיה אורגנית שמנצחת את האלגוריתם</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+                    <div className="bg-white rounded-[2rem] p-8 md:p-12 border border-gray-100 flex flex-col justify-center items-center text-center shadow-lg hover:shadow-xl transition-shadow">
+                        <div className="w-20 h-20 rounded-full bg-green-50 text-green-500 flex items-center justify-center mb-6 shadow-sm border border-green-100">
+                            <TrendingUp size={36} strokeWidth={2.5} />
+                        </div>
+                        <div className="text-6xl md:text-7xl font-black text-[#0b1638] mb-4 tracking-tighter" dir="ltr">+340%</div>
+                        <div className="text-gray-500 font-extrabold text-lg max-w-[200px] leading-snug text-balance uppercase tracking-wider">צמיחה אורגנית שנתית ממוצעת ללקוח</div>
+                    </div>
+                    <div className="bg-white rounded-[2rem] p-8 md:p-12 border border-gray-100 flex flex-col justify-center items-center text-center shadow-lg hover:shadow-xl transition-shadow">
+                        <div className="w-20 h-20 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center mb-6 shadow-sm border border-blue-100">
+                            <Search size={36} strokeWidth={2.5} />
+                        </div>
+                        <div className="text-6xl md:text-7xl font-black text-[#0b1638] mb-4 tracking-tighter" dir="ltr">#1</div>
+                        <div className="text-gray-500 font-extrabold text-lg max-w-[200px] leading-snug text-balance uppercase tracking-wider">מיקומים תחרותיים בתוצאות החיפוש</div>
+                    </div>
                 </div>
             </div>
         );
