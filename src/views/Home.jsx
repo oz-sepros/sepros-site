@@ -41,7 +41,7 @@ const Hero = () => {
 
 const ClientsSection = () => {
     return (
-        <div className="w-full mt-auto relative z-10 py-6 pb-12">
+        <div className="w-full mt-auto relative z-10 py-3 pb-6">
             <ClientsMarquee />
         </div>
     );
@@ -68,7 +68,7 @@ const Home = () => {
                 opacity: 0.04
             }}></div>
             <section
-                className="relative min-h-[100dvh] flex flex-col items-center justify-between overflow-hidden"
+                className="relative min-h-[100svh] flex flex-col items-center justify-between overflow-hidden"
                 style={{
                     background: `linear-gradient(
         180deg, #09102c 0%,

@@ -5,12 +5,23 @@ import { usePathname } from 'next/navigation';
 import Reveal from './Reveal';
 
 const ContactForm = () => {
-    const [formData, setFormData] = useState({ fullName: '', company: '', email: '', msg: '' });
+    const [formData, setFormData] = useState({ fullName: '', company: '', phone: '', email: '', msg: '' });
     const [status, setStatus] = useState('idle');
+    const [formError, setFormError] = useState('');
     const pathname = usePathname();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setFormError('');
+
+        // Israeli phone validation (allow spaces or hyphens, check prefixes)
+        const cleanPhone = formData.phone ? formData.phone.replace(/[\s-]/g, '') : '';
+        const phoneRegex = /^(05\d|0[23489]|07\d)\d{7}$/;
+        if (!phoneRegex.test(cleanPhone)) {
+            setFormError('נא להזין מספר טלפון ישראלי תקין (לדוגמה: 050-1234567)');
+            return;
+        }
+
         setStatus('loading');
 
         try {
@@ -26,6 +37,7 @@ const ContactForm = () => {
             params.append('lm_redirect', 'no');
             params.append('name', firstName);
             params.append('lname', lastName);
+            params.append('phone', cleanPhone);
             params.append('email', formData.email);
             params.append('msg', formData.msg);
             params.append('fld_289978', formData.company);
@@ -52,7 +64,7 @@ const ContactForm = () => {
             });
 
             setStatus('success');
-            setFormData({ fullName: '', company: '', email: '', msg: '' });
+            setFormData({ fullName: '', company: '', phone: '', email: '', msg: '' });
             setTimeout(() => setStatus('idle'), 4000);
         } catch (error) {
             setStatus('error');
@@ -85,8 +97,8 @@ const ContactForm = () => {
                         <form className="space-y-6 text-right" onSubmit={handleSubmit}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-[#09102c] text-sm font-bold tracking-wide">שם מלא</label>
-                                    <input required type="text" value={formData.fullName} onChange={e => setFormData({ ...formData, fullName: e.target.value })} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="ישראל ישראלי" />
+                                    <label className="text-[#09102c] text-sm font-bold tracking-wide">שם מלא <span className="text-red-500">*</span></label>
+                                    <input required type="text" value={formData.fullName} onChange={e => {setFormData({ ...formData, fullName: e.target.value }); setFormError('');}} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="ישראל ישראלי" />
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-[#09102c] text-sm font-bold tracking-wide">חברה</label>
@@ -95,18 +107,21 @@ const ContactForm = () => {
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-[#09102c] text-sm font-bold tracking-wide">טלפון</label>
-                                    <input required type="tel" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all dir-ltr text-right" placeholder="050-0000000" />
+                                    <label className="text-[#09102c] text-sm font-bold tracking-wide">טלפון <span className="text-red-500">*</span></label>
+                                    <input required type="tel" value={formData.phone} onChange={e => {setFormData({ ...formData, phone: e.target.value }); setFormError('');}} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all dir-ltr text-right" placeholder="050-1234567" />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[#09102c] text-sm font-bold tracking-wide">אימייל עבודה</label>
-                                    <input required type="email" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="email@company.com" />
+                                    <label className="text-[#09102c] text-sm font-bold tracking-wide">אימייל עבודה <span className="text-red-500">*</span></label>
+                                    <input required type="email" value={formData.email} onChange={e => {setFormData({ ...formData, email: e.target.value }); setFormError('');}} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="email@company.com" />
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="text-[#09102c] text-sm font-bold tracking-wide">איך נוכל לעזור?</label>
-                                <textarea required rows="4" value={formData.msg} onChange={e => setFormData({ ...formData, msg: e.target.value })} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all resize-none" placeholder="ספרו לנו על הפרויקט שלכם..."></textarea>
+                                <label className="text-[#09102c] text-sm font-bold tracking-wide">איך נוכל לעזור? <span className="text-red-500">*</span></label>
+                                <textarea required rows="4" value={formData.msg} onChange={e => {setFormData({ ...formData, msg: e.target.value }); setFormError('');}} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all resize-none" placeholder="ספרו לנו על הפרויקט שלכם..."></textarea>
                             </div>
+                            
+                            {formError && <p className="text-red-500 text-sm font-bold mt-2">{formError}</p>}
+                            
                             <button type="submit" id="submit_lead_form" disabled={status === 'loading' || status === 'success'} className={`w-full mt-4 text-white font-black py-4 tracking-widest text-lg transition-all rounded-xl ${status === 'success' ? 'bg-green-500 hover:bg-green-600' : status === 'error' ? 'bg-red-500 hover:bg-red-600' : 'bg-[#2f4ea1] hover:bg-[#1c3166] hover:-translate-y-1 shadow-lg hover:shadow-xl'}`}>
                                 {status === 'loading' ? 'שולח...' : status === 'success' ? 'הפנייה נשלחה בהצלחה!' : status === 'error' ? 'שגיאה בשליחה' : 'בואו נדבר'}
                             </button>
