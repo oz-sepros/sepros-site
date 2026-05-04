@@ -1041,9 +1041,13 @@ const DepartmentDetail = () => {
     return (
         <Reveal className="min-h-screen bg-white pt-32 md:pt-40 pb-20 text-right">
             <div className="max-w-[1400px] mx-auto px-6">
+                {/* Mobile Title - Appears above image on mobile */}
+                <h1 className="lg:hidden text-4xl md:text-5xl font-black uppercase mb-8 text-[#2f4ea1] leading-tight flex flex-col-reverse relative z-10">{dept.title}</h1>
+
                 <div className="flex flex-col lg:flex-row gap-12 md:gap-16 items-stretch">
                     <div className="lg:w-[60%] flex flex-col justify-center order-last lg:order-first mt-2 lg:mt-0">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase mb-6 text-[#2f4ea1] leading-tight flex flex-col-reverse relative z-10">{dept.title}</h1>
+                        {/* Desktop Title */}
+                        <h1 className="hidden lg:flex text-4xl md:text-5xl lg:text-6xl font-black uppercase mb-6 text-[#2f4ea1] leading-tight flex-col-reverse relative z-10">{dept.title}</h1>
                         <p className="text-gray-600 text-xl md:text-2xl font-normal mb-10 leading-relaxed text-balance relative z-10">{dept.long}</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
                             {dept.services.map((s, i) => (

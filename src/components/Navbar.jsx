@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Instagram, Facebook, Linkedin, Phone, Mail } from 'lucide-react';
 import { trackEvent } from '../utils/analytics';
 
 import Image from 'next/image';
@@ -10,6 +10,7 @@ import Image from 'next/image';
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isMobileDepartmentsOpen, setIsMobileDepartmentsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const router = useRouter();
@@ -190,7 +191,7 @@ const Navbar = () => {
                 
                 <div
                     dir="rtl"
-                    className={`absolute inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl p-6 overflow-y-auto transition-transform duration-500 ease-out ${
+                    className={`absolute inset-y-0 right-0 w-[85%] max-w-[340px] bg-white shadow-2xl p-6 overflow-y-auto transition-transform duration-500 ease-out ${
                         isOpen ? 'translate-x-0' : 'translate-x-full'
                     }`}
                     onClick={(e) => e.stopPropagation()}
@@ -207,29 +208,38 @@ const Navbar = () => {
                         <img src="/logos/Logo.svg" alt="לוגו ספרוס" className={`h-8 md:h-10 w-auto object-contain transition-all duration-300 ${isSolid ? '' : 'brightness-0 invert'}`} />
                     </div>
 
-                    <div className="flex flex-col items-end space-y-4">
+                    <div className="flex flex-col items-end space-y-1">
                         <Link href="/"
                             onClick={() => setIsOpen(false)}
-                            className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
+                            className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors py-3"
                         >
                             בית
                         </Link>
 
-                        <div className="w-full border-t border-gray-200 pt-6">
-                            <p className="text-sm font-bold text-[#2f4ea1] mb-4 text-right">
-                                שירותים
-                            </p>
+                        <div className="w-full py-2">
+                            <button
+                                onClick={() => setIsMobileDepartmentsOpen(!isMobileDepartmentsOpen)}
+                                className="w-full flex items-center justify-start gap-2 text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors py-2"
+                            >
+                                <span>שירותים</span>
+                                <ChevronDown 
+                                    size={24} 
+                                    className={`text-gray-400 transition-transform duration-300 ${isMobileDepartmentsOpen ? 'rotate-180' : ''}`} 
+                                />
+                            </button>
 
-                            <div className="flex flex-col items-end space-y-3">
-                                {departments.map((dept) => (
-                                    <button
-                                        key={dept.id}
-                                        onClick={() => handleDeptSelect(dept.id)}
-                                        className="w-full text-right text-lg font-bold text-gray-700 hover:text-[#2f4ea1] transition-colors"
-                                    >
-                                        {dept.label}
-                                    </button>
-                                ))}
+                            <div className={`w-full overflow-hidden transition-all duration-300 ${isMobileDepartmentsOpen ? 'max-h-[500px] opacity-100 mt-2 mb-2' : 'max-h-0 opacity-0 mt-0 mb-0'}`}>
+                                <div className="flex flex-col items-end border-r-2 border-[#2f4ea1]/20 pr-4 mr-2">
+                                    {departments.map((dept) => (
+                                        <button
+                                            key={dept.id}
+                                            onClick={() => handleDeptSelect(dept.id)}
+                                            className="w-full text-right text-lg font-bold text-gray-600 hover:text-[#2f4ea1] transition-colors py-3"
+                                        >
+                                            {dept.label}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 
@@ -237,21 +247,21 @@ const Navbar = () => {
 
                         <Link href="/articles"
                             onClick={() => setIsOpen(false)}
-                            className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
+                            className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors py-3"
                         >
                             מאמרים
                         </Link>
 
                         <Link href="/about"
                             onClick={() => setIsOpen(false)}
-                            className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
+                            className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors py-3"
                         >
                             אודות
                         </Link>
 
                         <Link href="/careers"
                             onClick={() => setIsOpen(false)}
-                            className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors"
+                            className="w-full text-right text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors py-3"
                         >
                             דרושים
                         </Link>
@@ -262,6 +272,32 @@ const Navbar = () => {
                         >
                             בואו נדבר
                         </Link>
+
+                        {/* Mobile Menu Footer / Contact & Social */}
+                        <div className="w-full mt-10 pt-8 border-t border-gray-100 flex flex-col items-center gap-8 pb-4">
+                            <div className="flex flex-col items-center gap-4">
+                                <a href="tel:0500000000" className="flex items-center gap-2 text-gray-600 font-bold hover:text-[#2f4ea1] transition-colors dir-ltr">
+                                    <Phone size={18} />
+                                    <span>050-000-0000</span>
+                                </a>
+                                <a href="mailto:office@sepros.co.il" className="flex items-center gap-2 text-gray-600 font-bold hover:text-[#2f4ea1] transition-colors">
+                                    <Mail size={18} />
+                                    <span>office@sepros.co.il</span>
+                                </a>
+                            </div>
+
+                            <div className="flex items-center justify-center gap-4 w-full">
+                                <a href="#" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
+                                    <Instagram size={20} />
+                                </a>
+                                <a href="#" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
+                                    <Facebook size={20} />
+                                </a>
+                                <a href="#" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
+                                    <Linkedin size={20} />
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
