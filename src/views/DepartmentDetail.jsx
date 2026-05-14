@@ -495,35 +495,45 @@ const DepartmentHeroVisual = ({ category }) => {
             case 'design':
                 return (
                     <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-tr from-purple-50/50 to-pink-50/30 overflow-hidden group">
-                        <div className="relative w-full max-w-sm h-64 z-10 flex items-center justify-center">
-                            <div className="absolute w-64 h-56 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col z-20">
-                                <div className="h-8 border-b border-gray-100 flex items-center px-3 gap-2">
-                                    <div className="flex gap-1.5">
-                                        <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
-                                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
-                                        <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+                        <div className="relative w-full max-w-md z-10 flex items-center justify-center scale-100 md:scale-110 mt-4 md:mt-0">
+                            {/* Main Canvas Window */}
+                            <div className="relative w-[280px] md:w-[320px] h-[220px] md:h-[250px] bg-white rounded-xl shadow-[0_20px_50px_-10px_rgba(0,0,0,0.1)] border border-gray-100 overflow-hidden flex flex-col z-20">
+                                {/* Toolbar Header */}
+                                <div className="h-10 border-b border-gray-100 flex items-center justify-between px-4 bg-white z-10">
+                                    <div className="flex gap-2">
+                                        <Brush size={12} className="text-gray-400" />
+                                        <Layout size={12} className="text-gray-400" />
                                     </div>
-                                    <div className="ml-auto flex gap-2">
-                                        <div className="w-4 h-4 bg-gray-100 rounded flex items-center justify-center"><Layout size={10} className="text-gray-500"/></div>
-                                        <div className="w-4 h-4 bg-gray-100 rounded flex items-center justify-center"><Brush size={10} className="text-gray-500"/></div>
+                                    <div className="flex gap-1.5">
+                                        <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+                                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
+                                        <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
                                     </div>
                                 </div>
-                                <div className="flex-1 bg-gray-50/50 p-4 relative flex items-center justify-center overflow-hidden">
-                                    <div className="absolute w-32 h-32 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-2xl rotate-12 shadow-lg mix-blend-multiply animate-[spin_10s_linear_infinite]"></div>
-                                    <div className="absolute w-32 h-32 bg-gradient-to-tr from-blue-500 to-cyan-500 rounded-full -translate-x-6 translate-y-4 shadow-lg mix-blend-multiply animate-[pulse_3s_ease-in-out_infinite]"></div>
-                                    <div className="absolute inset-0 backdrop-blur-[2px]"></div>
-                                    <div className="relative z-10 w-24 h-24 border-2 border-blue-500 rounded-lg animate-pulse">
-                                        <div className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-white border-2 border-blue-500 rounded-sm"></div>
-                                        <div className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-white border-2 border-blue-500 rounded-sm"></div>
-                                        <div className="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-white border-2 border-blue-500 rounded-sm"></div>
-                                        <div className="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-white border-2 border-blue-500 rounded-sm"></div>
+                                
+                                {/* Canvas Area */}
+                                <div className="flex-1 relative flex items-center justify-center bg-white overflow-hidden">
+                                    {/* Blue Circle (Back) */}
+                                    <div className="absolute w-28 h-28 bg-[#18A0FB] rounded-full mix-blend-multiply opacity-80 -translate-x-6 translate-y-6 blur-[1px]"></div>
+                                    
+                                    {/* Purple Square (Front) */}
+                                    <div className="absolute w-28 h-28 bg-gradient-to-tr from-[#A259FF] to-[#FF51A4] rounded-[32px] mix-blend-multiply opacity-90 translate-x-4 -translate-y-4 rotate-12 blur-[1px]"></div>
+                                    
+                                    {/* Vector Bounding Box */}
+                                    <div className="absolute w-28 h-28 border-[1.5px] border-[#18A0FB] z-20 animate-[scaleUp_2s_infinite_alternate]">
+                                        <div className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-white border-[1.5px] border-[#18A0FB] rounded-[3px]"></div>
+                                        <div className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-white border-[1.5px] border-[#18A0FB] rounded-[3px]"></div>
+                                        <div className="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-white border-[1.5px] border-[#18A0FB] rounded-[3px]"></div>
+                                        <div className="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-white border-[1.5px] border-[#18A0FB] rounded-[3px]"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="absolute z-30 top-4 right-2 bg-white p-2 rounded-xl shadow-lg border border-gray-100 flex flex-col gap-2">
-                                <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 shadow-inner"></div>
-                                <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-500 shadow-inner"></div>
-                                <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-yellow-400 to-orange-500 shadow-inner"></div>
+                            
+                            {/* Color Palette Floating Tool */}
+                            <div className="absolute z-30 -right-4 md:-right-8 top-1/2 -translate-y-1/2 bg-white p-2 md:p-3 rounded-2xl shadow-xl border border-gray-100 flex flex-col gap-3">
+                                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#A259FF] to-[#FF51A4] shadow-sm"></div>
+                                <div className="w-8 h-8 rounded-full bg-[#18A0FB] shadow-sm"></div>
+                                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#FFB800] to-[#FF512F] shadow-sm"></div>
                             </div>
                         </div>
                     </div>
