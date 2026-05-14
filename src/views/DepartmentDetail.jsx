@@ -347,11 +347,11 @@ const DepartmentHeroVisual = ({ category }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="absolute top-1/4 right-4 md:right-6 bg-white px-3 py-2 rounded-2xl shadow-lg border border-gray-100 rotate-6 anim-float-y-delayed">
-                            <div className="flex gap-2 text-[#2f4ea1] text-sm font-bold items-center"><Users size={16} /><AnimatedFollowers /></div>
+                        <div className="absolute z-30 top-[15%] md:top-1/4 right-0 md:right-6 bg-white px-2 md:px-3 py-1.5 md:py-2 rounded-xl md:rounded-2xl shadow-xl border border-gray-100 rotate-6 anim-float-y-delayed scale-[0.85] md:scale-100 origin-right">
+                            <div className="flex gap-1.5 md:gap-2 text-[#2f4ea1] text-xs md:text-sm font-bold items-center"><Users size={14} className="md:w-4 md:h-4" /><AnimatedFollowers /></div>
                         </div>
-                        <div className="absolute bottom-1/4 left-4 md:left-6 bg-white px-3 py-2 rounded-2xl shadow-lg border border-gray-100 -rotate-6 anim-float-y">
-                            <div className="flex gap-2 text-purple-600 text-sm font-bold items-center"><MessageSquare size={16} /> Viral!</div>
+                        <div className="absolute z-30 bottom-[15%] md:bottom-1/4 left-0 md:left-6 bg-white px-2 md:px-3 py-1.5 md:py-2 rounded-xl md:rounded-2xl shadow-xl border border-gray-100 -rotate-6 anim-float-y scale-[0.85] md:scale-100 origin-left">
+                            <div className="flex gap-1.5 md:gap-2 text-purple-600 text-xs md:text-sm font-bold items-center"><MessageSquare size={14} className="md:w-4 md:h-4" /> Viral!</div>
                         </div>
                     </div>
                 );
@@ -375,8 +375,8 @@ const DepartmentHeroVisual = ({ category }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="absolute top-4 right-4 w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center text-pink-500 animate-bounce" style={{ animationDelay: '0.1s' }}><Palette size={20} /></div>
-                            <div className="absolute bottom-8 left-4 w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center text-purple-500 animate-bounce" style={{ animationDelay: '0.5s' }}><Layout size={20} /></div>
+                            <div className="absolute z-30 top-2 md:top-4 right-0 md:right-4 w-8 h-8 md:w-10 md:h-10 bg-white rounded-lg md:rounded-xl shadow-lg flex items-center justify-center text-pink-500 animate-bounce" style={{ animationDelay: '0.1s' }}><Palette size={16} className="md:w-5 md:h-5" /></div>
+                            <div className="absolute z-30 bottom-4 md:bottom-8 left-0 md:left-4 w-8 h-8 md:w-10 md:h-10 bg-white rounded-lg md:rounded-xl shadow-lg flex items-center justify-center text-purple-500 animate-bounce" style={{ animationDelay: '0.5s' }}><Layout size={16} className="md:w-5 md:h-5" /></div>
                         </div>
                     </div>
                 );
@@ -440,7 +440,7 @@ const DepartmentHeroVisual = ({ category }) => {
                             <div className="flex justify-center -my-2 relative z-0">
                                 <div className="h-6 w-0.5 bg-gradient-to-b from-blue-300 to-purple-300"></div>
                             </div>
-                            <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 flex items-center gap-4 ml-8 anim-float-y-delayed">
+                            <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 flex items-center gap-4 ml-4 md:ml-8 anim-float-y-delayed">
                                 <div className="w-10 h-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center"><Target size={20}/></div>
                                 <div className="flex-1">
                                     <div className="h-2 bg-purple-600 rounded w-1/2 mb-2"></div>
