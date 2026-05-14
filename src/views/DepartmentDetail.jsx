@@ -380,11 +380,11 @@ const AnimatedPpcGraph = () => {
         const interval = setInterval(() => {
             setCpa(prev => {
                 if (prev > 28.50) {
-                    return prev - (Math.random() * 3 + 1);
+                    return prev - (Math.random() * 1.5 + 0.5); // drops slowly by 0.5 to 2 ILS per second
                 }
-                return 24.50 + Math.random() * 4; // fluctuate around 26
+                return 24.50 + Math.random() * 2; // fluctuate gently around 25
             });
-        }, 150);
+        }, 800); // 800ms gives time to read the number dropping
         return () => clearInterval(interval);
     }, []);
 
@@ -397,13 +397,13 @@ const AnimatedPpcGraph = () => {
                     <span className="bg-green-50 text-green-700 text-[10px] font-black px-2 py-1 rounded border border-green-100 animate-pulse">ACTIVE CAMPAIGN</span>
                 </div>
                 <div className="text-xs font-bold text-gray-400 mb-1 dir-ltr text-left">CPA (Cost Per Action)</div>
-                <div className="text-2xl font-black text-gray-800 mb-4 dir-ltr text-left">₪{cpa.toFixed(2)} <span className="text-sm text-emerald-500 font-bold">-{(128.5 - cpa).toFixed(1)}%</span></div>
+                <div className="text-2xl font-black text-gray-800 mb-4 dir-ltr text-left transition-all duration-300">₪{cpa.toFixed(2)} <span className="text-sm text-emerald-500 font-bold">-{(128.5 - cpa).toFixed(1)}%</span></div>
                 <div className="relative h-2 bg-gray-100 rounded-full overflow-hidden">
                     <div className="absolute top-0 left-0 h-full bg-emerald-500 rounded-full animate-[progress_2s_ease-out_infinite]"></div>
                 </div>
                 <div className="mt-2 text-[10px] text-gray-400 text-right dir-ltr text-left">Optimizing bids...</div>
             </div>
-            <div className="w-24 bg-white rounded-xl shadow-lg border border-gray-100 p-3 flex flex-col items-center justify-center -translate-y-4 animate-bounce z-10 hidden sm:flex">
+            <div className="w-24 bg-white rounded-xl shadow-lg border border-gray-100 p-3 flex flex-col items-center justify-center -translate-y-4 animate-bounce z-10 hidden sm:flex" style={{ animationDuration: '3s' }}>
                 <Target size={24} className="text-blue-500 mb-2" />
                 <div className="text-xs font-bold text-gray-800">ROAS</div>
                 <div className="text-lg font-black text-blue-600">x4.5</div>
