@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart } from 'lucide-react';
+import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart, Heart, Send } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
 import FAQ from '../components/FAQ';
@@ -307,21 +307,21 @@ const DepartmentHeroVisual = ({ category }) => {
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-4 bg-gray-900 rounded-b-xl z-20"></div>
                         
                         {/* Screen Content */}
-                        <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-[22px] flex-1 relative overflow-hidden flex items-center justify-center">
-                            <PlayCircle className="text-white/60 absolute z-0" size={48} />
+                        <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-[22px] flex-1 relative overflow-hidden flex items-center justify-center">
+                            <PlayCircle className="text-white/40 absolute z-0" size={48} />
                             
                             {/* Social Icons Right Bar */}
                             <div className="absolute right-2 bottom-20 flex flex-col gap-4 z-10">
                                 <div className="flex flex-col items-center gap-1">
-                                    <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white"><Users size={16} /></div>
+                                    <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white"><Heart size={16} className="fill-current" /></div>
                                     <span className="text-[8px] text-white font-bold">12k</span>
                                 </div>
                                 <div className="flex flex-col items-center gap-1">
-                                    <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white"><MessageSquare size={16} /></div>
+                                    <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white"><MessageSquare size={16} className="fill-current" /></div>
                                     <span className="text-[8px] text-white font-bold">450</span>
                                 </div>
                                 <div className="flex flex-col items-center gap-1">
-                                    <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white"><Target size={16} /></div>
+                                    <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white"><Send size={16} /></div>
                                     <span className="text-[8px] text-white font-bold">Share</span>
                                 </div>
                             </div>
