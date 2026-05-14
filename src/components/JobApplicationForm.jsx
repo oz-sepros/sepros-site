@@ -101,15 +101,24 @@ const JobApplicationForm = ({ jobTitle, onClose }) => {
             }
 
             setStatus('success');
-            setTimeout(() => {
-                setStatus('idle');
-                if (onClose) onClose();
-            }, 3000);
         } catch (error) {
             setStatus('error');
             setTimeout(() => setStatus('idle'), 4000);
         }
     };
+
+    if (status === 'success') {
+        return (
+            <Reveal className="bg-green-50 border border-green-200 p-8 md:p-12 rounded-xl mt-8 text-center shadow-sm relative dir-rtl">
+                <button type="button" onClick={() => { if (onClose) onClose(); setStatus('idle'); }} className="absolute top-4 left-4 text-gray-400 hover:text-gray-600"><X size={20} /></button>
+                <div className="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                </div>
+                <h4 className="text-2xl font-black text-green-800 mb-2">איזה כיף, קיבלנו את קורות החיים שלך!</h4>
+                <p className="text-green-700 font-medium">צוות הגיוס שלנו יעבור עליהם וניצור איתך קשר בהקדם במקרה של התאמה.</p>
+            </Reveal>
+        );
+    }
 
     return (
         <Reveal className="bg-gray-50 border border-gray-200 p-6 md:p-8 rounded-xl mt-8 relative shadow-sm">
