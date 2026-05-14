@@ -546,7 +546,9 @@ const DepartmentHeroVisual = ({ category }) => {
                                 </div>
                                 <div className="flex-1 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden relative">
                                      <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/10 to-purple-500/10 mix-blend-overlay"></div>
-                                     <div className="w-8 h-8 rounded-full border-[3px] border-white/20 border-t-pink-500 animate-spin"></div>
+                                     <div className="w-16 h-2 bg-white/20 rounded-full overflow-hidden z-10">
+                                         <div className="w-3/4 h-full bg-gradient-to-r from-pink-500 to-purple-500 rounded-full"></div>
+                                     </div>
                                 </div>
                             </div>
 
