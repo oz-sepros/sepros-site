@@ -115,8 +115,8 @@ const ServicesCarousel = () => {
 
                             {/* Black gradient overlay for better text readability */}
                             <div
-                                className="absolute inset-0 opacity-80 transition-opacity duration-500"
-                                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, transparent 100%)' }}
+                                className="absolute inset-0 transition-opacity duration-500"
+                                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.2) 100%)' }}
                             ></div>
 
                             {/* Bottom-anchored Content Block */}
