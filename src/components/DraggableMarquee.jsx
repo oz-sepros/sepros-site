@@ -23,13 +23,13 @@ const DraggableMarquee = ({ children, speed = 40, direction = 'ltr' }) => {
     useEffect(() => {
         updateWidth();
         window.addEventListener('resize', updateWidth);
-        
+
         let observer = null;
         if (carouselRef.current && window.ResizeObserver) {
             observer = new ResizeObserver(updateWidth);
             observer.observe(carouselRef.current);
         }
-        
+
         // Timeout to catch late-painting images if ResizeObserver fails
         const t = setTimeout(updateWidth, 300);
 
@@ -42,11 +42,11 @@ const DraggableMarquee = ({ children, speed = 40, direction = 'ltr' }) => {
 
     const startAnimation = useCallback(() => {
         if (contentWidth === 0) return;
-        
+
         const currentX = x.get();
         const distance = direction === 'ltr' ? -contentWidth - currentX : contentWidth - currentX;
         const duration = speed * (Math.abs(distance) / contentWidth) || speed;
-        
+
         controls.start({
             x: direction === 'ltr' ? -contentWidth : contentWidth,
             transition: {
@@ -72,10 +72,10 @@ const DraggableMarquee = ({ children, speed = 40, direction = 'ltr' }) => {
         if (contentWidth === 0) return;
         const currentPosition = x.get();
         let newPosition = currentPosition % contentWidth;
-        
+
         if (newPosition > 0 && direction === 'ltr') newPosition -= contentWidth;
         if (newPosition < 0 && direction === 'rtl') newPosition += contentWidth;
-        
+
         x.set(newPosition);
         startAnimation();
     };

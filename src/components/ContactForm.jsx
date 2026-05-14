@@ -82,7 +82,7 @@ const ContactForm = () => {
                                 <div className="w-2.5 h-2.5 rounded-full bg-[#2f4ea1]"></div>
                                 <span className="text-[#2f4ea1] font-extrabold text-base tracking-widest uppercase">שותפים לדרך</span>
                             </div>
-                            <h3 className="text-4xl md:text-6xl lg:text-7xl font-black text-[#09102c] mb-12 leading-tight">מוכנים <br /> <span className="text-[#2f4ea1]">לגדול?</span></h3>
+                            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-[#2f4ea1] mb-12 leading-tight">מוכנים <br /> <span>לגדול?</span></h2>
                         </Reveal>
 
                         <Reveal className="space-y-10">

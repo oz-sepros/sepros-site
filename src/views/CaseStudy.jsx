@@ -103,14 +103,14 @@ const CaseStudy = () => {
                     <div className="grid lg:grid-cols-3 gap-16 dir-rtl">
                         <div className="lg:col-span-2 space-y-16">
                             <Reveal>
-                                <h3 className="text-3xl font-black text-[#09102c] mb-6">האתגר שעמד בפנינו</h3>
+                                <h2 className="text-3xl font-black text-[#09102c] mb-6">האתגר שעמד בפנינו</h2>
                                 <p className="text-gray-600 text-lg leading-relaxed mb-6">
                                     החברה הגיעה אלינו לאחר שנתקלה בתקרת זכוכית: התקציב בגוגל שרף אלפי דולרים ביום, אבל הלידים שהגיעו היו לא רלוונטיים (Junk Leads), ואנשי המכירות בזבזו זמן יקר על שיחות סרק. המטרה הרשמית: לייצר לידים מסוג B2B ברמת מוכנות גבוהה, מבלי להגדיל את התקציב הכולל.
                                 </p>
                             </Reveal>
 
                             <Reveal>
-                                <h3 className="text-3xl font-black text-[#09102c] mb-6">הפתרון והאסטרטגיה</h3>
+                                <h2 className="text-3xl font-black text-[#09102c] mb-6">הפתרון והאסטרטגיה</h2>
                                 <p className="text-gray-600 text-lg leading-relaxed mb-6">
                                     הבנו שהבעיה לא הייתה המודעות, אלא המשפך עצמו. הפתרון כלל שלושה מהלכים מרכזיים:
                                 </p>

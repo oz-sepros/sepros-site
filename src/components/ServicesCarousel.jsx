@@ -76,7 +76,7 @@ const ServicesCarousel = () => {
                         <div className="w-2.5 h-2.5 rounded-full bg-[#2f4ea1] "></div>
                         <span className="text-[#2f4ea1] font-extrabold text-base tracking-widest uppercase">המחלקות שלנו</span>
                     </div>
-                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-[1.2]">השירותים שלנו <br /> <span className="text-[#2f4ea1]">כדי שנוכל להצמיח את העסק שלך</span></h3>
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#2f4ea1] tracking-tight leading-[1.2]">השירותים שלנו <br /> <span>כדי שנוכל להצמיח את העסק שלך</span></h2>
                 </div>
                 {/* Desktop arrows moved up */}
                 <div className="hidden md:flex gap-4 dir-ltr">
@@ -113,16 +113,16 @@ const ServicesCarousel = () => {
                             {/* Full Background Image */}
                             <img src={dept.image} alt={dept.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1500ms]" />
 
-                            {/* Dark Overlay fading to transparent at the top, using the true brand gradient profile */}
+                            {/* Black gradient overlay for better text readability */}
                             <div
-                                className="absolute inset-0 opacity-95 transition-opacity duration-500"
-                                style={{ background: 'linear-gradient(to top, #09102c 0%, #1e3082 35%, transparent 75%)' }}
+                                className="absolute inset-0 opacity-80 transition-opacity duration-500"
+                                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, transparent 100%)' }}
                             ></div>
 
                             {/* Bottom-anchored Content Block */}
                             <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 flex flex-col justify-end text-right z-10 h-full">
                                 <div className="mt-auto">
-                                    <h4 className="text-white text-3xl md:text-3xl lg:text-4xl font-black mb-1.5">{dept.title}</h4>
+                                    <h3 className="text-white text-3xl md:text-3xl lg:text-4xl font-black mb-1.5">{dept.title}</h3>
                                     <p className="text-white/80 text-sm md:text-base font-medium mb-6 relative z-10">{dept.desc}</p>
 
                                     {/* The subtle, flat "Explore Now" bar mirroring the reference image */}

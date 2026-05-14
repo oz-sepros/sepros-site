@@ -5,7 +5,7 @@ import ContactForm from '../components/ContactForm';
 const About = () => {
     return (
         <div className="pt-24">
-            <AboutSection />
+            <AboutSection isMainHeading={true} />
             <StatsCounter />
             <ContactForm />
         </div>

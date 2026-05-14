@@ -76,7 +76,7 @@ const Careers = () => {
                             <div key={i} className="bg-gray-50 border border-gray-200 p-6 rounded-xl hover:border-[#2f4ea1]/30 hover:shadow-md transition-all cursor-pointer group shadow-sm" onClick={() => setExpandedJob(expandedJob === i ? null : i)}>
                                 <div className="flex flex-col md:flex-row justify-between md:items-start gap-4">
                                     <div>
-                                        <h3 className="text-xl md:text-2xl font-black text-gray-900 group-hover:text-[#2f4ea1] transition-colors mb-3">{job.title}</h3>
+                                        <h2 className="text-xl md:text-2xl font-black text-gray-900 group-hover:text-[#2f4ea1] transition-colors mb-3">{job.title}</h2>
                                         <div className="flex flex-wrap items-center gap-2">
                                             <span className="text-[#2f4ea1] text-[10px] font-bold tracking-widest bg-[#2f4ea1]/10 px-3 py-1 rounded-sm">{job.type}</span>
                                             {job.labels?.map((label, idx) => (

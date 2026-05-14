@@ -32,7 +32,7 @@ const Articles = () => {
                                 </div>
                                 <div className="p-6 flex-grow flex flex-col">
                                     <p className="text-gray-500 text-xs font-bold tracking-widest mb-2">{art.date}</p>
-                                    <h3 className="text-xl font-black text-gray-900 mb-3 group-hover:text-[#2f4ea1] transition-colors">{art.title}</h3>
+                                    <h2 className="text-xl font-black text-gray-900 mb-3 group-hover:text-[#2f4ea1] transition-colors">{art.title}</h2>
                                     <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">{art.desc}</p>
                                     <span className="text-[#2f4ea1] text-xs font-bold tracking-widest flex items-center gap-1 group-hover:-translate-x-2 transition-transform w-fit">קראו עוד <ChevronLeft size={14} /></span>
                                 </div>

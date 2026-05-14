@@ -1,6 +1,8 @@
 import Reveal from './Reveal';
 
-const AboutSection = () => (
+const AboutSection = ({ isMainHeading = false }) => {
+    const HeadingTag = isMainHeading ? 'h1' : 'h2';
+    return (
     <section className="py-12 md:py-20 bg-white">
         <div className="max-w-[1400px] mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <Reveal className="text-right">
@@ -8,7 +10,7 @@ const AboutSection = () => (
                     <div className="w-2.5 h-2.5 rounded-full bg-[#2f4ea1] opacity-90"></div>
                     <span className="text-[#2f4ea1] font-extrabold text-base tracking-widest uppercase">על ספרוס</span>
                 </div>
-                <h3 className="text-4xl md:text-6xl font-black text-gray-900 mb-10 leading-tight">בוטיק של תוצאות <br /> <span>בעולם של דאטה.</span></h3>
+                <HeadingTag className="text-4xl md:text-6xl font-black text-[#2f4ea1] mb-10 leading-tight">בוטיק של תוצאות <br /> <span>בעולם של דאטה.</span></HeadingTag>
                 <p className="text-gray-600 text-lg md:text-xl font-light leading-relaxed mb-8">
                     ספרוס הוקמה מתוך מטרה אחת: לגשר על הפער שבין קריאייטיב מרהיב למספרים בשורה התחתונה. אנחנו מאמינים שבעידן הנוכחי, שיווק דיגיטלי חייב להיות מבוסס נתונים אך מונע על ידי רגש.
                 </p>
@@ -35,7 +37,8 @@ const AboutSection = () => (
             </Reveal>
         </div>
     </section>
-);
+    );
+};
 
 export default AboutSection;
 

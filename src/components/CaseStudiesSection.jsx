@@ -22,7 +22,7 @@ const CaseStudiesSection = () => {
                         <span className="text-[#2f4ea1] font-extrabold text-base tracking-widest uppercase">תוצאות קמפיינים</span>
                     </div>
                     <div className="text-center md:text-right mb-12">
-                        <h3 className="text-4xl md:text-5xl font-bold text-gray-900 leading-[1.2] tracking-tight">כשהדאטה והקריאייטיב <br /> מביאים תוצאות.</h3>
+                        <h2 className="text-4xl md:text-5xl font-bold text-[#2f4ea1] leading-[1.2] tracking-tight">כשהדאטה והקריאייטיב <br /> מביאים תוצאות.</h2>
                     </div>
                 </Reveal>
 
