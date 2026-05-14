@@ -249,37 +249,144 @@ const AnimatedFollowers = () => {
     return <span>+{count.toLocaleString()} Followers</span>;
 };
 
+const AnimatedTechCode = () => {
+    const [text, setText] = useState('');
+    const fullText = "const buildFuture = async () => {\n  await sepros.develop({\n    performance: 100,\n    design: 'premium'\n  });\n}";
+    
+    useEffect(() => {
+        let i = 0;
+        const interval = setInterval(() => {
+            setText(fullText.substring(0, i));
+            i++;
+            if (i > fullText.length + 30) i = 0;
+        }, 50);
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <div className="font-mono text-[10px] md:text-sm text-blue-300/80 space-y-2 dir-ltr text-left h-32 md:h-40 flex flex-col justify-center">
+            <pre className="whitespace-pre-wrap font-inherit leading-relaxed">{text}<span className="animate-pulse bg-blue-300 w-2 h-4 inline-block align-middle ml-1"></span></pre>
+        </div>
+    );
+};
+
+const AnimatedSeoSearch = () => {
+    const [searchText, setSearchText] = useState('');
+    const [showResult, setShowResult] = useState(false);
+    const searchTarget = "Sepros Agency";
+
+    useEffect(() => {
+        let i = 0;
+        setShowResult(false);
+        const interval = setInterval(() => {
+            if (i <= searchTarget.length) {
+                setSearchText(searchTarget.substring(0, i));
+                i++;
+            } else {
+                setShowResult(true);
+                clearInterval(interval);
+                setTimeout(() => {
+                    setShowResult(false);
+                    setSearchText('');
+                    i = 0;
+                }, 4000);
+                // Restart cycle is handled because the timeout triggers the states, but to restart the typing we need to re-initiate interval.
+            }
+        }, 150);
+        return () => clearInterval(interval);
+    }, [showResult]);
+
+    return (
+        <div className="relative z-10 w-full max-w-sm flex flex-col gap-3">
+            <div className="flex items-center gap-3 bg-white rounded-full px-4 py-3 border border-gray-200 shadow-sm mb-2 anim-float-y-delayed">
+                <Search className="text-blue-500" size={18} />
+                <div className="flex-1 font-bold text-gray-700 dir-ltr text-left h-5 text-sm md:text-base">{searchText}<span className="animate-pulse">|</span></div>
+            </div>
+            <div className={`bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(47,78,161,0.2)] border-2 border-blue-100 p-4 flex flex-col gap-2 relative overflow-hidden transition-all duration-700 transform ${showResult ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                <div className="absolute top-0 right-0 w-1.5 h-full bg-[#2f4ea1]"></div>
+                <div className="flex items-center gap-2 mb-1">
+                    <div className="w-4 h-4 bg-gray-100 rounded-full flex items-center justify-center"><Globe size={10} className="text-gray-400"/></div>
+                    <div className="text-xs text-gray-500 font-medium dir-ltr text-left">sepros.com</div>
+                </div>
+                <div className="text-sm font-black text-[#2f4ea1] mb-1 dir-ltr text-left">Sepros | Premium Web Agency</div>
+                <div className="h-2 bg-gray-200 rounded w-full"></div>
+                <div className="h-2 bg-gray-200 rounded w-5/6"></div>
+                <div className="absolute top-4 left-4 bg-blue-100 text-[#2f4ea1] text-[10px] font-black px-2 py-1 rounded">#1 RANK</div>
+            </div>
+        </div>
+    );
+};
+
+const AnimatedStrategyFlow = () => {
+    const steps = [
+        { icon: Lightbulb, colorClass: 'bg-blue-100 text-blue-600', gradient: 'from-blue-300 to-purple-300', label: 'Research' },
+        { icon: Target, colorClass: 'bg-purple-100 text-purple-600', gradient: 'from-purple-300 to-pink-300', label: 'Planning', ml: 'ml-4 md:ml-8' },
+        { icon: Settings, colorClass: 'bg-pink-100 text-pink-600', gradient: 'from-pink-300 to-emerald-300', label: 'Execution', ml: 'ml-8 md:ml-16' },
+        { icon: LineChart, colorClass: 'bg-emerald-100 text-emerald-600', gradient: '', label: 'Optimization', ml: 'ml-12 md:ml-24' }
+    ];
+    return (
+        <div className="relative z-10 w-full max-w-sm flex flex-col gap-1 md:gap-2 scale-90 md:scale-100 origin-center">
+            {steps.map((step, idx) => (
+                <div key={idx} className={`flex flex-col ${step.ml || ''}`}>
+                    <div className="bg-white rounded-xl shadow-md border border-gray-100 p-2 md:p-3 flex items-center gap-3 anim-float-y" style={{ animationDelay: `${idx * 0.5}s` }}>
+                        <div className={`w-8 h-8 rounded-full ${step.colorClass} flex items-center justify-center`}><step.icon size={16}/></div>
+                        <div className="flex-1">
+                            <div className="text-xs md:text-sm font-bold text-gray-800 dir-ltr text-left">{step.label}</div>
+                            <div className="h-1.5 bg-gray-100 rounded w-full mt-1"></div>
+                        </div>
+                    </div>
+                    {idx < 3 && (
+                        <div className="flex justify-start ml-4 md:ml-6 my-1">
+                            <div className={`h-4 md:h-6 w-0.5 bg-gradient-to-b ${step.gradient}`}></div>
+                        </div>
+                    )}
+                </div>
+            ))}
+        </div>
+    );
+};
+
+const AnimatedAnalyticsGraph = () => {
+    const [bars, setBars] = useState([40, 70, 45, 90, 60, 100, 80]);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setBars(bars.map(() => Math.floor(Math.random() * 60) + 40));
+        }, 1500);
+        return () => clearInterval(interval);
+    }, [bars]);
+
+    return (
+        <div className="relative z-10 w-full max-w-xs bg-white rounded-2xl shadow-xl shadow-blue-900/5 p-6 border border-gray-100 anim-float-y">
+            <div className="flex justify-between items-center mb-6">
+                <div className="flex items-center gap-2 text-[#0b1638] font-black text-xl md:text-2xl">
+                    <LineChart size={28} className="text-[#2f4ea1]" />
+                    Growth
+                </div>
+                <span className="bg-blue-100 text-[#2f4ea1] text-xs font-bold px-2 py-1 rounded-md animate-pulse">LIVE</span>
+            </div>
+            <div className="flex items-end gap-2 h-24 md:h-32 border-b border-gray-100 pb-2">
+                {bars.map((h, i) => (
+                    <div key={i} className="flex-1 bg-gradient-to-t from-[#2f4ea1] to-blue-400 rounded-t-sm transition-all duration-1000 ease-in-out" style={{ height: `${h}%` }}></div>
+                ))}
+            </div>
+            <div className="mt-4 pt-2 flex justify-between items-center">
+                <div className="space-y-1">
+                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest dir-ltr text-left">Traffic</div>
+                    <div className="text-lg md:text-xl font-black text-gray-900 dir-ltr text-left">124,592</div>
+                </div>
+                <div className="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1"><ArrowUpLeft size={12}/> 24%</div>
+            </div>
+        </div>
+    );
+};
+
 const DepartmentHeroVisual = ({ category }) => {
     const renderVisual = () => {
         switch (category) {
             case 'seo':
                 return (
                     <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-br from-blue-50/50 to-white overflow-hidden group">
-                        <div className="relative z-10 w-full max-w-sm flex flex-col gap-3">
-                            <div className="flex items-center gap-3 bg-white rounded-full px-4 py-3 border border-gray-200 shadow-sm mb-2 anim-float-y-delayed">
-                                <Search className="text-blue-500" size={18} />
-                                <div className="h-2 bg-gray-200 rounded w-1/2"></div>
-                            </div>
-                            <div className="bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(47,78,161,0.2)] border-2 border-blue-100 p-4 flex flex-col gap-2 relative overflow-hidden anim-float-y">
-                                <div className="absolute top-0 right-0 w-1.5 h-full bg-[#2f4ea1]"></div>
-                                <div className="flex items-center gap-2 mb-1">
-                                    <div className="w-4 h-4 bg-gray-100 rounded-full flex items-center justify-center"><Globe size={10} className="text-gray-400"/></div>
-                                    <div className="h-1.5 bg-gray-200 rounded w-1/3"></div>
-                                </div>
-                                <div className="h-3 bg-[#2f4ea1] rounded w-3/4 mb-1"></div>
-                                <div className="h-2 bg-gray-200 rounded w-full"></div>
-                                <div className="h-2 bg-gray-200 rounded w-5/6"></div>
-                                <div className="absolute top-4 left-4 bg-blue-100 text-[#2f4ea1] text-[10px] font-black px-2 py-1 rounded">#1 RANK</div>
-                            </div>
-                            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex flex-col gap-2 opacity-50 scale-[0.98] anim-float-y-delayed">
-                                <div className="flex items-center gap-2 mb-1">
-                                    <div className="w-4 h-4 bg-gray-100 rounded-full"></div>
-                                    <div className="h-1.5 bg-gray-200 rounded w-1/4"></div>
-                                </div>
-                                <div className="h-3 bg-gray-300 rounded w-2/3 mb-1"></div>
-                                <div className="h-2 bg-gray-200 rounded w-full"></div>
-                            </div>
-                        </div>
+                        <AnimatedSeoSearch />
                     </div>
                 );
             case 'ppc':
@@ -311,7 +418,7 @@ const DepartmentHeroVisual = ({ category }) => {
                 );
             case 'social':
                 return (
-                    <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-bl from-cyan-50/80 to-blue-50/40 overflow-hidden group">
+                    <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-bl from-cyan-50/80 to-blue-50/40 group">
                         <div className="relative z-10 w-[160px] md:w-[180px] h-[320px] md:h-[350px] bg-white rounded-[32px] shadow-[0_10px_40px_-10px_rgba(0,100,200,0.2)] border-[6px] border-gray-900 p-1 -rotate-[3deg] anim-float-y flex flex-col">
                             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-gray-900 rounded-b-xl z-20"></div>
                             <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-[22px] flex-1 relative overflow-hidden flex items-center justify-center">
@@ -390,14 +497,9 @@ const DepartmentHeroVisual = ({ category }) => {
                                 <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
                                 <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
                             </div>
-                            <div className="p-4 font-mono text-sm text-blue-300/80 space-y-2 dir-ltr text-left">
-                                <div><span className="text-pink-400">const</span> <span className="text-white">buildFuture</span> = <span className="text-yellow-300">async</span> () ={'>'} {'{'}</div>
-                                <div className="pl-4"><span className="text-pink-400">await</span> <span className="text-cyan-300">sepros</span>.<span className="text-green-300">develop</span>({'{'}</div>
-                                <div className="pl-8 text-gray-400">performance: <span className="text-orange-300">100</span>,</div>
-                                <div className="pl-8 text-gray-400">design: <span className="text-orange-300">'premium'</span></div>
-                                <div className="pl-4">{'}'});</div>
-                                <div>{'}'}</div>
-                                <div className="mt-4 flex items-center text-xs opacity-50"><Code2 size={14} className="mr-2" /> Terminal - Running</div>
+                            <div className="p-4">
+                                <AnimatedTechCode />
+                                <div className="mt-2 pt-2 border-t border-[#2f4ea1]/20 flex items-center text-xs opacity-50 text-blue-200"><Code2 size={14} className="mr-2" /> Terminal - Running</div>
                             </div>
                         </div>
                     </div>
@@ -405,59 +507,13 @@ const DepartmentHeroVisual = ({ category }) => {
             case 'analytics':
                 return (
                     <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-bl from-blue-50/50 to-gray-50 overflow-hidden group">
-                         <div className="relative z-10 grid grid-cols-2 gap-4 w-full max-w-sm">
-                             <div className="col-span-2 bg-white rounded-2xl shadow-lg border border-gray-100 p-5 flex items-center justify-between anim-float-y">
-                                 <div>
-                                     <div className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 dir-ltr text-left">Total Revenue</div>
-                                     <div className="text-3xl font-black text-[#0b1638]">₪2.4M</div>
-                                 </div>
-                                 <LineChart size={40} className="text-[#2f4ea1]" />
-                             </div>
-                             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-5 anim-float-y-delayed">
-                                 <PieChart size={32} className="text-purple-500 mb-4" />
-                                 <div className="text-xs font-bold text-gray-400 uppercase dir-ltr text-left">Conversion</div>
-                                 <div className="text-xl font-bold text-gray-900 mt-1 dir-ltr text-left">4.8%</div>
-                             </div>
-                             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-5 anim-float-y">
-                                 <BarChart size={32} className="text-blue-500 mb-4" />
-                                 <div className="text-xs font-bold text-gray-400 uppercase dir-ltr text-left">Sessions</div>
-                                 <div className="text-xl font-bold text-gray-900 mt-1 dir-ltr text-left">124K</div>
-                             </div>
-                         </div>
+                         <AnimatedAnalyticsGraph />
                     </div>
                 );
             case 'strategy':
                 return (
                     <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-br from-indigo-50/50 to-purple-50 overflow-hidden group">
-                        <div className="relative z-10 w-full max-w-sm flex flex-col gap-3">
-                            <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 flex items-center gap-4 anim-float-y">
-                                <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center"><Lightbulb size={20}/></div>
-                                <div className="flex-1">
-                                    <div className="h-2 bg-blue-600 rounded w-1/3 mb-2"></div>
-                                    <div className="h-2 bg-gray-200 rounded w-full"></div>
-                                </div>
-                            </div>
-                            <div className="flex justify-center -my-2 relative z-0">
-                                <div className="h-6 w-0.5 bg-gradient-to-b from-blue-300 to-purple-300"></div>
-                            </div>
-                            <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 flex items-center gap-4 ml-4 md:ml-8 anim-float-y-delayed">
-                                <div className="w-10 h-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center"><Target size={20}/></div>
-                                <div className="flex-1">
-                                    <div className="h-2 bg-purple-600 rounded w-1/2 mb-2"></div>
-                                    <div className="h-2 bg-gray-200 rounded w-5/6"></div>
-                                </div>
-                            </div>
-                            <div className="flex justify-center -my-2 relative z-0">
-                                <div className="h-6 w-0.5 bg-gradient-to-b from-purple-300 to-pink-300"></div>
-                            </div>
-                            <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 flex items-center gap-4 anim-float-y">
-                                <div className="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center"><LineChart size={20}/></div>
-                                <div className="flex-1">
-                                    <div className="h-2 bg-pink-500 rounded w-2/5 mb-2"></div>
-                                    <div className="h-2 bg-gray-200 rounded w-3/4"></div>
-                                </div>
-                            </div>
-                        </div>
+                        <AnimatedStrategyFlow />
                     </div>
                 );
             default:
