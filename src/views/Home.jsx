@@ -72,17 +72,17 @@ const Home = () => {
                 style={{
                     background: `linear-gradient(
         180deg, #09102c 0%,
-        #141c48 15%,
-        #2b3991 30%,
-        #4a50b5 45%,
-        #6a6ac6 55%,
-        #9084cb 65%,
-        #a9a1d8 70%,
-        #bfb8e3 75%,
-        #d4cfed 80%,
-        #e6e2f6 83%,
-        #f3f1fb 86%,
-        #F5F7FA 90%,
+        #141c48 10%,
+        #2b3991 25%,
+        #4a50b5 35%,
+        #6a6ac6 45%,
+        #9084cb 55%,
+        #a9a1d8 60%,
+        #bfb8e3 65%,
+        #d4cfed 70%,
+        #e6e2f6 73%,
+        #f3f1fb 76%,
+        #F5F7FA 80%,
         #F5F7FA 100%
       )` }}
             >
