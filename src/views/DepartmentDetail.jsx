@@ -249,62 +249,68 @@ const AnimatedFollowers = () => {
     return <span>+{count.toLocaleString()} Followers</span>;
 };
 
+const codeData = [
+  { text: "const ", color: "text-pink-400" },
+  { text: "buildFuture", color: "text-white" },
+  { text: " = ", color: "text-blue-300" },
+  { text: "async ", color: "text-yellow-300" },
+  { text: "() => {\n", color: "text-white" },
+  { text: "  await ", color: "text-pink-400" },
+  { text: "sepros.", color: "text-cyan-300" },
+  { text: "develop", color: "text-green-300" },
+  { text: "({\n", color: "text-white" },
+  { text: "    performance: ", color: "text-gray-400" },
+  { text: "100,\n", color: "text-orange-300" },
+  { text: "    design: ", color: "text-gray-400" },
+  { text: "'premium'\n", color: "text-orange-300" },
+  { text: "  });\n", color: "text-white" },
+  { text: "}", color: "text-white" }
+];
+const characters = [];
+codeData.forEach(block => {
+    for (let i = 0; i < block.text.length; i++) {
+        characters.push({ char: block.text[i], color: block.color });
+    }
+});
+
 const AnimatedTechCode = () => {
-    const lines = [
-        <div key="1"><span className="text-pink-400">const</span> <span className="text-white">buildFuture</span> = <span className="text-yellow-300">async</span> () ={'>'} {'{'}</div>,
-        <div key="2" className="pl-4"><span className="text-pink-400">await</span> <span className="text-cyan-300">sepros</span>.<span className="text-green-300">develop</span>({'{'}</div>,
-        <div key="3" className="pl-8 text-gray-400">performance: <span className="text-orange-300">100</span>,</div>,
-        <div key="4" className="pl-8 text-gray-400">design: <span className="text-orange-300">'premium'</span></div>,
-        <div key="5" className="pl-4">{'}'});</div>,
-        <div key="6">{'}'}</div>
-    ];
-    const [visibleLines, setVisibleLines] = useState(0);
+    const [idx, setIdx] = useState(0);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setVisibleLines(prev => (prev >= lines.length + 2 ? 0 : prev + 1));
-        }, 500);
+            setIdx(prev => (prev >= characters.length + 15 ? 0 : prev + 1));
+        }, 30);
         return () => clearInterval(interval);
     }, []);
 
     return (
-        <div className="font-mono text-[10px] md:text-sm text-blue-300/80 space-y-2 dir-ltr text-left h-32 md:h-40 flex flex-col justify-center relative">
-            {lines.map((line, idx) => (
-                <div key={idx} className={`transition-opacity duration-100 ${idx < visibleLines ? 'opacity-100' : 'opacity-0'}`}>
-                    {line}
-                </div>
-            ))}
-            <div className="absolute bottom-4 left-0 w-full h-full pointer-events-none flex items-end">
-                <span className="animate-pulse bg-blue-300 w-2 h-4 inline-block mb-1"></span>
-            </div>
+        <div className="font-mono text-[10px] md:text-sm space-y-2 dir-ltr text-left h-32 md:h-40 flex flex-col justify-center">
+            <pre className="whitespace-pre-wrap font-inherit leading-relaxed">
+                {characters.slice(0, idx).map((c, i) => (
+                    <span key={i} className={c.color}>{c.char}</span>
+                ))}
+                <span className="animate-pulse bg-blue-300 w-2 h-4 inline-block align-middle ml-1"></span>
+            </pre>
         </div>
     );
 };
 
 const AnimatedSeoSearch = () => {
     const [searchText, setSearchText] = useState('');
-    const [showResult, setShowResult] = useState(false);
     const searchTarget = "Your Website";
 
     useEffect(() => {
         let i = 0;
-        setShowResult(false);
         const interval = setInterval(() => {
             if (i <= searchTarget.length) {
                 setSearchText(searchTarget.substring(0, i));
                 i++;
             } else {
-                setShowResult(true);
-                clearInterval(interval);
-                setTimeout(() => {
-                    setShowResult(false);
-                    setSearchText('');
-                    i = 0;
-                }, 4000);
+                i = 0;
             }
-        }, 150);
+        }, 200);
         return () => clearInterval(interval);
-    }, [showResult]);
+    }, []);
 
     return (
         <div className="relative z-10 w-full max-w-sm flex flex-col gap-3">
@@ -312,7 +318,7 @@ const AnimatedSeoSearch = () => {
                 <Search className="text-blue-500" size={18} />
                 <div className="flex-1 font-bold text-gray-700 dir-ltr text-left h-5 text-sm md:text-base">{searchText}<span className="animate-pulse">|</span></div>
             </div>
-            <div className={`bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(47,78,161,0.2)] border-2 border-blue-100 p-4 flex flex-col gap-2 relative overflow-hidden transition-all duration-700 transform ${showResult ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            <div className="bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(47,78,161,0.2)] border-2 border-blue-100 p-4 flex flex-col gap-2 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-1.5 h-full bg-[#2f4ea1]"></div>
                 <div className="flex items-center gap-2 mb-1">
                     <div className="w-4 h-4 bg-gray-100 rounded-full flex items-center justify-center"><Globe size={10} className="text-gray-400"/></div>
@@ -322,6 +328,14 @@ const AnimatedSeoSearch = () => {
                 <div className="h-2 bg-gray-200 rounded w-full"></div>
                 <div className="h-2 bg-gray-200 rounded w-5/6"></div>
                 <div className="absolute top-4 left-4 bg-blue-100 text-[#2f4ea1] text-[10px] font-black px-2 py-1 rounded">#1 RANK</div>
+            </div>
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex flex-col gap-2 opacity-50 scale-[0.98]">
+                <div className="flex items-center gap-2 mb-1">
+                    <div className="w-4 h-4 bg-gray-100 rounded-full"></div>
+                    <div className="h-1.5 bg-gray-200 rounded w-1/4"></div>
+                </div>
+                <div className="h-3 bg-gray-300 rounded w-2/3 mb-1"></div>
+                <div className="h-2 bg-gray-200 rounded w-full"></div>
             </div>
         </div>
     );
@@ -359,25 +373,24 @@ const AnimatedStrategyFlow = () => {
 
 const AnimatedPpcGraph = () => {
     return (
-        <div className="relative z-10 w-full max-w-xs bg-white rounded-2xl shadow-xl shadow-green-900/5 p-6 border border-gray-100">
-            <div className="flex justify-between items-center mb-6">
-                <div className="flex items-center gap-2 text-emerald-600 font-black text-2xl">
-                    <TrendingUp size={28} />
-                    ROAS
+        <div className="relative z-10 w-full max-w-sm flex gap-4">
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-5 flex-1 relative overflow-hidden z-20">
+                <div className="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-green-500"></div>
+                <div className="flex justify-between items-start mb-4">
+                    <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center"><TrendingUp size={20}/></div>
+                    <span className="bg-green-50 text-green-700 text-[10px] font-black px-2 py-1 rounded border border-green-100 animate-pulse">ACTIVE CAMPAIGN</span>
                 </div>
-                <span className="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-1 rounded-md">LIVE</span>
-            </div>
-            <div className="flex items-end gap-2 h-24">
-                {[30, 45, 40, 60, 80, 100].map((h, i) => (
-                    <div key={i} className="flex-1 bg-gradient-to-t from-emerald-400 to-emerald-300 rounded-t-sm animate-[growUp_2s_infinite_alternate]" style={{ height: `${h}%`, animationDelay: `${i * 0.15}s` }}></div>
-                ))}
-            </div>
-            <div className="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
-                <div className="space-y-1">
-                    <div className="h-2 bg-gray-200 rounded w-16"></div>
-                    <div className="h-2 bg-gray-100 rounded w-10"></div>
+                <div className="text-xs font-bold text-gray-400 mb-1 dir-ltr text-left">CPA (Cost Per Action)</div>
+                <div className="text-2xl font-black text-gray-800 mb-4 dir-ltr text-left">₪42.50 <span className="text-sm text-emerald-500">-12%</span></div>
+                <div className="relative h-2 bg-gray-100 rounded-full overflow-hidden">
+                    <div className="absolute top-0 left-0 h-full bg-emerald-500 rounded-full animate-[progress_2s_ease-out_infinite]"></div>
                 </div>
-                <div className="bg-[#2f4ea1] text-white text-xs font-bold px-3 py-1.5 rounded-full">+450%</div>
+                <div className="mt-2 text-[10px] text-gray-400 text-right dir-ltr text-left">Optimizing bids...</div>
+            </div>
+            <div className="w-24 bg-white rounded-xl shadow-lg border border-gray-100 p-3 flex flex-col items-center justify-center -translate-y-4 animate-bounce z-10 hidden sm:flex">
+                <Target size={24} className="text-blue-500 mb-2" />
+                <div className="text-xs font-bold text-gray-800">ROAS</div>
+                <div className="text-lg font-black text-blue-600">x4.5</div>
             </div>
         </div>
     );
@@ -452,10 +465,10 @@ const DepartmentHeroVisual = ({ category }) => {
                                     <div className="flex flex-col items-center gap-1 relative">
                                         <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white relative z-10"><Heart size={16} className="fill-current text-red-500" /></div>
                                         <span className="text-[8px] text-white font-bold">12k</span>
-                                        <div className="absolute -top-10 right-0 pointer-events-none z-0">
-                                            <Heart size={20} className="text-red-500 fill-current absolute bottom-0 right-0 heart-float heart-delay-1" />
-                                            <Heart size={14} className="text-pink-500 fill-current absolute bottom-0 right-3 heart-float heart-delay-2" />
-                                            <Heart size={24} className="text-red-400 fill-current absolute bottom-0 right-1 heart-float heart-delay-3" />
+                                        <div className="absolute top-0 right-0 w-full h-full pointer-events-none z-0">
+                                            <Heart size={20} className="text-red-500 fill-current absolute top-0 right-1 heart-float heart-delay-1 opacity-0" />
+                                            <Heart size={14} className="text-pink-500 fill-current absolute top-0 right-3 heart-float heart-delay-2 opacity-0" />
+                                            <Heart size={24} className="text-red-400 fill-current absolute top-0 right-0 heart-float heart-delay-3 opacity-0" />
                                         </div>
                                     </div>
                                 </div>
@@ -483,17 +496,35 @@ const DepartmentHeroVisual = ({ category }) => {
                 return (
                     <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-tr from-purple-50/50 to-pink-50/30 overflow-hidden group">
                         <div className="relative w-full max-w-sm h-64 z-10 flex items-center justify-center">
-                            <div className="absolute w-56 h-64 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex items-center justify-center relative">
-                                <div className="absolute w-32 h-32 bg-gradient-to-tr from-purple-400 via-pink-500 to-yellow-400 rounded-full blur-xl opacity-50 animate-pulse"></div>
-                                <div className="absolute w-24 h-24 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-[scaleUp_2s_infinite_alternate]">
-                                    <Palette size={40} className="text-white" />
+                            <div className="absolute w-64 h-56 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col z-20">
+                                <div className="h-8 border-b border-gray-100 flex items-center px-3 gap-2">
+                                    <div className="flex gap-1.5">
+                                        <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+                                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
+                                        <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+                                    </div>
+                                    <div className="ml-auto flex gap-2">
+                                        <div className="w-4 h-4 bg-gray-100 rounded flex items-center justify-center"><Layout size={10} className="text-gray-500"/></div>
+                                        <div className="w-4 h-4 bg-gray-100 rounded flex items-center justify-center"><Brush size={10} className="text-gray-500"/></div>
+                                    </div>
                                 </div>
-                                <div className="absolute z-30 text-gray-800 animate-[drawCircle_4s_infinite_linear]">
-                                    <Brush size={32} />
+                                <div className="flex-1 bg-gray-50/50 p-4 relative flex items-center justify-center overflow-hidden">
+                                    <div className="absolute w-32 h-32 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-2xl rotate-12 shadow-lg mix-blend-multiply animate-[spin_10s_linear_infinite]"></div>
+                                    <div className="absolute w-32 h-32 bg-gradient-to-tr from-blue-500 to-cyan-500 rounded-full -translate-x-6 translate-y-4 shadow-lg mix-blend-multiply animate-[pulse_3s_ease-in-out_infinite]"></div>
+                                    <div className="absolute inset-0 backdrop-blur-[2px]"></div>
+                                    <div className="relative z-10 w-24 h-24 border-2 border-blue-500 rounded-lg animate-pulse">
+                                        <div className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-white border-2 border-blue-500 rounded-sm"></div>
+                                        <div className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-white border-2 border-blue-500 rounded-sm"></div>
+                                        <div className="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-white border-2 border-blue-500 rounded-sm"></div>
+                                        <div className="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-white border-2 border-blue-500 rounded-sm"></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="absolute z-30 top-2 md:top-4 right-0 md:right-4 w-8 h-8 md:w-10 md:h-10 bg-white rounded-lg md:rounded-xl shadow-lg flex items-center justify-center text-pink-500 animate-bounce" style={{ animationDelay: '0.1s' }}><PenTool size={16} className="md:w-5 md:h-5" /></div>
-                            <div className="absolute z-30 bottom-4 md:bottom-8 left-0 md:left-4 w-8 h-8 md:w-10 md:h-10 bg-white rounded-lg md:rounded-xl shadow-lg flex items-center justify-center text-purple-500 animate-bounce" style={{ animationDelay: '0.5s' }}><Layout size={16} className="md:w-5 md:h-5" /></div>
+                            <div className="absolute z-30 top-4 right-2 bg-white p-2 rounded-xl shadow-lg border border-gray-100 flex flex-col gap-2">
+                                <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 shadow-inner"></div>
+                                <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-500 shadow-inner"></div>
+                                <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-yellow-400 to-orange-500 shadow-inner"></div>
+                            </div>
                         </div>
                     </div>
                 );
@@ -567,6 +598,10 @@ const DepartmentHeroVisual = ({ category }) => {
                 @keyframes drawCircle {
                     0% { transform: rotate(0deg) translateX(40px) rotate(0deg); }
                     100% { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+                }
+                @keyframes progress {
+                    0% { width: 0%; }
+                    100% { width: 100%; }
                 }
             `}</style>
             {renderVisual()}
