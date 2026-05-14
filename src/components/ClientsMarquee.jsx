@@ -12,9 +12,7 @@ const ClientsMarquee = () => {
     ];
 
     return (
-        <div className="bg-transparent flex flex-col items-center relative dir-ltr w-full">
-            <div className="absolute left-0 top-0 bottom-0 w-16 md:w-40 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-16 md:w-40 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+        <div className="bg-transparent flex flex-col items-center relative dir-ltr w-full" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}>
             <DraggableMarquee speed={30} direction="ltr">
                 {clients.map((client, i) => (
                     <div key={i} className="group w-[140px] md:w-[180px] h-16 md:h-20 shrink-0 cursor-grab active:cursor-grabbing flex items-center justify-center mx-4 md:mx-8">
