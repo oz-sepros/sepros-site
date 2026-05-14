@@ -556,7 +556,7 @@ const DepartmentHeroVisual = ({ category }) => {
                                         {/* Vector Pen Path with handles */}
                                         <svg className="absolute inset-0 w-full h-full z-10 overflow-visible pointer-events-none">
                                             {/* The curve */}
-                                            <path d="M 40 140 C 60 40, 120 40, 140 140" fill="transparent" stroke="#2f4ea1" strokeWidth="2" strokeDasharray="4 4" className="animate-[pulse_2s_ease-in-out_infinite]" />
+                                            <path d="M 40 140 C 60 40, 120 40, 140 140" fill="transparent" stroke="#2f4ea1" strokeWidth="2" strokeDasharray="250" strokeDashoffset="250" style={{ animation: 'drawPath 4s ease-in-out infinite alternate' }} />
                                             {/* Bezier Handles */}
                                             <line x1="40" y1="140" x2="60" y2="40" stroke="#2f4ea1" strokeWidth="1" opacity="0.5" />
                                             <line x1="140" y1="140" x2="120" y2="40" stroke="#2f4ea1" strokeWidth="1" opacity="0.5" />
@@ -577,7 +577,7 @@ const DepartmentHeroVisual = ({ category }) => {
                                     </div>
 
                                     {/* Cursor */}
-                                    <MousePointer2 className="absolute top-1/2 left-[60%] text-[#09102c] fill-white z-30 drop-shadow-lg animate-[pulse_2s_ease-in-out_infinite]" size={20} />
+                                    <MousePointer2 className="absolute text-[#09102c] fill-white z-30 drop-shadow-lg" size={20} style={{ animation: 'cursorMove 8s ease-in-out infinite' }} />
                                 </div>
 
                                 {/* Right Panel (Layers & Properties) */}
@@ -647,6 +647,16 @@ const DepartmentHeroVisual = ({ category }) => {
     return (
         <>
             <style>{`
+                @keyframes drawPath {
+                    0% { stroke-dashoffset: 250; }
+                    100% { stroke-dashoffset: 0; }
+                }
+                @keyframes cursorMove {
+                    0%, 100% { top: 50%; left: 50%; transform: rotate(0deg); }
+                    25% { top: 25%; left: 35%; transform: rotate(-5deg); }
+                    50% { top: 75%; left: 65%; transform: rotate(5deg); }
+                    75% { top: 30%; left: 70%; transform: rotate(-10deg); }
+                }
                 @keyframes floatY {
                     0%, 100% { transform: translateY(0); }
                     50% { transform: translateY(-8px); }
