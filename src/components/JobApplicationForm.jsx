@@ -114,28 +114,28 @@ const JobApplicationForm = ({ jobTitle, onClose }) => {
     return (
         <Reveal className="bg-gray-50 border border-gray-200 p-6 md:p-8 rounded-xl mt-8 relative shadow-sm">
             <h4 className="text-xl font-black text-[#09102c] mb-6 tracking-wide">הגשת מועמדות: <span className="text-[#2f4ea1]">{jobTitle}</span></h4>
-            <form className="space-y-6 text-right" onSubmit={handleSubmit} noValidate>
+            <form className="space-y-6 text-right" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                         <label className="text-[#09102c] text-sm font-bold tracking-wide">שם מלא <span className="text-red-500">*</span></label>
-                        <input required type="text" value={formData.fullName} onChange={e => {setFormData({ ...formData, fullName: e.target.value }); setFormError('');}} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="ישראל ישראלי" />
+                        <input required onInvalid={e => e.target.setCustomValidity('נא להזין שם מלא')} onInput={e => { e.target.setCustomValidity(''); setFormData({ ...formData, fullName: e.target.value }); setFormError(''); }} type="text" value={formData.fullName} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="ישראל ישראלי" />
                     </div>
                     <div className="space-y-2">
                         <label className="text-[#09102c] text-sm font-bold tracking-wide">טלפון <span className="text-red-500">*</span></label>
-                        <input required type="tel" value={formData.phone} onBlur={() => {
+                        <input required onInvalid={e => e.target.setCustomValidity('נא להזין מספר טלפון')} onInput={e => { e.target.setCustomValidity(''); setFormData({ ...formData, phone: e.target.value }); setFormError(''); }} type="tel" value={formData.phone} onBlur={() => {
                             if (!formData.phone) return;
                             const cleanPhone = formData.phone.replace(/[\s-]/g, '');
                             const phoneRegex = /^(05\d|0[23489]|07\d)\d{7}$/;
                             if (!phoneRegex.test(cleanPhone)) {
                                 setFormError('נא להזין מספר טלפון ישראלי תקין (לדוגמה: 050-1234567)');
                             }
-                        }} onChange={e => {setFormData({ ...formData, phone: e.target.value }); setFormError('');}} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all dir-ltr text-right" placeholder="050-1234567" />
+                        }} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all dir-ltr text-right" placeholder="050-1234567" />
                     </div>
                 </div>
 
                 <div className="space-y-2">
                     <label className="text-[#09102c] text-sm font-bold tracking-wide">אימייל <span className="text-red-500">*</span></label>
-                    <input required type="email" value={formData.email} onChange={e => {setFormData({ ...formData, email: e.target.value }); setFormError('');}} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="email@gmail.com" />
+                    <input required onInvalid={e => e.target.setCustomValidity('נא להזין כתובת אימייל תקינה')} onInput={e => { e.target.setCustomValidity(''); setFormData({ ...formData, email: e.target.value }); setFormError(''); }} type="email" value={formData.email} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="email@gmail.com" />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

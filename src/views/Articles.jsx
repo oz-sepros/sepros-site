@@ -9,10 +9,10 @@ const Articles = () => {
     const router = useRouter();
 
     const articles = [
-        { slug: 'technical-seo-2026', title: "המדריך המלא ל-SEO טכני ב-2026", date: "15 מרץ, 2026", desc: "כל מה שצריך לדעת על Core Web Vitals, סריקה של גוגל ואיך להכין את האתר שלכם לעידן ה-AI.", tag: "SEO", image: "/articles/article_seo.png" },
-        { slug: 'double-your-roas', title: "איך להכפיל את ה-ROAS בקמפיינים בגוגל", date: "2 מרץ, 2026", desc: "סודות האופטימיזציה שסוכנויות לא מגלות: חלוקת תקציב חכמה, טיוב המרות ובידינג מבוסס ערך.", tag: "PPC", image: "/articles/article_roas.png" },
-        { slug: 'tiktok-or-instagram', title: "טיקטוק או אינסטגרם? איפה הקהל שלכם נמצא", date: "28 פברואר, 2026", desc: "ניתוח מעמיק של פלטפורמות הסושיאל המובילות וכיצד לבנות אסטרטגיית תוכן שפוגעת בול במטרה.", tag: "סושיאל", image: "/articles/article_social.png" },
-        { slug: 'ux-color-psychology', title: "עיצוב UX שמוכר: פסיכולוגיה של צבעים וממשק", date: "10 פברואר, 2026", desc: "איך למקם כפתורי הנעה לפעולה, באילו צבעים להשתמש ואיך לבנות אמון דרך חוויית משתמש מושלמת.", tag: "UX/UI", image: "/articles/article_ux.png" },
+        { slug: 'technical-seo-2026', title: "המדריך המלא ל-SEO טכני ב-2026", date: "15 מרץ, 2026", isoDate: "2026-03-15T00:00:00+02:00", desc: "כל מה שצריך לדעת על Core Web Vitals, סריקה של גוגל ואיך להכין את האתר שלכם לעידן ה-AI.", tag: "SEO", image: "/articles/article_seo.png" },
+        { slug: 'double-your-roas', title: "איך להכפיל את ה-ROAS בקמפיינים בגוגל", date: "2 מרץ, 2026", isoDate: "2026-03-02T00:00:00+02:00", desc: "סודות האופטימיזציה שסוכנויות לא מגלות: חלוקת תקציב חכמה, טיוב המרות ובידינג מבוסס ערך.", tag: "PPC", image: "/articles/article_roas.png" },
+        { slug: 'tiktok-or-instagram', title: "טיקטוק או אינסטגרם? איפה הקהל שלכם נמצא", date: "28 פברואר, 2026", isoDate: "2026-02-28T00:00:00+02:00", desc: "ניתוח מעמיק של פלטפורמות הסושיאל המובילות וכיצד לבנות אסטרטגיית תוכן שפוגעת בול במטרה.", tag: "סושיאל", image: "/articles/article_social.png" },
+        { slug: 'ux-color-psychology', title: "עיצוב UX שמוכר: פסיכולוגיה של צבעים וממשק", date: "10 פברואר, 2026", isoDate: "2026-02-10T00:00:00+02:00", desc: "איך למקם כפתורי הנעה לפעולה, באילו צבעים להשתמש ואיך לבנות אמון דרך חוויית משתמש מושלמת.", tag: "UX/UI", image: "/articles/article_ux.png" },
     ];
 
     const blogSchema = {
@@ -20,7 +20,14 @@ const Articles = () => {
         "@type": "Blog",
         "name": "בלוג ומאמרים - ספרוס שיווק דיגיטלי",
         "url": "https://www.sepros.co.il/articles",
-        "description": "תובנות, מדריכים וחדשות מהחזית של השיווק הדיגיטלי."
+        "description": "תובנות, מדריכים וחדשות מהחזית של השיווק הדיגיטלי.",
+        "blogPost": articles.map(a => ({
+            "@type": "BlogPosting",
+            "headline": a.title,
+            "url": `https://www.sepros.co.il/article/${a.slug}`,
+            "datePublished": a.isoDate,
+            "description": a.desc
+        }))
     };
 
     return (

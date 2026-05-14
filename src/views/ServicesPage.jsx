@@ -18,8 +18,22 @@ const ServicesPage = () => {
         { id: 'analytics', icon: BarChart3, title: 'אנליטיקס ודאטה', desc: 'הפיכת הררי מידע להחלטות שוות כסף.', image: '/services/dept_analytics.png' }
     ];
 
+    const servicesSchema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "השירותים שלנו",
+        "url": "https://www.sepros.co.il/services",
+        "itemListElement": services.map((srv, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "name": srv.title,
+            "url": `https://www.sepros.co.il/service/${srv.id}`
+        }))
+    };
+
     return (
         <PageTransition>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }} />
             <Reveal className="min-h-[85vh] bg-[#F5F7FA] pt-24 md:pt-32 pb-32 text-right">
                 <div className="max-w-[1400px] mx-auto px-6">
                     <h1 className="text-5xl md:text-7xl font-black uppercase mb-6 text-[#2f4ea1]">השירותים שלנו</h1>
