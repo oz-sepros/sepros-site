@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from 'react'; 
+import { useEffect, useRef, useState } from 'react';
 import { trackEvent } from '../utils/analytics';
 import { useRouter } from 'next/navigation';
 import { ArrowUpLeft, Plus, Minus } from 'lucide-react';
@@ -72,17 +72,16 @@ const Home = () => {
                 style={{
                     background: `linear-gradient(
         180deg, #09102c 0%,
-        #141c48 18%,
-        #2b3991 38%,
-        #4a50b5 52%,
-        #6a6ac6 62%,
-        #9084cb 70%,
-        #a9a1d8 74%,
-        #bfb8e3 76.5%,
-        #d4cfed 78.5%,
-        #e6e2f6 80%,
-        #f3f1fb 81%,
-        #F5F7FA 82%,
+        #141c48 15%,
+        #2b3991 35%,
+        #4a50b5 50%,
+        #6a6ac6 60%,
+        #9084cb 68%,
+        #a9a1d8 75%,
+        #bfb8e3 80%,
+        #d4cfed 85%,
+        #e6e2f6 90%,
+        #f3f1fb 95%,
         #F5F7FA 100%
       )` }}
             >
