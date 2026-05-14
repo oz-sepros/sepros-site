@@ -1,7 +1,7 @@
 "use client";
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import ContactForm from '../components/ContactForm';
 
@@ -130,11 +130,11 @@ const ArticlePage = () => {
                 <div className="max-w-3xl mx-auto flex flex-col">
                     {/* Breadcrumbs */}
                     <div className="flex items-center gap-2 text-gray-500 text-sm font-bold mb-8 self-start">
-                        <span className="text-gray-900">{article.title}</span>
-                        <ChevronRight size={14} />
-                        <button onClick={() => router.push('/articles')} className="hover:text-[#2f4ea1] transition-colors">מאמרים</button>
-                        <ChevronRight size={14} />
                         <button onClick={() => router.push('/')} className="hover:text-[#2f4ea1] transition-colors">ראשי</button>
+                        <ChevronLeft size={14} />
+                        <button onClick={() => router.push('/articles')} className="hover:text-[#2f4ea1] transition-colors">מאמרים</button>
+                        <ChevronLeft size={14} />
+                        <span className="text-gray-900">{article.title}</span>
                     </div>
 
                     <div className="text-right mb-12">
