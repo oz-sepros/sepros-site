@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart } from 'lucide-react';
@@ -84,20 +84,17 @@ const SocialCarousel = () => {
     const [touchEnd, setTouchEnd] = useState(null);
     const [autoPlay, setAutoPlay] = useState(true);
     
-    // ׳”׳¡׳¨׳˜׳•׳ ׳™׳ ׳”׳׳׳™׳×׳™׳™׳ (YouTube Shorts) ׳©׳ ׳”׳׳§׳•׳—
+    // הסרטונים האמיתיים (YouTube Shorts) של הלקוח
     const baseItems = [
-        { id: "ce4XWYqPApc" },
-        { id: "SFHBRCBtvog" },
-        { id: "8D6dfBAYmvY" },
-        { id: "D8hOZ_PXC-4" },
-        { id: "v1qFbJElfJ4" },
-        { id: "pUF5lAJ85vg" },
-        { id: "a5OyApZs98g" },
-        { id: "5AVwndFocNU" },
-        { id: "XE9emYNGeKo" },
-        { id: "zRZstpNyqrk" }
+        { id: "8l4iphxZurc" }, 
+        { id: "ABEaNtb2oeA" },
+        { id: "uc110NcS9zc" },
+        { id: "bggmFXyPUYE" },
+        { id: "CUV3z0Ify9Y" },
+        { id: "L0T-QWKvLqU" },
+        { id: "i2D0NOb4IZ8" }
     ];
-    // ׳ ׳›׳₪׳™׳ ׳׳× ׳”׳׳¢׳¨׳ ׳›׳“׳™ ׳׳׳ ׳•׳¢ ׳§׳₪׳™׳¦׳•׳× ׳•׳™׳–׳•׳׳׳™׳•׳× ׳‘׳׳¦׳‘ ׳׳¢׳’׳ ׳׳™׳ ׳¡׳•׳₪׳™
+    // נכפיל את המערך כדי למנוע קפיצות ויזואליות במצב מעגל אינסופי
     const items = [...baseItems, ...baseItems];
 
     const handleNext = () => {
@@ -114,16 +111,16 @@ const SocialCarousel = () => {
         if (!isHovered && !playing && autoPlay) {
             interval = setInterval(() => {
                 handleNext();
-            }, 3500); // 3.5 ׳©׳ ׳™׳•׳×, ׳׳ ׳׳”׳™׳¨ ׳׳™׳“׳™
+            }, 3500); // 3.5 שניות, לא מהיר מידי
         }
         return () => clearInterval(interval);
     }, [isHovered, playing, autoPlay, items.length]);
 
-    // Touch Handlers ׳׳׳•׳‘׳™׳™׳
+    // Touch Handlers למובייל
     const onTouchStart = (e) => {
         setTouchEnd(null);
         setTouchStart(e.targetTouches[0].clientX);
-        setAutoPlay(false); // ׳”׳₪׳¡׳§׳× ׳¡׳™׳‘׳•׳‘ ׳׳•׳˜׳•׳׳˜׳™ ׳›׳©׳ ׳•׳’׳¢׳™׳
+        setAutoPlay(false); // הפסקת סיבוב אוטומטי כשנוגעים
     };
 
     const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
@@ -137,18 +134,18 @@ const SocialCarousel = () => {
         const isLeftSwipe = distance > 50;
         const isRightSwipe = distance < -50;
         
-        // ׳‘׳¢׳‘׳¨׳™׳× RTL: ׳”׳—׳׳§׳× ׳™׳׳™׳ ׳” ׳׳‘׳™׳׳” ׳׳”׳¦׳“ ׳”׳©׳׳׳׳™ (Next). ׳”׳—׳׳§׳× ׳©׳׳׳׳” ׳׳‘׳™׳׳” ׳׳”׳¦׳“ ׳”׳™׳׳ ׳™ (Prev)
+        // בעברית RTL: החלקת ימינה מביאה מהצד השמאלי (Next). החלקת שמאלה מביאה מהצד הימני (Prev)
         if (isRightSwipe) handleNext();
         if (isLeftSwipe) handlePrev();
         
-        // ׳”׳—׳–׳¨׳× ׳”׳ ׳™׳’׳•׳ ׳”׳׳•׳˜׳•׳׳˜׳™ ׳׳—׳¨׳™ ׳›׳׳” ׳©׳ ׳™׳•׳× ׳©׳ ׳—׳•׳¡׳¨ ׳׳’׳¢
+        // החזרת הניגון האוטומטי אחרי כמה שניות של חוסר מגע
         setTimeout(() => setAutoPlay(true), 2500);
     };
 
-    // ׳₪׳•׳ ׳§׳¦׳™׳” ׳׳—׳™׳©׳•׳‘ ׳”׳׳¨׳—׳§ ׳©׳ ׳›׳ ׳¡׳¨׳˜׳•׳ ׳׳”׳׳¨׳›׳–
+    // פונקציה לחישוב המרחק של כל סרטון מהמרכז
     const getOffset = (index) => {
         let offset = index - active;
-        // ׳׳¦׳™׳׳× ׳”׳ ׳×׳™׳‘ ׳”׳§׳¦׳¨ ׳‘׳™׳•׳×׳¨ ׳‘׳׳¢׳’׳
+        // מציאת הנתיב הקצר ביותר במעגל
         if (offset > Math.floor(items.length / 2)) offset -= items.length;
         if (offset < -Math.floor(items.length / 2)) offset += items.length;
         return offset;
@@ -165,8 +162,8 @@ const SocialCarousel = () => {
         >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-[800px] h-[300px] bg-[#2f4ea1]/5 blur-[80px] rounded-full pointer-events-none"></div>
             
-            <h2 className="text-4xl md:text-5xl font-black text-[#2f4ea1] mb-2 md:mb-4 text-center relative z-10 tracking-tight text-balance">׳”׳¦׳¦׳” ׳׳×׳•׳›׳ ׳©׳׳ ׳—׳ ׳• ׳™׳•׳¦׳¨׳™׳</h2>
-            <p className="text-gray-600 text-lg md:text-xl text-center max-w-2xl mb-6 md:mb-10 relative z-10 px-6 font-medium text-balance">׳×׳•׳›׳ ׳©׳׳ ׳™׳¢ ׳׳₪׳¢׳•׳׳” - UGC, ׳¨׳™׳׳¡׳™׳, ׳₪׳¨׳¡׳•׳׳•׳× ׳§׳¦׳¨׳•׳×, ׳˜׳¨׳ ׳“׳™׳, ׳׳₪׳ ׳™/׳׳—׳¨׳™.</p>
+            <h3 className="text-4xl md:text-5xl font-black text-[#2f4ea1] mb-2 md:mb-4 text-center relative z-10 tracking-tight text-balance">הצצה לתוכן שאנחנו יוצרים</h3>
+            <p className="text-gray-600 text-lg md:text-xl text-center max-w-2xl mb-6 md:mb-10 relative z-10 px-6 font-medium text-balance">תוכן שמניע לפעולה - UGC, רילסים, פרסומות קצרות, טרנדים, לפני/אחרי.</p>
 
             <div className="relative flex items-center justify-center w-full h-[460px] md:h-[550px] max-w-[1200px] mx-auto">
                 <button onClick={handlePrev} className="absolute right-2 md:right-12 top-1/2 z-40 p-3 md:p-4 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.15)] text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-all hover:scale-110 -translate-y-1/2"><ChevronRight size={24} /></button>
@@ -219,7 +216,7 @@ const SocialCarousel = () => {
                                 </iframe>
                             ) : (
                                 <>
-                                    <img src={`https://img.youtube.com/vi/${item.id}/hqdefault.jpg`} alt="׳©׳•׳¨׳˜׳¡ - ׳“׳•׳’׳׳”" loading="lazy" className="w-full h-full object-cover transition-transform duration-1000 md:group-hover:scale-105" />
+                                    <img src={`https://img.youtube.com/vi/${item.id}/hqdefault.jpg`} alt="שורטס - דוגמה" loading="lazy" className="w-full h-full object-cover transition-transform duration-1000 md:group-hover:scale-105" />
                                     <div className={`absolute inset-0 transition-colors duration-500 flex items-center justify-center ${isActive ? 'bg-black/10 hover:bg-black/20' : 'bg-black/40'}`}>
                                         {isActive && (
                                             <div className="w-16 h-16 md:w-20 md:h-20 bg-white/95 backdrop-blur-md rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(0,0,0,0.3)] hover:scale-110 hover:bg-white transition-transform duration-300">
@@ -368,7 +365,7 @@ const DepartmentHeroVisual = ({ category }) => {
                          <div className="col-span-2 bg-white rounded-2xl shadow-lg border border-gray-100 p-5 flex items-center justify-between transition-transform group-hover:-translate-y-1">
                              <div>
                                  <div className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 dir-ltr text-left">Total Revenue</div>
-                                 <div className="text-3xl font-black text-[#0b1638]">ג‚×2.4M</div>
+                                 <div className="text-3xl font-black text-[#0b1638]">₪2.4M</div>
                              </div>
                              <LineChart size={40} className="text-[#2f4ea1]" />
                          </div>
@@ -395,17 +392,17 @@ const AnimatedSeoGraph = () => {
         <div className="mt-16 w-full bg-transparent">
             {/* Header */}
             <div className="text-center mb-10 md:mb-16">
-                <span className="inline-block bg-[#2f4ea1]/10 text-[#2f4ea1] px-4 py-2 rounded-full text-sm font-bold tracking-widest mb-4 uppercase shadow-sm">׳“׳•׳’׳׳” ׳׳ ׳×׳•׳ ׳™ ׳׳§׳•׳—</span>
-                <h2 className="text-[#0b1638] font-black text-3xl md:text-5xl text-balance">׳׳›׳‘׳•׳© ׳׳× ׳”׳׳§׳•׳׳•׳× ׳©׳׳•׳›׳¨׳™׳</h2>
-                <p className="text-gray-500 font-medium max-w-2xl mx-auto mt-4 md:mt-6 text-balance md:text-lg">׳×׳”׳׳™׳ ׳”-SEO ׳©׳׳ ׳• ׳׳™׳™׳¦׳¨ ׳¡׳׳›׳•׳× ׳׳׳™׳×׳™׳× ׳‘׳¨׳©׳×. ׳›׳›׳” ׳ ׳¨׳׳™׳× ׳”׳©׳×׳׳˜׳•׳× ׳¢׳ ׳”׳‘׳™׳˜׳•׳™׳™׳ ׳”׳×׳—׳¨׳•׳×׳™׳™׳ ׳‘׳¢׳ ׳£ ׳©׳׳›׳₪׳™׳ ׳׳× ׳›׳׳•׳× ׳”׳›׳ ׳™׳¡׳•׳× ׳׳׳©׳׳׳™׳ ׳₪׳•׳˜׳ ׳¦׳™׳׳׳™׳.</p>
+                <span className="inline-block bg-[#2f4ea1]/10 text-[#2f4ea1] px-4 py-2 rounded-full text-sm font-bold tracking-widest mb-4 uppercase shadow-sm">דוגמה לנתוני לקוח</span>
+                <h2 className="text-[#0b1638] font-black text-3xl md:text-5xl text-balance">לכבוש את המקומות שמוכרים</h2>
+                <p className="text-gray-500 font-medium max-w-2xl mx-auto mt-4 md:mt-6 text-balance md:text-lg">תהליך ה-SEO שלנו מייצר סמכות אמיתית ברשת. ככה נראית השתלטות על הביטויים התחרותיים בענף שמכפיל את כמות הכניסות ממשלמים פוטנציאלים.</p>
             </div>
 
             <div className="flex flex-col lg:flex-row gap-6 md:gap-10 items-stretch">
                 {/* Search Mockup */}
                 <div className="lg:w-[45%] w-full bg-[#f8f9fa] rounded-3xl p-6 md:p-10 border border-gray-200/60 shadow-inner flex flex-col justify-center">
                     <div className="text-right mb-8">
-                        <h3 className="font-bold text-gray-900 text-2xl tracking-tight">׳›׳›׳” ׳–׳” ׳ ׳¨׳׳” ׳‘׳׳§׳•׳ ׳”׳¨׳׳©׳•׳</h3>
-                        <p className="text-gray-500 text-base mt-2">׳×׳•׳¦׳׳•׳× ׳׳•׳¨׳’׳ ׳™׳•׳× ׳‘׳’׳•׳’׳ (׳׳׳ ׳§׳™׳“׳•׳ ׳׳׳•׳׳)</p>
+                        <h3 className="font-bold text-gray-900 text-2xl tracking-tight">ככה זה נראה במקום הראשון</h3>
+                        <p className="text-gray-500 text-base mt-2">תוצאות אורגניות בגוגל (ללא קידום ממומן)</p>
                     </div>
 
                     <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm transition-all hover:shadow-lg cursor-pointer group mb-6 relative overflow-hidden">
@@ -416,8 +413,8 @@ const AnimatedSeoGraph = () => {
                                 <Globe size={14} className="text-[#2f4ea1]" />
                             </div>
                         </div>
-                        <h2 className="text-[#1a0dab] font-normal text-2xl md:text-3xl group-hover:underline mb-2 font-arial dir-rtl text-right">׳”׳©׳™׳¨׳•׳× ׳©׳׳×׳ ׳׳¦׳™׳¢׳™׳ - ׳”׳׳×׳¨ ׳©׳׳›׳</h2>
-                        <p className="text-[#4d5156] text-sm md:text-base leading-relaxed font-arial dir-rtl text-right">׳›׳׳ ׳׳•׳₪׳™׳¢ ׳×׳™׳׳•׳¨ ׳׳•׳©׳ ׳©׳ ׳”׳¢׳¡׳§ ׳©׳׳›׳ ׳©׳’׳•׳¨׳ ׳׳׳§׳•׳— ׳׳׳—׳•׳¥ ׳•׳׳”׳™׳›׳ ׳¡ ׳“׳•׳•׳§׳ ׳׳׳×׳¨ ׳©׳׳›׳ ׳•׳׳ ׳׳׳£ ׳׳—׳“ ׳׳×׳•׳ ׳›׳ ׳”׳׳×׳—׳¨׳™׳ ׳‘׳¢׳׳•׳“ ׳”׳¨׳׳©׳•׳ ׳‘׳’׳•׳’׳.</p>
+                        <h3 className="text-[#1a0dab] font-normal text-2xl md:text-3xl group-hover:underline mb-2 font-arial dir-rtl text-right">השירות שאתם מציעים - האתר שלכם</h3>
+                        <p className="text-[#4d5156] text-sm md:text-base leading-relaxed font-arial dir-rtl text-right">כאן מופיע תיאור מושך של העסק שלכם שגורם ללקוח ללחוץ ולהיכנס דווקא לאתר שלכם ולא לאף אחד מתוך כל המתחרים בעמוד הראשון בגוגל.</p>
                     </div>
 
                     <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm opacity-60 filter grayscale scale-[0.98]">
@@ -427,8 +424,8 @@ const AnimatedSeoGraph = () => {
                                 <Globe size={14} className="text-gray-500" />
                             </div>
                         </div>
-                        <h2 className="text-[#1a0dab] font-normal text-xl md:text-2xl mb-2 font-arial dir-rtl text-right">׳”׳׳×׳—׳¨׳” ׳”׳›׳™ ׳’׳“׳•׳ ׳©׳׳›׳</h2>
-                        <p className="text-[#4d5156] text-sm md:text-base leading-relaxed font-arial dir-rtl text-right">׳×׳™׳׳•׳¨ ׳”׳¢׳¡׳§ ׳©׳ ׳”׳׳×׳—׳¨׳” ׳©׳ ׳׳¦׳ ׳׳×׳—׳×׳™׳›׳ ׳•׳׳׳‘׳“ ׳׳× ׳׳¨׳‘׳™׳× ׳”׳˜׳¨׳׳₪׳™׳§ ׳‘׳¢׳ ׳£ ׳׳׳© ׳‘׳¨׳’׳¢׳™׳ ׳׳׳•.</p>
+                        <h3 className="text-[#1a0dab] font-normal text-xl md:text-2xl mb-2 font-arial dir-rtl text-right">המתחרה הכי גדול שלכם</h3>
+                        <p className="text-[#4d5156] text-sm md:text-base leading-relaxed font-arial dir-rtl text-right">תיאור העסק של המתחרה שנמצא מתחתיכם ומאבד את מרבית הטראפיק בענף ממש ברגעים אלו.</p>
                     </div>
                 </div>
 
@@ -436,7 +433,7 @@ const AnimatedSeoGraph = () => {
                 <div className="lg:w-[55%] w-full bg-white rounded-3xl p-6 md:p-10 border border-gray-100 shadow-[0_20px_50px_rgba(47,78,161,0.05)] flex flex-col justify-center relative group">
                     <div className="flex justify-between items-end mb-8 relative z-10 w-full">
                         <div className="text-right">
-                             <h3 className="font-bold text-gray-900 text-2xl tracking-tight">׳ ׳₪׳— ׳×׳ ׳•׳¢׳” ׳׳•׳¨׳’׳ ׳™׳× (׳›׳ ׳™׳¡׳•׳×)</h3>
+                             <h3 className="font-bold text-gray-900 text-2xl tracking-tight">נפח תנועה אורגנית (כניסות)</h3>
                         </div>
                         <div className="bg-[#2f4ea1]/5 text-[#2f4ea1] font-black text-2xl md:text-4xl px-5 py-3 rounded-xl dir-ltr text-center shadow-inner border border-[#2f4ea1]/10">
                             +345%
@@ -478,25 +475,25 @@ const AnimatedSeoGraph = () => {
                         {/* Tooltips */}
                         <div className="absolute top-[80%] left-[0%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none"></div>
-                            <div className="absolute top-8 left-0 md:left-1/2 md:-translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">2,100 ׳›׳ ׳™׳¡׳•׳×</div>
+                            <div className="absolute top-8 left-0 md:left-1/2 md:-translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">2,100 כניסות</div>
                         </div>
                         <div className="absolute top-[70%] left-[25%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0.6s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none" style={{ animationDelay: '0.6s' }}></div>
-                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">3,850 ׳›׳ ׳™׳¡׳•׳×</div>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">3,850 כניסות</div>
                         </div>
                         <div className="absolute top-[45%] left-[50%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.2s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none" style={{ animationDelay: '1.2s' }}></div>
-                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">5,900 ׳›׳ ׳™׳¡׳•׳×</div>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">5,900 כניסות</div>
                         </div>
                         <div className="absolute top-[12.5%] left-[85%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.8s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none" style={{ animationDelay: '1.8s' }}></div>
-                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">9,420 ׳›׳ ׳™׳¡׳•׳×</div>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">9,420 כניסות</div>
                         </div>
                         <div className="absolute top-[5%] left-[100%] w-8 h-8 md:w-8 md:h-8 bg-[#2f4ea1] border-[6px] border-white rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-110 cursor-pointer shadow-lg transition-all group/pt z-20" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '2.5s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none"></div>
                             <div className="absolute top-1/2 right-[120%] -translate-y-1/2 bg-[#2f4ea1] text-white text-[15px] font-black py-2 px-4 rounded shadow-xl opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap w-max pointer-events-none flex flex-col items-center">
-                                <span>12,800 ׳›׳ ׳™׳¡׳•׳×</span>
-                                <span className="text-blue-200 text-xs mt-0.5">׳›׳™׳•׳</span>
+                                <span>12,800 כניסות</span>
+                                <span className="text-blue-200 text-xs mt-0.5">כיום</span>
                             </div>
                         </div>
 
@@ -529,36 +526,36 @@ const SponsoredPpcGraph = () => {
         <div className="mt-16 w-full bg-transparent">
             {/* Header */}
             <div className="text-center mb-10 md:mb-16">
-                <span className="inline-block bg-[url('#')] bg-[#2f4ea1]/10 text-[#2f4ea1] px-4 py-2 rounded-full text-sm font-bold tracking-widest mb-4 uppercase shadow-sm">׳“׳•׳’׳׳” ׳׳ ׳×׳•׳ ׳™ ׳׳§׳•׳—</span>
-                <h2 className="text-[#0b1638] font-black text-3xl md:text-5xl text-balance">׳׳›׳‘׳•׳© ׳׳× ׳”׳—׳™׳₪׳•׳©׳™׳ ׳©׳׳•׳›׳¨׳™׳</h2>
-                <p className="text-gray-500 font-medium max-w-2xl mx-auto mt-4 md:mt-6 text-balance md:text-lg">׳”׳׳˜׳¨׳” ׳©׳׳ ׳• ׳”׳™׳ ׳׳ ׳¨׳§ ׳˜׳¨׳׳₪׳™׳§, ׳׳׳ ׳”׳׳¨׳•׳× ׳©׳•׳¨׳•׳× ׳×׳—׳×׳•׳ ׳•׳×. ׳›׳›׳” ׳ ׳¨׳׳™׳× ׳”׳©׳×׳׳˜׳•׳× ׳׳׳•׳׳ ׳× ׳©׳׳‘׳™׳׳” ׳׳™׳“׳™׳ ׳—׳׳™׳ ׳•׳׳›׳₪׳™׳׳” ׳׳× ׳”׳—׳–׳¨ ׳”׳”׳©׳§׳¢׳”.</p>
+                <span className="inline-block bg-[url('#')] bg-[#2f4ea1]/10 text-[#2f4ea1] px-4 py-2 rounded-full text-sm font-bold tracking-widest mb-4 uppercase shadow-sm">דוגמה לנתוני לקוח</span>
+                <h2 className="text-[#0b1638] font-black text-3xl md:text-5xl text-balance">לכבוש את החיפושים שמוכרים</h2>
+                <p className="text-gray-500 font-medium max-w-2xl mx-auto mt-4 md:mt-6 text-balance md:text-lg">המטרה שלנו היא לא רק טראפיק, אלא המרות שורות תחתונות. ככה נראית השתלטות ממומנת שמביאה לידים חמים ומכפילה את החזר ההשקעה.</p>
             </div>
 
             <div className="flex flex-col lg:flex-row gap-6 md:gap-10 items-stretch">
                 {/* Search Mockup */}
                 <div className="lg:w-[45%] w-full bg-[#f8f9fa] rounded-3xl p-6 md:p-10 border border-gray-200/60 shadow-inner flex flex-col justify-center">
                     <div className="text-right mb-8">
-                        <h3 className="font-bold text-gray-900 text-2xl tracking-tight">׳›׳›׳” ׳ ׳¨׳׳™׳× ׳׳•׳“׳¢׳” ׳׳ ׳¦׳—׳×</h3>
-                        <p className="text-gray-500 text-base mt-2">׳×׳•׳¦׳׳•׳× ׳׳׳•׳׳ ׳•׳× ׳‘׳’׳•׳’׳ (PPC)</p>
+                        <h3 className="font-bold text-gray-900 text-2xl tracking-tight">ככה נראית מודעה מנצחת</h3>
+                        <p className="text-gray-500 text-base mt-2">תוצאות ממומנות בגוגל (PPC)</p>
                     </div>
 
                     <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm transition-all hover:shadow-lg cursor-pointer group mb-6 relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-2 h-full bg-[#2f4ea1]"></div>
                         <div className="flex items-center gap-2 mb-3 dir-ltr justify-end">
                             <span className="text-sm text-gray-800 tracking-wide font-medium">https://www.your-domain.co.il</span>
-                            <span className="text-xs font-black text-gray-900 mx-1">׳׳׳•׳׳</span>
+                            <span className="text-xs font-black text-gray-900 mx-1">ממומן</span>
                         </div>
-                        <h2 className="text-[#1a0dab] font-normal text-2xl md:text-3xl group-hover:underline mb-2 font-arial dir-rtl text-right">׳”׳©׳™׳¨׳•׳× ׳©׳׳×׳ ׳׳¦׳™׳¢׳™׳ - ׳”׳׳×׳¨ ׳©׳׳›׳</h2>
-                        <p className="text-[#4d5156] text-sm md:text-base leading-relaxed font-arial dir-rtl text-right">׳§׳•׳₪׳™׳¨׳™׳™׳˜׳™׳ ׳’ ׳׳“׳•׳™׳§ ׳©׳׳‘׳•׳¡׳¡ ׳¢׳ ׳₪׳¡׳™׳›׳•׳׳•׳’׳™׳” ׳¦׳¨׳›׳ ׳™׳×, ׳¢׳ ׳”׳ ׳¢׳” ׳׳₪׳¢׳•׳׳” ׳©׳’׳•׳¨׳׳× ׳׳׳§׳•׳— ׳׳׳—׳•׳¥ ׳•׳׳”׳©׳׳™׳¨ ׳₪׳¨׳˜׳™׳ ׳׳¦׳׳›׳.</p>
+                        <h3 className="text-[#1a0dab] font-normal text-2xl md:text-3xl group-hover:underline mb-2 font-arial dir-rtl text-right">השירות שאתם מציעים - האתר שלכם</h3>
+                        <p className="text-[#4d5156] text-sm md:text-base leading-relaxed font-arial dir-rtl text-right">קופירייטינג מדויק שמבוסס על פסיכולוגיה צרכנית, עם הנעה לפעולה שגורמת ללקוח ללחוץ ולהשאיר פרטים אצלכם.</p>
                     </div>
 
                     <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm opacity-60 filter grayscale scale-[0.98]">
                         <div className="flex items-center gap-2 mb-3 dir-ltr justify-end">
                             <span className="text-sm text-gray-800 tracking-wide">https://www.competitor.co.il</span>
-                            <span className="text-xs font-black text-gray-900 mx-1">׳׳׳•׳׳</span>
+                            <span className="text-xs font-black text-gray-900 mx-1">ממומן</span>
                         </div>
-                        <h2 className="text-[#1a0dab] font-normal text-xl md:text-2xl mb-2 font-arial dir-rtl text-right">׳׳•׳“׳¢׳•׳× ׳©׳ ׳׳×׳—׳¨׳™׳ ׳‘׳¢׳ ׳£</h2>
-                        <p className="text-[#4d5156] text-sm md:text-base leading-relaxed font-arial dir-rtl text-right">׳¢׳•׳“ ׳׳•׳“׳¢׳” ׳‘׳ ׳׳׳™׳× ׳•׳›׳׳׳™׳× ׳©׳©׳•׳¨׳₪׳× ׳×׳§׳¦׳™׳‘ ׳•׳§׳׳™׳§׳™׳ ׳‘׳׳™ ׳׳¡׳˜׳¨׳˜׳’׳™׳× ׳”׳׳¨׳•׳× ׳׳•׳×׳׳׳×.</p>
+                        <h3 className="text-[#1a0dab] font-normal text-xl md:text-2xl mb-2 font-arial dir-rtl text-right">מודעות של מתחרים בענף</h3>
+                        <p className="text-[#4d5156] text-sm md:text-base leading-relaxed font-arial dir-rtl text-right">עוד מודעה בנאלית וכללית ששורפת תקציב וקליקים בלי אסטרטגית המרות מותאמת.</p>
                     </div>
                 </div>
 
@@ -566,7 +563,7 @@ const SponsoredPpcGraph = () => {
                 <div className="lg:w-[55%] w-full bg-white rounded-3xl p-6 md:p-10 border border-gray-100 shadow-[0_20px_50px_rgba(47,78,161,0.05)] flex flex-col justify-center relative group">
                     <div className="flex justify-between items-end mb-8 relative z-10 w-full">
                         <div className="text-right">
-                             <h3 className="font-bold text-gray-900 text-2xl tracking-tight">׳”׳—׳–׳¨ ׳”׳©׳§׳¢׳” ׳‘׳₪׳¨׳¡׳•׳ (ROAS)</h3>
+                             <h3 className="font-bold text-gray-900 text-2xl tracking-tight">החזר השקעה בפרסום (ROAS)</h3>
                         </div>
                         <div className="bg-[#2f4ea1]/5 text-[#2f4ea1] font-black text-2xl md:text-4xl px-5 py-3 rounded-xl dir-ltr text-center shadow-inner border border-[#2f4ea1]/10">
                             x4.5
@@ -608,21 +605,21 @@ const SponsoredPpcGraph = () => {
                         {/* Tooltips */}
                         <div className="absolute top-[75%] left-[0%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none"></div>
-                            <div className="absolute top-8 left-0 md:left-1/2 md:-translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">ג‚×11,500 ׳”׳›׳ ׳¡׳•׳×</div>
+                            <div className="absolute top-8 left-0 md:left-1/2 md:-translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">₪11,500 הכנסות</div>
                         </div>
                         <div className="absolute top-[55%] left-[35%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0.6s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none" style={{ animationDelay: '0.6s' }}></div>
-                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">ג‚×38,200 ׳”׳›׳ ׳¡׳•׳×</div>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">₪38,200 הכנסות</div>
                         </div>
                         <div className="absolute top-[25%] left-[75%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.2s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none" style={{ animationDelay: '1.2s' }}></div>
-                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">ג‚×82,000 ׳”׳›׳ ׳¡׳•׳×</div>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">₪82,000 הכנסות</div>
                         </div>
                         <div className="absolute top-[5%] left-[100%] w-8 h-8 md:w-8 md:h-8 bg-[#2f4ea1] border-[6px] border-white rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-110 cursor-pointer shadow-lg transition-all group/pt z-20" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '2.5s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none"></div>
                             <div className="absolute top-1/2 right-[120%] -translate-y-1/2 bg-[#2f4ea1] text-white text-[15px] font-black py-2 px-4 rounded shadow-xl opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap w-max pointer-events-none flex flex-col items-center">
-                                <span>ג‚×154,500 ׳”׳›׳ ׳¡׳•׳×</span>
-                                <span className="text-blue-200 text-xs mt-0.5">׳›׳™׳•׳</span>
+                                <span>₪154,500 הכנסות</span>
+                                <span className="text-blue-200 text-xs mt-0.5">כיום</span>
                             </div>
                         </div>
                     </div>
@@ -657,9 +654,9 @@ const DepartmentPortfolio = ({ category }) => {
                  <AnimatedSeoGraph />
                  <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 w-full lg:w-[95%] mx-auto">
                     {[
-                        { label: "׳¦׳׳™׳—׳” ׳‘׳˜׳¨׳׳₪׳™׳§", val: "+280%" },
-                        { label: "׳¢׳׳•׳“ ׳¨׳׳©׳•׳", val: "150+" },
-                        { label: "׳”׳׳¨׳•׳× ׳׳׳•׳¨׳’׳ ׳™ (CR)", val: "+75%" }
+                        { label: "צמיחה בטראפיק", val: "+280%" },
+                        { label: "עמוד ראשון", val: "150+" },
+                        { label: "המרות מאורגני (CR)", val: "+75%" }
                     ].map((stat, i) => (
                         <div key={i} className="bg-white shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 p-8 text-center rounded-2xl relative overflow-hidden group">
                             <div className="text-5xl md:text-6xl font-black text-[#2f4ea1] mb-2 dir-ltr">{stat.val}</div>
@@ -675,9 +672,9 @@ const DepartmentPortfolio = ({ category }) => {
         return (
              <div className="mt-16 md:mt-24">
                  <div className="mb-14">
-                     <h2 className="text-gray-900 font-black text-2xl md:text-4xl mb-5 border-r-4 border-[#2f4ea1] pr-4">׳׳§׳•׳¡׳™׳¡׳˜׳ ׳©׳ ׳”׳׳¨׳•׳×</h2>
+                     <h2 className="text-gray-900 font-black text-2xl md:text-4xl mb-5 border-r-4 border-[#2f4ea1] pr-4">אקוסיסטם של המרות</h2>
                      <p className="text-gray-600 text-lg md:text-xl font-medium leading-relaxed max-w-4xl">
-                         ׳™׳¦׳™׳¨׳× ׳ ׳•׳›׳—׳•׳× ׳“׳™׳’׳™׳˜׳׳™׳× ׳¨׳‘-׳¢׳¨׳•׳¦׳™׳× ׳”׳™׳ ׳§׳¨׳™׳˜׳™׳× ׳׳©׳׳™׳¨׳” ׳¢׳ ׳¢׳׳™׳•׳ ׳•׳× (Top Of Mind) ׳׳¦׳ ׳”׳׳§׳•׳—. ׳׳ ׳—׳ ׳• ׳₪׳•׳¨׳¡׳™׳ ׳׳× ׳”׳׳¡׳¨׳™׳ ׳©׳׳›׳ ׳¢׳ ׳₪׳ ׳™ ׳›׳ ׳”׳₪׳׳˜׳₪׳•׳¨׳׳•׳× ׳”׳—׳׳•׳× ׳‘׳™׳•׳×׳¨ ג€“ ׳”׳—׳ ׳׳§׳׳₪׳™׳™׳ ׳™׳ ׳׳‘׳•׳¡׳¡׳™ ׳”׳—׳׳˜׳” ׳‘׳’׳•׳’׳ ׳—׳™׳₪׳•׳©, ׳“׳¨׳ ׳•׳™׳“׳׳• ׳‘׳¨׳©׳×׳•׳× ׳”׳׳˜׳, ׳•׳›׳׳” ׳‘׳׳™׳ ׳§׳“׳׳™׳ ׳•-TikTok. ׳”׳׳•׳“׳¢׳•׳× ׳™׳¢׳˜׳₪׳• ׳׳× ׳”׳’׳•׳׳© ׳׳›׳ ׳¢׳‘׳¨ ׳‘׳׳׳¦׳¢׳•׳× ׳¨׳™׳׳¨׳§׳˜׳™׳ ׳’ ׳“׳™׳ ׳׳™ ׳—׳›׳.
+                         יצירת נוכחות דיגיטלית רב-ערוצית היא קריטית לשמירה על עליונות (Top Of Mind) אצל הלקוח. אנחנו פורסים את המסרים שלכם על פני כל הפלטפורמות החמות ביותר – החל מקמפיינים מבוססי החלטה בגוגל חיפוש, דרך וידאו ברשתות המטא, וכלה בלינקדאין ו-TikTok. המודעות יעטפו את הגולש מכל עבר באמצעות רימרקטינג דינמי חכם.
                      </p>
                  </div>
                  <div className="mb-16 -mx-6 md:mx-0 rounded-3xl overflow-hidden py-10 bg-gray-50 border border-gray-100 shadow-inner">
@@ -686,9 +683,9 @@ const DepartmentPortfolio = ({ category }) => {
                  <SponsoredPpcGraph />
                  <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 w-full lg:w-[95%] mx-auto">
                     {[
-                        { label: "׳”׳—׳–׳¨ ׳”׳©׳§׳¢׳” (ROAS)", val: "x4.5" },
-                        { label: "׳™׳¨׳™׳“׳” ׳‘׳¢׳׳•׳× ׳׳׳™׳“", val: "-45%" },
-                        { label: "׳¦׳׳™׳—׳” ׳‘׳׳›׳™׳¨׳•׳×", val: "+350%" }
+                        { label: "החזר השקעה (ROAS)", val: "x4.5" },
+                        { label: "ירידה בעלות לליד", val: "-45%" },
+                        { label: "צמיחה במכירות", val: "+350%" }
                     ].map((stat, i) => (
                         <div key={i} className="bg-white shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 p-8 text-center rounded-2xl relative overflow-hidden group">
                             <div className="text-5xl md:text-6xl font-black text-[#2f4ea1] mb-2 dir-ltr">{stat.val}</div>
@@ -703,12 +700,12 @@ const DepartmentPortfolio = ({ category }) => {
     if (category === 'analytics') {
         return (
             <div className="mt-16 md:mt-24">
-                <h2 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">׳ ׳×׳•׳ ׳™׳ ׳©׳׳“׳‘׳¨׳™׳</h2>
+                <h2 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">נתונים שמדברים</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {[
-                        { label: "׳’׳™׳“׳•׳ ׳‘׳˜׳¨׳׳₪׳™׳§", val: "+280%" },
-                        { label: "׳׳™׳§׳•׳׳™׳ ׳‘׳¢׳׳•׳“ 1", val: "150+" },
-                        { label: "׳™׳—׳¡ ׳”׳׳¨׳” (CR)", val: "+12%" }
+                        { label: "גידול בטראפיק", val: "+280%" },
+                        { label: "מיקומים בעמוד 1", val: "150+" },
+                        { label: "יחס המרה (CR)", val: "+12%" }
                     ].map((stat, i) => (
                         <div key={i} className="bg-white shadow-sm hover:shadow-md transition-shadow border border-gray-100 p-8 text-center rounded-lg">
                             <div className="text-5xl font-black text-[#2f4ea1] mb-2 dir-ltr">{stat.val}</div>
@@ -722,20 +719,20 @@ const DepartmentPortfolio = ({ category }) => {
 
     if (category === 'tech') {
         const webProjects = [
-            { id: "toronto", title: "׳™׳©׳¨׳׳ ׳§׳ ׳“׳” - Toronto", link: "https://lp.israel-canada.co.il/english/toronto_israel_canada/", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop" },
-            { id: "renovo", title: "׳¨׳ ׳•׳‘׳• - ׳׳’׳“׳ ׳‘׳™׳׳׳™׳§", link: "https://lp.renovo.co.il/bialik_ramat_hasharon/", image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop" },
-            { id: "madbrand", title: "׳׳“׳‘׳¨׳ ׳“ - ׳₪׳ ׳™׳", link: "https://madbrand.co.il/", image: "https://images.unsplash.com/photo-1542004143822-26139ceea0d7?q=80&w=800&auto=format&fit=crop" },
-            { id: "midtown", title: "׳™׳©׳¨׳׳ ׳§׳ ׳“׳” - Midtown Jerusalem", link: "https://lp.israel-canada.co.il/midtown_jerusalem/", image: "https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=800&auto=format&fit=crop" },
-            { id: "colmobil", title: "׳›׳׳׳•׳‘׳™׳ ׳׳ ׳¨׳’׳™׳”", link: "https://lp.colmobil-energy.co.il/haver_mevi_haver/", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" },
-            { id: "azorim-melach", title: "׳׳–׳•׳¨׳™׳ - ׳׳׳— ׳”׳׳¨׳¥", link: "https://lp.azorim.co.il/minisite_melach_haaretz/", image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=800&auto=format&fit=crop" },
-            { id: "azorim-main", title: "׳׳–׳•׳¨׳™׳", link: "https://www.azorim.co.il/", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop" }
+            { id: "toronto", title: "ישראל קנדה - Toronto", link: "https://lp.israel-canada.co.il/english/toronto_israel_canada/", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop" },
+            { id: "renovo", title: "רנובו - מגדל ביאליק", link: "https://lp.renovo.co.il/bialik_ramat_hasharon/", image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop" },
+            { id: "madbrand", title: "מדברנד - פנים", link: "https://madbrand.co.il/", image: "https://images.unsplash.com/photo-1542004143822-26139ceea0d7?q=80&w=800&auto=format&fit=crop" },
+            { id: "midtown", title: "ישראל קנדה - Midtown Jerusalem", link: "https://lp.israel-canada.co.il/midtown_jerusalem/", image: "https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=800&auto=format&fit=crop" },
+            { id: "colmobil", title: "כלמוביל אנרגיה", link: "https://lp.colmobil-energy.co.il/haver_mevi_haver/", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" },
+            { id: "azorim-melach", title: "אזורים - מלח הארץ", link: "https://lp.azorim.co.il/minisite_melach_haaretz/", image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=800&auto=format&fit=crop" },
+            { id: "azorim-main", title: "אזורים", link: "https://www.azorim.co.il/", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop" }
         ];
 
 
         return (
             <div className="mt-16 md:mt-24">
-                <h2 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">׳₪׳¨׳•׳™׳§׳˜׳™׳ ׳ ׳‘׳—׳¨׳™׳ (Web)</h2>
-                <p className="text-gray-500 mb-8 font-medium">׳›׳“׳™ ׳׳¨׳׳•׳× ׳׳× ׳׳™׳›׳•׳× ׳”׳₪׳™׳×׳•׳— ׳”׳׳׳׳”, ׳׳—׳¦׳• ׳¢׳ ׳”׳₪׳¨׳•׳™׳§׳˜׳™׳ ׳•׳¦׳₪׳• ׳‘׳”׳ ׳‘׳׳•׳•׳™׳¨.</p>
+                <h2 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">פרויקטים נבחרים (Web)</h2>
+                <p className="text-gray-500 mb-8 font-medium">כדי לראות את איכות הפיתוח המלאה, לחצו על הפרויקטים וצפו בהם באוויר.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {webProjects.map((project, i) => (
                         <div key={i} 
@@ -762,7 +759,7 @@ const DepartmentPortfolio = ({ category }) => {
                                 </div>
                                 <div className="absolute inset-0 bg-[#2f4ea1]/90 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 backdrop-blur-[2px]">
                                     <ExternalLink size={32} className="text-white mb-2" />
-                                    <span className="text-white font-bold tracking-widest text-sm text-center px-4">׳¦׳₪׳• ׳‘׳׳×׳¨ ׳”׳—׳™</span>
+                                    <span className="text-white font-bold tracking-widest text-sm text-center px-4">צפו באתר החי</span>
                                 </div>
                             </div>
                         </div>
@@ -774,8 +771,8 @@ const DepartmentPortfolio = ({ category }) => {
                 {/* Tech Stack Segment */}
                 <div className="mt-16 md:mt-24 pt-16 border-t border-gray-100">
                     <div className="text-center mb-10">
-                        <h2 className="text-[#0b1638] font-black text-2xl md:text-4xl text-balance">׳׳•׳‘׳™׳׳™׳ ׳˜׳›׳ ׳•׳׳•׳’׳™׳×</h2>
-                        <p className="text-gray-500 font-bold mt-2 tracking-widest">׳”׳›׳׳™׳ ׳©׳׳ ׳—׳ ׳• ׳¢׳•׳‘׳“׳™׳ ׳׳™׳×׳</p>
+                        <h2 className="text-[#0b1638] font-black text-2xl md:text-4xl text-balance">מובילים טכנולוגית</h2>
+                        <p className="text-gray-500 font-bold mt-2 tracking-widest">הכלים שאנחנו עובדים איתם</p>
                     </div>
                     <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto" dir="ltr">
                         {['React', 'Next.js', 'Node.js', 'Tailwind CSS', 'Vercel', 'AWS', 'Shopify', 'WordPress Elementor'].map(tech => (
@@ -790,7 +787,7 @@ const DepartmentPortfolio = ({ category }) => {
     if (category === 'seo') {
         return (
             <div className="mt-16 md:mt-24 group">
-                <h2 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">׳׳¡׳˜׳¨׳˜׳’׳™׳” ׳׳•׳¨׳’׳ ׳™׳× ׳©׳׳ ׳¦׳—׳× ׳׳× ׳”׳׳׳’׳•׳¨׳™׳×׳</h2>
+                <h2 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">אסטרטגיה אורגנית שמנצחת את האלגוריתם</h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
                     <div className="bg-white rounded-[2rem] p-8 md:p-12 border border-gray-100 flex flex-col justify-end items-center overflow-hidden relative shadow-lg hover:shadow-xl transition-shadow group-hover:border-[#2f4ea1]/20">
@@ -805,8 +802,8 @@ const DepartmentPortfolio = ({ category }) => {
                             ))}
                         </div>
 
-                        <div className="text-4xl md:text-5xl font-black text-[#0b1638] mb-2 tracking-tighter relative z-10 hover:text-[#2f4ea1] transition-colors">׳¦׳׳™׳—׳” ׳׳•׳¨׳’׳ ׳™׳×</div>
-                        <div className="text-gray-500 font-extrabold text-sm uppercase tracking-widest relative z-10">׳˜׳¨׳׳₪׳™׳§ ׳׳™׳›׳•׳×׳™ ׳©׳׳™׳™׳¦׳¨ ׳׳™׳“׳™׳</div>
+                        <div className="text-4xl md:text-5xl font-black text-[#0b1638] mb-2 tracking-tighter relative z-10 hover:text-[#2f4ea1] transition-colors">צמיחה אורגנית</div>
+                        <div className="text-gray-500 font-extrabold text-sm uppercase tracking-widest relative z-10">טראפיק איכותי שמייצר לידים</div>
                     </div>
 
                     <div className="bg-[#2f4ea1] rounded-[2rem] p-8 md:p-12 border border-[#2f4ea1] flex flex-col justify-center items-center shadow-lg hover:shadow-xl transition-shadow relative overflow-hidden">
@@ -821,12 +818,12 @@ const DepartmentPortfolio = ({ category }) => {
                                     <span className="text-[11px] text-gray-500 truncate mt-0.5">https://www.sepros.co.il</span>
                                 </div>
                             </div>
-                            <div className="text-[#1a0dab] text-lg md:text-xl font-bold mb-2 hover:underline cursor-pointer tracking-tight">׳¡׳₪׳¨׳•׳¡ - ׳¡׳•׳›׳ ׳•׳× ׳”׳“׳™׳’׳™׳˜׳ ׳”׳׳•׳‘׳™׳׳” ׳‘׳™׳©׳¨׳׳</div>
-                            <div className="text-sm text-[#4d5156] leading-relaxed">׳”׳’׳¢׳ ׳• ׳׳׳§׳•׳ ׳”׳¨׳׳©׳•׳ ׳‘׳×׳•׳¦׳׳•׳× ׳”׳—׳™׳₪׳•׳© ׳¢׳‘׳•׳¨ ׳”׳‘׳™׳˜׳•׳™׳™׳ ׳”׳§׳©׳™׳ ׳‘׳™׳•׳×׳¨. ׳׳׳’׳•׳¨׳™׳×׳ ׳׳• ׳׳, ׳׳ ׳—׳ ׳• ׳™׳•׳“׳¢׳™׳ ׳׳™׳ ׳׳׳§׳ ׳׳•׳×׳’׳™׳...</div>
+                            <div className="text-[#1a0dab] text-lg md:text-xl font-bold mb-2 hover:underline cursor-pointer tracking-tight">ספרוס - סוכנות הדיגיטל המובילה בישראל</div>
+                            <div className="text-sm text-[#4d5156] leading-relaxed">הגענו למקום הראשון בתוצאות החיפוש עבור הביטויים הקשים ביותר. אלגוריתם או לא, אנחנו יודעים איך למקם מותגים...</div>
                         </div>
 
                         <div className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tighter relative z-10 text-center" dir="ltr">#1 Ranking</div>
-                        <div className="text-white/80 font-extrabold text-sm uppercase tracking-widest relative z-10 text-center text-balance">׳©׳׳™׳˜׳” ׳׳‘׳¡׳•׳׳•׳˜׳™׳× ׳‘׳‘׳™׳˜׳•׳™׳™ ׳׳₪׳×׳—</div>
+                        <div className="text-white/80 font-extrabold text-sm uppercase tracking-widest relative z-10 text-center text-balance">שליטה אבסולוטית בביטויי מפתח</div>
                     </div>
                 </div>
             </div>
@@ -835,12 +832,12 @@ const DepartmentPortfolio = ({ category }) => {
 
     if (category === 'design') {
         const designProjects = [
-            { id: "brand_1", title: '׳§׳׳₪׳™׳™׳ ׳¨׳׳©׳™', type: 'Hero Banner', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=1000' },
-            { id: "social_1", title: '׳₪׳•׳¡׳˜ ׳¡׳•׳©׳™׳׳ ׳׳¨׳•׳‘׳¢', type: 'Social Media', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800' },
-            { id: "banner_1", title: '׳‘׳׳ ׳¨ ׳¨׳™׳׳¨׳§׳˜׳™׳ ׳’', type: 'Web Banners', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1541462608143-67571c6738dd?q=80&w=800' },
-            { id: "ux_1", title: '׳׳₪׳™׳•׳ ׳׳׳©׳§ ׳ ׳™׳™׳“', type: 'UI/UX', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800' },
-            { id: "story_1", title: '׳׳•׳“׳¢׳× ׳¡׳˜׳•׳¨׳™ ׳ ׳“׳"׳', type: 'Performance', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-2', image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800' },
-            { id: "banner_2", title: '׳§׳¨׳™׳׳™׳™׳˜׳™׳‘ PR', type: 'Articles', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000' }
+            { id: "brand_1", title: 'קמפיין ראשי', type: 'Hero Banner', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=1000' },
+            { id: "social_1", title: 'פוסט סושיאל מרובע', type: 'Social Media', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800' },
+            { id: "banner_1", title: 'באנר רימרקטינג', type: 'Web Banners', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1541462608143-67571c6738dd?q=80&w=800' },
+            { id: "ux_1", title: 'אפיון ממשק נייד', type: 'UI/UX', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800' },
+            { id: "story_1", title: 'מודעת סטורי נדל"ן', type: 'Performance', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-2', image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800' },
+            { id: "banner_2", title: 'קריאייטיב PR', type: 'Articles', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000' }
         ];
 
         const visibleProjects = showAllDesign ? designProjects : designProjects.slice(0, 6);
@@ -849,8 +846,8 @@ const DepartmentPortfolio = ({ category }) => {
             <div className="mt-16 md:mt-24">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
                     <div>
-                        <h2 className="text-gray-900 font-black text-3xl md:text-4xl mb-3 border-r-4 border-[#2f4ea1] pr-4 tracking-tight">׳©׳₪׳” ׳•׳™׳–׳•׳׳׳™׳× ׳׳ ׳¦׳—׳×</h2>
-                        <p className="text-gray-500 font-medium max-w-2xl text-balance">׳׳¡׳₪׳¨׳™ ׳׳•׳×׳’, ׳“׳¨׳ ׳‘׳׳ ׳¨׳™׳ ׳׳ ׳™׳¢׳™׳ ׳׳₪׳¢׳•׳׳” ׳•׳¢׳“ ׳׳׳©׳§׳™ ׳׳©׳×׳׳© ׳׳•׳¨׳›׳‘׳™׳.</p>
+                        <h2 className="text-gray-900 font-black text-3xl md:text-4xl mb-3 border-r-4 border-[#2f4ea1] pr-4 tracking-tight">שפה ויזואלית מנצחת</h2>
+                        <p className="text-gray-500 font-medium max-w-2xl text-balance">מספרי מותג, דרך באנרים מניעים לפעולה ועד ממשקי משתמש מורכבים.</p>
                     </div>
                 </div>
 
@@ -870,7 +867,7 @@ const DepartmentPortfolio = ({ category }) => {
                 {!showAllDesign && designProjects.length >= 6 && (
                     <div className="flex justify-center mt-10 md:mt-12 mb-4">
                         <button onClick={() => setShowAllDesign(true)} className="px-8 py-3 bg-white border border-gray-200 text-[#2f4ea1] font-bold rounded-full shadow-sm hover:border-[#2f4ea1] transition-colors">
-                            ׳”׳¦׳’ ׳¢׳‘׳•׳“׳•׳× ׳ ׳•׳¡׳₪׳•׳×
+                            הצג עבודות נוספות
                         </button>
                     </div>
                 )}
@@ -883,7 +880,7 @@ const DepartmentPortfolio = ({ category }) => {
                         </button>
                         
                         <img src={`/portfolio/${selectedImage.id}.webp`} onError={(e) => { e.target.onerror = null; e.target.src = selectedImage.fallback; }} className="max-w-[90vw] max-h-[75vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)]" alt={selectedImage.title} onClick={(e) => e.stopPropagation()} />
-                        <h2 className="text-white tracking-widest mt-6 font-bold text-lg md:text-xl">{selectedImage.title}</h2>
+                        <h3 className="text-white tracking-widest mt-6 font-bold text-lg md:text-xl">{selectedImage.title}</h3>
                     </div>
                 )}
             </div>
@@ -899,143 +896,143 @@ const DepartmentDetail = () => {
 
     const data = {
         ppc: { 
-            title: "׳ ׳™׳”׳•׳ ׳׳“׳™׳”", 
-            long: "׳׳ ׳—׳ ׳• ׳׳ ׳”׳׳™׳ ׳×׳§׳¦׳™׳‘׳™ ׳¢׳ ׳§ ׳‘׳׳•׳₪׳˜׳™׳׳™׳–׳¦׳™׳” ׳׳§׳¡׳™׳׳׳™׳×. ׳”׳’׳™׳©׳” ׳©׳׳ ׳• ׳׳ ׳™׳”׳•׳ ׳׳“׳™׳” ׳”׳™׳ ׳׳“׳¢׳™׳×: ׳ ׳™׳×׳•׳— ׳§׳”׳׳™׳, ׳©׳™׳₪׳•׳¨ ׳™׳—׳¡ ׳”׳׳¨׳” ׳•׳©׳™׳׳•׳© ׳‘׳›׳׳™ AI ׳׳ ׳™׳”׳•׳ ׳‘׳™׳“׳™׳.",
-            services: ["׳—׳™׳₪׳•׳© ׳•׳¨׳©׳× ׳”׳׳“׳™׳” ׳‘׳’׳•׳’׳", "׳ ׳™׳”׳•׳ ׳׳˜׳ (׳₪׳™׳™׳¡׳‘׳•׳§/׳׳™׳ ׳¡׳˜׳’׳¨׳)", "׳§׳׳₪׳™׳™׳ ׳™׳ ׳‘׳˜׳™׳§׳˜׳•׳§ ׳•׳׳™׳ ׳§׳“׳׳™׳", "׳¨׳™׳׳¨׳§׳˜׳™׳ ׳’ ׳“׳™׳ ׳׳™"],
-            processTitle: "׳׳™׳ ׳׳×׳ ׳”׳ ׳§׳׳₪׳™׳™׳ ׳‘׳¨׳׳” ׳’׳‘׳•׳”׳”?",
-            processSubtitle: "׳”׳©׳™׳˜׳” ׳”׳׳“׳¢׳™׳× ׳׳׳—׳•׳¨׳™ ׳”׳׳§׳•׳—׳•׳× ׳©׳׳ ׳•",
+            title: "ניהול מדיה", 
+            long: "אנחנו מנהלים תקציבי ענק באופטימיזציה מקסימלית. הגישה שלנו לניהול מדיה היא מדעית: ניתוח קהלים, שיפור יחס המרה ושימוש בכלי AI לניהול בידים.",
+            services: ["חיפוש ורשת המדיה בגוגל", "ניהול מטא (פייסבוק/אינסטגרם)", "קמפיינים בטיקטוק ולינקדאין", "רימרקטינג דינמי"],
+            processTitle: "איך מתנהל קמפיין ברמה גבוהה?",
+            processSubtitle: "השיטה המדעית מאחורי הלקוחות שלנו",
             process: [
-                { title: "׳׳—׳§׳¨ ׳•׳׳¡׳˜׳¨׳˜׳’׳™׳”", desc: "׳ ׳™׳×׳•׳— ׳׳§׳™׳£ ׳©׳ ׳ ׳×׳•׳ ׳™ ׳”׳©׳•׳§, ׳–׳™׳”׳•׳™ ׳§׳”׳׳™ ׳׳˜׳¨׳” ׳¨׳׳•׳•׳ ׳˜׳™׳™׳ ׳•׳׳—׳§׳¨ ׳׳™׳׳•׳× ׳׳₪׳×׳— ׳׳™׳¦׳™׳¨׳× ׳™׳×׳¨׳•׳ ׳×׳—׳¨׳•׳×׳™.", icon: <Search size={28} /> },
-                { title: "׳‘׳ ׳™׳™׳× ׳¡׳˜׳׳₪", desc: "׳”׳’׳“׳¨׳× ׳§׳׳₪׳™׳™׳ ׳™׳ ׳׳“׳•׳™׳§׳×, ׳₪׳™׳׳•׳— ׳₪׳™׳§׳¡׳׳™׳ ׳§׳₪׳“׳ ׳™ ׳•׳—׳׳•׳§׳× ׳×׳§׳¦׳™׳‘׳™׳ ׳׳¡׳˜׳¨׳˜׳’׳™׳× ׳”׳׳•׳›׳•׳•׳ ׳× ׳×׳•׳¦׳׳•׳× ׳׳§׳¡׳™׳׳׳™׳•׳×.", icon: <Settings size={28} /> },
-                { title: "׳”׳©׳§׳” ׳•׳˜׳¡׳˜׳™׳ (A/B)", desc: "׳”׳¢׳׳׳× ׳§׳¨׳™׳׳™׳™׳˜׳™׳‘׳™׳ ׳׳׳•׳•׳™׳¨ ׳×׳—׳× ׳‘׳§׳¨׳× ׳×׳§׳¦׳™׳‘ ׳׳—׳׳™׳¨׳” ׳•׳‘׳“׳™׳§׳× ׳•׳¨׳™׳׳¦׳™׳•׳× ׳׳׳™׳×׳•׳¨ ׳”׳׳•׳“׳¢׳” ׳”׳׳₪׳§׳˜׳™׳‘׳™׳× ׳‘׳™׳•׳×׳¨.", icon: <Target size={28} /> },
-                { title: "׳׳•׳₪׳˜׳™׳׳™׳–׳¦׳™׳” ׳•׳¡׳§׳™׳™׳", desc: "׳©׳™׳₪׳•׳¨ ׳™׳—׳¡ ׳”-ROAS ׳׳™׳•׳ ׳׳™׳•׳ ׳•׳©׳›׳₪׳•׳ ׳¨׳•׳—׳‘׳™ ׳©׳ ׳§׳׳₪׳™׳™׳ ׳™׳ ׳¨׳•׳•׳—׳™׳™׳ ׳׳×׳§׳¦׳™׳‘׳™׳ ׳’׳‘׳•׳”׳™׳ ׳׳©׳׳¢׳•׳×׳™׳×.", icon: <TrendingUp size={28} /> }
+                { title: "מחקר ואסטרטגיה", desc: "ניתוח מקיף של נתוני השוק, זיהוי קהלי מטרה רלוונטיים ומחקר מילות מפתח ליצירת יתרון תחרותי.", icon: <Search size={28} /> },
+                { title: "בניית סטאפ", desc: "הגדרת קמפיינים מדויקת, פילוח פיקסלים קפדני וחלוקת תקציבים אסטרטגית המוכוונת תוצאות מקסימליות.", icon: <Settings size={28} /> },
+                { title: "השקה וטסטים (A/B)", desc: "העלאת קריאייטיבים לאוויר תחת בקרת תקציב מחמירה ובדיקת וריאציות לאיתור המודעה האפקטיבית ביותר.", icon: <Target size={28} /> },
+                { title: "אופטימיזציה וסקייל", desc: "שיפור יחס ה-ROAS מיום ליום ושכפול רוחבי של קמפיינים רווחיים לתקציבים גבוהים משמעותית.", icon: <TrendingUp size={28} /> }
             ],
             faqs: [
-                { q: "׳×׳•׳ ׳›׳׳” ׳–׳׳ ׳ ׳¨׳׳” ׳×׳•׳¦׳׳•׳× ׳׳”׳§׳׳₪׳™׳™׳ ׳™׳?", a: "׳§׳׳₪׳™׳™׳ ׳™׳ ׳׳׳•׳׳ ׳™׳ ׳׳×׳—׳™׳׳™׳ ׳׳”׳‘׳™׳ ׳×׳ ׳•׳¢׳” ׳‘׳׳•׳₪׳ ׳׳™׳™׳“׳™ ׳¢׳ ׳¢׳׳™׳™׳×׳ ׳׳׳•׳•׳™׳¨. ׳‘׳“׳¨׳ ׳›׳׳ ׳׳•׳§׳— 2-4 ׳©׳‘׳•׳¢׳•׳× ׳©׳ ׳׳™׳¡׳•׳£ ׳ ׳×׳•׳ ׳™׳ ׳•׳׳•׳₪׳˜׳™׳׳™׳–׳¦׳™׳” ׳¢׳“ ׳©׳׳’׳™׳¢׳™׳ ׳׳™׳¦׳™׳‘׳•׳× ׳•׳׳™׳—׳¡׳™ ׳”׳׳¨׳” ׳׳•׳₪׳˜׳™׳׳׳™׳™׳, ׳×׳׳•׳™ ׳‘׳×׳§׳¦׳™׳‘, ׳‘׳׳×׳—׳¨׳™׳ ׳•׳‘׳×׳—׳•׳." },
-                { q: "׳‘׳׳™׳׳• ׳₪׳׳˜׳₪׳•׳¨׳׳•׳× ׳׳×׳ ׳׳ ׳”׳׳™׳ ׳§׳׳₪׳™׳™׳ ׳™׳?", a: "׳׳ ׳• ׳׳ ׳”׳׳™׳ ׳§׳׳₪׳™׳™׳ ׳™׳ ׳‘׳׳’׳•׳•׳ ׳¨׳—׳‘ ׳©׳ ׳₪׳׳˜׳₪׳•׳¨׳׳•׳× ׳‘׳”׳×׳׳ ׳׳§׳”׳ ׳”׳™׳¢׳“ ׳©׳׳›׳: ׳’׳•׳’׳ (׳—׳™׳₪׳•׳©, ׳׳“׳™׳”, ׳©׳•׳₪׳™׳ ׳’, ׳™׳•׳˜׳™׳•׳‘), ׳׳˜׳ (׳₪׳™׳™׳¡׳‘׳•׳§ ׳•׳׳™׳ ׳¡׳˜׳’׳¨׳), ׳˜׳™׳§׳˜׳•׳§, ׳׳™׳ ׳§׳“׳׳™׳ ׳•׳¢׳•׳“. ׳׳›׳ ׳₪׳׳˜׳₪׳•׳¨׳׳” ׳׳¡׳˜׳¨׳˜׳’׳™׳” ׳׳•׳×׳׳׳×." },
-                { q: "׳”׳׳ ׳׳×׳ ׳¢׳•׳‘׳“׳™׳ ׳¢׳ ׳¢׳¡׳§׳™׳ B2B ׳׳• B2C?", a: "׳©׳ ׳™׳ ׳•! ׳™׳© ׳׳ ׳• ׳ ׳™׳¡׳™׳•׳ ׳׳•׳›׳— ׳•׳¢׳©׳™׳¨ ׳’׳ ׳¢׳ ׳—׳‘׳¨׳•׳× B2B ׳׳•׳¨׳›׳‘׳•׳× ׳©׳׳—׳₪׳©׳•׳× ׳׳™׳“׳™׳ ׳׳™׳›׳•׳×׳™׳™׳ (׳׳׳©׳ ׳˜׳›׳ ׳•׳׳•׳’׳™׳”, ׳©׳™׳¨׳•׳×׳™׳ ׳¢׳¡׳§׳™׳™׳ ׳•׳×׳¢׳©׳™׳™׳”) ׳•׳’׳ ׳¢׳ ׳׳•׳×׳’׳™ B2C ׳©׳׳׳•׳§׳“׳™׳ ׳‘׳׳›׳™׳¨׳•׳× ׳׳™׳§׳•׳׳¨׳¡ ׳•׳™׳¦׳™׳¨׳× ׳׳•׳“׳¢׳•׳× ׳׳׳•׳×׳’." },
-                { q: "׳׳™׳ ׳׳×׳ ׳׳—׳©׳‘׳™׳ ׳׳× ׳”׳×׳§׳¦׳™׳‘ ׳”׳—׳•׳“׳©׳™ ׳”׳׳•׳׳׳¥?", a: "׳׳ ׳—׳ ׳• ׳׳ ׳×׳—׳™׳ ׳׳× ׳”׳×׳—׳¨׳•׳×׳™׳•׳× ׳‘׳¢׳ ׳£, ׳¢׳¨׳•׳¦׳™ ׳”׳₪׳¨׳¡׳•׳ ׳”׳¨׳¦׳•׳™׳™׳ ׳•׳™׳¢׳“׳™ ׳”׳¦׳׳™׳—׳” ׳”׳¢׳¡׳§׳™׳™׳ ׳©׳׳›׳, ׳•׳׳– ׳‘׳•׳ ׳™׳ ׳׳•׳“׳ ׳”׳©׳§׳¢׳” (ROAS Model) ׳©׳׳׳׳™׳¥ ׳¢׳ ׳×׳§׳¦׳™׳‘ ׳ ׳§׳•׳“׳×׳™ ׳•׳׳׳₪׳©׳¨ ׳˜׳•׳•׳— ׳¡׳§׳™׳™׳ ׳‘׳˜׳•׳—." },
-                { q: "׳”׳׳ ׳™׳© ׳׳›׳ ׳©׳§׳™׳₪׳•׳× ׳׳׳׳” ׳׳ ׳×׳•׳ ׳™׳ ׳•׳׳×׳§׳¦׳™׳‘?", a: "׳׳—׳׳•׳˜׳™׳. ׳׳×׳ ׳‘׳¢׳׳™ ׳”׳—׳©׳‘׳•׳ ׳”׳׳§׳•׳¨׳™, ׳•׳”׳×׳©׳׳•׳ ׳¢׳ ׳”׳׳“׳™׳” ׳׳©׳•׳׳ ׳™׳©׳™׳¨׳•׳× ׳׳₪׳׳˜׳₪׳•׳¨׳׳”. ׳׳ ׳• ׳׳¡׳₪׳§׳™׳ ׳׳•׳—׳•׳× ׳‘׳§׳¨׳” (Dashboards) ׳—׳™׳™׳ ׳‘׳”׳ ׳×׳•׳›׳׳• ׳׳¨׳׳•׳× ׳‘׳–׳׳ ׳׳׳× ׳׳׳ ׳”׳›׳¡׳£ ׳”׳•׳׳ ׳•׳›׳׳” ׳”׳׳¨׳•׳× ׳”׳’׳™׳¢׳•." }
+                { q: "תוך כמה זמן נראה תוצאות מהקמפיינים?", a: "קמפיינים ממומנים מתחילים להביא תנועה באופן מיידי עם עלייתם לאוויר. בדרך כלל לוקח 2-4 שבועות של איסוף נתונים ואופטימיזציה עד שמגיעים ליציבות וליחסי המרה אופטימליים, תלוי בתקציב, במתחרים ובתחום." },
+                { q: "באילו פלטפורמות אתם מנהלים קמפיינים?", a: "אנו מנהלים קמפיינים במגוון רחב של פלטפורמות בהתאם לקהל היעד שלכם: גוגל (חיפוש, מדיה, שופינג, יוטיוב), מטא (פייסבוק ואינסטגרם), טיקטוק, לינקדאין ועוד. לכל פלטפורמה אסטרטגיה מותאמת." },
+                { q: "האם אתם עובדים עם עסקים B2B או B2C?", a: "שנינו! יש לנו ניסיון מוכח ועשיר גם עם חברות B2B מורכבות שמחפשות לידים איכותיים (למשל טכנולוגיה, שירותים עסקיים ותעשייה) וגם עם מותגי B2C שממוקדים במכירות איקומרס ויצירת מודעות למותג." },
+                { q: "איך אתם מחשבים את התקציב החודשי המומלץ?", a: "אנחנו מנתחים את התחרותיות בענף, ערוצי הפרסום הרצויים ויעדי הצמיחה העסקיים שלכם, ואז בונים מודל השקעה (ROAS Model) שממליץ על תקציב נקודתי ומאפשר טווח סקייל בטוח." },
+                { q: "האם יש לכם שקיפות מלאה לנתונים ולתקציב?", a: "לחלוטין. אתם בעלי החשבון המקורי, והתשלום על המדיה משולם ישירות לפלטפורמה. אנו מספקים לוחות בקרה (Dashboards) חיים בהם תוכלו לראות בזמן אמת לאן הכסף הולך וכמה המרות הגיעו." }
             ]
         },
         social: { 
-            title: "׳¡׳•׳©׳™׳׳ ׳•-UGC", 
-            long: "׳”׳¡׳™׳₪׳•׳¨ ׳©׳׳›׳ ׳¦׳¨׳™׳ ׳׳₪׳’׳•׳© ׳׳× ׳”׳׳§׳•׳—׳•׳× ׳‘׳“׳™׳•׳§ ׳‘׳׳§׳•׳ ׳©׳‘׳• ׳”׳ ׳ ׳׳¦׳׳™׳. ׳׳ ׳—׳ ׳• ׳׳•׳§׳—׳™׳ ׳׳•׳×׳’׳™׳ ׳•׳”׳•׳₪׳›׳™׳ ׳׳•׳×׳ ׳׳×׳•׳₪׳¢׳× ׳¨׳©׳× ׳‘׳¢׳–׳¨׳× ׳©׳₪׳” ׳•׳™׳–׳•׳׳׳™׳× ׳™׳™׳—׳•׳“׳™׳×, ׳”׳₪׳§׳•׳× ׳•׳™׳“׳׳• ׳•׳™׳¨׳׳׳™׳•׳×, ׳•׳׳¡׳˜׳¨׳˜׳’׳™׳™׳× ׳¡׳•׳©׳™׳׳ ׳©׳¢׳•׳¦׳¨׳× ׳׳× ׳”׳’׳׳™׳׳” (Scroll-stoppers). ׳”׳¢׳™׳“׳ ׳”׳—׳“׳© ׳“׳•׳¨׳© ׳×׳•׳›׳ ׳׳”׳™׳¨, ׳—׳“, ׳•׳׳‘׳•׳¡׳¡ ׳“׳׳˜׳”.", 
-            services: ["׳”׳₪׳§׳× Reels ׳•-TikTok", "׳¦׳™׳׳•׳ UGC ׳׳™׳›׳•׳×׳™ ׳׳׳•׳×׳’׳™׳", "׳₪׳™׳×׳•׳— ׳©׳₪׳” ׳׳•׳×׳’׳™׳× ׳׳•׳×׳ ׳˜׳™׳×", "׳©׳™׳•׳•׳§ ׳׳©׳₪׳™׳¢׳ ׳™׳"],
-            processTitle: "׳”׳׳×׳›׳•׳ ׳׳”׳₪׳•׳ ׳׳•׳•׳™׳¨׳׳׳™",
-            processSubtitle: "׳׳™׳ ׳¢׳•׳‘׳“׳× ׳׳—׳׳§׳× ׳”׳¡׳•׳©׳™׳׳ ׳©׳׳ ׳•",
+            title: "סושיאל ו-UGC", 
+            long: "הסיפור שלכם צריך לפגוש את הלקוחות בדיוק במקום שבו הם נמצאים. אנחנו לוקחים מותגים והופכים אותם לתופעת רשת בעזרת שפה ויזואלית ייחודית, הפקות וידאו ויראליות, ואסטרטגיית סושיאל שעוצרת את הגלילה (Scroll-stoppers). העידן החדש דורש תוכן מהיר, חד, ומבוסס דאטה.", 
+            services: ["הפקת Reels ו-TikTok", "צילום UGC איכותי למותגים", "פיתוח שפה מותגית אותנטית", "שיווק משפיענים"],
+            processTitle: "המתכון להפוך לוויראלי",
+            processSubtitle: "איך עובדת מחלקת הסושיאל שלנו",
             process: [
-                { title: "׳§׳¨׳™׳׳™׳™׳˜׳™׳‘ ׳•׳¡׳˜׳•׳¨׳™׳˜׳׳™׳ ׳’", desc: "׳¨׳׳™׳•׳ ׳•׳× ׳¢׳•׳׳§ ׳•׳₪׳™׳¦׳•׳— ׳¨׳¢׳™׳•׳ ׳™ ׳׳›׳ ׳¡׳¨׳˜׳•׳, ׳›׳×׳™׳‘׳× ׳×׳¡׳¨׳™׳˜׳™׳ ׳׳¨׳×׳§׳™׳ ׳©׳׳—׳–׳™׳§׳™׳ ׳‘׳׳™׳•׳—׳“ ׳׳× ׳–׳׳ ׳”׳¦׳₪׳™׳™׳” ׳©׳ ׳“׳•׳¨ ׳”-Z.", icon: <Lightbulb size={28} /> },
-                { title: "׳™׳׳™ ׳¦׳™׳׳•׳ ׳•׳”׳₪׳§׳× UGC", desc: "׳”׳§׳׳˜׳•׳× ׳©׳˜׳— ׳׳™׳›׳•׳×׳™׳•׳× ׳¢׳ ׳§׳¨׳™׳™׳ ׳™׳, ׳׳©׳₪׳™׳¢׳ ׳™׳ ׳׳• ׳׳§׳•׳—׳•׳×, ׳”׳׳™׳™׳¦׳¨׳•׳× ׳׳•׳×׳ ׳˜׳™׳•׳× ׳׳•׳›׳—׳× ׳”׳׳ ׳™׳¢׳” ׳׳₪׳¢׳•׳׳”.", icon: <Camera size={28} /> },
-                { title: "׳¢׳¨׳™׳›׳” ׳“׳™׳ ׳׳™׳×", desc: "׳¢׳¨׳™׳›׳× ׳₪׳•׳¡׳˜-׳₪׳¨׳•׳“׳§׳©׳ ׳§׳¦׳‘׳™׳× ׳”׳›׳•׳׳׳× ׳׳ ׳™׳׳¦׳™׳•׳× ׳•׳˜׳§׳¡׳˜׳™׳ ׳“׳™׳ ׳׳™׳™׳ ׳©׳׳•׳ ׳¢׳™׳ ׳׳”׳’׳•׳׳© ׳׳”׳׳©׳™׳ ׳׳’׳׳•׳ ׳”׳׳׳”.", icon: <Video  size={28} /> },
-                { title: "׳”׳₪׳¦׳” ׳¨׳•׳—׳‘׳™׳× ׳‘׳¨׳©׳×", desc: "׳×׳–׳׳•׳ ׳׳“׳•׳™׳§ ׳©׳ ׳”׳₪׳•׳¡׳˜׳™׳ ׳‘׳—׳•׳§׳™׳•׳× ׳”׳׳׳’׳•׳¨׳™׳×׳ ׳›׳“׳™ ׳׳™׳™׳¦׳¨ ׳×׳₪׳•׳¦׳” ׳׳•׳¨׳’׳ ׳™׳× ׳•׳׳׳•׳׳ ׳× ׳׳§׳¡׳™׳׳׳™׳× ׳‘׳׳§׳‘׳™׳.", icon: <Users size={28} /> }
+                { title: "קריאייטיב וסטוריטלינג", desc: "ראיונות עומק ופיצוח רעיוני לכל סרטון, כתיבת תסריטים מרתקים שמחזיקים במיוחד את זמן הצפייה של דור ה-Z.", icon: <Lightbulb size={28} /> },
+                { title: "ימי צילום והפקת UGC", desc: "הקלטות שטח איכותיות עם קריינים, משפיענים או לקוחות, המייצרות אותנטיות מוכחת המניעה לפעולה.", icon: <Camera size={28} /> },
+                { title: "עריכה דינמית", desc: "עריכת פוסט-פרודקשן קצבית הכוללת אנימציות וטקסטים דינמיים שמונעים מהגולש להמשיך לגלול הלאה.", icon: <Video  size={28} /> },
+                { title: "הפצה רוחבית ברשת", desc: "תזמון מדויק של הפוסטים בחוקיות האלגוריתם כדי לייצר תפוצה אורגנית וממומנת מקסימלית במקביל.", icon: <Users size={28} /> }
             ],
             faqs: [
-                { q: "׳׳” ׳”׳”׳‘׳“׳ ׳‘׳™׳ ׳ ׳™׳”׳•׳ ׳¡׳•׳©׳™׳׳ ׳¨׳’׳™׳ ׳׳׳” ׳©׳׳×׳ ׳¢׳•׳©׳™׳?", a: "׳׳ ׳—׳ ׳• ׳׳ ׳¨׳§ ׳׳¢׳׳™׳ ׳₪׳•׳¡׳˜׳™׳ ׳¢׳™׳¦׳•׳‘׳™׳™׳. ׳׳ ׳—׳ ׳• ׳׳™׳™׳¦׳¨׳™׳ ׳©׳₪׳”, ׳׳¡׳˜׳¨׳˜׳’׳™׳” ׳•׳×׳•׳›׳ ׳•׳™׳“׳׳• ׳§׳¦׳¨ ׳©׳׳‘׳•׳¡׳¡ ׳¢׳ ׳˜׳¨׳ ׳“׳™׳ ׳•׳”׳‘׳ ׳” ׳¢׳׳•׳§׳” ׳©׳ ׳”׳׳׳’׳•׳¨׳™׳×׳׳™׳, ׳‘׳׳˜׳¨׳” ׳׳”׳’׳™׳¢ ׳׳•׳•׳™׳¨׳׳׳™׳•׳× ׳׳׳™׳×׳™׳× ׳•׳׳”׳׳™׳¨ ׳¦׳•׳₪׳™׳ ׳׳׳§׳•׳—׳•׳×." },
-                { q: "׳”׳׳ ׳׳×׳ ׳׳₪׳™׳§׳™׳ ׳׳× ׳¡׳¨׳˜׳•׳ ׳™ ׳”׳•׳™׳“׳׳• ׳•׳”׳¨׳™׳׳¡׳™׳?", a: "׳‘׳”׳—׳׳˜. ׳™׳© ׳׳ ׳• ׳¦׳•׳•׳× ׳§׳¨׳™׳׳™׳™׳˜׳™׳‘ ׳•׳¦׳™׳׳•׳ ׳©׳“׳•׳׳’ ׳׳”׳›׳ ׳׳”׳§׳¦׳” ׳׳§׳¦׳”: ׳”׳—׳ ׳׳¨׳׳× ׳”׳§׳•׳ ׳¡׳₪׳˜, ׳׳×׳ ׳¢׳¨׳ ׳“׳¨׳ UGC ׳׳•׳×׳ ׳˜׳™, ׳•׳¢׳“ ׳™׳•׳ ׳¦׳™׳׳•׳׳™׳ ׳׳¢׳©׳™ ׳‘׳©׳˜׳— ׳”׳“׳•׳׳’ ׳©׳”׳×׳•׳›׳ ׳™׳”׳™׳” ׳׳ ׳™׳¢ ׳׳₪׳¢׳•׳׳”." },
-                { q: "׳‘׳׳™׳–׳• ׳×׳“׳™׳¨׳•׳× ׳׳×׳₪׳¨׳¡׳׳™׳ ׳”׳₪׳•׳¡׳˜׳™׳?", a: "׳”׳×׳“׳™׳¨׳•׳× ׳ ׳‘׳ ׳™׳× ׳¢׳ ׳‘׳¡׳™׳¡ ׳§׳”׳ ׳”׳™׳¢׳“ ׳•׳”׳×׳—׳•׳. ׳›׳“׳™ ׳׳©׳׳•׳¨ ׳¢׳ ׳¨׳׳•׳•׳ ׳˜׳™׳•׳× ׳‘׳׳׳’׳•׳¨׳™׳×׳, ׳׳•׳×׳’׳™׳ ׳׳¨׳•׳‘ ׳׳—׳™׳™׳‘׳™׳ ׳”׳¢׳׳׳” ׳©׳ 3 ׳¢׳“ 5 ׳₪׳•׳¡׳˜׳™׳/׳¨׳™׳׳¡׳™׳ ׳‘׳©׳‘׳•׳¢, ׳‘׳ ׳•׳¡׳£ ׳׳₪׳¢׳™׳׳•׳× ׳¡׳˜׳•׳¨׳™ ׳§׳‘׳•׳¢׳”." },
-                { q: "׳׳” ׳–׳” ׳‘׳¢׳¦׳ UGC ׳•׳׳׳” ׳–׳” ׳›׳” ׳—׳©׳•׳‘?", a: "UGC (User Generated Content) ׳”׳•׳ ׳×׳•׳›׳ ׳©׳׳¦׳•׳׳ ׳‘׳¡׳’׳ ׳•׳ '׳˜׳‘׳¢׳™' ׳•׳ ׳¨׳׳” ׳›׳׳™׳׳• ׳ ׳•׳¦׳¨ ׳¢׳ ׳™׳“׳™ ׳׳§׳•׳— ׳©׳׳›׳. ׳”׳•׳ ׳ ׳×׳₪׳¡ ׳›׳׳•׳×׳ ׳˜׳™, ׳”׳¨׳‘׳” ׳₪׳—׳•׳× ׳₪׳¨׳¡׳•׳׳™, ׳•׳‘׳¨׳•׳‘ ׳”׳׳•׳—׳¥ ׳©׳ ׳”׳׳§׳¨׳™׳ ׳׳׳™׳¨ ׳‘׳׳—׳•׳–׳™׳ ׳’׳‘׳•׳”׳™׳ ׳‘׳”׳¨׳‘׳” ׳׳§׳¨׳™׳׳™׳™׳˜׳™׳‘ ׳’׳¨׳₪׳™." },
-                { q: "׳׳™׳ ׳׳×׳ ׳׳•׳“׳“׳™׳ ׳”׳¦׳׳—׳” ׳‘׳¡׳•׳©׳™׳׳?", a: "׳׳׳‘׳“ ׳׳“׳“׳™ ׳—׳©׳™׳₪׳” ׳•׳׳¢׳•׳¨׳‘׳•׳× ׳§׳׳׳¡׳™׳™׳ (׳¦׳₪׳™׳•׳×, ׳׳™׳™׳§׳™׳, ׳×׳’׳•׳‘׳•׳×, ׳©׳׳™׳¨׳•׳×), ׳׳ ׳—׳ ׳• ׳׳¡׳ ׳›׳¨׳ ׳™׳ ׳׳× ׳”׳×׳ ׳•׳¢׳” ׳”׳׳•׳¨׳’׳ ׳™׳× ׳™׳—׳“ ׳¢׳ ׳׳—׳׳§׳× ׳”׳׳“׳™׳” ׳›׳“׳™ ׳׳–׳”׳•׳× ׳¦׳׳™׳—׳” ׳׳“׳•׳™׳§׳× ׳‘׳”׳׳¨׳•׳× (׳§׳ ׳™׳•׳× ׳׳• ׳ ׳˜׳™׳©׳•׳× ׳¡׳)." }
+                { q: "מה ההבדל בין ניהול סושיאל רגיל למה שאתם עושים?", a: "אנחנו לא רק מעלים פוסטים עיצוביים. אנחנו מייצרים שפה, אסטרטגיה ותוכן וידאו קצר שמבוסס על טרנדים והבנה עמוקה של האלגוריתמים, במטרה להגיע לוויראליות אמיתית ולהמיר צופים ללקוחות." },
+                { q: "האם אתם מפיקים את סרטוני הוידאו והרילסים?", a: "בהחלט. יש לנו צוות קריאייטיב וצילום שדואג להכל מהקצה לקצה: החל מרמת הקונספט, מתן ערך דרך UGC אותנטי, ועד יום צילומים מעשי בשטח הדואג שהתוכן יהיה מניע לפעולה." },
+                { q: "באיזו תדירות מתפרסמים הפוסטים?", a: "התדירות נבנית על בסיס קהל היעד והתחום. כדי לשמור על רלוונטיות באלגוריתם, מותגים לרוב מחייבים העלאה של 3 עד 5 פוסטים/רילסים בשבוע, בנוסף לפעילות סטורי קבועה." },
+                { q: "מה זה בעצם UGC ולמה זה כה חשוב?", a: "UGC (User Generated Content) הוא תוכן שמצולם בסגנון 'טבעי' ונראה כאילו נוצר על ידי לקוח שלכם. הוא נתפס כאותנטי, הרבה פחות פרסומי, וברוב המוחץ של המקרים ממיר באחוזים גבוהים בהרבה מקריאייטיב גרפי." },
+                { q: "איך אתם מודדים הצלחה בסושיאל?", a: "מלבד מדדי חשיפה ומעורבות קלאסיים (צפיות, לייקים, תגובות, שמירות), אנחנו מסנכרנים את התנועה האורגנית יחד עם מחלקת המדיה כדי לזהות צמיחה מדויקת בהמרות (קניות או נטישות סל)." }
             ]
         },
         design: { 
-            title: "׳¡׳˜׳•׳“׳™׳• ׳•׳§׳¨׳™׳׳™׳™׳˜׳™׳‘", 
-            long: "׳׳ ׳—׳ ׳• ׳׳׳₪׳™׳™׳ ׳™׳ ׳•׳׳¢׳¦׳‘׳™׳ ׳׳׳©׳§׳™׳ ׳•׳×׳•׳¦׳¨׳™׳ ׳©׳™׳•׳•׳§׳™׳™׳ ׳©׳׳¨׳’׳™׳©׳™׳ ׳˜׳‘׳¢׳™׳™׳ ׳׳׳©׳×׳׳©, ׳™׳—׳“ ׳¢׳ ׳¢׳™׳¦׳•׳‘ ׳₪׳¨׳™׳׳™׳•׳ ׳©׳׳™׳™׳¦׳¨ ׳׳׳•׳ ׳׳™׳™׳“׳™ ׳‘׳׳•׳×׳’. ׳׳ ׳—׳ ׳• ׳׳¢׳ ׳™׳§׳™׳ ׳׳¢׳˜׳₪׳× ׳׳׳׳” ׳©׳ ׳”׳¡׳˜׳•׳“׳™׳• ׳׳›׳׳ ׳”׳₪׳¨׳•׳™׳§׳˜׳™׳ ׳©׳׳ ׳•.", 
-            services: ["׳©׳₪׳” ׳—׳–׳•׳×׳™׳× ׳•׳§׳•׳ ׳¡׳₪׳˜", "׳¢׳™׳¦׳•׳‘ ׳•׳™׳¦׳™׳¨׳× ׳׳¡׳¨׳™׳", "׳–׳”׳•׳× ׳×׳׳’׳™׳“׳™׳×", "׳‘׳ ׳™׳™׳× ׳׳׳¨׳–׳™ UI/UX"],
-            processTitle: "׳×׳”׳׳™׳ ׳”׳¢׳™׳¦׳•׳‘ ׳©׳׳ ׳•",
-            processSubtitle: "׳׳™׳™׳¦׳¨ ׳—׳•׳•׳™׳” ׳•׳™׳–׳•׳׳׳™׳× ׳׳“׳•׳™׳§׳× ׳׳׳§׳•׳—",
+            title: "סטודיו וקריאייטיב", 
+            long: "אנחנו מאפיינים ומעצבים ממשקים ותוצרים שיווקיים שמרגישים טבעיים למשתמש, יחד עם עיצוב פרימיום שמייצר אמון מיידי במותג. אנחנו מעניקים מעטפת מלאה של הסטודיו לכלל הפרויקטים שלנו.", 
+            services: ["שפה חזותית וקונספט", "עיצוב ויצירת מסרים", "זהות תאגידית", "בניית מארזי UI/UX"],
+            processTitle: "תהליך העיצוב שלנו",
+            processSubtitle: "לייצר חוויה ויזואלית מדויקת ללקוח",
             process: [
-                { title: "׳‘׳¨׳™׳£ ׳•׳’׳™׳‘׳•׳© ׳§׳•׳ ׳¡׳₪׳˜", desc: "׳”׳‘׳ ׳× ׳¢׳¨׳›׳™ ׳”׳׳•׳×׳’, ׳’׳™׳‘׳•׳© ׳§׳”׳ ׳”׳™׳¢׳“ ׳•׳‘׳ ׳™׳™׳× ׳׳•׳— ׳”׳©׳¨׳׳” ׳—׳–׳•׳×׳™ ׳”׳׳’׳“׳™׳¨ ׳׳× ׳”׳₪׳׳׳™׳˜׳” ׳•׳”׳׳•׳•׳™׳¨׳” ׳”׳›׳׳׳™׳×.", icon: <FileText size={28} /> },
-                { title: "׳™׳¦׳™׳¨׳× ׳–׳”׳•׳× (Branding)", desc: "׳¢׳™׳¦׳•׳‘ ׳•׳™׳¦׳™׳¨׳× ׳׳¡׳¨׳™׳, ׳˜׳™׳₪׳•׳’׳¨׳₪׳™׳” ׳•׳©׳₪׳” ׳’׳¨׳₪׳™׳× ׳©׳׳©׳׳‘׳™׳ ׳׳¨׳׳” ׳•׳™׳–׳•׳׳׳™ ׳׳”׳•׳§׳¦׳¢ ׳©׳¢׳•׳–׳¨ ׳׳¢׳•׳¨׳¨ ׳׳׳™׳ ׳•׳× ׳¨׳’׳©׳™׳×.", icon: <Palette size={28} /> },
-                { title: "׳₪׳¨׳•׳˜׳•׳˜׳™׳™׳₪׳™׳ ׳׳׳™׳©׳•׳¨", desc: "׳‘׳ ׳™׳™׳× ׳׳•׳§׳׳₪׳™׳, ׳“׳₪׳™ ׳ ׳—׳™׳×׳” ׳׳™׳ ׳˜׳¨׳׳§׳˜׳™׳‘׳™׳™׳ ׳׳• ׳׳¦׳’׳•׳× ׳׳•׳×׳’ ׳‘׳›׳“׳™ ׳׳—׳•׳© ׳׳× ׳”׳¢׳™׳¦׳•׳‘ ׳‘׳“׳™׳•׳§ ׳›׳₪׳™ ׳©׳”׳׳§׳•׳— ׳™׳—׳•׳•׳”.", icon: <Layout size={28} /> },
-                { title: "׳׳¡׳™׳¨׳” ׳׳ ׳•׳”׳׳× (Handoff)", desc: "׳׳¨׳™׳–׳× ׳›׳׳ ׳׳¨׳›׳™׳‘׳™ ׳”׳¡׳˜׳•׳“׳™׳• ׳׳×׳™׳§ ׳׳—׳™׳“ ׳•׳”׳¢׳‘׳¨׳× ׳”׳§׳‘׳¦׳™׳ ׳׳׳—׳׳§׳× ׳”׳₪׳™׳×׳•׳— ׳×׳•׳ ׳׳™׳•׳•׳™ ׳˜׳›׳ ׳™ ׳©׳•׳˜׳£.", icon: <Briefcase size={28} /> }
+                { title: "בריף וגיבוש קונספט", desc: "הבנת ערכי המותג, גיבוש קהל היעד ובניית לוח השראה חזותי המגדיר את הפאליטה והאווירה הכללית.", icon: <FileText size={28} /> },
+                { title: "יצירת זהות (Branding)", desc: "עיצוב ויצירת מסרים, טיפוגרפיה ושפה גרפית שמשלבים מראה ויזואלי מהוקצע שעוזר לעורר אמינות רגשית.", icon: <Palette size={28} /> },
+                { title: "פרוטוטייפים לאישור", desc: "בניית מוקאפים, דפי נחיתה אינטראקטיביים או מצגות מותג בכדי לחוש את העיצוב בדיוק כפי שהלקוח יחווה.", icon: <Layout size={28} /> },
+                { title: "מסירה מנוהלת (Handoff)", desc: "אריזת כלל מרכיבי הסטודיו לתיק אחיד והעברת הקבצים למחלקת הפיתוח תוך ליווי טכני שוטף.", icon: <Briefcase size={28} /> }
             ],
             faqs: [
-                { q: "׳׳” ׳›׳•׳׳ ׳×׳”׳׳™׳ ׳”׳¡׳˜׳•׳“׳™׳• ׳׳¦׳׳›׳?", a: "׳”׳×׳”׳׳™׳ ׳׳×׳—׳™׳ ׳‘׳׳—׳§׳¨ ׳©׳₪׳•׳×׳¨ ׳׳× ׳”׳ ׳§׳•׳“׳•׳× ׳”׳›׳•׳׳‘׳•׳× ׳׳¦׳ ׳”׳׳§׳•׳— ׳‘׳”׳™׳‘׳˜ ׳”׳•׳•׳™׳–׳•׳׳׳™ ׳•׳§׳¨׳™׳׳™׳™׳˜׳™׳‘׳™. ׳׳׳—׳¨ ׳׳›׳ ׳ ׳¢׳‘׳•׳¨ ׳׳׳¡׳¢ ׳‘׳• ׳ ׳×׳¨׳’׳ ׳׳× ׳”׳¡׳™׳₪׳•׳¨ ׳׳׳¡׳›׳™׳ ׳׳¢׳‘׳¨ ׳׳₪׳¨׳•׳˜׳•׳˜׳™׳™׳₪ ׳”׳׳™׳ ׳˜׳¨׳׳§׳˜׳™׳‘׳™ ׳׳• ׳—׳•׳׳¨׳™׳ ׳˜׳™׳•׳˜׳׳™׳™׳ ׳‘׳§׳׳₪׳™׳™׳ ׳™׳." },
-                { q: "׳”׳׳ ׳׳×׳ ׳׳¢׳¦׳‘׳™׳ ׳’׳ ׳—׳•׳׳¨׳™ ׳₪׳¨׳™׳ ׳˜ (Offline)?", a: "׳›׳, ׳‘׳”׳—׳׳˜. ׳׳¢׳‘׳¨ ׳׳₪׳¢׳™׳׳•׳× ׳”׳“׳™׳’׳™׳˜׳׳™׳•׳× ׳”׳§׳₪׳“׳ ׳™׳× (׳“׳¡׳§׳˜׳•׳₪ ׳•׳ ׳™׳™׳“), ׳׳ ׳—׳ ׳• ׳׳₪׳™׳§׳™׳ ׳׳•׳¦׳¨׳™ ׳“׳₪׳•׳¡ ׳׳¨׳‘׳•׳× ׳¨׳•׳-׳׳₪׳™׳, ׳₪׳׳™׳™׳¨׳™׳ ׳›׳ ׳¡׳™׳ ׳×׳¢׳©׳™׳™׳×׳™׳™׳, ׳׳¨׳™׳–׳•׳× ׳׳•׳¦׳¨ ׳•׳׳₪׳™׳׳• ׳¢׳™׳¦׳•׳‘ ׳׳‘׳™׳×׳ ׳™ ׳¢׳ ׳§ ׳‘׳×׳¢׳¨׳•׳›׳•׳×." },
-                { q: "׳‘׳׳™׳–׳” ׳׳•׳₪׳ ׳׳×׳‘׳¦׳¢ ׳¢׳™׳¦׳•׳‘ UI/UX ׳׳¦׳׳›׳?", a: "׳׳—׳§׳¨ ׳”׳×׳ ׳”׳’׳•׳× ׳’׳•׳׳©׳™׳ ׳§׳•׳“׳ ׳׳›׳ ׳¢׳™׳¦׳•׳‘. ׳”׳¡׳˜׳•׳“׳™׳• ׳׳×׳—׳™׳ ׳׳׳‘׳—׳•׳ ׳₪׳¨׳¡׳•׳ ׳•׳× ׳׳©׳×׳׳© (User Personas), ׳¦׳™׳•׳¨ ׳–׳¨׳™׳׳× ׳׳©׳×׳׳© (User Flow) ׳•׳¡׳§׳™׳¦׳•׳× (Wireframes). ׳¨׳§ ׳›׳©׳”׳”׳’׳™׳•׳ ׳‘׳¨׳•׳¨, ׳׳•׳¡׳™׳₪׳™׳ ׳©׳›׳‘׳× ׳₪׳¨׳™׳׳™׳•׳ ׳¢׳™׳¦׳•׳‘׳™׳×." },
-                { q: "׳›׳׳” ׳¡׳‘׳‘׳™ ׳×׳™׳§׳•׳ ׳™׳ ׳›׳׳•׳׳™׳ ׳”׳₪׳¨׳•׳™׳§׳˜?", a: "׳׳ ׳• ׳¢׳•׳‘׳“׳™׳ ׳‘׳©׳™׳˜׳× ׳”-Milestones (׳¦׳™׳•׳ ׳™ ׳“׳¨׳). ׳׳™׳ ׳׳’׳‘׳׳” ׳“׳¨׳¡׳˜׳™׳×, ׳׳׳ ׳¢׳‘׳•׳“׳” ׳–׳•׳¨׳׳×: ׳ ׳׳©׳¨ ׳¡׳§׳™׳¦׳” ׳¨׳׳©׳•׳ ׳™׳× ׳•׳ ׳§׳‘׳ ׳׳׳ ׳” ׳›׳™׳•׳•׳, ׳•׳׳– ׳ ׳¢׳‘׳•׳¨ ׳׳¡׳‘׳‘׳™ ׳₪׳™׳ ׳™׳©׳™׳ ׳§׳˜׳ ׳™׳ ׳›׳“׳™ ׳׳•׳•׳“׳ ׳©׳׳×׳ ׳׳׳×׳™׳™׳ ׳׳—׳•׳– ׳׳¨׳•׳¦׳™׳ ׳׳”׳×׳•׳¦׳¨ ׳”׳׳•׳’׳׳¨." },
-                { q: "׳”׳׳ ׳׳ ׳—׳ ׳• ׳׳§׳‘׳׳™׳ ׳׳× ׳§׳‘׳¦׳™ ׳”׳׳§׳•׳¨ (׳₪׳×׳•׳—׳™׳)?", a: "׳‘׳”׳—׳׳˜. ׳‘׳¡׳™׳•׳ ׳₪׳¨׳•׳™׳§׳˜ ׳׳™׳×׳•׳’ ׳׳• ׳¢׳™׳¦׳•׳‘ ׳׳׳©׳§, ׳•׳׳׳—׳¨ ׳©׳׳׳•׳©׳¨ ׳‘-100%, ׳׳•׳¢׳‘׳¨ ׳׳›׳ ׳׳¡׳׳ Handoff ׳׳¡׳•׳“׳¨ ׳›׳•׳׳ ׳›׳ ׳§׳‘׳¦׳™ ׳”-Figma / Illustrator ׳₪׳×׳•׳—׳™׳ ׳•׳©׳™׳™׳›׳™׳ ׳׳›׳ ׳‘׳׳¢׳“׳™׳×." }
+                { q: "מה כולל תהליך הסטודיו אצלכם?", a: "התהליך מתחיל במחקר שפותר את הנקודות הכואבות אצל הלקוח בהיבט הוויזואלי וקריאייטיבי. לאחר מכן נעבור למסע בו נתרגם את הסיפור למסכים מעבר לפרוטוטייפ האינטראקטיבי או חומרים טיוטליים בקמפיינים." },
+                { q: "האם אתם מעצבים גם חומרי פרינט (Offline)?", a: "כן, בהחלט. מעבר לפעילות הדיגיטליות הקפדנית (דסקטופ ונייד), אנחנו מפיקים מוצרי דפוס לרבות רול-אפים, פליירים כנסים תעשייתיים, אריזות מוצר ואפילו עיצוב לביתני ענק בתערוכות." },
+                { q: "באיזה אופן מתבצע עיצוב UI/UX אצלכם?", a: "מחקר התנהגות גולשים קודם לכל עיצוב. הסטודיו מתחיל מאבחון פרסונות משתמש (User Personas), ציור זרימת משתמש (User Flow) וסקיצות (Wireframes). רק כשההגיון ברור, מוסיפים שכבת פרימיום עיצובית." },
+                { q: "כמה סבבי תיקונים כלולים הפרויקט?", a: "אנו עובדים בשיטת ה-Milestones (ציוני דרך). אין מגבלה דרסטית, אלא עבודה זורמת: נאשר סקיצה ראשונית ונקבל ממנה כיוון, ואז נעבור לסבבי פינישים קטנים כדי לוודא שאתם מאתיים אחוז מרוצים מהתוצר המוגמר." },
+                { q: "האם אנחנו מקבלים את קבצי המקור (פתוחים)?", a: "בהחלט. בסיום פרויקט מיתוג או עיצוב ממשק, ולאחר שמאושר ב-100%, מועבר לכם מסמך Handoff מסודר כולל כל קבצי ה-Figma / Illustrator פתוחים ושייכים לכם בלעדית." }
             ]
         },
         tech: { 
-            title: "׳‘׳ ׳™׳™׳× ׳׳×׳¨׳™׳", 
-            long: "׳”׳׳×׳¨ ׳”׳•׳ ׳”׳‘׳™׳× ׳©׳׳›׳ ׳‘׳“׳™׳’׳™׳˜׳. ׳׳ ׳—׳ ׳• ׳‘׳•׳ ׳™׳ ׳׳¢׳¨׳›׳•׳× ׳•׳•׳‘ ׳׳•׳¨׳›׳‘׳•׳× ׳”׳׳×׳§׳“׳׳•׳× ׳‘׳™׳•׳×׳¨ ׳‘׳¡׳‘׳™׳‘׳× ׳”׳׳§׳•׳— ׳×׳•׳ ׳©׳™׳׳× ׳“׳’׳© ׳×׳׳™׳“׳™׳× ׳׳‘׳™׳¦׳•׳¢׳™׳ ׳•׳׳˜׳›׳ ׳•׳׳•׳’׳™׳”.", 
-            services: ["׳׳₪׳׳™׳§׳¦׳™׳•׳× ׳׳™׳ ׳˜׳¨׳ ׳˜ ׳׳×׳§׳“׳׳•׳×", "׳“׳₪׳™ ׳ ׳—׳™׳×׳” ׳—׳›׳׳™׳ ׳׳׳™׳§׳•׳׳¨׳¡", "׳—׳™׳‘׳•׳¨׳™ API ׳-CRM ׳”׳§׳™׳™׳", "׳׳‘׳˜׳—׳” ׳•׳×׳—׳–׳•׳§׳”"],
-            processTitle: "׳׳™׳ ׳׳ ׳—׳ ׳• ׳‘׳•׳ ׳™׳ ׳׳×׳¨׳™׳?",
-            processSubtitle: "׳”׳×׳”׳׳™׳ ׳©׳׳׳—׳•׳¨׳™ ׳”׳₪׳™׳×׳•׳— ׳©׳ ׳ ׳‘׳¨׳˜׳™ ׳”׳“׳™׳’׳™׳˜׳",
+            title: "בניית אתרים", 
+            long: "האתר הוא הבית שלכם בדיגיטל. אנחנו בונים מערכות ווב מורכבות המתקדמות ביותר בסביבת הלקוח תוך שימת דגש תמידית לביצועים ולטכנולוגיה.", 
+            services: ["אפליקציות אינטרנט מתקדמות", "דפי נחיתה חכמים לאיקומרס", "חיבורי API ל-CRM הקיים", "אבטחה ותחזוקה"],
+            processTitle: "איך אנחנו בונים אתרים?",
+            processSubtitle: "התהליך שמאחורי הפיתוח של נברטי הדיגיטל",
             process: [
-                { title: "׳׳₪׳™׳•׳ ׳•׳¢׳™׳¦׳•׳‘ UX/UI", desc: "׳—׳§׳¨ ׳§׳”׳ ׳™׳¢׳“, ׳‘׳ ׳™׳™׳× ׳׳₪׳•׳× ׳׳¡׳¢ ׳׳©׳×׳׳©, ׳•׳¢׳™׳¦׳•׳‘ ׳“׳₪׳™ ׳ ׳—׳™׳×׳” ׳•׳׳׳©׳§׳™׳ ׳‘׳¨׳–׳•׳׳•׳¦׳™׳™׳× ׳₪׳™׳§׳¡׳-׳₪׳¨׳₪׳§׳˜.", icon: <MonitorSmartphone size={28} /> },
-                { title: "׳₪׳™׳×׳•׳— ׳§׳“׳׳™ ׳•׳§׳•׳“", desc: "׳›׳×׳™׳‘׳× ׳§׳•׳“ ׳ ׳§׳™, ׳¡׳׳ ׳˜׳™ ׳•׳׳”׳™׳¨ ׳‘׳˜׳›׳ ׳•׳׳•׳’׳™׳•׳× ׳—׳“׳™׳©׳•׳× ׳׳˜׳•׳‘׳× ׳‘׳™׳¦׳•׳¢׳™׳ ׳׳§׳¡׳™׳׳׳™׳™׳ ׳•׳—׳•׳•׳™׳” ׳—׳׳§׳” ׳‘-120fps.", icon: <Code2 size={28} /> },
-                { title: "׳׳‘׳˜׳—׳” ׳•׳‘׳§׳¨׳” (QA)", desc: "׳‘׳“׳™׳§׳•׳× ׳׳¢׳׳™׳§׳•׳× ׳•׳©׳‘׳™׳¨׳× ׳”׳׳¢׳¨׳›׳× ׳‘׳׳’׳•׳•׳ ׳“׳₪׳“׳₪׳ ׳™׳ ׳•׳׳›׳©׳™׳¨׳™׳ ׳‘׳›׳“׳™ ׳׳•׳•׳“׳ ׳©׳׳™׳ ׳¦׳•׳•׳׳¨׳™ ׳‘׳§׳‘׳•׳§ ׳•׳×׳§׳׳•׳×.", icon: <CheckCircle2 size={28} /> },
-                { title: "׳”׳©׳§׳” ׳•׳ ׳™׳˜׳•׳¨ ׳¨׳¦׳™׳£", desc: "׳¢׳׳™׳™׳” ׳—׳’׳™׳’׳™׳× ׳׳׳•׳•׳™׳¨, ׳—׳™׳‘׳•׳¨ ׳׳׳ ׳׳™׳˜׳™׳§׳¡ ׳•׳₪׳™׳§׳¡׳׳™׳, ׳•׳×׳₪׳¢׳•׳ ׳©׳¨׳× ׳”׳׳‘׳˜׳™׳— ׳™׳¦׳™׳‘׳•׳× ׳©׳ 99.9% ׳’׳ ׳‘׳×׳ ׳•׳¢׳” ׳’׳“׳•׳׳”.", icon: <Globe size={28} /> }
+                { title: "אפיון ועיצוב UX/UI", desc: "חקר קהל יעד, בניית מפות מסע משתמש, ועיצוב דפי נחיתה וממשקים ברזולוציית פיקסל-פרפקט.", icon: <MonitorSmartphone size={28} /> },
+                { title: "פיתוח קדמי וקוד", desc: "כתיבת קוד נקי, סמנטי ומהיר בטכנולוגיות חדישות לטובת ביצועים מקסימליים וחוויה חלקה ב-120fps.", icon: <Code2 size={28} /> },
+                { title: "אבטחה ובקרה (QA)", desc: "בדיקות מעמיקות ושבירת המערכת במגוון דפדפנים ומכשירים בכדי לוודא שאין צווארי בקבוק ותקלות.", icon: <CheckCircle2 size={28} /> },
+                { title: "השקה וניטור רציף", desc: "עלייה חגיגית לאוויר, חיבור לאנליטיקס ופיקסלים, ותפעול שרת המבטיח יציבות של 99.9% גם בתנועה גדולה.", icon: <Globe size={28} /> }
             ],
             faqs: [
-                { q: "׳‘׳׳™׳–׳• ׳˜׳›׳ ׳•׳׳•׳’׳™׳•׳× ׳׳×׳ ׳׳₪׳×׳—׳™׳ ׳׳×׳¨׳™׳?", a: "׳׳ ׳—׳ ׳• ׳‘׳•׳ ׳™׳ ׳¢׳ ׳’׳‘׳™ ׳˜׳›׳ ׳•׳׳•׳’׳™׳•׳× ׳׳×׳§׳“׳׳•׳× ׳›׳׳• React ׳•-Next.js ׳”׳׳׳₪׳©׳¨׳•׳× ׳׳”׳™׳¨׳•׳× ׳™׳•׳¦׳׳× ׳“׳•׳₪׳ (׳‘׳׳×׳¨׳™׳ ׳×׳“׳׳™׳×׳™׳™׳ ׳׳•׳¨׳›׳‘׳™׳), ׳׳• ׳׳—׳׳™׳₪׳™׳ ׳‘׳¢׳–׳¨׳× ׳•׳•׳¨׳“׳₪׳¨׳¡ ׳×׳—׳× ׳׳‘׳ ׳” ׳§׳•׳“ ׳ ׳§׳™ ׳•׳×׳§׳ ׳™, ׳‘׳”׳—׳׳˜׳” ׳׳¡׳˜׳¨׳˜׳’׳™׳× ׳”׳׳•׳×׳׳׳× ׳‘׳׳“׳•׳™׳§ ׳׳¦׳¨׳›׳™ ׳”׳׳§׳•׳— ׳•׳”׳ ׳™׳”׳•׳ ׳”׳¢׳×׳™׳“׳™ ׳©׳ ׳¦׳•׳•׳× ׳”׳”׳–׳ ׳”." },
-                { q: "׳›׳׳” ׳–׳׳ ׳׳•׳§׳— ׳׳׳×׳¨ ׳׳”׳™׳•׳× ׳‘׳׳•׳•׳™׳¨?", a: "׳”׳–׳׳ ׳׳©׳×׳ ׳” ׳‘׳”׳×׳׳ ׳׳ ׳₪׳— ׳•׳׳׳•׳¨׳›׳‘׳•׳×. ׳¢׳׳•׳“׳™ ׳ ׳—׳™׳×׳” ׳׳™׳›׳•׳×׳™׳™׳ ׳׳׳•׳“ ׳™׳›׳•׳׳™׳ ׳׳”׳™׳•׳× ׳׳•׳›׳ ׳™׳ ׳×׳•׳ ׳›׳©׳‘׳•׳¢׳™׳™׳. ׳׳×׳¨׳™׳ ׳×׳“׳׳™׳×׳™׳™׳ ׳׳•׳¨׳›׳‘׳™׳ ׳‘׳׳™׳•׳—׳“ ׳•׳›׳׳•׳‘׳ ׳—׳ ׳•׳™׳•׳× ׳׳™׳§׳•׳׳¨׳¡ ׳™׳ ׳•׳¢׳• ׳׳¨׳•׳‘ ׳‘׳׳׳•׳¦׳¢ ׳©׳ ׳©׳‘׳™׳ 4 ׳-10 ׳©׳‘׳•׳¢׳•׳×, ׳׳׳—׳¨ ׳¡׳’׳™׳¨׳× ׳”׳§׳•׳ ׳¡׳₪׳˜ ׳•׳׳₪׳™׳•׳ ׳׳©׳•׳×׳£." },
-                { q: "׳”׳׳ ׳׳•׳›׳ ׳׳ ׳”׳ ׳׳× ׳×׳•׳›׳ ׳”׳׳×׳¨ ׳‘׳¢׳¦׳׳™?", a: "׳‘׳•׳•׳“׳׳™. ׳׳ ׳• ׳׳§׳₪׳™׳“׳™׳ ׳׳₪׳×׳— ׳׳×׳¨׳™׳ ׳¢׳ ׳׳׳©׳§׳™ ׳ ׳™׳”׳•׳ (CMS) ׳¡׳•׳₪׳¨ ׳ ׳•׳—׳™׳ ׳׳©׳¨ ׳׳•׳×׳׳׳™׳ ׳׳™׳©׳™׳× ׳׳©׳₪׳” ׳”׳¢׳¡׳§׳™׳× ׳©׳׳›׳. ׳‘׳¡׳™׳•׳ ׳”׳‘׳ ׳™׳™׳” ׳”׳×׳›׳ ׳•׳×׳™׳× ׳׳ ׳• ׳“׳•׳׳’׳™׳ ׳׳”׳“׳¨׳™׳ ׳׳×׳›׳ ׳‘׳׳•׳₪׳ ׳׳§׳™׳£, ׳›׳ ׳©׳×׳•׳›׳׳• ׳׳¢׳“׳›׳ ׳˜׳§׳¡׳˜׳™׳, ׳×׳׳•׳ ׳•׳× ׳•׳׳₪׳™׳׳• ׳₪׳¨׳•׳™׳§׳˜׳™׳ ׳‘׳§׳׳™ ׳§׳׳•׳×." },
-                { q: "׳”׳׳ ׳׳×׳ ׳’׳ ׳§׳•׳ ׳™׳ ׳•׳׳×׳—׳–׳§׳™׳ ׳׳× ׳”׳׳—׳¡׳•׳?", a: "׳׳ ׳—׳ ׳• ׳™׳›׳•׳׳™׳. ׳¡׳₪׳¨׳•׳¡ ׳׳¦׳™׳¢׳” ׳©׳™׳¨׳•׳×׳™ ׳¨׳™׳˜׳™׳™׳ ׳¨ ׳”׳›׳•׳׳׳™׳ ׳—׳‘׳™׳׳•׳× ׳׳—׳¡׳•׳ ׳©׳¨׳×׳™ ׳₪׳¨׳™׳׳™׳•׳ ׳¡׳•׳₪׳¨ ׳׳”׳™׳¨׳™׳ (׳›׳•׳׳ ׳¢׳׳“׳•׳× CDN), ׳’׳™׳‘׳•׳™׳™׳ ׳§׳‘׳•׳¢׳™׳, ׳¢׳“׳›׳•׳ ׳™ ׳׳‘׳˜׳—׳” ׳‘׳¨׳׳× ׳”׳©׳¨׳×, ׳•׳›׳׳•׳‘׳ ׳׳¢׳§׳‘ ׳˜׳›׳ ׳™ ׳©׳׳‘׳˜׳™׳— ׳©׳§׳˜ ׳¨׳•׳—׳ ׳™ ׳׳ ׳™׳”׳•׳ ׳”׳©׳•׳˜׳£ ׳©׳ ׳”׳׳×׳¨." },
-                { q: "׳”׳§׳•׳“ ׳׳•׳×׳׳ ׳׳§׳™׳“׳•׳ ׳‘׳’׳•׳’׳?", a: "׳‘׳׳•׳₪׳ ׳׳•׳—׳׳˜. ׳׳ ׳—׳ ׳• ׳§׳•׳“׳ ׳›׳ ׳¡׳•׳›׳ ׳•׳× ׳©׳™׳•׳•׳§. ׳‘׳ ׳™׳™׳× ׳׳×׳¨ ׳©׳׳™׳ ׳• ׳׳©׳¨׳× SEO ׳׳• ׳™׳—׳¡׳™ ׳”׳׳¨׳” ׳—׳•׳˜׳ ׳׳׳˜׳¨׳” ׳‘׳¢׳™׳ ׳™׳ ׳•. ׳׳׳×׳¨׳™׳ ׳©׳׳ ׳• ׳™׳© ׳×׳’׳™׳•׳× ׳¡׳׳ ׳˜׳™׳•׳× ׳׳•׳‘׳ ׳•׳×, ׳×׳׳•׳ ׳•׳× ׳‘׳¨׳–׳•׳׳•׳¦׳™׳™׳× WebP ׳•׳§׳•׳“ ׳§׳׳™׳ ׳©׳×׳•׳¨׳ ׳™׳©׳™׳¨׳•׳× ׳׳“׳¨׳™׳©׳•׳× ׳”׳׳™׳‘׳” (Core Web Vitals) ׳©׳ ׳’׳•׳’׳." }
+                { q: "באיזו טכנולוגיות אתם מפתחים אתרים?", a: "אנחנו בונים על גבי טכנולוגיות מתקדמות כמו React ו-Next.js המאפשרות מהירות יוצאת דופן (באתרים תדמיתיים מורכבים), או לחליפין בעזרת וורדפרס תחת מבנה קוד נקי ותקני, בהחלטה אסטרטגית המותאמת במדויק לצרכי הלקוח והניהול העתידי של צוות ההזנה." },
+                { q: "כמה זמן לוקח לאתר להיות באוויר?", a: "הזמן משתנה בהתאם לנפח ולמורכבות. עמודי נחיתה איכותיים מאוד יכולים להיות מוכנים תוך כשבועיים. אתרים תדמיתיים מורכבים במיוחד וכמובן חנויות איקומרס ינועו לרוב בממוצע של שבין 4 ל-10 שבועות, לאחר סגירת הקונספט ואפיון משותף." },
+                { q: "האם אוכל לנהל את תוכן האתר בעצמי?", a: "בוודאי. אנו מקפידים לפתח אתרים עם ממשקי ניהול (CMS) סופר נוחים אשר מותאמים אישית לשפה העסקית שלכם. בסיום הבנייה התכנותית אנו דואגים להדריך אתכם באופן מקיף, כך שתוכלו לעדכן טקסטים, תמונות ואפילו פרויקטים בקלי קלות." },
+                { q: "האם אתם גם קונים ומתחזקים את האחסון?", a: "אנחנו יכולים. ספרוס מציעה שירותי ריטיינר הכוללים חבילות אחסון שרתי פרימיום סופר מהירים (כולל עמדות CDN), גיבויים קבועים, עדכוני אבטחה ברמת השרת, וכמובן מעקב טכני שמבטיח שקט רוחני לניהול השוטף של האתר." },
+                { q: "הקוד מותאם לקידום בגוגל?", a: "באופן מוחלט. אנחנו קודם כל סוכנות שיווק. בניית אתר שאינו משרת SEO או יחסי המרה חוטא למטרה בעינינו. לאתרים שלנו יש תגיות סמנטיות מובנות, תמונות ברזולוציית WebP וקוד קליל שתורם ישירות לדרישות הליבה (Core Web Vitals) של גוגל." }
             ]
         },
         seo: { 
             title: "SEO & GEO", 
-            long: "׳׳”׳™׳•׳× ׳‘׳¨׳׳© ׳×׳•׳¦׳׳•׳× ׳”׳—׳™׳₪׳•׳© ׳–׳• ׳¨׳™׳¦׳” ׳׳׳¨׳—׳§׳™׳ ׳׳¨׳•׳›׳™׳. ׳׳ ׳—׳ ׳• ׳׳©׳׳‘׳™׳ ׳׳™׳›׳•׳™׳•׳× ׳˜׳›׳ ׳™׳•׳× ׳‘׳׳¡׳˜׳¨׳˜׳’׳™׳™׳× ׳×׳•׳›׳ ׳©׳‘׳•׳ ׳” ׳׳•׳׳ ׳˜׳•׳ ׳©׳ ׳¡׳׳›׳•׳× ׳׳•׳›׳—׳× ׳’׳ ׳¢׳‘׳•׳¨ ׳‘׳™׳˜׳•׳™׳™׳ ׳•׳×׳•׳›׳ ׳׳§׳•׳׳™ ׳׳• ׳’׳׳•׳‘׳׳׳™.", 
-            services: ["׳‘׳“׳™׳§׳•׳× ׳˜׳›׳ ׳™׳•׳× ׳©׳•׳˜׳₪׳•׳×", "׳©׳™׳₪׳•׳¨ ׳×׳ ׳•׳¢׳” ׳¡׳₪׳¦׳™׳₪׳™׳× ׳•׳§׳¨׳•׳¡-׳–׳•׳ ׳’", "׳‘׳ ׳™׳™׳× ׳₪׳¨׳•׳₪׳™׳ ׳§׳™׳©׳•׳¨׳™׳ ׳₪׳•׳˜׳ ׳˜׳™", "׳׳•׳₪׳˜׳™׳׳™׳–׳¦׳™׳” ׳׳׳ ׳•׳¢׳™ ׳‘׳™׳ ׳” ׳׳׳׳›׳•׳×׳™׳× (GEO)"],
-            processTitle: "׳׳™׳ ׳׳׳¦׳‘ ׳׳× ׳¢׳¦׳׳›׳ ׳‘׳˜׳•׳₪?",
-            processSubtitle: "׳”׳×׳”׳׳™׳ ׳”׳׳•׳¨׳’׳ ׳™ ׳©׳׳ ׳•",
+            long: "להיות בראש תוצאות החיפוש זו ריצה למרחקים ארוכים. אנחנו משלבים איכויות טכניות באסטרטגיית תוכן שבונה מומנטום של סמכות מוכחת גם עבור ביטויים ותוכן מקומי או גלובאלי.", 
+            services: ["בדיקות טכניות שוטפות", "שיפור תנועה ספציפית וקרוס-זונג", "בניית פרופיל קישורים פוטנטי", "אופטימיזציה למנועי בינה מלאכותית (GEO)"],
+            processTitle: "איך למצב את עצמכם בטופ?",
+            processSubtitle: "התהליך האורגני שלנו",
             process: [
-                { title: "׳׳•׳“׳™׳˜ ׳˜׳›׳ ׳™ ׳•׳׳™׳‘׳× ׳”׳×׳•׳›׳", desc: "׳¡׳¨׳™׳§׳” ׳׳׳׳” ׳©׳ ׳§׳•׳“׳™ ׳”׳׳×׳¨ ׳׳׳™׳×׳•׳¨ ׳©׳’׳™׳׳•׳× ׳§׳¨׳™׳˜׳™׳•׳× ׳׳¦׳“ ׳׳¦׳™׳׳× ׳”׳–׳“׳׳ ׳•׳™׳•׳× ׳©׳ ׳‘׳™׳˜׳•׳™׳™ ׳׳₪׳×׳— ׳׳׳•׳§׳“׳™׳ ׳©׳׳ ׳׳ ׳•׳¦׳׳™׳.", icon: <Search size={28} /> },
-                { title: "׳׳•׳₪׳˜׳™׳׳™׳–׳¦׳™׳” ׳׳§׳•׳׳™׳× (On-Page)", desc: "׳”׳×׳׳׳× ׳×׳•׳›׳ ׳›׳™׳¨׳•׳¨׳’׳™׳×: ׳©׳™׳₪׳•׳¨ ׳׳”׳™׳¨׳•׳™׳•׳× ׳˜׳¢׳™׳ ׳”, ׳›׳•׳×׳¨׳•׳× H1/H2 ׳×׳§׳™׳ ׳•׳× ׳•׳¢׳“׳›׳•׳ ׳×׳’׳™׳•׳× ׳׳˜׳ ׳‘׳׳•׳₪׳ ׳©׳•׳˜׳£.", icon: <Code2 size={28} /> },
-                { title: "׳‘׳ ׳™׳™׳× ׳×׳•׳›׳ ׳¢׳©׳™׳¨ ׳׳’׳•׳׳©", desc: "׳”׳₪׳§׳× ׳׳׳׳¨׳™׳, ׳¢׳׳•׳“׳™ ׳ ׳—׳™׳×׳” ׳•׳׳“׳¨׳™׳›׳™׳ ׳©׳׳•׳‘׳™׳׳™׳ ׳‘׳׳•׳₪׳ ׳˜׳‘׳¢׳™ ׳׳× ׳”׳’׳•׳׳© ׳׳×׳©׳•׳‘׳” ׳׳•׳×׳” ׳”׳•׳ ׳׳¢׳•׳ ׳™׳™׳ ׳׳§׳¨׳•׳.", icon: <MessageSquare size={28} /> },
-                { title: "׳₪׳¨׳•׳₪׳™׳ ׳§׳™׳©׳•׳¨׳™׳ ׳•׳׳•׳˜׳•׳¨׳™׳˜׳”", desc: "׳¨׳›׳™׳©׳× ׳§׳™׳©׳•׳¨׳™׳ ׳׳™׳›׳•׳×׳™׳™׳ ׳׳׳×׳¨׳™׳ ׳—׳–׳§׳™׳ ׳‘׳¨׳©׳× (Off-Page) ׳•׳‘׳ ׳™׳™׳× ׳¡׳׳›׳•׳× ׳׳•׳×׳’ ׳׳׳ ׳•׳¢׳™ ׳”׳‘׳™׳ ׳” ׳”׳׳׳׳›׳•׳×׳™׳× (GEO) ׳›׳“׳™ ׳׳§׳‘׳¢ ׳ ׳•׳›׳—׳•׳× ׳‘׳×׳©׳•׳‘׳•׳× ׳”-AI.", icon: <TrendingUp size={28} /> }
+                { title: "אודיט טכני וליבת התוכן", desc: "סריקה מלאה של קודי האתר לאיתור שגיאות קריטיות לצד מציאת הזדמנויות של ביטויי מפתח ממוקדים שלא מנוצלים.", icon: <Search size={28} /> },
+                { title: "אופטימיזציה מקומית (On-Page)", desc: "התאמת תוכן כירורגית: שיפור מהירויות טעינה, כותרות H1/H2 תקינות ועדכון תגיות מטא באופן שוטף.", icon: <Code2 size={28} /> },
+                { title: "בניית תוכן עשיר לגולש", desc: "הפקת מאמרים, עמודי נחיתה ומדריכים שמובילים באופן טבעי את הגולש לתשובה אותה הוא מעוניין לקרוא.", icon: <MessageSquare size={28} /> },
+                { title: "פרופיל קישורים ואוטוריטה", desc: "רכישת קישורים איכותיים מאתרים חזקים ברשת (Off-Page) ובניית סמכות מותג למנועי הבינה המלאכותית (GEO) כדי לקבע נוכחות בתשובות ה-AI.", icon: <TrendingUp size={28} /> }
             ],
             faqs: [
-                { q: "׳׳” ׳–׳” GEO ׳׳¢׳•׳׳× SEO?", a: "GEO (Generative Engine Optimization) ׳׳×׳™׳™׳—׳¡ ׳׳”׳×׳׳׳× ׳”׳×׳•׳›׳ ׳©׳׳›׳ ׳׳׳ ׳•׳¢׳™ ׳”׳—׳™׳₪׳•׳© ׳”׳—׳“׳©׳™׳ ׳”׳׳‘׳•׳¡׳¡׳™׳ ׳¢׳ ׳‘׳™׳ ׳” ׳׳׳׳›׳•׳×׳™׳× (׳›׳׳• ChatGPT, Perplexity, ׳•׳’׳•׳’׳ SGE). ׳‘׳–׳׳ ׳©-SEO ׳׳×׳׳§׳“ ׳‘׳“׳™׳¨׳•׳’ ׳”׳§׳׳׳¡׳™ ׳׳¦׳“ ׳”׳׳×׳—׳¨׳™׳, GEO ׳׳•׳•׳“׳ ׳©׳”-AI ׳™׳׳׳™׳¥ ׳¢׳׳™׳›׳ ׳›׳×׳©׳•׳‘׳” ׳”׳׳•׳—׳׳˜׳×." },
-                { q: "׳×׳•׳ ׳›׳׳” ׳–׳׳ ׳ ׳¨׳׳” ׳”׳©׳₪׳¢׳” ׳©׳ ׳×׳”׳׳™׳ SEO?", a: "׳×׳”׳׳™׳ ׳§׳™׳“׳•׳ ׳׳•׳¨׳’׳ ׳™ ׳”׳•׳ ׳”׳©׳§׳¢׳” ׳׳¡׳˜׳¨׳˜׳’׳™׳× ׳¢׳׳•׳§׳”. ׳×׳•׳¦׳׳•׳× ׳×׳ ׳•׳“׳•׳×׳™׳•׳× ׳׳¨׳•׳‘ ׳™׳•׳¨׳’׳©׳• ׳׳׳—׳¨ 3 ׳—׳•׳“׳©׳™׳, ׳›׳׳©׳¨ ׳§׳₪׳™׳¦׳•׳× ׳׳•׳‘׳”׳§׳•׳× ׳•׳×׳©׳•׳׳× ׳”-ROI ׳”׳׳¨׳›׳–׳™׳× ׳¦׳₪׳•׳× ׳‘׳׳׳•׳ ׳¢׳•׳¦׳׳×׳ ׳×׳•׳ 6 ׳¢׳“ 9 ׳—׳•׳“׳©׳™׳." },
-                { q: "׳”׳׳ ׳׳×׳ ׳›׳•׳×׳‘׳™׳ ׳’׳ ׳׳× ׳”׳׳׳׳¨׳™׳ ׳׳׳×׳¨?", a: "׳—׳“ ׳׳©׳׳¢׳™׳×. ׳׳—׳׳§׳× ׳”-SEO ׳©׳׳ ׳• ׳›׳•׳׳׳× ׳׳׳¢׳©׳” ׳×׳ ׳×׳•׳›׳ ׳¡׳’׳•׳¨ ׳©׳׳›׳™׳ ׳§׳•׳₪׳™׳¨׳™׳™׳˜׳¨׳™׳ ׳‘׳¢׳׳™ ׳¨׳§׳¢ ׳׳•׳˜׳” SEO ׳©׳׳™׳™׳¦׳¨׳™׳ ׳˜׳§׳¡׳˜ ׳‘׳¢׳ ׳¢׳¨׳ ׳׳׳™׳×׳™ ׳׳’׳•׳׳©׳™׳ ׳©׳’׳ ׳ ׳¡׳¨׳§ ׳•׳׳׳•׳ ׳“׳§׳¡ ׳‘׳¦׳•׳¨׳” ׳׳•׳₪׳˜׳™׳׳׳™׳× ׳¢׳ ׳™׳“׳™ ׳’׳•׳’׳." },
-                { q: "׳׳™׳ ׳׳×׳ ׳׳•׳“׳“׳™׳ ׳•׳‘׳•׳ ׳™׳ ׳§׳™׳©׳•׳¨׳™׳ ׳—׳™׳¦׳•׳ ׳™׳™׳?", a: "׳׳ ׳• ׳׳ ׳¢׳•׳©׳™׳ ׳©׳™׳׳•׳© ׳‘'׳—׳•׳•׳× ׳§׳™׳©׳•׳¨׳™׳' ׳₪׳׳¡׳™׳‘׳™׳•׳× ׳©׳¢׳׳•׳׳•׳× ׳׳’׳¨׳•׳¨ ׳¢׳ ׳™׳©׳”. ׳”׳’׳™׳©׳” ׳׳×׳‘׳¡׳¡׳× ׳¢׳ Digital PR: ׳§׳©׳¨ ׳¨׳¦׳•׳£ ׳¢׳ ׳‘׳•׳¨׳“ ׳¢׳™׳×׳•׳ ׳׳™׳ ׳׳₪׳¨׳¡׳•׳ ׳׳•׳¨׳’׳ ׳™ ׳‘׳׳’׳–׳™׳ ׳™׳ ׳׳§׳˜׳•׳׳׳™׳™׳ ׳¨׳‘׳™ ׳¢׳•׳¦׳׳” ׳‘׳¨׳׳•׳× ׳©׳•׳ ׳•׳× ׳©׳ ׳¡׳׳›׳•׳× (DA)." },
-                { q: "׳׳” ׳׳×׳‘׳¦׳¢ ׳‘׳¦׳“ ׳”׳˜׳›׳ ׳™ ׳©׳ ׳”׳׳×׳¨?", a: "׳‘׳“׳™׳§׳× ׳׳”׳™׳¨׳•׳× ׳©׳¨׳×׳™, ׳¡׳’׳™׳¨׳× ׳׳•׳₪׳™׳ (404), ׳¦׳׳¦׳•׳ JS ׳¢׳•׳“׳£, ׳‘׳ ׳™׳™׳× ׳׳₪׳•׳× ׳׳×׳¨, ׳₪׳™׳¨׳•׳¨ ׳׳—׳ (Breadcrumbs), ׳•׳©׳™׳₪׳•׳¨ ׳›׳׳׳™ ׳©׳ ׳׳“׳“׳™ ׳”-Core Web Vitals ׳©׳’׳•׳’׳ ׳“׳•׳¨׳©׳× ׳›׳“׳™ ׳׳₪׳¨׳•׳¡ ׳׳׳™׳ ׳•׳×." }
+                { q: "מה זה GEO לעומת SEO?", a: "GEO (Generative Engine Optimization) מתייחס להתאמת התוכן שלכם למנועי החיפוש החדשים המבוססים על בינה מלאכותית (כמו ChatGPT, Perplexity, וגוגל SGE). בזמן ש-SEO מתמקד בדירוג הקלאסי לצד המתחרים, GEO מוודא שה-AI ימליץ עליכם כתשובה המוחלטת." },
+                { q: "תוך כמה זמן נראה השפעה של תהליך SEO?", a: "תהליך קידום אורגני הוא השקעה אסטרטגית עמוקה. תוצאות תנודותיות לרוב יורגשו לאחר 3 חודשים, כאשר קפיצות מובהקות ותשואת ה-ROI המרכזית צפות במלוא עוצמתן תוך 6 עד 9 חודשים." },
+                { q: "האם אתם כותבים גם את המאמרים לאתר?", a: "חד משמעית. מחלקת ה-SEO שלנו כוללת למעשה תא תוכן סגור שמכיל קופירייטרים בעלי רקע מוטה SEO שמייצרים טקסט בעל ערך אמיתי לגולשים שגם נסרק ומאונדקס בצורה אופטימלית על ידי גוגל." },
+                { q: "איך אתם מודדים ובונים קישורים חיצוניים?", a: "אנו לא עושים שימוש ב'חוות קישורים' פאסיביות שעלולות לגרור ענישה. הגישה מתבססת על Digital PR: קשר רצוף עם בורד עיתונאים לפרסום אורגני במגזינים אקטואליים רבי עוצמה ברמות שונות של סמכות (DA)." },
+                { q: "מה מתבצע בצד הטכני של האתר?", a: "בדיקת מהירות שרתי, סגירת לופים (404), צמצום JS עודף, בניית מפות אתר, פירור לחם (Breadcrumbs), ושיפור כללי של מדדי ה-Core Web Vitals שגוגל דורשת כדי לפרוס אמינות." }
             ]
         },
         strategy: {
-            title: "׳׳¡׳˜׳¨׳˜׳’׳™׳” ׳©׳™׳•׳•׳§׳™׳×",
-            long: "׳›׳ ׳”׳¦׳׳—׳” ׳“׳™׳’׳™׳˜׳׳™׳× ׳׳×׳—׳™׳׳” ׳‘׳×׳•׳›׳ ׳™׳× ׳‘׳¨׳•׳¨׳” ׳”׳׳‘׳•׳¡׳¡׳× ׳¢׳ ׳™׳¢׳“׳™׳ ׳׳“׳™׳“׳™׳. ׳׳ ׳—׳ ׳• ׳׳ ׳×׳—׳™׳ ׳׳× ׳”׳©׳•׳§, ׳§׳”׳׳™ ׳”׳™׳¢׳“ ׳•׳¡׳‘׳™׳‘׳× ׳”׳׳×׳—׳¨׳™׳ ׳‘׳›׳“׳™ ׳׳™׳™׳¦׳¨ ׳׳ ׳•׳¢ ׳¦׳׳™׳—׳” ׳•׳׳×׳•׳“׳•׳׳•׳’׳™׳” ׳׳׳•׳§׳“׳× ׳©׳×׳׳•׳•׳” ׳׳× ׳›׳ ׳”׳₪׳¢׳™׳׳•׳× ׳”׳¢׳¡׳§׳™׳×.",
-            services: ["׳׳—׳§׳¨ ׳©׳•׳§ ׳•׳§׳”׳׳™ ׳™׳¢׳“", "׳׳™׳•׳•׳™ ׳׳¡׳˜׳¨׳˜׳’׳™ ׳‘׳”׳©׳§׳•׳× ׳׳•׳¦׳¨", "׳׳₪׳™׳•׳ ׳׳¡׳¢׳•׳× ׳׳§׳•׳— ׳•׳׳©׳₪׳›׳™ ׳”׳׳¨׳”", "׳¡׳™׳ ׳¨׳’׳™׳” ׳“׳™׳’׳™׳˜׳׳™׳× ׳¨׳‘-׳¢׳¨׳•׳¦׳™׳×"],
-            processTitle: "׳”׳ ׳•׳¡׳—׳” ׳׳”׳¦׳׳—׳” ׳‘׳“׳™׳’׳™׳˜׳",
-            processSubtitle: "׳›׳™׳¦׳“ ׳ ׳¨׳׳™׳× ׳”׳¢׳‘׳•׳“׳” ׳¢׳ ׳׳¡׳˜׳¨׳˜׳’׳™׳” ׳׳§׳™׳₪׳”",
+            title: "אסטרטגיה שיווקית",
+            long: "כל הצלחה דיגיטלית מתחילה בתוכנית ברורה המבוססת על יעדים מדידים. אנחנו מנתחים את השוק, קהלי היעד וסביבת המתחרים בכדי לייצר מנוע צמיחה ומתודולוגיה ממוקדת שתלווה את כל הפעילות העסקית.",
+            services: ["מחקר שוק וקהלי יעד", "ליווי אסטרטגי בהשקות מוצר", "אפיון מסעות לקוח ומשפכי המרה", "סינרגיה דיגיטלית רב-ערוצית"],
+            processTitle: "הנוסחה להצלחה בדיגיטל",
+            processSubtitle: "כיצד נראית העבודה על אסטרטגיה מקיפה",
             process: [
-                { title: "׳¡׳“׳ ׳× ׳₪׳™׳¦׳•׳— ׳¢׳ ׳”׳”׳ ׳”׳׳”", desc: "׳׳₪׳’׳© ׳׳¢׳׳™׳§ ׳‘׳• ׳׳ ׳• ׳¦׳•׳׳׳™׳ ׳׳ ׳”׳©׳˜׳—, ׳׳’׳“׳™׳¨׳™׳ ׳™׳¢׳“׳™׳ ׳‘׳¨׳•׳¨׳™׳ (׳₪׳™׳ ׳ ׳¡׳™׳™׳ ׳•׳©׳™׳•׳•׳§׳™׳™׳) ׳•׳׳‘׳™׳ ׳™׳ ׳׳× ׳”׳×׳™׳•׳’ ׳”׳₪׳¡׳™׳›׳•׳׳•׳’׳™ ׳©׳ ׳”׳׳•׳¦׳¨.", icon: <Target size={28} /> },
-                { title: "׳ ׳™׳×׳•׳— ׳”׳©׳•׳§ ׳•׳”׳׳×׳—׳¨׳™׳", desc: "׳׳™׳×׳•׳¨ ׳₪׳¢׳¨׳™׳ ׳‘׳׳¨׳—׳‘ ׳”׳×׳—׳¨׳•׳×׳™ (Blue Ocean), ׳ ׳™׳×׳•׳— ׳×׳׳—׳™׳¨ ׳׳ ׳׳•׳ ׳׳—׳•׳–׳™ ׳”׳”׳׳¨׳” ׳•׳’׳™׳‘׳•׳© ׳‘׳™׳“׳•׳ ׳׳•׳‘׳”׳§ ׳׳׳•׳×׳’.", icon: <LineChart size={28} /> },
-                { title: "׳©׳¨׳˜׳•׳˜ ׳׳¡׳¢׳•׳× ׳׳§׳•׳—", desc: "׳₪׳™׳×׳•׳— ׳©׳׳‘׳™׳ ׳׳•׳‘׳ ׳™׳, ׳”׳—׳ ׳׳—׳©׳™׳₪׳” ׳¨׳׳©׳•׳ ׳™׳× ׳“׳¨׳ ׳™׳¦׳™׳¨׳× ׳‘׳™׳§׳•׳©׳™׳ ׳•׳¢׳“ ׳׳©׳׳‘ ׳”׳”׳ ׳¢׳” ׳׳¨׳›׳™׳©׳” (Funnel Mapping).", icon: <Compass size={28} /> },
-                { title: "׳׳×׳•׳•׳” ׳¢׳‘׳•׳“׳” ׳§׳•׳׳₪׳׳˜", desc: "׳”׳¢׳‘׳¨׳× ׳׳§׳ ׳׳§׳¦׳•׳¢׳™׳× ׳׳¦׳•׳•׳×׳™ ׳”׳¡׳˜׳•׳“׳™׳• ׳•׳”׳׳“׳™׳” ׳׳”׳•׳¦׳׳” ׳׳₪׳•׳¢׳ ׳©׳ ׳”׳×׳•׳›׳ ׳™׳× ׳¢׳ ׳׳•\"׳–׳™׳, ׳׳™׳§׳•׳׳™׳ ׳•׳’׳׳ ׳˜׳™׳ ׳׳“׳•׳™׳§׳™׳.", icon: <CheckCircle2 size={28} /> }
+                { title: "סדנת פיצוח עם ההנהלה", desc: "מפגש מעמיק בו אנו צוללים אל השטח, מגדירים יעדים ברורים (פיננסיים ושיווקיים) ומבינים את התיוג הפסיכולוגי של המוצר.", icon: <Target size={28} /> },
+                { title: "ניתוח השוק והמתחרים", desc: "איתור פערים במרחב התחרותי (Blue Ocean), ניתוח תמחיר אל מול אחוזי ההמרה וגיבוש בידול מובהק למותג.", icon: <LineChart size={28} /> },
+                { title: "שרטוט מסעות לקוח", desc: "פיתוח שלבים מובנים, החל מחשיפה ראשונית דרך יצירת ביקושים ועד לשלב ההנעה לרכישה (Funnel Mapping).", icon: <Compass size={28} /> },
+                { title: "מתווה עבודה קומפלט", desc: "העברת מקל מקצועית לצוותי הסטודיו והמדיה להוצאה לפועל של התוכנית עם לו\"זים, מיקומים וגאנטים מדויקים.", icon: <CheckCircle2 size={28} /> }
             ],
             faqs: [
-                { q: "׳׳׳” ׳׳ ׳™ ׳¦׳¨׳™׳ ׳׳¡׳˜׳¨׳˜׳’׳™׳”? ׳׳™ ׳׳₪׳©׳¨ ׳₪׳©׳•׳˜ ׳׳₪׳¨׳¡׳?", a: "׳₪׳¨׳¡׳•׳ ׳©׳¨׳¥ ׳׳׳ ׳׳¡׳˜׳¨׳˜׳’׳™׳” ׳”׳•׳ ׳×׳•׳¦׳¨ ׳ ׳§׳•׳“׳×׳™ ׳§׳¦׳¨ ׳˜׳•׳•׳—. ׳‘׳¨׳’׳¢ ׳©׳׳¡׳˜׳¨׳˜׳’׳™׳” ׳׳•׳×׳•׳•׳™׳× - ׳—׳•׳©׳‘׳™׳ ׳©׳׳•׳©׳” ׳¦׳¢׳“׳™׳ ׳§׳“׳™׳׳” ׳•׳™׳•׳“׳¢׳™׳ ׳׳§׳¨׳•׳ ׳׳× ׳׳›׳׳•׳ ׳”׳ ׳×׳•׳ ׳™׳ ׳’׳ ׳›׳׳©׳¨ ׳”׳׳׳’׳•׳¨׳™׳×׳ ׳׳• ׳”׳©׳•׳§ ׳׳©׳×׳ ׳™׳." },
-                { q: "׳׳™׳ ׳׳×׳‘׳¦׳¢ ׳×׳”׳׳™׳ ׳‘׳ ׳™׳™׳× ׳”׳׳¡׳˜׳¨׳˜׳’׳™׳”?", a: "׳׳ ׳• ׳׳×׳—׳™׳׳™׳ ׳‘׳¡׳“׳ ׳׳•׳× ׳¢׳ ׳”׳”׳ ׳”׳׳” ׳›׳“׳™ ׳׳”׳‘׳™׳ ׳׳× ׳¨׳¦׳₪׳•׳× ׳”׳¢׳¡׳§ ׳•׳”׳׳•׳¦׳¨ ׳׳¢׳•׳׳§. ׳׳׳—׳¨ ׳׳›׳ ׳ ׳¦׳ ׳׳×׳”׳׳™׳ ׳ ׳™׳×׳•׳— ׳“׳׳˜׳” ׳ ׳¨׳—׳‘ ׳©׳‘׳¡׳•׳₪׳• ׳׳×׳•׳•׳” ׳׳§׳™׳£ ׳©׳¢׳׳™׳• ׳™׳™׳©׳¢׳ ׳• ׳›׳׳ ׳¢׳¨׳•׳¦׳™ ׳”׳¡׳˜׳•׳“׳™׳•, ׳”׳׳“׳™׳” ׳•׳”׳₪׳™׳×׳•׳—." },
-                { q: "׳׳׳™ ׳׳×׳׳™׳ ׳׳§׳—׳× ׳¨׳§ ׳׳¡׳˜׳¨׳˜׳’׳™׳” ׳™׳™׳¢׳•׳¦׳™׳×?", a: "׳™׳™׳¢׳•׳¥ ׳׳¡׳˜׳¨׳˜׳’׳™ ׳”׳•׳ ׳׳¨׳•׳‘ ׳׳•׳׳׳¥ ׳׳׳•׳×׳’׳™׳ ׳׳‘׳•׳¡׳¡׳™׳ ׳©׳—׳•׳•׳™׳ ׳×׳§׳¨׳× ׳–׳›׳•׳›׳™׳× ׳‘׳¦׳׳™׳—׳” (Scale) ׳•׳›׳‘׳¨ ׳׳—׳–׳™׳§׳™׳ ׳¦׳•׳•׳× In-House ׳•׳–׳§׳•׳§׳™׳ ׳׳¨׳׳™׳™׳× ׳₪׳¨׳™׳׳™׳•׳ ׳—׳™׳¦׳•׳ ׳™׳× ׳©׳×׳ ׳×׳— ׳₪׳¢׳¨׳™׳ ׳•׳׳×׳’׳¨׳™ ׳”׳×׳¨׳—׳‘׳•׳×." },
-                { q: "׳׳” ׳”׳×׳•׳¦׳¨ ׳”׳¡׳•׳₪׳™ ׳©׳׳§׳‘׳ ׳‘׳¡׳•׳£ ׳”׳×׳”׳׳™׳?", a: "׳׳×׳ ׳׳§׳‘׳׳™׳ ׳¡׳₪׳¨ ׳׳•׳×׳’ ׳¢׳™׳•׳ ׳™ ׳©׳׳›׳™׳ ׳׳₪׳•׳× ׳׳¡׳¢, ׳˜׳§׳˜׳™׳§׳•׳× ׳₪׳¨׳¡׳•׳ ׳¡׳₪׳¦׳™׳₪׳™׳•׳× ׳׳›׳ ׳¢׳¨׳•׳¥ ׳•׳׳¡׳’׳¨׳× ׳×׳§׳¦׳™׳‘׳™׳× ׳—׳•׳“׳©׳™׳× ׳׳—׳•׳©׳‘׳× ׳©׳×׳©׳׳© ׳›'׳×׳ ׳ ׳”׳׳›׳™׳¨׳•׳×' ׳¢׳‘׳•׳¨׳›׳ ׳׳›׳ ׳”׳—׳׳˜׳” ׳©׳™׳•׳•׳§׳™׳× ׳”׳‘׳׳” ׳‘׳׳¨׳’׳•׳." },
-                { q: "׳”׳׳ ׳׳×׳ ׳’׳ ׳׳™׳™׳©׳׳™׳ ׳׳× ׳”׳׳¡׳˜׳¨׳˜׳’׳™׳” ׳׳• ׳¨׳§ ׳‘׳•׳ ׳™׳ ׳׳•׳×׳”?", a: "׳׳ ׳• ׳¡׳•׳›׳ ׳•׳× 360 ג€“ ׳׳׳¢׳©׳” ׳׳׳—׳¨ ׳”׳—׳×׳™׳׳” ׳”׳¡׳•׳₪׳™׳× ׳¢׳ ׳¡׳₪׳¨ ׳”׳׳¡׳˜׳¨׳˜׳’׳™׳”, ׳׳ ׳• ׳׳™׳“ ׳׳˜׳׳™׳¢׳™׳ ׳׳•׳×׳• ׳‘׳¦׳•׳•׳×׳™ ׳”׳§׳¨׳™׳׳™׳™׳˜׳™׳‘, ׳”׳׳“׳™׳” ׳•׳”׳—׳•׳׳¨׳™׳ ׳”׳©׳™׳•׳•׳§׳™׳™׳ ׳©׳׳ ׳• ׳›׳“׳™ ׳׳™׳™׳©׳ ׳‘׳׳•׳₪׳ ׳׳¢׳©׳™ ׳•׳׳“׳׳•׳’ ׳©׳”׳×׳›׳ ׳•׳ ׳₪׳•׳’׳© ׳׳× ׳”׳׳¦׳™׳׳•׳× ׳‘׳—׳₪׳™׳₪׳” ׳׳׳׳”." }
+                { q: "למה אני צריך אסטרטגיה? אי אפשר פשוט לפרסם?", a: "פרסום שרץ ללא אסטרטגיה הוא תוצר נקודתי קצר טווח. ברגע שאסטרטגיה מותווית - חושבים שלושה צעדים קדימה ויודעים לקרוא את מכלול הנתונים גם כאשר האלגוריתם או השוק משתנים." },
+                { q: "איך מתבצע תהליך בניית האסטרטגיה?", a: "אנו מתחילים בסדנאות עם ההנהלה כדי להבין את רצפות העסק והמוצר לעומק. לאחר מכן נצא לתהליך ניתוח דאטה נרחב שבסופו מתווה מקיף שעליו יישענו כלל ערוצי הסטודיו, המדיה והפיתוח." },
+                { q: "למי מתאים לקחת רק אסטרטגיה ייעוצית?", a: "ייעוץ אסטרטגי הוא לרוב מומלץ למותגים מבוססים שחווים תקרת זכוכית בצמיחה (Scale) וכבר מחזיקים צוות In-House וזקוקים לראיית פרימיום חיצונית שתנתח פערים ואתגרי התרחבות." },
+                { q: "מה התוצר הסופי שאקבל בסוף התהליך?", a: "אתם מקבלים ספר מותג עיוני שמכיל מפות מסע, טקטיקות פרסום ספציפיות לכל ערוץ ומסגרת תקציבית חודשית מחושבת שתשמש כ'תנך המכירות' עבורכם לכל החלטה שיווקית הבאה בארגון." },
+                { q: "האם אתם גם מיישמים את האסטרטגיה או רק בונים אותה?", a: "אנו סוכנות 360 – למעשה לאחר החתימה הסופית על ספר האסטרטגיה, אנו מיד מטמיעים אותו בצוותי הקריאייטיב, המדיה והחומרים השיווקיים שלנו כדי ליישם באופן מעשי ולדאוג שהתכנון פוגש את המציאות בחפיפה מלאה." }
             ]
         },
         analytics: { 
-            title: "׳׳ ׳׳™׳˜׳™׳§׳¡ ׳•׳“׳׳˜׳”", 
-            long: "׳‘׳׳™ ׳׳“׳™׳“׳” ׳׳™׳ ׳©׳™׳₪׳•׳¨. ׳׳ ׳—׳ ׳• ׳¢׳•׳–׳¨׳™׳ ׳׳›׳ ׳׳”׳‘׳™׳ ׳‘׳“׳™׳•׳§ ׳׳” ׳§׳•׳¨׳” ׳‘׳׳×׳¨, ׳׳׳™׳₪׳” ׳׳’׳™׳¢׳™׳ ׳”׳׳§׳•׳—׳•׳× ׳”׳¨׳•׳•׳—׳™׳™׳ ׳•׳׳™׳ ׳׳™׳™׳¢׳ ׳׳× ׳”׳×׳§׳¦׳™׳‘.", 
-            services: ["׳”׳˜׳׳¢׳× GA4 ׳•-Tag Manager", "׳“׳׳©׳‘׳•׳¨׳“׳™׳ ׳‘׳–׳׳ ׳׳׳×", "׳׳¢׳§׳‘ ׳”׳׳¨׳•׳× ׳׳×׳§׳“׳", "BigQuery"],
-            processTitle: "׳©׳׳™׳˜׳” ׳׳׳׳” ׳¢׳ ׳”׳“׳׳˜׳” ׳©׳׳›׳",
-            processSubtitle: "׳׳™׳ ׳׳ ׳׳™׳˜׳™׳§׳¡ ׳׳׳™׳×׳™ ׳¦׳¨׳™׳ ׳׳”׳¨׳׳•׳×",
+            title: "אנליטיקס ודאטה", 
+            long: "בלי מדידה אין שיפור. אנחנו עוזרים לכם להבין בדיוק מה קורה באתר, מאיפה מגיעים הלקוחות הרווחיים ואיך לייעל את התקציב.", 
+            services: ["הטמעת GA4 ו-Tag Manager", "דאשבורדים בזמן אמת", "מעקב המרות מתקדם", "BigQuery"],
+            processTitle: "שליטה מלאה על הדאטה שלכם",
+            processSubtitle: "איך אנליטיקס אמיתי צריך להראות",
             process: [
-                { title: "׳׳™׳₪׳•׳™ KPI ׳•׳”׳’׳“׳¨׳•׳×", desc: "׳”׳‘׳ ׳× ׳›׳׳ ׳”׳׳“׳“׳™׳ ׳”׳“׳¨׳•׳©׳™׳ ׳©׳¢׳•׳§׳‘׳™׳ ׳׳—׳¨ ׳”׳׳§׳•׳— - ׳׳׳—׳™׳¦׳× ׳”׳—׳©׳™׳₪׳” ׳”׳¨׳׳©׳•׳ ׳” ׳“׳¨׳ ׳”׳›׳ ׳¡׳× ׳׳•׳¦׳¨׳™׳ ׳׳¡׳, ׳•׳¢׳“ ׳§׳׳™׳˜׳× ׳”׳˜׳•׳₪׳¡ ׳‘-CRM.", icon: <Target size={28} /> },
-                { title: "׳”׳˜׳׳¢׳•׳× ׳˜׳›׳ ׳™׳•׳× ׳׳×׳§׳“׳׳•׳×", desc: "׳₪׳¨׳™׳¡׳” ׳׳™׳¨׳•׳¢׳™׳ (Events) ׳‘׳׳׳¦׳¢׳•׳× Google Tag Manager (GTM) ׳©׳¨׳×-׳¦׳“ ׳›׳“׳™ ׳׳ ׳§׳•׳× ׳—׳¨׳™׳’׳•׳× ׳”׳ ׳’׳¨׳׳•׳× ׳¢׳§׳‘ ׳—׳•׳¡׳׳™ ׳₪׳¨׳¡׳•׳׳•׳×.", icon: <Settings size={28} /> },
-                { title: "׳“׳׳©׳‘׳•׳¨׳“׳™׳ ׳׳•׳×׳׳׳™׳ ׳׳™׳©׳™׳×", desc: "׳‘׳ ׳™׳™׳× ׳׳¡׳ ׳™׳₪׳™׳₪׳” ׳׳—׳“ ׳§׳ ׳׳§׳׳™׳˜׳” ׳‘-Looker Studio ׳”׳׳©׳׳‘ ׳׳× ׳׳§׳•׳¨׳•׳× ׳”׳×׳ ׳•׳¢׳” ׳”׳׳•׳¨׳›׳‘׳™׳ ׳‘׳™׳•׳×׳¨ ׳׳׳§׳•׳ ׳™׳¢׳™׳ ׳׳¢׳‘׳•׳“׳” ׳©׳•׳˜׳₪׳×.", icon: <BarChart size={28} /> },
-                { title: "׳ ׳™׳×׳•׳— ׳•׳׳•׳₪׳˜׳™׳׳™׳–׳¦׳™׳”", desc: "׳¡׳§׳™׳¨׳” ׳—׳–׳•׳×׳™׳× ׳©׳‘׳•׳¢׳™׳× ׳¢׳ ׳”׳‘׳™׳¦׳•׳¢׳™׳ ׳”׳׳•׳›׳™׳—׳” ׳׳™׳–׳” ׳׳₪׳™׳§ ׳׳‘׳™׳ ׳׳× ׳”׳”׳—׳–׳¨ ׳”׳›׳¡׳₪׳™ ׳”׳׳“׳•׳™׳§ ׳•׳”׳’׳‘׳•׳” ׳‘׳™׳•׳×׳¨ (׳”׳—׳–׳¨ ׳¢׳ ׳©׳§׳ ׳‘׳•׳“׳“).", icon: <TrendingUp size={28} /> }
+                { title: "מיפוי KPI והגדרות", desc: "הבנת כלל המדדים הדרושים שעוקבים אחר הלקוח - מלחיצת החשיפה הראשונה דרך הכנסת מוצרים לסל, ועד קליטת הטופס ב-CRM.", icon: <Target size={28} /> },
+                { title: "הטמעות טכניות מתקדמות", desc: "פריסה אירועים (Events) באמצעות Google Tag Manager (GTM) שרת-צד כדי לנקות חריגות הנגרמות עקב חוסמי פרסומות.", icon: <Settings size={28} /> },
+                { title: "דאשבורדים מותאמים אישית", desc: "בניית מסך יפיפה אחד קל לקליטה ב-Looker Studio המשלב את מקורות התנועה המורכבים ביותר למקום יעיל לעבודה שוטפת.", icon: <BarChart size={28} /> },
+                { title: "ניתוח ואופטימיזציה", desc: "סקירה חזותית שבועית על הביצועים המוכיחה איזה אפיק מביא את ההחזר הכספי המדויק והגבוה ביותר (החזר על שקל בודד).", icon: <TrendingUp size={28} /> }
             ],
             faqs: [
-                { q: "׳׳׳” ׳׳ ׳—׳ ׳• ׳¦׳¨׳™׳›׳™׳ ׳׳“׳™׳“׳” ׳׳ ׳׳™׳˜׳™׳× ׳׳×׳§׳“׳׳×?", a: "׳׳ ׳׳™׳˜׳™׳§׳¡ ׳”׳•׳ ׳”׳‘׳¡׳™׳¡ ׳׳§׳‘׳׳× ׳”׳—׳׳˜׳•׳× ׳¢׳¡׳§׳™׳•׳× ׳—׳›׳׳•׳×. ׳׳׳ ׳׳“׳™׳“׳” ׳׳×׳§׳“׳׳× (׳׳¢׳§׳‘׳™ ׳”׳׳¨׳•׳×, eCommerce ׳‘-GA4) ׳׳×׳ ׳‘׳¢׳¦׳ ׳׳—׳׳™׳˜׳™׳ ׳‘׳׳•׳₪׳ ׳¢׳™׳•׳•׳¨. ׳”׳׳“׳™׳“׳” ׳×׳¨׳׳” ׳׳ ׳• ׳׳™׳–׳” ׳§׳׳₪׳™׳™׳ ׳׳‘׳™׳ ׳¨׳•׳•׳— ׳•׳׳™׳–׳” ׳¢׳¨׳•׳¥ ׳₪׳—׳•׳× ׳׳©׳×׳׳." },
-                { q: "׳×׳•׳›׳׳• ׳׳×׳§׳ ׳׳ ׳• ׳ ׳×׳•׳ ׳™ ׳”׳׳¨׳•׳× ׳©׳’׳•׳™׳™׳?", a: "׳‘׳”׳—׳׳˜. ׳׳ ׳• ׳׳‘׳¦׳¢׳™׳ ׳‘׳ ׳™׳™׳× ׳“׳׳˜׳” ׳§׳₪׳“׳ ׳™׳× ׳›׳“׳™ ׳׳׳¦׳•׳ ׳˜׳¢׳•׳™׳•׳× ׳‘׳׳¢׳§׳‘׳™ ׳”׳׳¨׳•׳×, ׳×׳§׳׳•׳× ׳‘׳”׳˜׳׳¢׳× Facebook Pixel, ׳›׳₪׳™׳׳•׳™׳•׳× ׳‘׳׳™׳¨׳•׳¢׳™׳ ׳•׳©׳’׳™׳׳•׳× ׳‘׳׳¢׳§׳‘ ׳“׳¨׳ Tag Manager." },
-                { q: "׳™׳© ׳“׳¨׳ ׳ ׳•׳—׳” ׳׳¨׳׳•׳× ׳׳× ׳”׳ ׳×׳•׳ ׳™׳ ׳‘׳–׳׳ ׳׳׳×?", a: "׳׳ ׳• ׳™׳›׳•׳׳™׳ ׳׳”׳’׳“׳™׳¨ ׳׳›׳ ׳“׳׳©׳‘׳•׳¨׳“׳™׳ ׳׳•׳×׳׳׳™׳ ׳׳™׳©׳™׳× (׳‘׳¢׳–׳¨׳× ׳›׳׳™׳ ׳›׳׳• Looker Studio), ׳›׳ ׳©׳›׳ ׳׳“׳“׳™ ׳”׳׳₪׳×׳— ׳©׳—׳©׳•׳‘׳™׳ ׳׳›׳ ׳™׳”׳™׳• ׳׳¨׳•׳›׳–׳™׳ ׳‘׳׳•׳— ׳‘׳§׳¨׳” ׳׳—׳“ ׳©׳¢׳•׳‘׳“ ׳‘׳–׳׳ ׳׳׳× ׳•׳™׳—׳¡׳•׳ ׳›׳ ׳™׳¡׳” ׳׳׳¢׳¨׳›׳•׳× ׳©׳•׳ ׳•׳×." },
-                { q: "׳׳”׳• ׳׳׳¢׳©׳” '׳׳¢׳§׳‘ ׳¦׳“ ׳©׳¨׳×' (Server-Side Tracking)?", a: "׳‘׳׳§׳•׳ ׳׳”׳¡׳×׳׳ ׳¢׳ ׳§׳•׳“ ׳₪׳™׳§׳¡׳ ׳©׳¨׳¥ ׳׳¦׳ ׳”׳’׳•׳׳© ׳•׳—׳•׳¡׳ ׳׳¢׳™׳×׳™׳ ׳¢׳ ׳™׳“׳™ ׳“׳₪׳“׳₪׳ ׳™׳ (׳›׳׳• iOS ׳׳• ׳׳“-׳‘׳׳•׳§׳¨), ׳”׳׳¢׳§׳‘ ׳׳‘׳•׳¦׳¢ ׳‘׳©׳¨׳× ׳™׳™׳¢׳•׳“׳™ ׳©׳׳ ׳•. ׳–׳” ׳׳©׳₪׳¨ ׳׳©׳׳¢׳•׳×׳™׳× ׳׳× ׳׳׳™׳ ׳•׳× ׳”׳ ׳×׳•׳ ׳™׳ ׳•׳§׳¦׳‘ ׳”׳”׳׳¨׳•׳× ׳©׳׳“׳•׳•׳— ׳׳׳§׳™׳׳™ ׳”׳§׳׳₪׳™׳™׳ ׳™׳." },
-                { q: "׳׳™׳–׳” ׳›׳׳™ ׳׳ ׳׳™׳˜׳™׳§׳” ׳׳×׳ ׳׳˜׳׳™׳¢׳™׳ ׳׳¨׳•׳‘?", a: "׳׳ ׳• ׳‘׳•׳—׳¨׳™׳ ׳›׳׳™׳ ׳‘׳”׳×׳׳ ׳׳₪׳¨׳•׳™׳§׳˜. ׳”׳‘׳¡׳™׳¡ ׳×׳׳™׳“ ׳™׳”׳™׳” GA4 ׳•-GTM. ׳¢׳‘׳•׳¨ ׳׳–׳•׳¨׳™ ׳¡׳—׳¨ (eCommerce), ׳׳ ׳• ׳׳•׳¡׳™׳₪׳™׳ ׳₪׳¢׳׳™׳ ׳¨׳‘׳•׳× ׳׳₪׳•׳× ׳—׳•׳ (׳›׳׳• Hotjar ׳׳• Clarity) ׳•׳׳•׳¦׳¨׳™׳ ׳׳׳₪׳׳•׳—׳™ ׳ ׳×׳•׳ ׳™׳ ׳׳•׳¨׳›׳‘׳™׳ (Looker / Mixpanel)." }
+                { q: "למה אנחנו צריכים מדידה אנליטית מתקדמת?", a: "אנליטיקס הוא הבסיס לקבלת החלטות עסקיות חכמות. ללא מדידה מתקדמת (מעקבי המרות, eCommerce ב-GA4) אתם בעצם מחליטים באופן עיוור. המדידה תראה לנו איזה קמפיין מביא רווח ואיזה ערוץ פחות משתלם." },
+                { q: "תוכלו לתקן לנו נתוני המרות שגויים?", a: "בהחלט. אנו מבצעים בניית דאטה קפדנית כדי למצוא טעויות במעקבי המרות, תקלות בהטמעת Facebook Pixel, כפילויות באירועים ושגיאות במעקב דרך Tag Manager." },
+                { q: "יש דרך נוחה לראות את הנתונים בזמן אמת?", a: "אנו יכולים להגדיר לכם דאשבורדים מותאמים אישית (בעזרת כלים כמו Looker Studio), כך שכל מדדי המפתח שחשובים לכם יהיו מרוכזים בלוח בקרה אחד שעובד בזמן אמת ויחסוך כניסה למערכות שונות." },
+                { q: "מהו למעשה 'מעקב צד שרת' (Server-Side Tracking)?", a: "במקום להסתמך על קוד פיקסל שרץ אצל הגולש וחוסם לעיתים על ידי דפדפנים (כמו iOS או אד-בלוקר), המעקב מבוצע בשרת ייעודי שלנו. זה משפר משמעותית את אמינות הנתונים וקצב ההמרות שמדווח למקימי הקמפיינים." },
+                { q: "איזה כלי אנליטיקה אתם מטמיעים לרוב?", a: "אנו בוחרים כלים בהתאם לפרויקט. הבסיס תמיד יהיה GA4 ו-GTM. עבור אזורי סחר (eCommerce), אנו מוסיפים פעמים רבות מפות חום (כמו Hotjar או Clarity) ומוצרים למפלוחי נתונים מורכבים (Looker / Mixpanel)." }
             ]
         }
     };
@@ -1076,13 +1073,13 @@ const DepartmentDetail = () => {
                 <DepartmentPortfolio category={id || 'ppc'} />
 
                 {dept.faqs && dept.faqs.length > 0 && (
-                    <FAQ title={`׳©׳׳׳•׳× ׳ ׳₪׳•׳¦׳•׳×`} data={dept.faqs} className="bg-transparent !py-0 mt-20 md:mt-24" />
+                    <FAQ title={`שאלות נפוצות`} data={dept.faqs} className="bg-transparent !py-0 mt-20 md:mt-24" />
                 )}
 
                 <div className="mt-20 md:mt-24 p-8 md:p-12 bg-gray-50 border border-[#2f4ea1]/20 text-gray-900 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-right rounded-2xl shadow-lg relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-[#2f4ea1]/10 to-transparent pointer-events-none"></div>
-                    <h2 className="text-2xl md:text-3xl font-black relative z-10 text-[#2f4ea1]">׳׳•׳›׳ ׳™׳ ׳׳”׳×׳—׳™׳ ׳׳¢׳‘׳•׳“?</h2>
-                    <button id="dept_contact_btn" onClick={() => router.push('/contact')} className="bg-[#2f4ea1] text-white px-8 py-4 font-black tracking-widest hover:bg-[#0747cc] transition-all rounded-full relative z-10 shadow-md">׳‘׳•׳׳• ׳ ׳×׳—׳™׳</button>
+                    <h2 className="text-2xl md:text-3xl font-black relative z-10 text-[#2f4ea1]">מוכנים להתחיל לעבוד?</h2>
+                    <button id="dept_contact_btn" onClick={() => router.push('/contact')} className="bg-[#2f4ea1] text-white px-8 py-4 font-black tracking-widest hover:bg-[#0747cc] transition-all rounded-full relative z-10 shadow-md">בואו נתחיל</button>
                 </div>
             </div>
         </Reveal>
@@ -1090,5 +1087,3 @@ const DepartmentDetail = () => {
 };
 
 export default DepartmentDetail;
-
-

@@ -1,4 +1,4 @@
-﻿import ContactForm from '../components/ContactForm';
+import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
 import { Mail, MapPin, Phone } from 'lucide-react';
 
@@ -8,8 +8,8 @@ const Contact = () => {
             {/* Page Header */}
             <div className="max-w-6xl mx-auto px-6 text-center mb-16 md:mb-24">
                  <Reveal>
-                     <h1 className="text-5xl md:text-7xl font-black text-[#0b1638] mb-6">׳‘׳•׳׳• ׳ ׳“׳‘׳¨.</h1>
-                     <p className="text-xl md:text-2xl text-gray-500 max-w-2xl mx-auto text-balance">׳׳₪׳¨׳•׳™׳™׳§׳˜׳™׳ ׳˜׳›׳ ׳•׳׳•׳’׳™׳™׳ ׳׳•׳¨׳›׳‘׳™׳ ׳•׳¢׳“ ׳‘׳ ׳™׳™׳× ׳׳•׳×׳’׳™׳ ׳©׳׳©׳ ׳™׳ ׳©׳•׳•׳§׳™׳ ג€“ ׳׳ ׳—׳ ׳• ׳›׳׳ ׳›׳“׳™ ׳׳”׳§׳©׳™׳‘ ׳•׳׳”׳₪׳•׳ ׳—׳–׳•׳ ׳׳׳¦׳™׳׳•׳×.</p>
+                     <h1 className="text-5xl md:text-7xl font-black text-[#0b1638] mb-6">בואו נדבר.</h1>
+                     <p className="text-xl md:text-2xl text-gray-500 max-w-2xl mx-auto text-balance">מפרוייקטים טכנולוגיים מורכבים ועד בניית מותגים שמשנים שווקים – אנחנו כאן כדי להקשיב ולהפוך חזון למציאות.</p>
                  </Reveal>
             </div>
 
@@ -20,8 +20,8 @@ const Contact = () => {
                          <div className="w-16 h-16 bg-[#2f4ea1]/5 text-[#2f4ea1] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#2f4ea1] group-hover:text-white transition-all">
                              <Mail size={32} />
                          </div>
-                         <h2 className="text-xl font-bold text-[#0b1638] mb-2">׳©׳׳—׳• ׳׳™׳™׳</h2>
-                         <p className="text-gray-500 mb-4">׳׳¢׳ ׳” ׳׳”׳™׳¨ ׳×׳•׳ 24 ׳©׳¢׳•׳×</p>
+                         <h2 className="text-xl font-bold text-[#0b1638] mb-2">שלחו מייל</h2>
+                         <p className="text-gray-500 mb-4">מענה מהיר תוך 24 שעות</p>
                          <a href="mailto:hello@sepros.co.il" className="text-[#2f4ea1] font-black text-lg dir-ltr">hello@sepros.co.il</a>
                     </Reveal>
 
@@ -29,8 +29,8 @@ const Contact = () => {
                          <div className="w-16 h-16 bg-[#2f4ea1]/5 text-[#2f4ea1] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#2f4ea1] group-hover:text-white transition-all">
                              <Phone size={32} />
                          </div>
-                         <h2 className="text-xl font-bold text-[#0b1638] mb-2">׳“׳‘׳¨׳• ׳׳™׳×׳ ׳•</h2>
-                         <p className="text-gray-500 mb-4">׳™׳׳™׳ ׳'-׳”', 09:30-18:00</p>
+                         <h2 className="text-xl font-bold text-[#0b1638] mb-2">דברו איתנו</h2>
+                         <p className="text-gray-500 mb-4">ימים א'-ה', 09:30-18:00</p>
                          <a href="tel:098863644" className="text-[#2f4ea1] font-black text-lg dir-ltr">09-886-3644</a>
                     </Reveal>
 
@@ -38,9 +38,9 @@ const Contact = () => {
                          <div className="w-16 h-16 bg-[#2f4ea1]/10 text-[#2f4ea1] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                              <MapPin size={32} />
                          </div>
-                         <h2 className="text-xl font-bold text-[#0b1638] mb-2">׳”׳׳©׳¨׳“׳™׳ ׳©׳׳ ׳•</h2>
-                         <p className="text-gray-500 mb-4">׳§׳₪׳” ׳׳¢׳•׳׳” ׳•׳—׳ ׳™׳” ׳—׳•׳₪׳©׳™׳×</p>
-                         <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="text-[#2f4ea1] font-black text-lg hover:underline underline-offset-4">׳˜׳©׳¨׳ ׳™׳—׳•׳‘׳¡׳§׳™ 24, ׳›׳₪׳¨ ׳¡׳‘׳</a>
+                         <h2 className="text-xl font-bold text-[#0b1638] mb-2">המשרדים שלנו</h2>
+                         <p className="text-gray-500 mb-4">קפה מעולה וחניה חופשית</p>
+                         <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="text-[#2f4ea1] font-black text-lg hover:underline underline-offset-4">טשרניחובסקי 24, כפר סבא</a>
                     </Reveal>
                 </div>
             </div>
@@ -53,4 +53,3 @@ const Contact = () => {
 };
 
 export default Contact;
-

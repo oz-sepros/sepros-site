@@ -34,10 +34,8 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="he" dir="rtl">
-      <head>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
-      </head>
       <body className={`${heebo.className} min-h-screen bg-white text-gray-900 selection:bg-[#2f4ea1] selection:text-white antialiased`}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
         <Navbar />
         <main>{children}</main>
         <Footer />
