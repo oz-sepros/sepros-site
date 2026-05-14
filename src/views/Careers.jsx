@@ -64,7 +64,7 @@ const Careers = () => {
 
     return (
         <>
-            <Reveal className="min-h-[85vh] bg-white pt-48 md:pt-56 pb-32 text-right">
+            <Reveal className="min-h-[85vh] bg-white pt-32 md:pt-40 pb-32 text-right">
                 <div className="max-w-[1000px] mx-auto px-6">
                     <h1 className="text-5xl md:text-7xl font-black uppercase mb-6 text-[#2f4ea1]">קריירה בספרוס</h1>
                     <p className="text-gray-600 text-lg md:text-xl font-light mb-16 max-w-2xl ml-auto">
