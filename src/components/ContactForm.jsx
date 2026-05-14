@@ -14,12 +14,8 @@ const ContactForm = ({ isMainSection = false }) => {
         e.preventDefault();
         setFormError('');
 
-        // Name validation (at least two words)
+        // Extract name parts (no requirement for 2 words)
         const nameParts = formData.fullName.trim().split(/\s+/);
-        if (nameParts.length < 2) {
-            setFormError('נא להזין שם מלא (שם פרטי ושם משפחה).');
-            return;
-        }
 
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
