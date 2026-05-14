@@ -71,19 +71,26 @@ const Home = () => {
                 className="relative min-h-[100svh] flex flex-col items-center justify-between overflow-hidden"
                 style={{
                     background: `linear-gradient(
-        180deg, #09102c 0%,
-        #141c48 10%,
-        #2b3991 25%,
-        #4a50b5 35%,
-        #6a6ac6 45%,
-        #9084cb 55%,
-        #a9a1d8 60%,
-        #bfb8e3 65%,
-        #d4cfed 70%,
-        #e6e2f6 73%,
-        #f3f1fb 76%,
-        #F5F7FA 80%,
-        #F5F7FA 100%
+        180deg,   #09102c 0%,
+  #0c1434 5%,
+  #111941 10%,
+  #1a265f 17%,
+  #253381 23%,
+  #2b3991 28%,
+  #3945a5 34%,
+  #4a50b5 40%,
+  #5b5dbe 46%,
+  #6a6ac6 52%,
+  #7c75c9 57%,
+  #9084cb 62%,
+  #a099d4 67%,
+  #b1aadf 72%,
+  #c3bdea 77%,
+  #d6d2f1 81%,
+  #e6e4f7 84%,
+  #f0f1fb 86%,
+  #F5F7FA 88%,
+  #F5F7FA 100%
       )` }}
             >
                 <Hero />

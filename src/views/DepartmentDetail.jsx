@@ -1294,7 +1294,7 @@ const DepartmentDetail = () => {
         <Reveal className="min-h-screen bg-white pt-32 md:pt-40 pb-20 text-right">
             <div className="max-w-[1400px] mx-auto px-6">
                 {/* Mobile Title - Appears above image on mobile */}
-                <h1 className="lg:hidden text-4xl md:text-5xl font-black uppercase mb-8 text-[#2f4ea1] leading-tight flex flex-col-reverse relative z-10">{dept.title}</h1>
+                <div className="lg:hidden text-4xl md:text-5xl font-black uppercase mb-8 text-[#2f4ea1] leading-tight flex flex-col-reverse relative z-10">{dept.title}</div>
 
                 <div className="flex flex-col lg:flex-row gap-12 md:gap-16 items-stretch">
                     <div className="lg:w-[60%] flex flex-col justify-center order-last lg:order-first mt-2 lg:mt-0">

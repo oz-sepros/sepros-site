@@ -33,7 +33,7 @@ const Footer = () => (
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-right w-full lg:w-auto">
                     <div className="space-y-4">
-                        <h4 className="text-gray-900 font-black tracking-widest text-[10px] border-b border-gray-200 pb-2 inline-block">מחלקות</h4>
+                        <h2 className="text-gray-900 font-black tracking-widest text-[10px] border-b border-gray-200 pb-2 inline-block">מחלקות</h2>
                         <ul className="space-y-2 text-gray-600 font-bold text-xs md:text-sm">
                             <li><Link href="/department/ppc" className="hover:text-[#2f4ea1] transition-colors">PPC וביצועים</Link></li>
                             <li><Link href="/department/social" className="hover:text-[#2f4ea1] transition-colors">סושיאל וקריאייטיב</Link></li>
@@ -42,7 +42,7 @@ const Footer = () => (
                         </ul>
                     </div>
                     <div className="space-y-4">
-                        <h4 className="text-gray-900 font-black tracking-widest text-[10px] border-b border-gray-200 pb-2 inline-block">חברה</h4>
+                        <h2 className="text-gray-900 font-black tracking-widest text-[10px] border-b border-gray-200 pb-2 inline-block">חברה</h2>
                         <ul className="space-y-2 text-gray-600 font-bold text-xs md:text-sm">
                             <li><Link href="/about" className="hover:text-[#2f4ea1] transition-colors">אודות הסוכנות</Link></li>
                             <li><Link href="/articles" className="hover:text-[#2f4ea1] transition-colors">מאמרים</Link></li>
@@ -51,7 +51,7 @@ const Footer = () => (
                         </ul>
                     </div>
                     <div className="space-y-4">
-                        <h4 className="text-gray-900 font-black tracking-widest text-[10px] border-b border-gray-200 pb-2 inline-block">משפטי</h4>
+                        <h2 className="text-gray-900 font-black tracking-widest text-[10px] border-b border-gray-200 pb-2 inline-block">משפטי</h2>
                         <ul className="space-y-2 text-gray-600 font-bold text-xs md:text-sm">
                             <li><button className="hover:text-gray-900 transition-colors">תנאי שימוש</button></li>
                             <li><Link href="/privacy" className="hover:text-gray-900 transition-colors">מדיניות פרטיות</Link></li>
