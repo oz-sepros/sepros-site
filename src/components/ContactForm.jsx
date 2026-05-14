@@ -14,6 +14,34 @@ const ContactForm = ({ isMainSection = false }) => {
         e.preventDefault();
         setFormError('');
 
+        // Name validation (at least two words)
+        const nameParts = formData.fullName.trim().split(/\s+/);
+        if (nameParts.length < 2) {
+            setFormError('נא להזין שם מלא (שם פרטי ושם משפחה).');
+            return;
+        }
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+            setFormError('נא להזין כתובת אימייל תקינה.');
+            return;
+        }
+
+        // Name validation (at least two words)
+        const nameParts = formData.fullName.trim().split(/\s+/);
+        if (nameParts.length < 2) {
+            setFormError('נא להזין שם מלא (שם פרטי ושם משפחה).');
+            return;
+        }
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+            setFormError('נא להזין כתובת אימייל תקינה.');
+            return;
+        }
+
         // Israeli phone validation (allow spaces or hyphens, check prefixes)
         const cleanPhone = formData.phone ? formData.phone.replace(/[\s-]/g, '') : '';
         const phoneRegex = /^(05\d|0[23489]|07\d)\d{7}$/;
