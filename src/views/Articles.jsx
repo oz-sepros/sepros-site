@@ -15,8 +15,17 @@ const Articles = () => {
         { slug: 'ux-color-psychology', title: "עיצוב UX שמוכר: פסיכולוגיה של צבעים וממשק", date: "10 פברואר, 2026", desc: "איך למקם כפתורי הנעה לפעולה, באילו צבעים להשתמש ואיך לבנות אמון דרך חוויית משתמש מושלמת.", tag: "UX/UI", image: "/articles/article_ux.png" },
     ];
 
+    const blogSchema = {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "בלוג ומאמרים - ספרוס שיווק דיגיטלי",
+        "url": "https://www.sepros.co.il/articles",
+        "description": "תובנות, מדריכים וחדשות מהחזית של השיווק הדיגיטלי."
+    };
+
     return (
         <PageTransition>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }} />
             <Reveal className="min-h-screen bg-[#F5F7FA] pt-32 md:pt-40 pb-32 text-right">
                 <div className="max-w-[1400px] mx-auto px-6">
                     <h1 className="text-5xl md:text-7xl font-black uppercase mb-6 text-[#2f4ea1]">בלוג ומאמרים</h1>

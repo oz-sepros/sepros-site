@@ -11,31 +11,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const orgSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Sepros Digital",
-    "url": "https://www.sepros.co.il",
-    "logo": "https://www.sepros.co.il/logo.png",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "0528910085",
-      "contactType": "customer service",
-      "email": "ofir@sepros.co.il",
-      "availableLanguage": "Hebrew"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "עתיר ידע 16",
-      "addressLocality": "כפר סבא",
-      "addressCountry": "IL"
-    }
-  };
-
   return (
     <html lang="he" dir="rtl">
       <body className={`${heebo.className} min-h-screen bg-white text-gray-900 selection:bg-[#2f4ea1] selection:text-white antialiased`}>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
         <Navbar />
         <main>{children}</main>
         <Footer />

@@ -59,8 +59,30 @@ const homeFaqData = [
 ];
 
 const Home = () => {
+    const orgSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Sepros Digital",
+        "url": "https://www.sepros.co.il",
+        "logo": "https://www.sepros.co.il/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "0528910085",
+          "contactType": "customer service",
+          "email": "ofir@sepros.co.il",
+          "availableLanguage": "Hebrew"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "עתיר ידע 16",
+          "addressLocality": "כפר סבא",
+          "addressCountry": "IL"
+        }
+    };
+
     return (
         <div className="pt-0 relative">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
             {/* Subtle Figma-style dot pattern overlay */}
             <div className="absolute inset-0 z-[50] pointer-events-none" style={{
                 backgroundImage: 'radial-gradient(#09102c 1.5px, transparent 1.5px)',

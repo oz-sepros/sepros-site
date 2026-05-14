@@ -10,6 +10,7 @@ const articleData = {
     'technical-seo-2026': {
         title: "המדריך המלא ל-SEO טכני ב-2026",
         date: "15 מרץ, 2026",
+        isoDate: "2026-03-15",
         tag: "SEO",
         image: "/articles/article_seo.png",
         content: `
@@ -32,6 +33,7 @@ const articleData = {
     'double-your-roas': {
         title: "איך להכפיל את ה-ROAS בקמפיינים בגוגל",
         date: "2 מרץ, 2026",
+        isoDate: "2026-03-02",
         tag: "PPC",
         image: "/articles/article_roas.png",
         content: `
@@ -51,6 +53,7 @@ const articleData = {
     'tiktok-or-instagram': {
         title: "טיקטוק או אינסטגרם? איפה הקהל שלכם נמצא",
         date: "28 פברואר, 2026",
+        isoDate: "2026-02-28",
         tag: "סושיאל",
         image: "/articles/article_social.png",
         content: `
@@ -73,6 +76,7 @@ const articleData = {
     'ux-color-psychology': {
         title: "עיצוב UX שמוכר: פסיכולוגיה של צבעים וממשק",
         date: "10 פברואר, 2026",
+        isoDate: "2026-02-10",
         tag: "UX/UI",
         image: "/articles/article_ux.png",
         content: `
@@ -115,7 +119,7 @@ const ArticlePage = () => {
         "@type": "Article",
         "headline": article.title,
         "image": [article.image],
-        "datePublished": article.date,
+        "datePublished": article.isoDate,
         "author": [{
             "@type": "Organization",
             "name": "Sepros Digital",
