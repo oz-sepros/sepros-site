@@ -510,70 +510,103 @@ const DepartmentHeroVisual = ({ category }) => {
                 );
             case 'design':
                 return (
-                    <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 rounded-3xl bg-gradient-to-br from-[#0b1638] to-[#12235a] overflow-hidden group">
-                        {/* Background grid */}
-                        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
-                        
-                        <div className="relative w-full max-w-[320px] h-[220px] z-10 flex items-center justify-center">
+                    <div className="relative w-full h-full min-h-[300px] md:min-h-[360px] flex items-center justify-center p-4 rounded-3xl bg-[#0b1638] overflow-hidden group">
+                        {/* Big Window Frame */}
+                        <div className="relative w-full max-w-[480px] h-[280px] md:h-[320px] bg-[#1a1f35] rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 flex flex-col overflow-hidden transition-transform group-hover:scale-105 duration-700">
                             
-                            {/* Tools Panel */}
-                            <div className="absolute left-2 md:-left-4 top-1/2 -translate-y-1/2 w-10 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 flex flex-col items-center py-2 gap-2 shadow-xl z-20 transition-transform group-hover:-translate-x-2 duration-500">
-                                <div className="w-7 h-7 rounded-lg bg-[#2f4ea1] flex items-center justify-center text-white cursor-pointer shadow-md"><MousePointer2 size={14} /></div>
-                                <div className="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-white/70 cursor-pointer"><Type size={14} /></div>
-                                <div className="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-white/70 cursor-pointer"><Layout size={14} /></div>
-                                <div className="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-white/70 cursor-pointer"><Palette size={14} /></div>
+                            {/* Window Header */}
+                            <div className="h-8 bg-[#232942] border-b border-white/5 flex items-center px-4 justify-between shrink-0">
+                                <div className="flex gap-1.5">
+                                    <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+                                    <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+                                    <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+                                </div>
+                                <div className="text-[10px] text-white/40 font-mono">Hero_Design_v2.fig</div>
+                                <div className="flex gap-2 text-white/40">
+                                    <Layout size={12} />
+                                    <Settings size={12} />
+                                </div>
                             </div>
 
-                            {/* Main Artboard (Mobile Wireframe) */}
-                            <div className="absolute w-[140px] h-[200px] bg-white rounded-[24px] shadow-2xl z-10 overflow-hidden border-[6px] border-gray-100 flex flex-col transition-transform group-hover:scale-105 duration-500">
-                                {/* Image Placeholder */}
-                                <div className="h-20 bg-gray-50 w-full flex items-center justify-center text-gray-300">
-                                    <Image size={24} strokeWidth={1.5} />
+                            {/* Editor Layout */}
+                            <div className="flex-1 flex w-full relative overflow-hidden">
+                                
+                                {/* Left Toolbar (Photoshop style) */}
+                                <div className="w-10 bg-[#1e2337] border-r border-white/5 flex flex-col items-center py-3 gap-3 shrink-0 z-20">
+                                    <div className="w-6 h-6 rounded bg-[#2f4ea1] text-white flex items-center justify-center"><MousePointer2 size={12} /></div>
+                                    <div className="w-6 h-6 rounded hover:bg-white/5 text-white/50 flex items-center justify-center cursor-pointer"><PenTool size={12} /></div>
+                                    <div className="w-6 h-6 rounded hover:bg-white/5 text-white/50 flex items-center justify-center cursor-pointer"><Type size={12} /></div>
+                                    <div className="w-6 h-6 rounded hover:bg-white/5 text-white/50 flex items-center justify-center cursor-pointer"><Brush size={12} /></div>
+                                    <div className="w-6 h-6 rounded hover:bg-white/5 text-white/50 flex items-center justify-center cursor-pointer"><Palette size={12} /></div>
+                                    <div className="w-6 h-6 rounded hover:bg-white/5 text-white/50 flex items-center justify-center cursor-pointer"><Image size={12} /></div>
                                 </div>
-                                {/* Content */}
-                                <div className="flex-1 p-3 flex flex-col gap-2">
-                                    <div className="h-2 w-3/4 bg-gray-200 rounded-full"></div>
-                                    <div className="h-1.5 w-1/2 bg-gray-100 rounded-full"></div>
-                                    <div className="h-1.5 w-2/3 bg-gray-100 rounded-full mb-auto"></div>
+
+                                {/* Main Canvas Area */}
+                                <div className="flex-1 relative bg-[#121626] overflow-hidden flex items-center justify-center" style={{ backgroundImage: 'linear-gradient(#232942 1px, transparent 1px), linear-gradient(90deg, #232942 1px, transparent 1px)', backgroundSize: '20px 20px' }}>
                                     
-                                    {/* Selected Button Element */}
-                                    <div className="relative w-full h-8 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg flex items-center justify-center">
-                                        <div className="h-1.5 w-8 bg-white/80 rounded-full pointer-events-none"></div>
+                                    {/* Artboard */}
+                                    <div className="relative w-[160px] h-[160px] md:w-[180px] md:h-[180px] bg-white rounded-lg shadow-2xl flex items-center justify-center overflow-hidden">
+                                        {/* Photoshop/Figma Checkered pattern for transparency */}
+                                        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000)', backgroundSize: '16px 16px', backgroundPosition: '0 0, 8px 8px' }}></div>
                                         
-                                        {/* Bounding Box (Active Selection) */}
-                                        <div className="absolute inset-[-4px] border border-[#2f4ea1] border-dashed z-20 pointer-events-none">
-                                            <div className="absolute -top-1 -left-1 w-2 h-2 bg-white border border-[#2f4ea1]"></div>
-                                            <div className="absolute -top-1 -right-1 w-2 h-2 bg-white border border-[#2f4ea1]"></div>
-                                            <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white border border-[#2f4ea1]"></div>
-                                            <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white border border-[#2f4ea1]"></div>
+                                        {/* Design Elements */}
+                                        <div className="relative w-24 h-24 bg-gradient-to-tr from-pink-500 to-purple-500 rounded-full mix-blend-multiply opacity-80 -translate-x-4 -translate-y-4 shadow-lg hover:scale-105 transition-transform duration-500"></div>
+                                        <div className="absolute w-24 h-24 bg-gradient-to-tr from-cyan-400 to-blue-500 rounded-lg mix-blend-multiply opacity-80 translate-x-4 translate-y-4 shadow-lg rotate-12 hover:rotate-6 transition-transform duration-500"></div>
+                                        
+                                        {/* Vector Pen Path with handles */}
+                                        <svg className="absolute inset-0 w-full h-full z-10 overflow-visible pointer-events-none">
+                                            {/* The curve */}
+                                            <path d="M 40 140 C 60 40, 120 40, 140 140" fill="transparent" stroke="#2f4ea1" strokeWidth="2" strokeDasharray="4 4" className="animate-[pulse_2s_ease-in-out_infinite]" />
+                                            {/* Bezier Handles */}
+                                            <line x1="40" y1="140" x2="60" y2="40" stroke="#2f4ea1" strokeWidth="1" opacity="0.5" />
+                                            <line x1="140" y1="140" x2="120" y2="40" stroke="#2f4ea1" strokeWidth="1" opacity="0.5" />
+                                            <circle cx="60" cy="40" r="3" fill="#2f4ea1" />
+                                            <circle cx="120" cy="40" r="3" fill="#2f4ea1" />
+                                            {/* Anchor points */}
+                                            <rect x="36" y="136" width="8" height="8" fill="white" stroke="#2f4ea1" strokeWidth="2" />
+                                            <rect x="136" y="136" width="8" height="8" fill="white" stroke="#2f4ea1" strokeWidth="2" />
+                                        </svg>
+
+                                        {/* Active Selection Box */}
+                                        <div className="absolute top-[35px] left-[55px] md:top-[45px] md:left-[65px] w-[90px] h-[90px] border-2 border-[#2f4ea1] z-20 pointer-events-none rotate-12">
+                                            <div className="absolute -top-1.5 -left-1.5 w-2.5 h-2.5 bg-white border-2 border-[#2f4ea1] rounded-sm"></div>
+                                            <div className="absolute -top-1.5 -right-1.5 w-2.5 h-2.5 bg-white border-2 border-[#2f4ea1] rounded-sm"></div>
+                                            <div className="absolute -bottom-1.5 -left-1.5 w-2.5 h-2.5 bg-white border-2 border-[#2f4ea1] rounded-sm"></div>
+                                            <div className="absolute -bottom-1.5 -right-1.5 w-2.5 h-2.5 bg-white border-2 border-[#2f4ea1] rounded-sm"></div>
+                                        </div>
+                                    </div>
+
+                                    {/* Cursor */}
+                                    <MousePointer2 className="absolute top-1/2 left-[60%] text-[#09102c] fill-white z-30 drop-shadow-lg animate-[pulse_2s_ease-in-out_infinite]" size={20} />
+                                </div>
+
+                                {/* Right Panel (Layers & Properties) */}
+                                <div className="hidden sm:flex w-[120px] bg-[#1e2337] border-l border-white/5 flex-col shrink-0 z-20 text-left">
+                                    {/* Layers Section */}
+                                    <div className="p-3 border-b border-white/5">
+                                        <div className="text-[9px] text-white/40 font-bold uppercase mb-2 tracking-wider">Layers</div>
+                                        <div className="flex flex-col gap-1.5 text-[10px] text-white/70">
+                                            <div className="flex items-center gap-1.5 bg-white/10 px-1.5 py-1 rounded"><PenTool size={10} className="text-[#2f4ea1]" /> Vector 1</div>
+                                            <div className="flex items-center gap-1.5 px-1.5 py-1"><div className="w-2.5 h-2.5 rounded-full bg-pink-500"></div> Ellipse</div>
+                                            <div className="flex items-center gap-1.5 px-1.5 py-1"><div className="w-2.5 h-2.5 rounded bg-cyan-400"></div> Rectangle</div>
+                                        </div>
+                                    </div>
+                                    {/* Design/Properties Section */}
+                                    <div className="p-3">
+                                        <div className="text-[9px] text-white/40 font-bold uppercase mb-2 tracking-wider">Design</div>
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <div className="w-4 h-4 rounded bg-cyan-400"></div>
+                                            <span className="text-[9px] text-white font-mono uppercase">#00E5FF</span>
+                                        </div>
+                                        <div className="flex items-center justify-between text-[9px] text-white/70 bg-white/5 rounded px-1.5 py-1 mb-2">
+                                            <span>W</span> <span className="font-mono">240</span>
+                                        </div>
+                                        <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden mt-3">
+                                            <div className="w-full h-full bg-[#2f4ea1]"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            {/* Properties / Color Panel */}
-                            <div className="absolute right-2 md:-right-4 top-1/2 -translate-y-1/2 w-[110px] bg-white/10 backdrop-blur-md rounded-xl border border-white/20 p-3 shadow-xl z-20 transition-transform group-hover:translate-x-2 duration-500 text-left">
-                                <div className="text-[8px] text-white/50 font-bold uppercase mb-2 tracking-wider">Fill Color</div>
-                                <div className="flex gap-1.5 mb-3">
-                                    <div className="w-5 h-5 rounded-full bg-pink-500 border border-white cursor-pointer shadow-sm"></div>
-                                    <div className="w-5 h-5 rounded-full bg-purple-500 cursor-pointer shadow-sm"></div>
-                                    <div className="w-5 h-5 rounded-full bg-[#2f4ea1] cursor-pointer shadow-sm"></div>
-                                </div>
-                                <div className="text-[8px] text-white/50 font-bold uppercase mb-2 tracking-wider">Corner Radius</div>
-                                <div className="flex items-center gap-2 bg-white/5 rounded border border-white/10 p-1.5 mb-2">
-                                    <div className="w-3 h-3 border-t-2 border-l-2 border-white/50 rounded-tl-md"></div>
-                                    <span className="text-[10px] text-white font-mono">8px</span>
-                                </div>
-                            </div>
-
-                            {/* Floating Elements / Nodes */}
-                            <div className="absolute top-4 right-[25%] md:right-[30%] w-[80px] bg-white rounded-lg shadow-lg p-1.5 z-30 anim-float-y border border-gray-100 flex items-center gap-1.5 text-[9px] font-bold text-gray-700">
-                                <div className="w-4 h-4 bg-purple-100 rounded flex items-center justify-center text-purple-500"><Layout size={10} /></div>
-                                <span className="truncate">Button UI</span>
-                            </div>
-
-                            {/* Mouse Cursor pretending to drag */}
-                            <MousePointer2 className="absolute bottom-[40px] left-[45%] text-[#0b1638] fill-white z-30 drop-shadow-lg animate-[pulse_2s_ease-in-out_infinite]" size={22} />
                         </div>
                     </div>
                 );
