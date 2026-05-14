@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart, Heart, Send, Brush, PenTool } from 'lucide-react';
+import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart, Heart, Send, Brush, PenTool, MousePointer2, Type, Image } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
 import FAQ from '../components/FAQ';
@@ -510,55 +510,64 @@ const DepartmentHeroVisual = ({ category }) => {
                 );
             case 'design':
                 return (
-                    <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 rounded-3xl bg-gradient-to-tr from-[#0b1638] to-[#1a2b5e] overflow-hidden">
-                        <div className="relative w-64 h-64 z-10 flex items-center justify-center">
-                            
-                            {/* Glow Background */}
-                            <div className="absolute w-40 h-40 bg-pink-500 rounded-full blur-[60px] opacity-40 animate-pulse"></div>
-
-                            {/* Back Card (Colors) */}
-                            <div className="absolute w-48 h-56 bg-white/10 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 transform -rotate-[15deg] -translate-x-12 translate-y-6 p-4 flex flex-col gap-3 transition-transform duration-1000 hover:-rotate-[25deg] hover:-translate-x-16 z-10">
-                                <div className="h-4 w-1/2 bg-white/20 rounded"></div>
-                                <div className="grid grid-cols-2 gap-2 mt-4">
-                                    <div className="h-16 rounded-lg bg-gradient-to-br from-pink-400 to-pink-600"></div>
-                                    <div className="h-16 rounded-lg bg-gradient-to-br from-purple-400 to-indigo-600"></div>
-                                    <div className="h-16 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500"></div>
-                                    <div className="h-16 rounded-lg bg-white"></div>
-                                </div>
-                            </div>
-                            
-                            {/* Middle Card (Typography) */}
-                            <div className="absolute w-48 h-56 bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-gray-100 transform rotate-[-5deg] translate-x-0 translate-y-0 p-6 flex flex-col justify-center transition-transform duration-1000 hover:rotate-0 hover:-translate-y-4 z-20">
-                                <div className="text-6xl font-serif text-[#0b1638] mb-2 leading-none">Aa</div>
-                                <div className="text-3xl font-sans text-gray-400 font-bold mb-4">Aa</div>
-                                <div className="h-1.5 w-full bg-gray-100 rounded-full mb-2"></div>
-                                <div className="h-1.5 w-3/4 bg-gray-100 rounded-full"></div>
-                            </div>
-
-                            {/* Front Card (UI Component) */}
-                            <div className="absolute w-56 h-36 bg-[#0b1638] rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-gray-700 transform rotate-[10deg] translate-x-10 translate-y-12 p-4 flex flex-col gap-3 transition-transform duration-1000 hover:rotate-[5deg] hover:translate-x-14 hover:-translate-y-2 z-30">
-                                <div className="flex gap-2 items-center">
-                                    <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-pink-500 to-purple-500 shadow-inner"></div>
-                                    <div className="space-y-1.5">
-                                        <div className="h-2 w-16 bg-white/30 rounded"></div>
-                                        <div className="h-2 w-10 bg-white/10 rounded"></div>
-                                    </div>
-                                </div>
-                                <div className="flex-1 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden relative">
-                                     <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/10 to-purple-500/10 mix-blend-overlay"></div>
-                                     <div className="w-16 h-2 bg-white/20 rounded-full overflow-hidden z-10">
-                                         <div className="w-3/4 h-full bg-gradient-to-r from-pink-500 to-purple-500 rounded-full"></div>
-                                     </div>
-                                </div>
-                            </div>
-
-                        </div>
+                    <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 rounded-3xl bg-[#0b1638] overflow-hidden">
+                        {/* Background pattern */}
+                        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(#2f4ea1 2px, transparent 2px), linear-gradient(90deg, #2f4ea1 2px, transparent 2px)', backgroundSize: '40px 40px' }}></div>
                         
-                        {/* Floating Tool Icons */}
-                        <div className="absolute inset-0 pointer-events-none">
-                            <Brush size={24} className="absolute top-10 left-10 md:left-16 text-pink-400 anim-float-y opacity-70" />
-                            <Layout size={24} className="absolute bottom-10 right-10 md:right-16 text-indigo-400 anim-float-y-delayed opacity-70" />
-                            <PenTool size={20} className="absolute top-1/2 right-4 text-amber-400 anim-float-y opacity-70" style={{ animationDelay: '1s' }} />
+                        <div className="relative w-full max-w-[280px] h-64 z-10 flex items-center justify-center">
+                            
+                            {/* Floating Toolbar (Left) */}
+                            <div className="absolute left-0 top-8 w-10 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 flex flex-col items-center py-3 gap-3 shadow-2xl z-20 anim-float-y">
+                                <div className="w-6 h-6 rounded hover:bg-white/20 flex items-center justify-center text-white/90 cursor-pointer"><MousePointer2 size={14} /></div>
+                                <div className="w-6 h-6 rounded hover:bg-white/20 flex items-center justify-center text-white/70 cursor-pointer"><Type size={14} /></div>
+                                <div className="w-6 h-6 rounded hover:bg-white/20 flex items-center justify-center text-white/70 cursor-pointer"><PenTool size={14} /></div>
+                                <div className="w-6 h-6 rounded hover:bg-white/20 flex items-center justify-center text-white/70 cursor-pointer"><Image size={14} /></div>
+                            </div>
+
+                            {/* Main Canvas */}
+                            <div className="absolute w-48 h-56 bg-white rounded-lg shadow-2xl z-10 transform translate-x-4 overflow-hidden border border-gray-200">
+                                {/* Artboard Header */}
+                                <div className="w-full h-6 bg-gray-100 flex items-center px-2 gap-1 border-b border-gray-200">
+                                    <div className="w-2 h-2 rounded-full bg-red-400"></div>
+                                    <div className="w-2 h-2 rounded-full bg-amber-400"></div>
+                                    <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                                </div>
+                                {/* Artboard Content */}
+                                <div className="relative w-full h-full flex items-center justify-center bg-[#fafafa]" style={{ 
+                                    backgroundImage: 'linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 75%, #f0f0f0 75%, #f0f0f0), linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 75%, #f0f0f0 75%, #f0f0f0)',
+                                    backgroundSize: '16px 16px',
+                                    backgroundPosition: '0 0, 8px 8px'
+                                }}>
+                                    
+                                    {/* Selected Element */}
+                                    <div className="relative w-20 h-20 bg-gradient-to-tr from-pink-500 to-purple-500 rounded-2xl shadow-lg flex items-center justify-center transform hover:scale-105 transition-transform duration-500">
+                                        {/* Bounding Box (Active Selection) */}
+                                        <div className="absolute inset-[-6px] border-2 border-[#2f4ea1] border-dashed pointer-events-none">
+                                            <div className="absolute -top-1.5 -left-1.5 w-2.5 h-2.5 bg-white border-2 border-[#2f4ea1]"></div>
+                                            <div className="absolute -top-1.5 -right-1.5 w-2.5 h-2.5 bg-white border-2 border-[#2f4ea1]"></div>
+                                            <div className="absolute -bottom-1.5 -left-1.5 w-2.5 h-2.5 bg-white border-2 border-[#2f4ea1]"></div>
+                                            <div className="absolute -bottom-1.5 -right-1.5 w-2.5 h-2.5 bg-white border-2 border-[#2f4ea1]"></div>
+                                        </div>
+                                    </div>
+
+                                    {/* Mouse Cursor pretending to drag */}
+                                    <MousePointer2 className="absolute top-1/2 left-1/2 translate-x-4 translate-y-4 text-[#09102c] fill-white z-30 drop-shadow-md animate-[pulse_2s_ease-in-out_infinite]" size={24} />
+                                </div>
+                            </div>
+
+                            {/* Color Palette Panel (Right) */}
+                            <div className="absolute right-0 bottom-4 w-32 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 p-3 shadow-2xl z-20 anim-float-y-delayed text-right">
+                                <div className="text-[9px] text-white/50 font-bold uppercase mb-2 text-left">Fill Color</div>
+                                <div className="flex gap-2 mb-3">
+                                    <div className="w-5 h-5 rounded-full bg-pink-500 border-2 border-white cursor-pointer shadow-sm transform hover:scale-110 transition-transform"></div>
+                                    <div className="w-5 h-5 rounded-full bg-purple-500 cursor-pointer shadow-sm transform hover:scale-110 transition-transform"></div>
+                                    <div className="w-5 h-5 rounded-full bg-amber-500 cursor-pointer shadow-sm transform hover:scale-110 transition-transform"></div>
+                                </div>
+                                <div className="text-[9px] text-white/50 font-bold uppercase mb-2 text-left">Opacity 100%</div>
+                                <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+                                    <div className="w-full h-full bg-blue-400"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 );
