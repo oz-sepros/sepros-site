@@ -158,7 +158,14 @@ const ContactForm = ({ isMainSection = false }) => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className="text-[#09102c] text-sm font-bold tracking-wide">טלפון <span className="text-red-500">*</span></label>
-                                    <input required type="tel" value={formData.phone} onChange={e => {setFormData({ ...formData, phone: e.target.value }); setFormError('');}} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all dir-ltr text-right" placeholder="050-1234567" />
+                                    <input required type="tel" value={formData.phone} onBlur={() => {
+                                        if (!formData.phone) return;
+                                        const cleanPhone = formData.phone.replace(/[\s-]/g, '');
+                                        const phoneRegex = /^(05\d|0[23489]|07\d)\d{7}$/;
+                                        if (!phoneRegex.test(cleanPhone)) {
+                                            setFormError('נא להזין מספר טלפון ישראלי תקין (לדוגמה: 050-1234567)');
+                                        }
+                                    }} onChange={e => {setFormData({ ...formData, phone: e.target.value }); setFormError('');}} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all dir-ltr text-right" placeholder="050-1234567" />
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-[#09102c] text-sm font-bold tracking-wide">אימייל עבודה <span className="text-red-500">*</span></label>
@@ -166,8 +173,8 @@ const ContactForm = ({ isMainSection = false }) => {
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="text-[#09102c] text-sm font-bold tracking-wide">איך נוכל לעזור? <span className="text-red-500">*</span></label>
-                                <textarea required rows="4" value={formData.msg} onChange={e => {setFormData({ ...formData, msg: e.target.value }); setFormError('');}} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all resize-none" placeholder="ספרו לנו על הפרויקט שלכם..."></textarea>
+                                <label className="text-[#09102c] text-sm font-bold tracking-wide">איך נוכל לעזור?</label>
+                                <textarea rows="4" value={formData.msg} onChange={e => {setFormData({ ...formData, msg: e.target.value }); setFormError('');}} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all resize-none" placeholder="ספרו לנו על הפרויקט שלכם..."></textarea>
                             </div>
                             
                             {formError && <p className="text-red-500 text-sm font-bold mt-2">{formError}</p>}
