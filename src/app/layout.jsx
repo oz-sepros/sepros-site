@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="he" dir="rtl">
       <head>
         {/* Start cookieyes banner */}
-        <Script id="cookieyes" src="https://cdn-cookieyes.com/client_data/32e34cbf98bf807aa868f28abb4fd710/script.js" strategy="beforeInteractive"></Script>
+        <Script id="cookieyes" src="https://cdn-cookieyes.com/client_data/32e34cbf98bf807aa868f28abb4fd710/script.js" strategy="afterInteractive"></Script>
         {/* End cookieyes banner */}
       </head>
       <body className={`${heebo.className} min-h-screen bg-white text-gray-900 selection:bg-[#2f4ea1] selection:text-white antialiased`}>
