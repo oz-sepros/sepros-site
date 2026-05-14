@@ -4,12 +4,7 @@ import path from 'path';
 
 const projects = [
     { id: "toronto", link: "https://lp.israel-canada.co.il/english/toronto_israel_canada/" },
-    { id: "renovo", link: "https://lp.renovo.co.il/bialik_ramat_hasharon/" },
-    { id: "madbrand", link: "https://madbrand.co.il/" },
-    { id: "midtown", link: "https://lp.israel-canada.co.il/midtown_jerusalem/" },
-    { id: "colmobil", link: "https://lp.colmobil-energy.co.il/haver_mevi_haver/" },
-    { id: "azorim-melach", link: "https://lp.azorim.co.il/minisite_melach_haaretz/" },
-    { id: "azorim-main", link: "https://www.azorim.co.il/" }
+    { id: "renovo", link: "https://lp.renovo.co.il/bialik_ramat_hasharon/" }
 ];
 
 const outputDir = path.join(process.cwd(), 'public', 'portfolio');
@@ -28,19 +23,39 @@ async function captureScreenshots() {
             // Go to the URL and wait for network to be idle so images load
             await page.goto(project.link, { waitUntil: 'networkidle2', timeout: 30000 });
             
-            // Hide common floating widgets (accessibility, chat, etc.)
+            // Hide common floating widgets (accessibility, chat, etc.) using generic heuristics
             await page.evaluate(() => {
+                // Hide specific known classes
                 const style = document.createElement('style');
                 style.innerHTML = `
                     #nagish-li, .nagish-btn, #enable11, .accessBtn, #accessibility-widget, 
-                    #pojo-a11y, #userway-accessibility-widget, [aria-label*="נגישות"], 
+                    #pojo-a11y, #userway-accessibility-widget, [aria-label*="נגישות"], [aria-label*="Accessibility"],
                     .wa-chat, #wp-chat, [id*="nagish"], [class*="nagish"], [id*="access"], 
                     [class*="access"], [id*="userway"], iframe[name*="userway"],
                     .nagish-widget, .enable-accessibility, .equalweb-widget, #INDmenu-btn
                     { display: none !important; opacity: 0 !important; visibility: hidden !important; z-index: -9999 !important; }
                 `;
                 document.head.appendChild(style);
+
+                // Generic kill for small fixed buttons (WhatsApp, custom accessibility, scroll-to-top)
+                setTimeout(() => {
+                    document.querySelectorAll('*').forEach(el => {
+                        try {
+                            const computed = window.getComputedStyle(el);
+                            if (computed.position === 'fixed' || computed.position === 'sticky') {
+                                const rect = el.getBoundingClientRect();
+                                // If it's a small floating button (less than 100x100) and not taking up the full width
+                                if (rect.width > 0 && rect.width < 120 && rect.height > 0 && rect.height < 120 && rect.width !== window.innerWidth) {
+                                    el.style.setProperty('display', 'none', 'important');
+                                }
+                            }
+                        } catch(e) {}
+                    });
+                }, 2000); // Give it time to render
             });
+
+            // Wait for the widgets to be killed
+            await new Promise(r => setTimeout(r, 2500));
 
             // Scroll down and up to trigger lazy-loaded images
             await page.evaluate(async () => {
