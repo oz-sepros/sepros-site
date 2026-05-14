@@ -238,6 +238,17 @@ const SocialCarousel = () => {
     )
 }
 
+const AnimatedFollowers = () => {
+    const [count, setCount] = useState(12400);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCount(prev => prev + Math.floor(Math.random() * 8) + 1);
+        }, 150);
+        return () => clearInterval(interval);
+    }, []);
+    return <span>+{count.toLocaleString()} Followers</span>;
+};
+
 const DepartmentHeroVisual = ({ category }) => {
     switch (category) {
         case 'seo':
@@ -302,6 +313,18 @@ const DepartmentHeroVisual = ({ category }) => {
         case 'social':
             return (
                 <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-gradient-to-bl from-cyan-50/80 to-blue-50/40 overflow-hidden group">
+                    <style>{`
+                        @keyframes floatUpSocial {
+                            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0; }
+                            20% { opacity: 1; transform: translateY(-20px) scale(1.2) rotate(-10deg); }
+                            80% { opacity: 0.8; }
+                            100% { transform: translateY(-120px) scale(0.8) rotate(10deg); opacity: 0; }
+                        }
+                        .heart-float { animation: floatUpSocial 2s ease-out infinite; }
+                        .heart-delay-1 { animation-delay: 0s; }
+                        .heart-delay-2 { animation-delay: 0.7s; }
+                        .heart-delay-3 { animation-delay: 1.4s; }
+                    `}</style>
                     <div className="relative z-10 w-[180px] h-[350px] bg-white rounded-[32px] shadow-[0_10px_40px_-10px_rgba(0,100,200,0.2)] border-[6px] border-gray-900 p-1 rotate-[-5deg] group-hover:rotate-0 transition-transform duration-500 flex flex-col">
                         {/* Phone Notch */}
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-4 bg-gray-900 rounded-b-xl z-20"></div>
@@ -310,10 +333,17 @@ const DepartmentHeroVisual = ({ category }) => {
                         <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-[22px] flex-1 relative overflow-hidden flex items-center justify-center">
                             <PlayCircle className="text-white/40 absolute z-0" size={48} />
                             
+                            {/* Floating Hearts Container */}
+                            <div className="absolute right-4 bottom-24 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
+                                <Heart size={20} className="text-red-500 fill-current absolute bottom-0 right-0 heart-float heart-delay-1" />
+                                <Heart size={14} className="text-pink-500 fill-current absolute bottom-0 right-3 heart-float heart-delay-2" />
+                                <Heart size={24} className="text-red-400 fill-current absolute bottom-0 right-1 heart-float heart-delay-3" />
+                            </div>
+
                             {/* Social Icons Right Bar */}
-                            <div className="absolute right-2 bottom-20 flex flex-col gap-4 z-10">
-                                <div className="flex flex-col items-center gap-1">
-                                    <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white"><Heart size={16} className="fill-current" /></div>
+                            <div className="absolute right-2 bottom-20 flex flex-col gap-4 z-20">
+                                <div className="flex flex-col items-center gap-1 group/like">
+                                    <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white transition-colors group-hover/like:bg-red-500/20 group-hover/like:text-red-500"><Heart size={16} className="fill-current" /></div>
                                     <span className="text-[8px] text-white font-bold">12k</span>
                                 </div>
                                 <div className="flex flex-col items-center gap-1">
@@ -327,7 +357,7 @@ const DepartmentHeroVisual = ({ category }) => {
                             </div>
                             
                             {/* Bottom Info Bar */}
-                            <div className="absolute bottom-4 left-4 right-12 z-10">
+                            <div className="absolute bottom-4 left-4 right-12 z-20">
                                 <div className="flex items-center gap-2 mb-2">
                                     <div className="w-6 h-6 rounded-full bg-white/30 backdrop-blur-sm"></div>
                                     <div className="h-2 bg-white/90 rounded w-16"></div>
@@ -341,7 +371,10 @@ const DepartmentHeroVisual = ({ category }) => {
                     </div>
                     {/* Floating Notifications */}
                     <div className="absolute top-1/4 right-6 bg-white px-3 py-2 rounded-2xl shadow-lg border border-gray-100 rotate-12 group-hover:scale-110 transition-transform duration-300">
-                        <div className="flex gap-2 text-[#2f4ea1] text-sm font-bold items-center"><Users size={16} /> +2.5k Followers</div>
+                        <div className="flex gap-2 text-[#2f4ea1] text-sm font-bold items-center">
+                            <Users size={16} /> 
+                            <AnimatedFollowers />
+                        </div>
                     </div>
                     <div className="absolute bottom-1/4 left-6 bg-white px-3 py-2 rounded-2xl shadow-lg border border-gray-100 -rotate-12 group-hover:scale-110 transition-transform duration-300">
                         <div className="flex gap-2 text-purple-600 text-sm font-bold items-center"><MessageSquare size={16} /> Viral!</div>
