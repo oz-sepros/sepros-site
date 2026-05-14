@@ -146,8 +146,8 @@ const JobApplicationForm = ({ jobTitle, onClose }) => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                        <label className="text-[#09102c] text-sm font-bold tracking-wide">קישור ללינקדאין <span className="text-red-500">*</span></label>
-                        <input required type="url" value={formData.linkedin} onChange={e => {setFormData({ ...formData, linkedin: e.target.value }); setFormError('');}} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all dir-ltr text-right" placeholder="https://linkedin.com/in/..." />
+                        <label className="text-[#09102c] text-sm font-bold tracking-wide">קישור ללינקדאין (רשות)</label>
+                        <input type="url" value={formData.linkedin} onChange={e => {setFormData({ ...formData, linkedin: e.target.value }); setFormError('');}} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all dir-ltr text-right" placeholder="https://linkedin.com/in/..." />
                     </div>
                     <div className="space-y-2">
                         <label className="text-[#09102c] text-sm font-bold tracking-wide">תיק עבודות / אתר (רשות)</label>
@@ -193,8 +193,8 @@ const JobApplicationForm = ({ jobTitle, onClose }) => {
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-[#09102c] text-sm font-bold tracking-wide">ספרו לנו קצת על עצמכם למה אתם מתאימים? <span className="text-red-500">*</span></label>
-                    <textarea required rows="4" value={formData.msg} onChange={e => {setFormData({ ...formData, msg: e.target.value }); setFormError('');}} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all resize-none" placeholder="הניסיון שלי כולל..."></textarea>
+                    <label className="text-[#09102c] text-sm font-bold tracking-wide">ספרו לנו קצת על עצמכם למה אתם מתאימים? (רשות)</label>
+                    <textarea rows="4" value={formData.msg} onChange={e => {setFormData({ ...formData, msg: e.target.value }); setFormError('');}} className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all resize-none" placeholder="הניסיון שלי כולל..."></textarea>
                 </div>
 
                 {formError && <p className="text-red-500 text-sm font-bold mt-2">{formError}</p>}
