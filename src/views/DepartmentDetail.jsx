@@ -762,9 +762,9 @@ const DepartmentPortfolio = ({ category }) => {
                                 <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#09102c]/90 via-[#09102c]/40 to-transparent flex flex-col justify-end p-4 transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
                                     <span className="text-white font-bold tracking-wide text-sm drop-shadow-md">{project.title}</span>
                                 </div>
-                                <div className="absolute inset-0 bg-[#2f4ea1]/95 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 backdrop-blur-[2px]">
-                                    <ExternalLink size={32} className="text-white mb-2" />
-                                    <span className="text-white font-bold tracking-widest text-sm text-center px-4">צפו באתר החי</span>
+                                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 shadow-lg pointer-events-none">
+                                    <span className="text-[#0b1638] font-bold text-xs tracking-wide">צפו באתר החי</span>
+                                    <ExternalLink size={14} className="text-[#2f4ea1]" />
                                 </div>
                             </div>
                         </div>
