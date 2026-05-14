@@ -88,8 +88,8 @@ const Home = () => {
   #d5cfef 74%,
   #e6e2f6 77%,
   #f1eefb 79%,
-  #F5F7FA 80%,
-  #F5F7FA 100%
+  #FFFFFF 80%,
+  #FFFFFF 100%
       )` }}
             >
                 <Hero />
