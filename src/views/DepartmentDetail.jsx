@@ -242,29 +242,32 @@ const DepartmentHeroVisual = ({ category }) => {
     switch (category) {
         case 'seo':
             return (
-                <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-gradient-to-br from-indigo-50/50 to-white overflow-hidden group">
-                    <div className="absolute top-8 right-12 w-20 h-20 bg-[#2f4ea1]/5 rounded-full blur-2xl animate-pulse"></div>
-                    <div className="absolute bottom-12 left-8 w-32 h-32 bg-blue-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-                    <div className="relative z-10 w-full max-w-xs bg-white rounded-2xl shadow-xl shadow-[#2f4ea1]/5 p-5 border border-gray-100 flex flex-col gap-4 transition-transform hover:-translate-y-2 duration-500">
-                        <div className="flex items-center gap-3 bg-gray-50 rounded-full px-4 py-3 border border-gray-100">
-                            <Search className="text-[#2f4ea1]" size={20} />
-                            <div className="h-2 bg-gray-200 rounded w-1/2 animate-pulse"></div>
+                <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-gradient-to-br from-blue-50/50 to-white overflow-hidden group">
+                    <div className="relative z-10 w-full max-w-sm flex flex-col gap-3">
+                        <div className="flex items-center gap-3 bg-white rounded-full px-4 py-3 border border-gray-200 shadow-sm mb-2">
+                            <Search className="text-blue-500" size={18} />
+                            <div className="h-2 bg-gray-200 rounded w-1/2"></div>
                         </div>
-                        <div className="space-y-3 mt-2">
-                            <div className="flex items-center gap-4">
-                                <div className="w-10 h-10 rounded-full bg-[#2f4ea1]/10 flex items-center justify-center text-[#2f4ea1]"><Target size={20} /></div>
-                                <div className="flex-1 space-y-2">
-                                    <div className="h-2 bg-[#2f4ea1] rounded w-full"></div>
-                                    <div className="h-2 bg-gray-100 rounded w-4/5"></div>
-                                </div>
+                        
+                        <div className="bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(47,78,161,0.2)] border-2 border-blue-100 p-4 flex flex-col gap-2 transition-transform duration-500 group-hover:-translate-y-2 relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-1.5 h-full bg-[#2f4ea1]"></div>
+                            <div className="flex items-center gap-2 mb-1">
+                                <div className="w-4 h-4 bg-gray-100 rounded-full flex items-center justify-center"><Globe size={10} className="text-gray-400"/></div>
+                                <div className="h-1.5 bg-gray-200 rounded w-1/3"></div>
                             </div>
-                            <div className="flex items-center gap-4 opacity-50">
-                                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center"><Search size={20} className="text-gray-400" /></div>
-                                <div className="flex-1 space-y-2">
-                                    <div className="h-2 bg-gray-200 rounded w-5/6"></div>
-                                    <div className="h-2 bg-gray-100 rounded w-2/3"></div>
-                                </div>
+                            <div className="h-3 bg-[#2f4ea1] rounded w-3/4 mb-1"></div>
+                            <div className="h-2 bg-gray-200 rounded w-full"></div>
+                            <div className="h-2 bg-gray-200 rounded w-5/6"></div>
+                            <div className="absolute top-4 left-4 bg-blue-100 text-[#2f4ea1] text-[10px] font-black px-2 py-1 rounded">#1 RANK</div>
+                        </div>
+
+                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex flex-col gap-2 opacity-50 scale-[0.98] origin-top transition-transform duration-500 group-hover:translate-y-2">
+                            <div className="flex items-center gap-2 mb-1">
+                                <div className="w-4 h-4 bg-gray-100 rounded-full"></div>
+                                <div className="h-1.5 bg-gray-200 rounded w-1/4"></div>
                             </div>
+                            <div className="h-3 bg-gray-300 rounded w-2/3 mb-1"></div>
+                            <div className="h-2 bg-gray-200 rounded w-full"></div>
                         </div>
                     </div>
                 </div>
@@ -319,22 +322,26 @@ const DepartmentHeroVisual = ({ category }) => {
             );
         case 'design':
             return (
-                <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-gradient-to-tr from-purple-50/50 to-[#2f4ea1]/5 overflow-hidden group">
-                    <div className="relative w-full max-w-xs h-64 z-10 flex items-center justify-center">
-                        <div className="absolute z-30 w-32 h-32 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 -rotate-6 group-hover:rotate-0 transition-all duration-500 flex flex-col justify-between">
-                            <Palette size={28} className="text-purple-500" />
-                            <div className="flex gap-1">
-                                <div className="h-4 flex-1 bg-purple-500 rounded-full"></div>
-                                <div className="h-4 flex-1 bg-pink-400 rounded-full"></div>
-                                <div className="h-4 flex-1 bg-orange-400 rounded-full"></div>
+                <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-gradient-to-tr from-purple-50/50 to-pink-50/30 overflow-hidden group">
+                    <div className="relative w-full max-w-sm h-64 z-10 flex items-center justify-center">
+                        <div className="absolute w-48 h-56 border-2 border-dashed border-gray-300 rounded-2xl -rotate-6 transition-all duration-700 group-hover:rotate-0"></div>
+                        <div className="absolute w-48 h-56 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col rotate-6 group-hover:rotate-0 transition-all duration-700 z-20 group-hover:scale-105">
+                            <div className="h-24 bg-gradient-to-br from-purple-400 to-pink-500 relative">
+                                <div className="absolute -bottom-6 right-4 w-12 h-12 bg-white rounded-full p-1 shadow-lg">
+                                    <div className="w-full h-full bg-gray-100 rounded-full border-2 border-white"></div>
+                                </div>
+                            </div>
+                            <div className="p-4 pt-8 flex-1 flex flex-col gap-3">
+                                <div className="h-3 bg-gray-800 rounded w-2/3"></div>
+                                <div className="h-2 bg-gray-200 rounded w-full"></div>
+                                <div className="h-2 bg-gray-200 rounded w-4/5"></div>
+                                <div className="mt-auto h-8 bg-purple-50 rounded-lg flex items-center justify-center">
+                                    <div className="h-2 bg-purple-400 rounded w-1/3"></div>
+                                </div>
                             </div>
                         </div>
-                        <div className="absolute z-20 top-8 right-8 w-40 h-24 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-gray-100 p-4 rotate-12 group-hover:scale-105 transition-all duration-500">
-                            <Layout size={24} className="text-[#2f4ea1] mb-2" />
-                            <div className="h-2 bg-gray-200 rounded w-full mb-1.5"></div>
-                            <div className="h-2 bg-gray-100 rounded w-2/3"></div>
-                        </div>
-                        <div className="absolute z-10 bottom-6 left-6 w-32 h-32 bg-gradient-to-br from-[#2f4ea1] to-purple-600 rounded-full shadow-lg opacity-80 blur-[2px] animate-pulse"></div>
+                        <div className="absolute top-4 right-4 w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center text-pink-500 animate-bounce" style={{ animationDelay: '0.1s' }}><Palette size={20} /></div>
+                        <div className="absolute bottom-8 left-4 w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center text-purple-500 animate-bounce" style={{ animationDelay: '0.5s' }}><Layout size={20} /></div>
                     </div>
                 </div>
             );
@@ -361,7 +368,6 @@ const DepartmentHeroVisual = ({ category }) => {
                 </div>
             );
         case 'analytics':
-        case 'strategy':
             return (
                 <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-gradient-to-bl from-blue-50/50 to-gray-50 overflow-hidden group">
                      <div className="relative z-10 grid grid-cols-2 gap-4 w-full max-w-sm">
@@ -383,6 +389,40 @@ const DepartmentHeroVisual = ({ category }) => {
                              <div className="text-xl font-bold text-gray-900 mt-1 dir-ltr text-left">124K</div>
                          </div>
                      </div>
+                </div>
+            );
+        case 'strategy':
+            return (
+                <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-gradient-to-br from-indigo-50/50 to-purple-50 overflow-hidden group">
+                    <div className="relative z-10 w-full max-w-sm flex flex-col gap-3">
+                        <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 flex items-center gap-4 transition-transform group-hover:-translate-y-1">
+                            <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center"><Lightbulb size={20}/></div>
+                            <div className="flex-1">
+                                <div className="h-2 bg-blue-600 rounded w-1/3 mb-2"></div>
+                                <div className="h-2 bg-gray-200 rounded w-full"></div>
+                            </div>
+                        </div>
+                        <div className="flex justify-center -my-2 relative z-0">
+                            <div className="h-6 w-0.5 bg-gradient-to-b from-blue-300 to-purple-300"></div>
+                        </div>
+                        <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 flex items-center gap-4 transition-transform group-hover:-translate-y-1 ml-8">
+                            <div className="w-10 h-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center"><Target size={20}/></div>
+                            <div className="flex-1">
+                                <div className="h-2 bg-purple-600 rounded w-1/2 mb-2"></div>
+                                <div className="h-2 bg-gray-200 rounded w-5/6"></div>
+                            </div>
+                        </div>
+                        <div className="flex justify-center -my-2 relative z-0">
+                            <div className="h-6 w-0.5 bg-gradient-to-b from-purple-300 to-pink-300"></div>
+                        </div>
+                        <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 flex items-center gap-4 transition-transform group-hover:-translate-y-1">
+                            <div className="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center"><LineChart size={20}/></div>
+                            <div className="flex-1">
+                                <div className="h-2 bg-pink-500 rounded w-2/5 mb-2"></div>
+                                <div className="h-2 bg-gray-200 rounded w-3/4"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             );
         default:
