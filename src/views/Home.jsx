@@ -71,7 +71,7 @@ const Home = () => {
                 className="relative min-h-[100svh] flex flex-col items-center justify-between overflow-hidden"
                 style={{
                     background: `linear-gradient(
-        180deg,    #09102c 0%,
+        180deg,   #09102c 0%,
   #0b1231 4%,
   #10183d 8%,
   #141f4d 12%,
@@ -85,10 +85,10 @@ const Home = () => {
   #9792d3 60%,
   #aca5dc 65%,
   #c1bae6 70%,
-  #d5cfef 74%,
-  #e6e2f6 77%,
-  #f1eefb 79%,
-  #FFFFFF 80%,
+  #d5cfef 73%,
+  #ebe8f8 75%,
+  #f5f4fc 76.5%,
+  #FFFFFF 78%,
   #FFFFFF 100%
       )` }}
             >
