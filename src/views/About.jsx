@@ -25,7 +25,7 @@ const About = () => {
     };
 
     return (
-        <div className="pt-12 md:pt-16">
+        <div className="pt-4 md:pt-8">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
             <AboutSection isMainHeading={true} />
             <StatsCounter />

@@ -1,6 +1,6 @@
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
-import { MapPin, Clock, Users } from 'lucide-react';
+import { MapPin, Clock, Users, Instagram, Facebook, Linkedin } from 'lucide-react';
 
 const Contact = () => {
     return (
@@ -36,7 +36,17 @@ const Contact = () => {
                          </div>
                          <h2 className="text-xl font-bold text-[#0b1638] mb-2">קהילה</h2>
                          <p className="text-gray-500 mb-4">הישארו מעודכנים בחדשות שלנו</p>
-                         <span className="text-[#2f4ea1] font-black text-lg">@sepros_digital</span>
+                         <div className="flex items-center gap-4 justify-center mt-2">
+                             <a href="https://www.instagram.com/sepros_digital" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-[#2f4ea1] hover:bg-[#2f4ea1] hover:text-white hover:-translate-y-1 transition-all border border-gray-100">
+                                 <Instagram size={20} />
+                             </a>
+                             <a href="https://www.facebook.com/sepros.co.il" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-[#2f4ea1] hover:bg-[#2f4ea1] hover:text-white hover:-translate-y-1 transition-all border border-gray-100">
+                                 <Facebook size={20} />
+                             </a>
+                             <a href="https://www.linkedin.com/company/sepros-digital" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-[#2f4ea1] hover:bg-[#2f4ea1] hover:text-white hover:-translate-y-1 transition-all border border-gray-100">
+                                 <Linkedin size={20} />
+                             </a>
+                         </div>
                     </Reveal>
                 </div>
             </div>
