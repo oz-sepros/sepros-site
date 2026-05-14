@@ -297,7 +297,7 @@ const AnimatedTechCode = () => {
 
 const AnimatedSeoSearch = () => {
     const [searchText, setSearchText] = useState('');
-    const searchTarget = "Your Website";
+    const searchTarget = "האתר שלכם";
 
     useEffect(() => {
         let i = 0;
@@ -316,15 +316,57 @@ const AnimatedSeoSearch = () => {
         <div className="relative z-10 w-full max-w-sm flex flex-col gap-3">
             <div className="flex items-center gap-3 bg-white rounded-full px-4 py-3 border border-gray-200 shadow-sm mb-2">
                 <Search className="text-blue-500" size={18} />
-                <div className="flex-1 font-bold text-gray-700 dir-ltr text-left h-5 text-sm md:text-base">{searchText}<span className="animate-pulse">|</span></div>
+                <div className="flex-1 font-bold text-gray-700 dir-rtl text-right h-5 text-sm md:text-base">{searchText}<span className="animate-pulse">|</span></div>
             </div>
             <div className="bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(47,78,161,0.2)] border-2 border-blue-100 p-4 flex flex-col gap-2 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-1.5 h-full bg-[#2f4ea1]"></div>
                 <div className="flex items-center gap-2 mb-1">
                     <div className="w-4 h-4 bg-gray-100 rounded-full flex items-center justify-center"><Globe size={10} className="text-gray-400"/></div>
-                    <div className="text-xs text-gray-500 font-medium dir-ltr text-left">yourdomain.com</div>
+                    <div className="text-xs text-gray-500 font-medium dir-ltr text-left">yourdomain.co.il</div>
                 </div>
-                <div className="text-sm font-black text-[#2f4ea1] mb-1 dir-ltr text-left">Your Website | Premium Web Experience</div>
+                <div className="text-sm font-black text-[#2f4ea1] mb-1 dir-rtl text-right">האתר שלכם | בניית אתרים וקידום בגוגל</div>
+                <div className="h-2 bg-gray-200 rounded w-full"></div>
+                <div className="h-2 bg-gray-200 rounded w-5/6"></div>
+                <div className="absolute top-4 left-4 bg-blue-100 text-[#2f4ea1] text-[10px] font-black px-2 py-1 rounded">#1 RANK</div>
+            </div>
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex flex-col gap-2 opacity-50 scale-[0.98]">
+                <div className="flex items-center gap-2 mb-1">
+                    <div className="w-4 h-4 bg-gray-100 rounded-full"></div>
+                    <div className="h-1.5 bg-gray-200 rounded w-1/4"></div>
+                </div>
+                <div className="h-3 bg-gray-300 rounded w-2/3 mb-1"></div>
+                <div className="h-2 bg-gray-200 rounded w-full"></div>
+            </div>
+        </div>
+    );
+};
+
+    useEffect(() => {
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i <= searchTarget.length) {
+                setSearchText(searchTarget.substring(0, i));
+                i++;
+            } else {
+                i = 0;
+            }
+        }, 200);
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <div className="relative z-10 w-full max-w-sm flex flex-col gap-3">
+            <div className="flex items-center gap-3 bg-white rounded-full px-4 py-3 border border-gray-200 shadow-sm mb-2">
+                <Search className="text-blue-500" size={18} />
+                <div className="flex-1 font-bold text-gray-700 dir-rtl text-right h-5 text-sm md:text-base">{searchText}<span className="animate-pulse">|</span></div>
+            </div>
+            <div className="bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(47,78,161,0.2)] border-2 border-blue-100 p-4 flex flex-col gap-2 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-1.5 h-full bg-[#2f4ea1]"></div>
+                <div className="flex items-center gap-2 mb-1">
+                    <div className="w-4 h-4 bg-gray-100 rounded-full flex items-center justify-center"><Globe size={10} className="text-gray-400"/></div>
+                    <div className="text-xs text-gray-500 font-medium dir-ltr text-left">yourdomain.co.il</div>
+                </div>
+                <div className="text-sm font-black text-[#2f4ea1] mb-1 dir-rtl text-right">האתר שלכם | בניית אתרים וקידום בגוגל</div>
                 <div className="h-2 bg-gray-200 rounded w-full"></div>
                 <div className="h-2 bg-gray-200 rounded w-5/6"></div>
                 <div className="absolute top-4 left-4 bg-blue-100 text-[#2f4ea1] text-[10px] font-black px-2 py-1 rounded">#1 RANK</div>
@@ -372,6 +414,20 @@ const AnimatedStrategyFlow = () => {
 };
 
 const AnimatedPpcGraph = () => {
+    const [cpa, setCpa] = useState(128.50);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCpa(prev => {
+                if (prev > 28.50) {
+                    return prev - (Math.random() * 3 + 1);
+                }
+                return 24.50 + Math.random() * 4; // fluctuate around 26
+            });
+        }, 150);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <div className="relative z-10 w-full max-w-sm flex gap-4">
             <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-5 flex-1 relative overflow-hidden z-20">
@@ -381,7 +437,7 @@ const AnimatedPpcGraph = () => {
                     <span className="bg-green-50 text-green-700 text-[10px] font-black px-2 py-1 rounded border border-green-100 animate-pulse">ACTIVE CAMPAIGN</span>
                 </div>
                 <div className="text-xs font-bold text-gray-400 mb-1 dir-ltr text-left">CPA (Cost Per Action)</div>
-                <div className="text-2xl font-black text-gray-800 mb-4 dir-ltr text-left">₪42.50 <span className="text-sm text-emerald-500">-12%</span></div>
+                <div className="text-2xl font-black text-gray-800 mb-4 dir-ltr text-left">₪{cpa.toFixed(2)} <span className="text-sm text-emerald-500 font-bold">-{(128.5 - cpa).toFixed(1)}%</span></div>
                 <div className="relative h-2 bg-gray-100 rounded-full overflow-hidden">
                     <div className="absolute top-0 left-0 h-full bg-emerald-500 rounded-full animate-[progress_2s_ease-out_infinite]"></div>
                 </div>
@@ -494,47 +550,53 @@ const DepartmentHeroVisual = ({ category }) => {
                 );
             case 'design':
                 return (
-                    <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-tr from-purple-50/50 to-pink-50/30 overflow-hidden group">
-                        <div className="relative w-full max-w-md z-10 flex items-center justify-center scale-100 md:scale-110 mt-4 md:mt-0">
-                            {/* Main Canvas Window */}
-                            <div className="relative w-[280px] md:w-[320px] h-[220px] md:h-[250px] bg-white rounded-xl shadow-[0_20px_50px_-10px_rgba(0,0,0,0.1)] border border-gray-100 overflow-hidden flex flex-col z-20">
-                                {/* Toolbar Header */}
-                                <div className="h-10 border-b border-gray-100 flex items-center justify-between px-4 bg-white z-10">
-                                    <div className="flex gap-2">
-                                        <Brush size={12} className="text-gray-400" />
-                                        <Layout size={12} className="text-gray-400" />
-                                    </div>
-                                    <div className="flex gap-1.5">
-                                        <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
-                                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
-                                        <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
-                                    </div>
-                                </div>
-                                
-                                {/* Canvas Area */}
-                                <div className="flex-1 relative flex items-center justify-center bg-white overflow-hidden">
-                                    {/* Blue Circle (Back) */}
-                                    <div className="absolute w-28 h-28 bg-[#18A0FB] rounded-full mix-blend-multiply opacity-80 -translate-x-6 translate-y-6 blur-[1px]"></div>
-                                    
-                                    {/* Purple Square (Front) */}
-                                    <div className="absolute w-28 h-28 bg-gradient-to-tr from-[#A259FF] to-[#FF51A4] rounded-[32px] mix-blend-multiply opacity-90 translate-x-4 -translate-y-4 rotate-12 blur-[1px]"></div>
-                                    
-                                    {/* Vector Bounding Box */}
-                                    <div className="absolute w-28 h-28 border-[1.5px] border-[#18A0FB] z-20 animate-[scaleUp_2s_infinite_alternate]">
-                                        <div className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-white border-[1.5px] border-[#18A0FB] rounded-[3px]"></div>
-                                        <div className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-white border-[1.5px] border-[#18A0FB] rounded-[3px]"></div>
-                                        <div className="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-white border-[1.5px] border-[#18A0FB] rounded-[3px]"></div>
-                                        <div className="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-white border-[1.5px] border-[#18A0FB] rounded-[3px]"></div>
-                                    </div>
+                    <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 rounded-3xl bg-gradient-to-tr from-[#0b1638] to-[#1a2b5e] overflow-hidden">
+                        <div className="relative w-64 h-64 z-10 flex items-center justify-center">
+                            
+                            {/* Glow Background */}
+                            <div className="absolute w-40 h-40 bg-pink-500 rounded-full blur-[60px] opacity-40 animate-pulse"></div>
+
+                            {/* Back Card (Colors) */}
+                            <div className="absolute w-48 h-56 bg-white/10 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 transform -rotate-[15deg] -translate-x-12 translate-y-6 p-4 flex flex-col gap-3 transition-transform duration-1000 hover:-rotate-[25deg] hover:-translate-x-16 z-10">
+                                <div className="h-4 w-1/2 bg-white/20 rounded"></div>
+                                <div className="grid grid-cols-2 gap-2 mt-4">
+                                    <div className="h-16 rounded-lg bg-gradient-to-br from-pink-400 to-pink-600"></div>
+                                    <div className="h-16 rounded-lg bg-gradient-to-br from-purple-400 to-indigo-600"></div>
+                                    <div className="h-16 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500"></div>
+                                    <div className="h-16 rounded-lg bg-white"></div>
                                 </div>
                             </div>
                             
-                            {/* Color Palette Floating Tool */}
-                            <div className="absolute z-30 -right-4 md:-right-8 top-1/2 -translate-y-1/2 bg-white p-2 md:p-3 rounded-2xl shadow-xl border border-gray-100 flex flex-col gap-3">
-                                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#A259FF] to-[#FF51A4] shadow-sm"></div>
-                                <div className="w-8 h-8 rounded-full bg-[#18A0FB] shadow-sm"></div>
-                                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#FFB800] to-[#FF512F] shadow-sm"></div>
+                            {/* Middle Card (Typography) */}
+                            <div className="absolute w-48 h-56 bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-gray-100 transform rotate-[-5deg] translate-x-0 translate-y-0 p-6 flex flex-col justify-center transition-transform duration-1000 hover:rotate-0 hover:-translate-y-4 z-20">
+                                <div className="text-6xl font-serif text-[#0b1638] mb-2 leading-none">Aa</div>
+                                <div className="text-3xl font-sans text-gray-400 font-bold mb-4">Aa</div>
+                                <div className="h-1.5 w-full bg-gray-100 rounded-full mb-2"></div>
+                                <div className="h-1.5 w-3/4 bg-gray-100 rounded-full"></div>
                             </div>
+
+                            {/* Front Card (UI Component) */}
+                            <div className="absolute w-56 h-36 bg-[#0b1638] rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-gray-700 transform rotate-[10deg] translate-x-10 translate-y-12 p-4 flex flex-col gap-3 transition-transform duration-1000 hover:rotate-[5deg] hover:translate-x-14 hover:-translate-y-2 z-30">
+                                <div className="flex gap-2 items-center">
+                                    <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-pink-500 to-purple-500 shadow-inner"></div>
+                                    <div className="space-y-1.5">
+                                        <div className="h-2 w-16 bg-white/30 rounded"></div>
+                                        <div className="h-2 w-10 bg-white/10 rounded"></div>
+                                    </div>
+                                </div>
+                                <div className="flex-1 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden relative">
+                                     <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/10 to-purple-500/10 mix-blend-overlay"></div>
+                                     <div className="w-8 h-8 rounded-full border-[3px] border-white/20 border-t-pink-500 animate-spin"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        {/* Floating Tool Icons */}
+                        <div className="absolute inset-0 pointer-events-none">
+                            <Brush size={24} className="absolute top-10 left-10 md:left-16 text-pink-400 anim-float-y opacity-70" />
+                            <Layout size={24} className="absolute bottom-10 right-10 md:right-16 text-indigo-400 anim-float-y-delayed opacity-70" />
+                            <PenTool size={20} className="absolute top-1/2 right-4 text-amber-400 anim-float-y opacity-70" style={{ animationDelay: '1s' }} />
                         </div>
                     </div>
                 );
