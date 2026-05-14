@@ -250,245 +250,245 @@ const AnimatedFollowers = () => {
 };
 
 const DepartmentHeroVisual = ({ category }) => {
-    switch (category) {
-        case 'seo':
-            return (
-                <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-gradient-to-br from-blue-50/50 to-white overflow-hidden group">
-                    <div className="relative z-10 w-full max-w-sm flex flex-col gap-3">
-                        <div className="flex items-center gap-3 bg-white rounded-full px-4 py-3 border border-gray-200 shadow-sm mb-2">
-                            <Search className="text-blue-500" size={18} />
-                            <div className="h-2 bg-gray-200 rounded w-1/2"></div>
-                        </div>
-                        
-                        <div className="bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(47,78,161,0.2)] border-2 border-blue-100 p-4 flex flex-col gap-2 transition-transform duration-500 group-hover:-translate-y-2 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-1.5 h-full bg-[#2f4ea1]"></div>
-                            <div className="flex items-center gap-2 mb-1">
-                                <div className="w-4 h-4 bg-gray-100 rounded-full flex items-center justify-center"><Globe size={10} className="text-gray-400"/></div>
-                                <div className="h-1.5 bg-gray-200 rounded w-1/3"></div>
+    const renderVisual = () => {
+        switch (category) {
+            case 'seo':
+                return (
+                    <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-br from-blue-50/50 to-white overflow-hidden group">
+                        <div className="relative z-10 w-full max-w-sm flex flex-col gap-3">
+                            <div className="flex items-center gap-3 bg-white rounded-full px-4 py-3 border border-gray-200 shadow-sm mb-2 anim-float-y-delayed">
+                                <Search className="text-blue-500" size={18} />
+                                <div className="h-2 bg-gray-200 rounded w-1/2"></div>
                             </div>
-                            <div className="h-3 bg-[#2f4ea1] rounded w-3/4 mb-1"></div>
-                            <div className="h-2 bg-gray-200 rounded w-full"></div>
-                            <div className="h-2 bg-gray-200 rounded w-5/6"></div>
-                            <div className="absolute top-4 left-4 bg-blue-100 text-[#2f4ea1] text-[10px] font-black px-2 py-1 rounded">#1 RANK</div>
-                        </div>
-
-                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex flex-col gap-2 opacity-50 scale-[0.98] origin-top transition-transform duration-500 group-hover:translate-y-2">
-                            <div className="flex items-center gap-2 mb-1">
-                                <div className="w-4 h-4 bg-gray-100 rounded-full"></div>
-                                <div className="h-1.5 bg-gray-200 rounded w-1/4"></div>
-                            </div>
-                            <div className="h-3 bg-gray-300 rounded w-2/3 mb-1"></div>
-                            <div className="h-2 bg-gray-200 rounded w-full"></div>
-                        </div>
-                    </div>
-                </div>
-            );
-        case 'ppc':
-            return (
-                <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-gradient-to-tr from-green-50/50 to-emerald-50/30 overflow-hidden group">
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(47,78,161,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(47,78,161,0.03)_1px,transparent_1px)]" style={{ backgroundSize: '20px 20px' }}></div>
-                    <div className="relative z-10 w-full max-w-xs bg-white rounded-2xl shadow-xl shadow-green-900/5 p-6 border border-gray-100 transition-transform hover:-translate-y-2 duration-500">
-                        <div className="flex justify-between items-center mb-6">
-                            <div className="flex items-center gap-2 text-emerald-600 font-black text-2xl">
-                                <TrendingUp size={28} />
-                                ROAS
-                            </div>
-                            <span className="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-1 rounded-md">LIVE</span>
-                        </div>
-                        <div className="flex items-end gap-2 h-24">
-                            {[30, 45, 40, 60, 80, 100].map((h, i) => (
-                                <div key={i} className="flex-1 bg-gradient-to-t from-emerald-400 to-emerald-300 rounded-t-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 0.15}s` }}></div>
-                            ))}
-                        </div>
-                        <div className="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
-                            <div className="space-y-1">
-                                <div className="h-2 bg-gray-200 rounded w-16"></div>
-                                <div className="h-2 bg-gray-100 rounded w-10"></div>
-                            </div>
-                            <div className="bg-[#2f4ea1] text-white text-xs font-bold px-3 py-1.5 rounded-full">+450%</div>
-                        </div>
-                    </div>
-                </div>
-            );
-        case 'social':
-            return (
-                <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-gradient-to-bl from-cyan-50/80 to-blue-50/40 overflow-hidden group">
-                    <style>{`
-                        @keyframes floatUpSocial {
-                            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0; }
-                            20% { opacity: 1; transform: translateY(-20px) scale(1.2) rotate(-10deg); }
-                            80% { opacity: 0.8; }
-                            100% { transform: translateY(-120px) scale(0.8) rotate(10deg); opacity: 0; }
-                        }
-                        .heart-float { animation: floatUpSocial 2s ease-out infinite; }
-                        .heart-delay-1 { animation-delay: 0s; }
-                        .heart-delay-2 { animation-delay: 0.7s; }
-                        .heart-delay-3 { animation-delay: 1.4s; }
-                    `}</style>
-                    <div className="relative z-10 w-[180px] h-[350px] bg-white rounded-[32px] shadow-[0_10px_40px_-10px_rgba(0,100,200,0.2)] border-[6px] border-gray-900 p-1 rotate-[-5deg] group-hover:rotate-0 transition-transform duration-500 flex flex-col">
-                        {/* Phone Notch */}
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-4 bg-gray-900 rounded-b-xl z-20"></div>
-                        
-                        {/* Screen Content */}
-                        <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-[22px] flex-1 relative overflow-hidden flex items-center justify-center">
-                            <PlayCircle className="text-white/40 absolute z-0" size={48} />
-                            
-                            {/* Floating Hearts Container */}
-                            <div className="absolute right-4 bottom-24 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
-                                <Heart size={20} className="text-red-500 fill-current absolute bottom-0 right-0 heart-float heart-delay-1" />
-                                <Heart size={14} className="text-pink-500 fill-current absolute bottom-0 right-3 heart-float heart-delay-2" />
-                                <Heart size={24} className="text-red-400 fill-current absolute bottom-0 right-1 heart-float heart-delay-3" />
-                            </div>
-
-                            {/* Social Icons Right Bar */}
-                            <div className="absolute right-2 bottom-20 flex flex-col gap-4 z-20">
-                                <div className="flex flex-col items-center gap-1 group/like">
-                                    <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white transition-colors group-hover/like:bg-red-500/20 group-hover/like:text-red-500"><Heart size={16} className="fill-current" /></div>
-                                    <span className="text-[8px] text-white font-bold">12k</span>
+                            <div className="bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(47,78,161,0.2)] border-2 border-blue-100 p-4 flex flex-col gap-2 relative overflow-hidden anim-float-y">
+                                <div className="absolute top-0 right-0 w-1.5 h-full bg-[#2f4ea1]"></div>
+                                <div className="flex items-center gap-2 mb-1">
+                                    <div className="w-4 h-4 bg-gray-100 rounded-full flex items-center justify-center"><Globe size={10} className="text-gray-400"/></div>
+                                    <div className="h-1.5 bg-gray-200 rounded w-1/3"></div>
                                 </div>
-                                <div className="flex flex-col items-center gap-1">
-                                    <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white"><MessageSquare size={16} className="fill-current" /></div>
-                                    <span className="text-[8px] text-white font-bold">450</span>
-                                </div>
-                                <div className="flex flex-col items-center gap-1">
-                                    <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white"><Send size={16} /></div>
-                                    <span className="text-[8px] text-white font-bold">Share</span>
-                                </div>
-                            </div>
-                            
-                            {/* Bottom Info Bar */}
-                            <div className="absolute bottom-4 left-4 right-12 z-20">
-                                <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-6 h-6 rounded-full bg-white/30 backdrop-blur-sm"></div>
-                                    <div className="h-2 bg-white/90 rounded w-16"></div>
-                                </div>
-                                <div className="space-y-1.5">
-                                    <div className="h-1.5 bg-white/70 rounded w-full"></div>
-                                    <div className="h-1.5 bg-white/50 rounded w-4/5"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Floating Notifications */}
-                    <div className="absolute top-1/4 right-6 bg-white px-3 py-2 rounded-2xl shadow-lg border border-gray-100 rotate-12 group-hover:scale-110 transition-transform duration-300">
-                        <div className="flex gap-2 text-[#2f4ea1] text-sm font-bold items-center">
-                            <Users size={16} /> 
-                            <AnimatedFollowers />
-                        </div>
-                    </div>
-                    <div className="absolute bottom-1/4 left-6 bg-white px-3 py-2 rounded-2xl shadow-lg border border-gray-100 -rotate-12 group-hover:scale-110 transition-transform duration-300">
-                        <div className="flex gap-2 text-purple-600 text-sm font-bold items-center"><MessageSquare size={16} /> Viral!</div>
-                    </div>
-                </div>
-            );
-        case 'design':
-            return (
-                <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-gradient-to-tr from-purple-50/50 to-pink-50/30 overflow-hidden group">
-                    <div className="relative w-full max-w-sm h-64 z-10 flex items-center justify-center">
-                        <div className="absolute w-48 h-56 border-2 border-dashed border-gray-300 rounded-2xl -rotate-6 transition-all duration-700 group-hover:rotate-0"></div>
-                        <div className="absolute w-48 h-56 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col rotate-6 group-hover:rotate-0 transition-all duration-700 z-20 group-hover:scale-105">
-                            <div className="h-24 bg-gradient-to-br from-purple-400 to-pink-500 relative">
-                                <div className="absolute -bottom-6 right-4 w-12 h-12 bg-white rounded-full p-1 shadow-lg">
-                                    <div className="w-full h-full bg-gray-100 rounded-full border-2 border-white"></div>
-                                </div>
-                            </div>
-                            <div className="p-4 pt-8 flex-1 flex flex-col gap-3">
-                                <div className="h-3 bg-gray-800 rounded w-2/3"></div>
+                                <div className="h-3 bg-[#2f4ea1] rounded w-3/4 mb-1"></div>
                                 <div className="h-2 bg-gray-200 rounded w-full"></div>
-                                <div className="h-2 bg-gray-200 rounded w-4/5"></div>
-                                <div className="mt-auto h-8 bg-purple-50 rounded-lg flex items-center justify-center">
-                                    <div className="h-2 bg-purple-400 rounded w-1/3"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="absolute top-4 right-4 w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center text-pink-500 animate-bounce" style={{ animationDelay: '0.1s' }}><Palette size={20} /></div>
-                        <div className="absolute bottom-8 left-4 w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center text-purple-500 animate-bounce" style={{ animationDelay: '0.5s' }}><Layout size={20} /></div>
-                    </div>
-                </div>
-            );
-        case 'tech':
-            return (
-                <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-[#0b1638] overflow-hidden group">
-                    <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(#2f4ea1 1px, transparent 1px), linear-gradient(90deg, #2f4ea1 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
-                    <div className="relative z-10 w-full max-w-sm bg-[#112052] rounded-xl shadow-2xl border border-[#2f4ea1]/30 p-2 overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
-                        <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[#2f4ea1]/20">
-                            <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-                            <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                            <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
-                        </div>
-                        <div className="p-4 font-mono text-sm text-blue-300/80 space-y-2 dir-ltr text-left">
-                            <div><span className="text-pink-400">const</span> <span className="text-white">buildFuture</span> = <span className="text-yellow-300">async</span> () ={'>'} {'{'}</div>
-                            <div className="pl-4"><span className="text-pink-400">await</span> <span className="text-cyan-300">sepros</span>.<span className="text-green-300">develop</span>({'{'}</div>
-                            <div className="pl-8 text-gray-400">performance: <span className="text-orange-300">100</span>,</div>
-                            <div className="pl-8 text-gray-400">design: <span className="text-orange-300">'premium'</span></div>
-                            <div className="pl-4">{'}'});</div>
-                            <div>{'}'}</div>
-                            <div className="mt-4 flex items-center text-xs opacity-50"><Code2 size={14} className="mr-2" /> Terminal - Running</div>
-                        </div>
-                    </div>
-                </div>
-            );
-        case 'analytics':
-            return (
-                <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-gradient-to-bl from-blue-50/50 to-gray-50 overflow-hidden group">
-                     <div className="relative z-10 grid grid-cols-2 gap-4 w-full max-w-sm">
-                         <div className="col-span-2 bg-white rounded-2xl shadow-lg border border-gray-100 p-5 flex items-center justify-between transition-transform group-hover:-translate-y-1">
-                             <div>
-                                 <div className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 dir-ltr text-left">Total Revenue</div>
-                                 <div className="text-3xl font-black text-[#0b1638]">₪2.4M</div>
-                             </div>
-                             <LineChart size={40} className="text-[#2f4ea1]" />
-                         </div>
-                         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-5 transition-transform group-hover:-translate-y-1 animate-pulse" style={{ animationDelay: '0.2s' }}>
-                             <PieChart size={32} className="text-purple-500 mb-4" />
-                             <div className="text-xs font-bold text-gray-400 uppercase dir-ltr text-left">Conversion</div>
-                             <div className="text-xl font-bold text-gray-900 mt-1 dir-ltr text-left">4.8%</div>
-                         </div>
-                         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-5 transition-transform group-hover:-translate-y-1 animate-pulse" style={{ animationDelay: '0.4s' }}>
-                             <BarChart size={32} className="text-blue-500 mb-4" />
-                             <div className="text-xs font-bold text-gray-400 uppercase dir-ltr text-left">Sessions</div>
-                             <div className="text-xl font-bold text-gray-900 mt-1 dir-ltr text-left">124K</div>
-                         </div>
-                     </div>
-                </div>
-            );
-        case 'strategy':
-            return (
-                <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-gradient-to-br from-indigo-50/50 to-purple-50 overflow-hidden group">
-                    <div className="relative z-10 w-full max-w-sm flex flex-col gap-3">
-                        <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 flex items-center gap-4 transition-transform group-hover:-translate-y-1">
-                            <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center"><Lightbulb size={20}/></div>
-                            <div className="flex-1">
-                                <div className="h-2 bg-blue-600 rounded w-1/3 mb-2"></div>
-                                <div className="h-2 bg-gray-200 rounded w-full"></div>
-                            </div>
-                        </div>
-                        <div className="flex justify-center -my-2 relative z-0">
-                            <div className="h-6 w-0.5 bg-gradient-to-b from-blue-300 to-purple-300"></div>
-                        </div>
-                        <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 flex items-center gap-4 transition-transform group-hover:-translate-y-1 ml-8">
-                            <div className="w-10 h-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center"><Target size={20}/></div>
-                            <div className="flex-1">
-                                <div className="h-2 bg-purple-600 rounded w-1/2 mb-2"></div>
                                 <div className="h-2 bg-gray-200 rounded w-5/6"></div>
+                                <div className="absolute top-4 left-4 bg-blue-100 text-[#2f4ea1] text-[10px] font-black px-2 py-1 rounded">#1 RANK</div>
                             </div>
-                        </div>
-                        <div className="flex justify-center -my-2 relative z-0">
-                            <div className="h-6 w-0.5 bg-gradient-to-b from-purple-300 to-pink-300"></div>
-                        </div>
-                        <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 flex items-center gap-4 transition-transform group-hover:-translate-y-1">
-                            <div className="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center"><LineChart size={20}/></div>
-                            <div className="flex-1">
-                                <div className="h-2 bg-pink-500 rounded w-2/5 mb-2"></div>
-                                <div className="h-2 bg-gray-200 rounded w-3/4"></div>
+                            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex flex-col gap-2 opacity-50 scale-[0.98] anim-float-y-delayed">
+                                <div className="flex items-center gap-2 mb-1">
+                                    <div className="w-4 h-4 bg-gray-100 rounded-full"></div>
+                                    <div className="h-1.5 bg-gray-200 rounded w-1/4"></div>
+                                </div>
+                                <div className="h-3 bg-gray-300 rounded w-2/3 mb-1"></div>
+                                <div className="h-2 bg-gray-200 rounded w-full"></div>
                             </div>
                         </div>
                     </div>
-                </div>
-            );
-        default:
-            return null;
-    }
+                );
+            case 'ppc':
+                return (
+                    <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-tr from-green-50/50 to-emerald-50/30 overflow-hidden group">
+                        <div className="absolute inset-0 bg-[linear-gradient(rgba(47,78,161,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(47,78,161,0.03)_1px,transparent_1px)]" style={{ backgroundSize: '20px 20px' }}></div>
+                        <div className="relative z-10 w-full max-w-xs bg-white rounded-2xl shadow-xl shadow-green-900/5 p-6 border border-gray-100 anim-float-y">
+                            <div className="flex justify-between items-center mb-6">
+                                <div className="flex items-center gap-2 text-emerald-600 font-black text-2xl">
+                                    <TrendingUp size={28} />
+                                    ROAS
+                                </div>
+                                <span className="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-1 rounded-md">LIVE</span>
+                            </div>
+                            <div className="flex items-end gap-2 h-24">
+                                {[30, 45, 40, 60, 80, 100].map((h, i) => (
+                                    <div key={i} className="flex-1 bg-gradient-to-t from-emerald-400 to-emerald-300 rounded-t-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 0.15}s` }}></div>
+                                ))}
+                            </div>
+                            <div className="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
+                                <div className="space-y-1">
+                                    <div className="h-2 bg-gray-200 rounded w-16"></div>
+                                    <div className="h-2 bg-gray-100 rounded w-10"></div>
+                                </div>
+                                <div className="bg-[#2f4ea1] text-white text-xs font-bold px-3 py-1.5 rounded-full">+450%</div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            case 'social':
+                return (
+                    <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-bl from-cyan-50/80 to-blue-50/40 overflow-hidden group">
+                        <div className="relative z-10 w-[160px] md:w-[180px] h-[320px] md:h-[350px] bg-white rounded-[32px] shadow-[0_10px_40px_-10px_rgba(0,100,200,0.2)] border-[6px] border-gray-900 p-1 -rotate-[3deg] anim-float-y flex flex-col">
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-gray-900 rounded-b-xl z-20"></div>
+                            <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-[22px] flex-1 relative overflow-hidden flex items-center justify-center">
+                                <PlayCircle className="text-white/40 absolute z-0" size={48} />
+                                <div className="absolute right-4 bottom-24 pointer-events-none z-10">
+                                    <Heart size={20} className="text-red-500 fill-current absolute bottom-0 right-0 heart-float heart-delay-1" />
+                                    <Heart size={14} className="text-pink-500 fill-current absolute bottom-0 right-3 heart-float heart-delay-2" />
+                                    <Heart size={24} className="text-red-400 fill-current absolute bottom-0 right-1 heart-float heart-delay-3" />
+                                </div>
+                                <div className="absolute right-2 bottom-20 flex flex-col gap-4 z-20">
+                                    <div className="flex flex-col items-center gap-1">
+                                        <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white"><Heart size={16} className="fill-current text-red-500" /></div>
+                                        <span className="text-[8px] text-white font-bold">12k</span>
+                                    </div>
+                                    <div className="flex flex-col items-center gap-1">
+                                        <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white"><MessageSquare size={16} className="fill-current" /></div>
+                                        <span className="text-[8px] text-white font-bold">450</span>
+                                    </div>
+                                    <div className="flex flex-col items-center gap-1">
+                                        <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white"><Send size={16} /></div>
+                                        <span className="text-[8px] text-white font-bold">Share</span>
+                                    </div>
+                                </div>
+                                <div className="absolute bottom-4 left-4 right-12 z-20">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <div className="w-6 h-6 rounded-full bg-white/30 backdrop-blur-sm"></div>
+                                        <div className="h-2 bg-white/90 rounded w-16"></div>
+                                    </div>
+                                    <div className="space-y-1.5">
+                                        <div className="h-1.5 bg-white/70 rounded w-full"></div>
+                                        <div className="h-1.5 bg-white/50 rounded w-4/5"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="absolute top-1/4 right-4 md:right-6 bg-white px-3 py-2 rounded-2xl shadow-lg border border-gray-100 rotate-6 anim-float-y-delayed">
+                            <div className="flex gap-2 text-[#2f4ea1] text-sm font-bold items-center"><Users size={16} /><AnimatedFollowers /></div>
+                        </div>
+                        <div className="absolute bottom-1/4 left-4 md:left-6 bg-white px-3 py-2 rounded-2xl shadow-lg border border-gray-100 -rotate-6 anim-float-y">
+                            <div className="flex gap-2 text-purple-600 text-sm font-bold items-center"><MessageSquare size={16} /> Viral!</div>
+                        </div>
+                    </div>
+                );
+            case 'design':
+                return (
+                    <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-tr from-purple-50/50 to-pink-50/30 overflow-hidden group">
+                        <div className="relative w-full max-w-sm h-64 z-10 flex items-center justify-center">
+                            <div className="absolute w-48 h-56 border-2 border-dashed border-gray-300 rounded-2xl -rotate-6 anim-float-y-delayed"></div>
+                            <div className="absolute w-48 h-56 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col rotate-3 z-20 anim-float-y">
+                                <div className="h-24 bg-gradient-to-br from-purple-400 to-pink-500 relative">
+                                    <div className="absolute -bottom-6 right-4 w-12 h-12 bg-white rounded-full p-1 shadow-lg">
+                                        <div className="w-full h-full bg-gray-100 rounded-full border-2 border-white"></div>
+                                    </div>
+                                </div>
+                                <div className="p-4 pt-8 flex-1 flex flex-col gap-3">
+                                    <div className="h-3 bg-gray-800 rounded w-2/3"></div>
+                                    <div className="h-2 bg-gray-200 rounded w-full"></div>
+                                    <div className="h-2 bg-gray-200 rounded w-4/5"></div>
+                                    <div className="mt-auto h-8 bg-purple-50 rounded-lg flex items-center justify-center">
+                                        <div className="h-2 bg-purple-400 rounded w-1/3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="absolute top-4 right-4 w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center text-pink-500 animate-bounce" style={{ animationDelay: '0.1s' }}><Palette size={20} /></div>
+                            <div className="absolute bottom-8 left-4 w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center text-purple-500 animate-bounce" style={{ animationDelay: '0.5s' }}><Layout size={20} /></div>
+                        </div>
+                    </div>
+                );
+            case 'tech':
+                return (
+                    <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-[#0b1638] overflow-hidden group">
+                        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(#2f4ea1 1px, transparent 1px), linear-gradient(90deg, #2f4ea1 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+                        <div className="relative z-10 w-full max-w-sm bg-[#112052] rounded-xl shadow-2xl border border-[#2f4ea1]/30 p-2 overflow-hidden anim-float-y">
+                            <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[#2f4ea1]/20">
+                                <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                            </div>
+                            <div className="p-4 font-mono text-sm text-blue-300/80 space-y-2 dir-ltr text-left">
+                                <div><span className="text-pink-400">const</span> <span className="text-white">buildFuture</span> = <span className="text-yellow-300">async</span> () ={'>'} {'{'}</div>
+                                <div className="pl-4"><span className="text-pink-400">await</span> <span className="text-cyan-300">sepros</span>.<span className="text-green-300">develop</span>({'{'}</div>
+                                <div className="pl-8 text-gray-400">performance: <span className="text-orange-300">100</span>,</div>
+                                <div className="pl-8 text-gray-400">design: <span className="text-orange-300">'premium'</span></div>
+                                <div className="pl-4">{'}'});</div>
+                                <div>{'}'}</div>
+                                <div className="mt-4 flex items-center text-xs opacity-50"><Code2 size={14} className="mr-2" /> Terminal - Running</div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            case 'analytics':
+                return (
+                    <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-bl from-blue-50/50 to-gray-50 overflow-hidden group">
+                         <div className="relative z-10 grid grid-cols-2 gap-4 w-full max-w-sm">
+                             <div className="col-span-2 bg-white rounded-2xl shadow-lg border border-gray-100 p-5 flex items-center justify-between anim-float-y">
+                                 <div>
+                                     <div className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 dir-ltr text-left">Total Revenue</div>
+                                     <div className="text-3xl font-black text-[#0b1638]">₪2.4M</div>
+                                 </div>
+                                 <LineChart size={40} className="text-[#2f4ea1]" />
+                             </div>
+                             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-5 anim-float-y-delayed">
+                                 <PieChart size={32} className="text-purple-500 mb-4" />
+                                 <div className="text-xs font-bold text-gray-400 uppercase dir-ltr text-left">Conversion</div>
+                                 <div className="text-xl font-bold text-gray-900 mt-1 dir-ltr text-left">4.8%</div>
+                             </div>
+                             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-5 anim-float-y">
+                                 <BarChart size={32} className="text-blue-500 mb-4" />
+                                 <div className="text-xs font-bold text-gray-400 uppercase dir-ltr text-left">Sessions</div>
+                                 <div className="text-xl font-bold text-gray-900 mt-1 dir-ltr text-left">124K</div>
+                             </div>
+                         </div>
+                    </div>
+                );
+            case 'strategy':
+                return (
+                    <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-br from-indigo-50/50 to-purple-50 overflow-hidden group">
+                        <div className="relative z-10 w-full max-w-sm flex flex-col gap-3">
+                            <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 flex items-center gap-4 anim-float-y">
+                                <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center"><Lightbulb size={20}/></div>
+                                <div className="flex-1">
+                                    <div className="h-2 bg-blue-600 rounded w-1/3 mb-2"></div>
+                                    <div className="h-2 bg-gray-200 rounded w-full"></div>
+                                </div>
+                            </div>
+                            <div className="flex justify-center -my-2 relative z-0">
+                                <div className="h-6 w-0.5 bg-gradient-to-b from-blue-300 to-purple-300"></div>
+                            </div>
+                            <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 flex items-center gap-4 ml-8 anim-float-y-delayed">
+                                <div className="w-10 h-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center"><Target size={20}/></div>
+                                <div className="flex-1">
+                                    <div className="h-2 bg-purple-600 rounded w-1/2 mb-2"></div>
+                                    <div className="h-2 bg-gray-200 rounded w-5/6"></div>
+                                </div>
+                            </div>
+                            <div className="flex justify-center -my-2 relative z-0">
+                                <div className="h-6 w-0.5 bg-gradient-to-b from-purple-300 to-pink-300"></div>
+                            </div>
+                            <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 flex items-center gap-4 anim-float-y">
+                                <div className="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center"><LineChart size={20}/></div>
+                                <div className="flex-1">
+                                    <div className="h-2 bg-pink-500 rounded w-2/5 mb-2"></div>
+                                    <div className="h-2 bg-gray-200 rounded w-3/4"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            default:
+                return null;
+        }
+    };
+
+    return (
+        <>
+            <style>{`
+                @keyframes floatY {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-8px); }
+                }
+                .anim-float-y { animation: floatY 4s ease-in-out infinite; }
+                .anim-float-y-delayed { animation: floatY 4s ease-in-out infinite; animation-delay: 2s; }
+                
+                @keyframes floatUpSocial {
+                    0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0; }
+                    20% { opacity: 1; transform: translateY(-20px) scale(1.2) rotate(-10deg); }
+                    80% { opacity: 0.8; }
+                    100% { transform: translateY(-120px) scale(0.8) rotate(10deg); opacity: 0; }
+                }
+                .heart-float { animation: floatUpSocial 2s ease-out infinite; }
+                .heart-delay-1 { animation-delay: 0s; }
+                .heart-delay-2 { animation-delay: 0.7s; }
+                .heart-delay-3 { animation-delay: 1.4s; }
+            `}</style>
+            {renderVisual()}
+        </>
+    );
 };
 
 const AnimatedSeoGraph = () => {
