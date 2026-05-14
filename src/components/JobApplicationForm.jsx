@@ -43,6 +43,11 @@ const JobApplicationForm = ({ jobTitle, onClose }) => {
         setFormError('');
 
 
+        if (!formData.fullName || formData.fullName.trim() === '') {
+            setFormError('נא להזין שם מלא.');
+            return;
+        }
+
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(formData.email)) {
@@ -109,7 +114,7 @@ const JobApplicationForm = ({ jobTitle, onClose }) => {
     return (
         <Reveal className="bg-gray-50 border border-gray-200 p-6 md:p-8 rounded-xl mt-8 relative shadow-sm">
             <h4 className="text-xl font-black text-[#09102c] mb-6 tracking-wide">הגשת מועמדות: <span className="text-[#2f4ea1]">{jobTitle}</span></h4>
-            <form className="space-y-6 text-right" onSubmit={handleSubmit}>
+            <form className="space-y-6 text-right" onSubmit={handleSubmit} noValidate>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                         <label className="text-[#09102c] text-sm font-bold tracking-wide">שם מלא <span className="text-red-500">*</span></label>

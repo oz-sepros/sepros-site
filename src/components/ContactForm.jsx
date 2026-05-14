@@ -14,7 +14,11 @@ const ContactForm = ({ isMainSection = false }) => {
         e.preventDefault();
         setFormError('');
 
-        // Extract name parts (no requirement for 2 words)
+        // Extract name parts
+        if (!formData.fullName || formData.fullName.trim() === '') {
+            setFormError('נא להזין שם מלא.');
+            return;
+        }
         const nameParts = formData.fullName.trim().split(/\s+/);
 
         // Email validation
@@ -125,7 +129,7 @@ const ContactForm = ({ isMainSection = false }) => {
                     </div>
 
                     <Reveal className="bg-white p-8 md:p-12 border border-gray-100 relative shadow-[0_20px_50px_rgba(47,78,161,0.08)] rounded-[2rem] order-1 lg:order-2 dir-rtl">
-                        <form className="space-y-6 text-right" onSubmit={handleSubmit}>
+                        <form className="space-y-6 text-right" onSubmit={handleSubmit} noValidate>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className="text-[#09102c] text-sm font-bold tracking-wide">שם מלא <span className="text-red-500">*</span></label>
