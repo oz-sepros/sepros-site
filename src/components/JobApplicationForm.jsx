@@ -8,12 +8,14 @@ import { UploadCloud, FileText, X } from 'lucide-react';
 const JobApplicationForm = ({ jobTitle, onClose }) => {
     const [formData, setFormData] = useState({ fullName: '', phone: '', email: '', linkedin: '', portfolio: '', msg: '' });
     const [file, setFile] = useState(null);
+    const [fileError, setFileError] = useState('');
     const [formError, setFormError] = useState('');
     const [status, setStatus] = useState('idle');
     const fileInputRef = useRef(null);
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
+        setFileError('');
         if (!selectedFile) return;
 
         // Basic security and format validation
@@ -21,20 +23,20 @@ const JobApplicationForm = ({ jobTitle, onClose }) => {
         const fileExtension = selectedFile.name.substring(selectedFile.name.lastIndexOf('.')).toLowerCase();
         
         if (!allowedExtensions.includes(fileExtension)) {
-            setFormError('פורמט לא נתמך. נא להעלות קובץ PDF או Word בלבד.');
+            setFileError('פורמט לא נתמך. נא להעלות קובץ PDF או Word בלבד.');
             setFile(null);
-            if (fileInputRef.current) fileInputRef.current.value = '';
+            e.target.value = '';
             return;
         }
 
         if (selectedFile.size > 5 * 1024 * 1024) { // 5MB limit
-            setFormError('הקובץ גדול מדי. הגודל המקסימלי הוא 5MB.');
+            setFileError('הקובץ גדול מדי. הגודל המקסימלי הוא 5MB.');
             setFile(null);
-            if (fileInputRef.current) fileInputRef.current.value = '';
+            e.target.value = '';
             return;
         }
 
-        setFormError('');
+        setFileError('');
         setFile(selectedFile);
     };
 
@@ -65,6 +67,7 @@ const JobApplicationForm = ({ jobTitle, onClose }) => {
 
         if (!file) {
             setFormError('חובה לצרף קורות חיים');
+            setFileError('נא לצרף קובץ קורות חיים');
             return;
         }
 
@@ -168,7 +171,7 @@ const JobApplicationForm = ({ jobTitle, onClose }) => {
                 <div className="space-y-2">
                     <label className="text-[#09102c] text-sm font-bold tracking-wide">קורות חיים (PDF, DOC, DOCX) <span className="text-red-500">*</span></label>
                     <div 
-                        className={`relative border-2 border-dashed rounded-xl bg-white p-6 transition-all text-center flex flex-col items-center justify-center cursor-pointer group ${formError && !file ? 'border-red-400 bg-red-50' : 'border-gray-300 hover:border-[#2f4ea1] hover:bg-[#2f4ea1]/5'}`} 
+                        className={`relative border-2 border-dashed rounded-xl bg-white p-6 transition-all text-center flex flex-col items-center justify-center cursor-pointer group ${fileError || (formError && !file) ? 'border-red-400 bg-red-50' : 'border-gray-300 hover:border-[#2f4ea1] hover:bg-[#2f4ea1]/5'}`} 
                         onClick={() => fileInputRef.current?.click()}
                     >
                         <input 
@@ -199,6 +202,7 @@ const JobApplicationForm = ({ jobTitle, onClose }) => {
                             </div>
                         )}
                     </div>
+                    {fileError && <p className="text-red-500 text-sm font-bold mt-1">{fileError}</p>}
                 </div>
 
                 <div className="space-y-2">
