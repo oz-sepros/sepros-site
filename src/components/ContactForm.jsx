@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import Reveal from './Reveal';
 
 const ContactForm = ({ isMainSection = false }) => {
-    const [formData, setFormData] = useState({ fullName: '', company: '', phone: '', email: '', msg: '' });
+    const [formData, setFormData] = useState({ fullName: '', company: '', phone: '', email: '', msg: '', divur: false, privacy_policy: false });
     const [status, setStatus] = useState('idle');
     const [formError, setFormError] = useState('');
     const pathname = usePathname();
@@ -45,15 +45,16 @@ const ContactForm = ({ isMainSection = false }) => {
             const lastName = nameParts.slice(1).join(' ') || '';
 
             const params = new URLSearchParams();
-            params.append('lm_form', '79215');
-            params.append('lm_key', 'e674d603b1');
+            params.append('lm_form', '113155');
+            params.append('lm_key', '87e52c04e0');
             params.append('lm_redirect', 'no');
-            params.append('name', firstName);
-            params.append('lname', lastName);
+            params.append('name', formData.fullName);
             params.append('phone', cleanPhone);
             params.append('email', formData.email);
             params.append('msg', formData.msg);
-            params.append('fld_289978', formData.company);
+            params.append('fld_100855', formData.company);
+            params.append('divur', formData.divur ? '1' : '0');
+            params.append('privacy_policy', formData.privacy_policy ? '1' : '0');
 
             const trackingFields = [
                 'device', 'network', 'adgroup_id', 'utm_source', 'utm_medium',
@@ -100,7 +101,7 @@ const ContactForm = ({ isMainSection = false }) => {
             });
 
             setStatus('success');
-            setFormData({ fullName: '', company: '', phone: '', email: '', msg: '' });
+            setFormData({ fullName: '', company: '', phone: '', email: '', msg: '', divur: false, privacy_policy: false });
             setTimeout(() => setStatus('idle'), 4000);
         } catch (error) {
             setStatus('error');
@@ -166,6 +167,17 @@ const ContactForm = ({ isMainSection = false }) => {
                             <div className="space-y-2">
                                 <label className="text-[#09102c] text-sm font-bold tracking-wide">איך נוכל לעזור?</label>
                                 <textarea rows="4" value={formData.msg} onChange={e => {setFormData({ ...formData, msg: e.target.value }); setFormError('');}} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all resize-none" placeholder="ספרו לנו על הפרויקט שלכם..."></textarea>
+                            </div>
+
+                            <div className="flex flex-col gap-3 py-2">
+                                <label className="flex items-center gap-3 cursor-pointer group text-right">
+                                    <input required onInvalid={e => e.target.setCustomValidity('חובה לאשר את מדיניות הפרטיות')} onInput={e => { e.target.setCustomValidity(''); }} type="checkbox" checked={formData.privacy_policy} onChange={e => setFormData({ ...formData, privacy_policy: e.target.checked })} className="w-5 h-5 rounded border-gray-300 text-[#2f4ea1] focus:ring-[#2f4ea1]" />
+                                    <span className="text-sm text-gray-600 group-hover:text-[#09102c] transition-colors">אני מאשר/ת את <a href="/privacy" className="text-[#2f4ea1] underline underline-offset-4" target="_blank" rel="noopener noreferrer">מדיניות הפרטיות</a> של האתר <span className="text-red-500">*</span></span>
+                                </label>
+                                <label className="flex items-center gap-3 cursor-pointer group text-right">
+                                    <input type="checkbox" checked={formData.divur} onChange={e => setFormData({ ...formData, divur: e.target.checked })} className="w-5 h-5 rounded border-gray-300 text-[#2f4ea1] focus:ring-[#2f4ea1]" />
+                                    <span className="text-sm text-gray-600 group-hover:text-[#09102c] transition-colors">אני מאשר/ת קבלת תוכן פרסומי, עדכונים והטבות למייל ולנייד</span>
+                                </label>
                             </div>
                             
                             {formError && <p className="text-red-500 text-sm font-bold mt-2">{formError}</p>}
