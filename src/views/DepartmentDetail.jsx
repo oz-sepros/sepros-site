@@ -301,22 +301,50 @@ const DepartmentHeroVisual = ({ category }) => {
             );
         case 'social':
             return (
-                <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-gradient-to-bl from-pink-50/50 to-orange-50/30 overflow-hidden group">
-                    <div className="relative z-10 w-[180px] h-[300px] bg-white rounded-3xl shadow-2xl shadow-pink-900/10 border-4 border-gray-100 p-2 rotate-[-5deg] group-hover:rotate-0 transition-transform duration-500 flex flex-col">
-                        <div className="bg-gray-100 rounded-2xl flex-1 relative overflow-hidden flex items-center justify-center">
-                            <Video className="text-gray-300 opacity-50" size={48} />
-                            <div className="absolute right-2 bottom-16 flex flex-col gap-3">
-                                <div className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center text-pink-500 animate-bounce"><Target size={20} /></div>
-                                <div className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center text-[#2f4ea1]"><MessageSquare size={18} /></div>
+                <div className="relative w-full h-full min-h-[300px] flex items-center justify-center p-8 rounded-3xl bg-gradient-to-bl from-cyan-50/80 to-blue-50/40 overflow-hidden group">
+                    <div className="relative z-10 w-[180px] h-[350px] bg-white rounded-[32px] shadow-[0_10px_40px_-10px_rgba(0,100,200,0.2)] border-[6px] border-gray-900 p-1 rotate-[-5deg] group-hover:rotate-0 transition-transform duration-500 flex flex-col">
+                        {/* Phone Notch */}
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-4 bg-gray-900 rounded-b-xl z-20"></div>
+                        
+                        {/* Screen Content */}
+                        <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-[22px] flex-1 relative overflow-hidden flex items-center justify-center">
+                            <PlayCircle className="text-white/60 absolute z-0" size={48} />
+                            
+                            {/* Social Icons Right Bar */}
+                            <div className="absolute right-2 bottom-20 flex flex-col gap-4 z-10">
+                                <div className="flex flex-col items-center gap-1">
+                                    <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white"><Users size={16} /></div>
+                                    <span className="text-[8px] text-white font-bold">12k</span>
+                                </div>
+                                <div className="flex flex-col items-center gap-1">
+                                    <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white"><MessageSquare size={16} /></div>
+                                    <span className="text-[8px] text-white font-bold">450</span>
+                                </div>
+                                <div className="flex flex-col items-center gap-1">
+                                    <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white"><Target size={16} /></div>
+                                    <span className="text-[8px] text-white font-bold">Share</span>
+                                </div>
                             </div>
-                            <div className="absolute bottom-4 left-4 right-14 space-y-2">
-                                <div className="h-2 bg-white rounded w-full"></div>
-                                <div className="h-2 bg-white/70 rounded w-2/3"></div>
+                            
+                            {/* Bottom Info Bar */}
+                            <div className="absolute bottom-4 left-4 right-12 z-10">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <div className="w-6 h-6 rounded-full bg-white/30 backdrop-blur-sm"></div>
+                                    <div className="h-2 bg-white/90 rounded w-16"></div>
+                                </div>
+                                <div className="space-y-1.5">
+                                    <div className="h-1.5 bg-white/70 rounded w-full"></div>
+                                    <div className="h-1.5 bg-white/50 rounded w-4/5"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="absolute top-1/4 right-8 bg-white p-4 rounded-2xl shadow-lg border border-gray-50 rotate-12 animate-pulse">
-                        <div className="flex gap-2 text-orange-500 font-bold items-center"><Users size={20} /> +10k</div>
+                    {/* Floating Notifications */}
+                    <div className="absolute top-1/4 right-6 bg-white px-3 py-2 rounded-2xl shadow-lg border border-gray-100 rotate-12 group-hover:scale-110 transition-transform duration-300">
+                        <div className="flex gap-2 text-[#2f4ea1] text-sm font-bold items-center"><Users size={16} /> +2.5k Followers</div>
+                    </div>
+                    <div className="absolute bottom-1/4 left-6 bg-white px-3 py-2 rounded-2xl shadow-lg border border-gray-100 -rotate-12 group-hover:scale-110 transition-transform duration-300">
+                        <div className="flex gap-2 text-purple-600 text-sm font-bold items-center"><MessageSquare size={16} /> Viral!</div>
                     </div>
                 </div>
             );
