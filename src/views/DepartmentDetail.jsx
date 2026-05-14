@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart, Heart, Send } from 'lucide-react';
+import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart, Heart, Send, Brush, PenTool } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
 import FAQ from '../components/FAQ';
@@ -250,22 +250,33 @@ const AnimatedFollowers = () => {
 };
 
 const AnimatedTechCode = () => {
-    const [text, setText] = useState('');
-    const fullText = "const buildFuture = async () => {\n  await sepros.develop({\n    performance: 100,\n    design: 'premium'\n  });\n}";
-    
+    const lines = [
+        <div key="1"><span className="text-pink-400">const</span> <span className="text-white">buildFuture</span> = <span className="text-yellow-300">async</span> () ={'>'} {'{'}</div>,
+        <div key="2" className="pl-4"><span className="text-pink-400">await</span> <span className="text-cyan-300">sepros</span>.<span className="text-green-300">develop</span>({'{'}</div>,
+        <div key="3" className="pl-8 text-gray-400">performance: <span className="text-orange-300">100</span>,</div>,
+        <div key="4" className="pl-8 text-gray-400">design: <span className="text-orange-300">'premium'</span></div>,
+        <div key="5" className="pl-4">{'}'});</div>,
+        <div key="6">{'}'}</div>
+    ];
+    const [visibleLines, setVisibleLines] = useState(0);
+
     useEffect(() => {
-        let i = 0;
         const interval = setInterval(() => {
-            setText(fullText.substring(0, i));
-            i++;
-            if (i > fullText.length + 30) i = 0;
-        }, 50);
+            setVisibleLines(prev => (prev >= lines.length + 2 ? 0 : prev + 1));
+        }, 500);
         return () => clearInterval(interval);
     }, []);
 
     return (
-        <div className="font-mono text-[10px] md:text-sm text-blue-300/80 space-y-2 dir-ltr text-left h-32 md:h-40 flex flex-col justify-center">
-            <pre className="whitespace-pre-wrap font-inherit leading-relaxed">{text}<span className="animate-pulse bg-blue-300 w-2 h-4 inline-block align-middle ml-1"></span></pre>
+        <div className="font-mono text-[10px] md:text-sm text-blue-300/80 space-y-2 dir-ltr text-left h-32 md:h-40 flex flex-col justify-center relative">
+            {lines.map((line, idx) => (
+                <div key={idx} className={`transition-opacity duration-100 ${idx < visibleLines ? 'opacity-100' : 'opacity-0'}`}>
+                    {line}
+                </div>
+            ))}
+            <div className="absolute bottom-4 left-0 w-full h-full pointer-events-none flex items-end">
+                <span className="animate-pulse bg-blue-300 w-2 h-4 inline-block mb-1"></span>
+            </div>
         </div>
     );
 };
@@ -273,7 +284,7 @@ const AnimatedTechCode = () => {
 const AnimatedSeoSearch = () => {
     const [searchText, setSearchText] = useState('');
     const [showResult, setShowResult] = useState(false);
-    const searchTarget = "Sepros Agency";
+    const searchTarget = "Your Website";
 
     useEffect(() => {
         let i = 0;
@@ -290,7 +301,6 @@ const AnimatedSeoSearch = () => {
                     setSearchText('');
                     i = 0;
                 }, 4000);
-                // Restart cycle is handled because the timeout triggers the states, but to restart the typing we need to re-initiate interval.
             }
         }, 150);
         return () => clearInterval(interval);
@@ -298,7 +308,7 @@ const AnimatedSeoSearch = () => {
 
     return (
         <div className="relative z-10 w-full max-w-sm flex flex-col gap-3">
-            <div className="flex items-center gap-3 bg-white rounded-full px-4 py-3 border border-gray-200 shadow-sm mb-2 anim-float-y-delayed">
+            <div className="flex items-center gap-3 bg-white rounded-full px-4 py-3 border border-gray-200 shadow-sm mb-2">
                 <Search className="text-blue-500" size={18} />
                 <div className="flex-1 font-bold text-gray-700 dir-ltr text-left h-5 text-sm md:text-base">{searchText}<span className="animate-pulse">|</span></div>
             </div>
@@ -306,9 +316,9 @@ const AnimatedSeoSearch = () => {
                 <div className="absolute top-0 right-0 w-1.5 h-full bg-[#2f4ea1]"></div>
                 <div className="flex items-center gap-2 mb-1">
                     <div className="w-4 h-4 bg-gray-100 rounded-full flex items-center justify-center"><Globe size={10} className="text-gray-400"/></div>
-                    <div className="text-xs text-gray-500 font-medium dir-ltr text-left">sepros.com</div>
+                    <div className="text-xs text-gray-500 font-medium dir-ltr text-left">yourdomain.com</div>
                 </div>
-                <div className="text-sm font-black text-[#2f4ea1] mb-1 dir-ltr text-left">Sepros | Premium Web Agency</div>
+                <div className="text-sm font-black text-[#2f4ea1] mb-1 dir-ltr text-left">Your Website | Premium Web Experience</div>
                 <div className="h-2 bg-gray-200 rounded w-full"></div>
                 <div className="h-2 bg-gray-200 rounded w-5/6"></div>
                 <div className="absolute top-4 left-4 bg-blue-100 text-[#2f4ea1] text-[10px] font-black px-2 py-1 rounded">#1 RANK</div>
@@ -325,23 +335,50 @@ const AnimatedStrategyFlow = () => {
         { icon: LineChart, colorClass: 'bg-emerald-100 text-emerald-600', gradient: '', label: 'Optimization', ml: 'ml-12 md:ml-24' }
     ];
     return (
-        <div className="relative z-10 w-full max-w-sm flex flex-col gap-1 md:gap-2 scale-90 md:scale-100 origin-center">
+        <div className="relative z-10 w-full max-w-sm flex flex-col gap-0 scale-90 md:scale-100 origin-center">
             {steps.map((step, idx) => (
                 <div key={idx} className={`flex flex-col ${step.ml || ''}`}>
-                    <div className="bg-white rounded-xl shadow-md border border-gray-100 p-2 md:p-3 flex items-center gap-3 anim-float-y" style={{ animationDelay: `${idx * 0.5}s` }}>
+                    <div className="bg-white rounded-xl shadow-md border border-gray-100 p-2 md:p-3 flex items-center gap-3 relative z-10">
                         <div className={`w-8 h-8 rounded-full ${step.colorClass} flex items-center justify-center`}><step.icon size={16}/></div>
                         <div className="flex-1">
                             <div className="text-xs md:text-sm font-bold text-gray-800 dir-ltr text-left">{step.label}</div>
-                            <div className="h-1.5 bg-gray-100 rounded w-full mt-1"></div>
                         </div>
                     </div>
                     {idx < 3 && (
-                        <div className="flex justify-start ml-4 md:ml-6 my-1">
-                            <div className={`h-4 md:h-6 w-0.5 bg-gradient-to-b ${step.gradient}`}></div>
+                        <div className="flex justify-start ml-4 md:ml-6 my-0 -z-10 relative">
+                            <div className={`h-6 md:h-8 w-1 bg-gray-100 relative overflow-hidden rounded-full`}>
+                                <div className={`absolute top-0 left-0 w-full h-full bg-gradient-to-b ${step.gradient} animate-[slideDown_1.5s_infinite]`} style={{ animationDelay: `${idx * 0.5}s` }}></div>
+                            </div>
                         </div>
                     )}
                 </div>
             ))}
+        </div>
+    );
+};
+
+const AnimatedPpcGraph = () => {
+    return (
+        <div className="relative z-10 w-full max-w-xs bg-white rounded-2xl shadow-xl shadow-green-900/5 p-6 border border-gray-100">
+            <div className="flex justify-between items-center mb-6">
+                <div className="flex items-center gap-2 text-emerald-600 font-black text-2xl">
+                    <TrendingUp size={28} />
+                    ROAS
+                </div>
+                <span className="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-1 rounded-md">LIVE</span>
+            </div>
+            <div className="flex items-end gap-2 h-24">
+                {[30, 45, 40, 60, 80, 100].map((h, i) => (
+                    <div key={i} className="flex-1 bg-gradient-to-t from-emerald-400 to-emerald-300 rounded-t-sm animate-[growUp_2s_infinite_alternate]" style={{ height: `${h}%`, animationDelay: `${i * 0.15}s` }}></div>
+                ))}
+            </div>
+            <div className="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
+                <div className="space-y-1">
+                    <div className="h-2 bg-gray-200 rounded w-16"></div>
+                    <div className="h-2 bg-gray-100 rounded w-10"></div>
+                </div>
+                <div className="bg-[#2f4ea1] text-white text-xs font-bold px-3 py-1.5 rounded-full">+450%</div>
+            </div>
         </div>
     );
 };
@@ -393,63 +430,43 @@ const DepartmentHeroVisual = ({ category }) => {
                 return (
                     <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-tr from-green-50/50 to-emerald-50/30 overflow-hidden group">
                         <div className="absolute inset-0 bg-[linear-gradient(rgba(47,78,161,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(47,78,161,0.03)_1px,transparent_1px)]" style={{ backgroundSize: '20px 20px' }}></div>
-                        <div className="relative z-10 w-full max-w-xs bg-white rounded-2xl shadow-xl shadow-green-900/5 p-6 border border-gray-100 anim-float-y">
-                            <div className="flex justify-between items-center mb-6">
-                                <div className="flex items-center gap-2 text-emerald-600 font-black text-2xl">
-                                    <TrendingUp size={28} />
-                                    ROAS
-                                </div>
-                                <span className="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-1 rounded-md">LIVE</span>
-                            </div>
-                            <div className="flex items-end gap-2 h-24">
-                                {[30, 45, 40, 60, 80, 100].map((h, i) => (
-                                    <div key={i} className="flex-1 bg-gradient-to-t from-emerald-400 to-emerald-300 rounded-t-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 0.15}s` }}></div>
-                                ))}
-                            </div>
-                            <div className="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
-                                <div className="space-y-1">
-                                    <div className="h-2 bg-gray-200 rounded w-16"></div>
-                                    <div className="h-2 bg-gray-100 rounded w-10"></div>
-                                </div>
-                                <div className="bg-[#2f4ea1] text-white text-xs font-bold px-3 py-1.5 rounded-full">+450%</div>
-                            </div>
-                        </div>
+                        <AnimatedPpcGraph />
                     </div>
                 );
             case 'social':
                 return (
                     <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-bl from-cyan-50/80 to-blue-50/40 group">
-                        <div className="relative z-10 w-[160px] md:w-[180px] h-[320px] md:h-[350px] bg-white rounded-[32px] shadow-[0_10px_40px_-10px_rgba(0,100,200,0.2)] border-[6px] border-gray-900 p-1 -rotate-[3deg] anim-float-y flex flex-col">
+                        <div className="relative z-10 w-[160px] md:w-[180px] h-[320px] md:h-[350px] bg-white rounded-[32px] shadow-[0_10px_40px_-10px_rgba(0,100,200,0.2)] border-[6px] border-gray-900 p-1 -rotate-[3deg] flex flex-col">
                             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-gray-900 rounded-b-xl z-20"></div>
                             <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-[22px] flex-1 relative overflow-hidden flex items-center justify-center">
                                 <PlayCircle className="text-white/40 absolute z-0" size={48} />
-                                <div className="absolute right-4 bottom-24 pointer-events-none z-10">
-                                    <Heart size={20} className="text-red-500 fill-current absolute bottom-0 right-0 heart-float heart-delay-1" />
-                                    <Heart size={14} className="text-pink-500 fill-current absolute bottom-0 right-3 heart-float heart-delay-2" />
-                                    <Heart size={24} className="text-red-400 fill-current absolute bottom-0 right-1 heart-float heart-delay-3" />
-                                </div>
                                 <div className="absolute right-2 bottom-20 flex flex-col gap-4 z-20">
-                                    <div className="flex flex-col items-center gap-1">
-                                        <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white"><Heart size={16} className="fill-current text-red-500" /></div>
-                                        <span className="text-[8px] text-white font-bold">12k</span>
+                                    <div className="flex flex-col items-center gap-1 relative">
+                                        <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white relative z-10"><Send size={16} /></div>
+                                        <span className="text-[8px] text-white font-bold">Share</span>
                                     </div>
                                     <div className="flex flex-col items-center gap-1">
                                         <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white"><MessageSquare size={16} className="fill-current" /></div>
                                         <span className="text-[8px] text-white font-bold">450</span>
                                     </div>
-                                    <div className="flex flex-col items-center gap-1">
-                                        <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white"><Send size={16} /></div>
-                                        <span className="text-[8px] text-white font-bold">Share</span>
+                                    <div className="flex flex-col items-center gap-1 relative">
+                                        <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white relative z-10"><Heart size={16} className="fill-current text-red-500" /></div>
+                                        <span className="text-[8px] text-white font-bold">12k</span>
+                                        <div className="absolute -top-10 right-0 pointer-events-none z-0">
+                                            <Heart size={20} className="text-red-500 fill-current absolute bottom-0 right-0 heart-float heart-delay-1" />
+                                            <Heart size={14} className="text-pink-500 fill-current absolute bottom-0 right-3 heart-float heart-delay-2" />
+                                            <Heart size={24} className="text-red-400 fill-current absolute bottom-0 right-1 heart-float heart-delay-3" />
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="absolute bottom-4 left-4 right-12 z-20">
+                                <div className="absolute bottom-4 left-4 right-4 z-20">
                                     <div className="flex items-center gap-2 mb-2">
                                         <div className="w-6 h-6 rounded-full bg-white/30 backdrop-blur-sm"></div>
-                                        <div className="h-2 bg-white/90 rounded w-16"></div>
+                                        <div className="h-2 bg-white/90 rounded w-24"></div>
                                     </div>
-                                    <div className="space-y-1.5">
-                                        <div className="h-1.5 bg-white/70 rounded w-full"></div>
-                                        <div className="h-1.5 bg-white/50 rounded w-4/5"></div>
+                                    <div className="space-y-1.5 w-full">
+                                        <div className="h-1.5 bg-white/70 rounded w-[90%]"></div>
+                                        <div className="h-1.5 bg-white/50 rounded w-[70%]"></div>
                                     </div>
                                 </div>
                             </div>
@@ -466,23 +483,16 @@ const DepartmentHeroVisual = ({ category }) => {
                 return (
                     <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-tr from-purple-50/50 to-pink-50/30 overflow-hidden group">
                         <div className="relative w-full max-w-sm h-64 z-10 flex items-center justify-center">
-                            <div className="absolute w-48 h-56 border-2 border-dashed border-gray-300 rounded-2xl -rotate-6 anim-float-y-delayed"></div>
-                            <div className="absolute w-48 h-56 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col rotate-3 z-20 anim-float-y">
-                                <div className="h-24 bg-gradient-to-br from-purple-400 to-pink-500 relative">
-                                    <div className="absolute -bottom-6 right-4 w-12 h-12 bg-white rounded-full p-1 shadow-lg">
-                                        <div className="w-full h-full bg-gray-100 rounded-full border-2 border-white"></div>
-                                    </div>
+                            <div className="absolute w-56 h-64 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex items-center justify-center relative">
+                                <div className="absolute w-32 h-32 bg-gradient-to-tr from-purple-400 via-pink-500 to-yellow-400 rounded-full blur-xl opacity-50 animate-pulse"></div>
+                                <div className="absolute w-24 h-24 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-[scaleUp_2s_infinite_alternate]">
+                                    <Palette size={40} className="text-white" />
                                 </div>
-                                <div className="p-4 pt-8 flex-1 flex flex-col gap-3">
-                                    <div className="h-3 bg-gray-800 rounded w-2/3"></div>
-                                    <div className="h-2 bg-gray-200 rounded w-full"></div>
-                                    <div className="h-2 bg-gray-200 rounded w-4/5"></div>
-                                    <div className="mt-auto h-8 bg-purple-50 rounded-lg flex items-center justify-center">
-                                        <div className="h-2 bg-purple-400 rounded w-1/3"></div>
-                                    </div>
+                                <div className="absolute z-30 text-gray-800 animate-[drawCircle_4s_infinite_linear]">
+                                    <Brush size={32} />
                                 </div>
                             </div>
-                            <div className="absolute z-30 top-2 md:top-4 right-0 md:right-4 w-8 h-8 md:w-10 md:h-10 bg-white rounded-lg md:rounded-xl shadow-lg flex items-center justify-center text-pink-500 animate-bounce" style={{ animationDelay: '0.1s' }}><Palette size={16} className="md:w-5 md:h-5" /></div>
+                            <div className="absolute z-30 top-2 md:top-4 right-0 md:right-4 w-8 h-8 md:w-10 md:h-10 bg-white rounded-lg md:rounded-xl shadow-lg flex items-center justify-center text-pink-500 animate-bounce" style={{ animationDelay: '0.1s' }}><PenTool size={16} className="md:w-5 md:h-5" /></div>
                             <div className="absolute z-30 bottom-4 md:bottom-8 left-0 md:left-4 w-8 h-8 md:w-10 md:h-10 bg-white rounded-lg md:rounded-xl shadow-lg flex items-center justify-center text-purple-500 animate-bounce" style={{ animationDelay: '0.5s' }}><Layout size={16} className="md:w-5 md:h-5" /></div>
                         </div>
                     </div>
@@ -491,7 +501,7 @@ const DepartmentHeroVisual = ({ category }) => {
                 return (
                     <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-[#0b1638] overflow-hidden group">
                         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(#2f4ea1 1px, transparent 1px), linear-gradient(90deg, #2f4ea1 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
-                        <div className="relative z-10 w-full max-w-sm bg-[#112052] rounded-xl shadow-2xl border border-[#2f4ea1]/30 p-2 overflow-hidden anim-float-y">
+                        <div className="relative z-10 w-full max-w-sm bg-[#112052] rounded-xl shadow-2xl border border-[#2f4ea1]/30 p-2 overflow-hidden">
                             <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[#2f4ea1]/20">
                                 <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
                                 <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
@@ -541,6 +551,23 @@ const DepartmentHeroVisual = ({ category }) => {
                 .heart-delay-1 { animation-delay: 0s; }
                 .heart-delay-2 { animation-delay: 0.7s; }
                 .heart-delay-3 { animation-delay: 1.4s; }
+                
+                @keyframes slideDown {
+                    0% { transform: translateY(-100%); }
+                    100% { transform: translateY(100%); }
+                }
+                @keyframes growUp {
+                    0% { height: 0%; }
+                    100% { height: 100%; }
+                }
+                @keyframes scaleUp {
+                    0% { transform: scale(0.8); }
+                    100% { transform: scale(1.1); }
+                }
+                @keyframes drawCircle {
+                    0% { transform: rotate(0deg) translateX(40px) rotate(0deg); }
+                    100% { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+                }
             `}</style>
             {renderVisual()}
         </>
