@@ -4,7 +4,7 @@ import { trackEvent } from '../utils/analytics';
 import { usePathname } from 'next/navigation';
 import Reveal from './Reveal';
 
-const ContactForm = () => {
+const ContactForm = ({ isMainSection = false }) => {
     const [formData, setFormData] = useState({ fullName: '', company: '', phone: '', email: '', msg: '' });
     const [status, setStatus] = useState('idle');
     const [formError, setFormError] = useState('');
@@ -58,6 +58,29 @@ const ContactForm = () => {
                 }
             });
 
+            // -- OPTION 1: MAKE.COM WEBHOOK (For Monday.com integration) --
+            // To connect to Monday:
+            // 1. Create a Custom Webhook in Make.com
+            // 2. Paste the URL here:
+            // const MAKE_WEBHOOK_URL = 'https://hook.eu2.make.com/YOUR_WEBHOOK_ID';
+            // await fetch(MAKE_WEBHOOK_URL, {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({
+            //         firstName,
+            //         lastName,
+            //         fullName: formData.fullName,
+            //         phone: cleanPhone,
+            //         email: formData.email,
+            //         company: formData.company,
+            //         message: formData.msg,
+            //         utm_source: searchParams.get('utm_source'),
+            //         utm_medium: searchParams.get('utm_medium'),
+            //         utm_campaign: searchParams.get('utm_campaign')
+            //     })
+            // });
+
+            // -- OPTION 2: CURRENT LEAD.IM INTEGRATION --
             await fetch(`https://api.lead.im/v2/submit?${params.toString()}`, {
                 method: 'GET',
                 mode: 'no-cors'
@@ -73,7 +96,7 @@ const ContactForm = () => {
     };
 
     return (
-        <section className="py-12 md:py-20 bg-white relative overflow-hidden text-right border-t border-gray-100" id="contact">
+        <section className={`${isMainSection ? 'pb-12 md:pb-20' : 'py-12 md:py-20 border-t border-gray-100'} bg-white relative overflow-hidden text-right`} id="contact">
             <div className="max-w-[1400px] mx-auto px-6 relative z-10">
                 <div className="grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
                     <div className="flex flex-col order-2 lg:order-1 dir-rtl">

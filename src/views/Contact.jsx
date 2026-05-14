@@ -6,7 +6,7 @@ const Contact = () => {
     return (
         <div className="pt-24 md:pt-32 pb-10 bg-white min-h-screen">
             <div className="mb-16">
-                <ContactForm />
+                <ContactForm isMainSection={true} />
             </div>
 
             {/* Contact Info Cards */}
