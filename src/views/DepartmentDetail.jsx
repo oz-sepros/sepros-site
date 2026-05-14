@@ -86,13 +86,16 @@ const SocialCarousel = () => {
     
     // הסרטונים האמיתיים (YouTube Shorts) של הלקוח
     const baseItems = [
-        { id: "8l4iphxZurc" }, 
-        { id: "ABEaNtb2oeA" },
-        { id: "uc110NcS9zc" },
-        { id: "bggmFXyPUYE" },
-        { id: "CUV3z0Ify9Y" },
-        { id: "L0T-QWKvLqU" },
-        { id: "i2D0NOb4IZ8" }
+        { id: "ce4XWYqPApc" },
+        { id: "SFHBRCBtvog" },
+        { id: "8D6dfBAYmvY" },
+        { id: "D8hOZ_PXC-4" },
+        { id: "v1qFbJElfJ4" },
+        { id: "pUF5lAJ85vg" },
+        { id: "a5OyApZs98g" },
+        { id: "5AVwndFocNU" },
+        { id: "XE9emYNGeKo" },
+        { id: "zRZstpNyqrk" }
     ];
     // נכפיל את המערך כדי למנוע קפיצות ויזואליות במצב מעגל אינסופי
     const items = [...baseItems, ...baseItems];
