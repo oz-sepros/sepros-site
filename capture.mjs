@@ -3,8 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 const projects = [
-    { id: "toronto", link: "https://lp.israel-canada.co.il/english/toronto_israel_canada/" },
-    { id: "renovo", link: "https://lp.renovo.co.il/bialik_ramat_hasharon/" }
+    { id: "kiryat-hamaslul", link: "https://tzrifinnew.kinsta.cloud/" }
 ];
 
 const outputDir = path.join(process.cwd(), 'public', 'portfolio');
