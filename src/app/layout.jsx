@@ -19,14 +19,14 @@ export default function RootLayout({ children }) {
     "logo": "https://www.sepros.co.il/logo.png",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+972-9-886-3644",
+      "telephone": "0528910085",
       "contactType": "customer service",
-      "email": "hello@sepros.co.il",
+      "email": "ofir@sepros.co.il",
       "availableLanguage": "Hebrew"
     },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "טשרניחובסקי 24",
+      "streetAddress": "עתיר ידע 16",
       "addressLocality": "כפר סבא",
       "addressCountry": "IL"
     }
