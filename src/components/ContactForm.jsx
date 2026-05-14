@@ -85,10 +85,9 @@ const ContactForm = () => {
                             <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-[#2f4ea1] mb-12 leading-tight">מוכנים <br /> <span>לגדול?</span></h2>
                         </Reveal>
 
-                        <Reveal className="space-y-10">
-                            <div className="group cursor-pointer flex flex-col items-start w-3/4">
-                                <p className="text-gray-500 text-sm font-bold tracking-widest mb-2 uppercase">שלחו מייל</p>
-                                <p className="text-[#09102c] text-2xl md:text-3xl font-black group-hover:text-[#2f4ea1] transition-colors">HELLO@SEPROS.CO.IL</p>
+                        <Reveal className="space-y-8">
+                            <div className="flex flex-col items-start">
+                                <p className="text-gray-500 text-lg md:text-xl font-medium leading-relaxed max-w-md">השאירו פרטים והצוות שלנו יחזור אליכם בהקדם האפשרי עם כל המידע הדרוש למהלך הבא שלכם.</p>
                             </div>
                         </Reveal>
                     </div>
