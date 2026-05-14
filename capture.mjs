@@ -28,6 +28,20 @@ async function captureScreenshots() {
             // Go to the URL and wait for network to be idle so images load
             await page.goto(project.link, { waitUntil: 'networkidle2', timeout: 30000 });
             
+            // Hide common floating widgets (accessibility, chat, etc.)
+            await page.evaluate(() => {
+                const style = document.createElement('style');
+                style.innerHTML = `
+                    #nagish-li, .nagish-btn, #enable11, .accessBtn, #accessibility-widget, 
+                    #pojo-a11y, #userway-accessibility-widget, [aria-label*="נגישות"], 
+                    .wa-chat, #wp-chat, [id*="nagish"], [class*="nagish"], [id*="access"], 
+                    [class*="access"], [id*="userway"], iframe[name*="userway"],
+                    .nagish-widget, .enable-accessibility, .equalweb-widget, #INDmenu-btn
+                    { display: none !important; opacity: 0 !important; visibility: hidden !important; z-index: -9999 !important; }
+                `;
+                document.head.appendChild(style);
+            });
+
             // Scroll down and up to trigger lazy-loaded images
             await page.evaluate(async () => {
                 await new Promise((resolve) => {
