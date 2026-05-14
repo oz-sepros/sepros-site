@@ -129,7 +129,7 @@ const ArticlePage = () => {
             <article className="min-h-screen bg-[#F5F7FA] pt-32 md:pt-40 pb-20 px-6">
                 <div className="max-w-3xl mx-auto flex flex-col">
                     {/* Breadcrumbs */}
-                    <div className="flex items-center gap-2 text-gray-500 text-sm font-bold mb-8 self-end">
+                    <div className="flex items-center gap-2 text-gray-500 text-sm font-bold mb-8 self-start">
                         <span className="text-gray-900">{article.title}</span>
                         <ChevronRight size={14} />
                         <button onClick={() => router.push('/articles')} className="hover:text-[#2f4ea1] transition-colors">מאמרים</button>
