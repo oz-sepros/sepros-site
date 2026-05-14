@@ -341,47 +341,7 @@ const AnimatedSeoSearch = () => {
     );
 };
 
-    useEffect(() => {
-        let i = 0;
-        const interval = setInterval(() => {
-            if (i <= searchTarget.length) {
-                setSearchText(searchTarget.substring(0, i));
-                i++;
-            } else {
-                i = 0;
-            }
-        }, 200);
-        return () => clearInterval(interval);
-    }, []);
 
-    return (
-        <div className="relative z-10 w-full max-w-sm flex flex-col gap-3">
-            <div className="flex items-center gap-3 bg-white rounded-full px-4 py-3 border border-gray-200 shadow-sm mb-2">
-                <Search className="text-blue-500" size={18} />
-                <div className="flex-1 font-bold text-gray-700 dir-rtl text-right h-5 text-sm md:text-base">{searchText}<span className="animate-pulse">|</span></div>
-            </div>
-            <div className="bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(47,78,161,0.2)] border-2 border-blue-100 p-4 flex flex-col gap-2 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-1.5 h-full bg-[#2f4ea1]"></div>
-                <div className="flex items-center gap-2 mb-1">
-                    <div className="w-4 h-4 bg-gray-100 rounded-full flex items-center justify-center"><Globe size={10} className="text-gray-400"/></div>
-                    <div className="text-xs text-gray-500 font-medium dir-ltr text-left">yourdomain.co.il</div>
-                </div>
-                <div className="text-sm font-black text-[#2f4ea1] mb-1 dir-rtl text-right">האתר שלכם | בניית אתרים וקידום בגוגל</div>
-                <div className="h-2 bg-gray-200 rounded w-full"></div>
-                <div className="h-2 bg-gray-200 rounded w-5/6"></div>
-                <div className="absolute top-4 left-4 bg-blue-100 text-[#2f4ea1] text-[10px] font-black px-2 py-1 rounded">#1 RANK</div>
-            </div>
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex flex-col gap-2 opacity-50 scale-[0.98]">
-                <div className="flex items-center gap-2 mb-1">
-                    <div className="w-4 h-4 bg-gray-100 rounded-full"></div>
-                    <div className="h-1.5 bg-gray-200 rounded w-1/4"></div>
-                </div>
-                <div className="h-3 bg-gray-300 rounded w-2/3 mb-1"></div>
-                <div className="h-2 bg-gray-200 rounded w-full"></div>
-            </div>
-        </div>
-    );
-};
 
 const AnimatedStrategyFlow = () => {
     const steps = [
