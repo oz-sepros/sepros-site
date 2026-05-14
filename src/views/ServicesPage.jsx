@@ -27,11 +27,11 @@ const ServicesPage = () => {
                         מעטפת מלאה של פתרונות דיגיטליים, ממוקדים בתוצאות עסקיות ובצמיחה חסרת פשרות.
                     </p>
                     
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {services.map((srv, i) => {
                             const Icon = srv.icon;
                             return (
-                                <div key={i} onClick={() => router.push(`/department/${srv.id}`)} className="bg-white rounded-3xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-all border border-gray-100 flex flex-col h-full hover:-translate-y-1">
+                                <div key={i} onClick={() => router.push(`/service/${srv.id}`)} className="bg-white rounded-[2rem] overflow-hidden group cursor-pointer shadow-md hover:shadow-2xl hover:shadow-[#2f4ea1]/10 transition-all border border-gray-100 flex flex-col h-full hover:-translate-y-2 duration-500">
                                     <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
                                         <div className="absolute inset-0 bg-[#09102c]/20 group-hover:bg-transparent transition-colors z-10 duration-500"></div>
                                         <img src={srv.image} alt={srv.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -43,9 +43,9 @@ const ServicesPage = () => {
                                         <div className="w-12 h-1 bg-[#2f4ea1] rounded-full mb-6"></div>
                                         <h2 className="text-2xl font-black text-gray-900 mb-3 group-hover:text-[#2f4ea1] transition-colors">{srv.title}</h2>
                                         <p className="text-gray-500 font-medium leading-relaxed mb-8 flex-grow">{srv.desc}</p>
-                                        <div className="flex items-center text-[#2f4ea1] font-bold text-sm tracking-widest uppercase gap-2 group/btn mt-auto">
-                                            קראו עוד
-                                            <ArrowUpLeft size={16} className="group-hover/btn:-translate-x-1 group-hover/btn:translate-y-1 transition-transform" />
+                                        <div className="flex items-center text-[#2f4ea1] font-black text-base tracking-widest gap-2 group/btn mt-auto">
+                                            גלו את המחלקה
+                                            <ArrowUpLeft size={20} className="group-hover/btn:-translate-x-1 group-hover/btn:translate-y-1 transition-transform" />
                                         </div>
                                     </div>
                                 </div>

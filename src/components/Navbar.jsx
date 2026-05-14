@@ -57,7 +57,7 @@ const Navbar = () => {
 
     const handleDeptSelect = (id) => {
         trackEvent('click_nav_department', { department_id: id });
-        router.push(`/department/${id}`);
+        router.push(`/service/${id}`);
         setIsDropdownOpen(false);
         setIsOpen(false);
     };
@@ -96,7 +96,7 @@ const Navbar = () => {
                     >
                         <button
                             onClick={() => router.push('/services')}
-                            className={`flex items-center gap-1 text-sm font-bold transition-colors ${isSolid
+                            className={`flex items-center gap-1 text-sm font-bold transition-colors cursor-pointer ${isSolid
                                     ? 'text-gray-700 group-hover:text-[#2f4ea1]'
                                     : 'text-white/90 group-hover:text-white'
                                 }`}
@@ -116,12 +116,6 @@ const Navbar = () => {
                                 }`}
                         >
                             <div className="bg-white border border-gray-100 p-2 shadow-xl rounded-lg">
-                                <button
-                                    onClick={() => router.push('/services')}
-                                    className="w-full text-right px-6 py-4 text-xs font-bold text-[#2f4ea1] hover:bg-gray-50 rounded-md transition-all border-b border-gray-100"
-                                >
-                                    כל השירותים
-                                </button>
                                 {departments.map((dept) => (
                                     <button
                                         key={dept.id}
@@ -225,11 +219,15 @@ const Navbar = () => {
 
                         <div className="w-full py-2">
                             <button
-                                onClick={() => setIsMobileDepartmentsOpen(!isMobileDepartmentsOpen)}
-                                className="w-full flex items-center justify-start gap-2 text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors py-2"
+                                onClick={() => router.push('/services')}
+                                className="w-full flex items-center justify-start gap-2 text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors py-2 cursor-pointer"
                             >
                                 <span>שירותים</span>
                                 <ChevronDown 
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setIsMobileDepartmentsOpen(!isMobileDepartmentsOpen);
+                                    }}
                                     size={24} 
                                     className={`text-gray-400 transition-transform duration-300 ${isMobileDepartmentsOpen ? 'rotate-180' : ''}`} 
                                 />
@@ -237,12 +235,6 @@ const Navbar = () => {
 
                             <div className={`w-full overflow-hidden transition-all duration-300 ${isMobileDepartmentsOpen ? 'max-h-[500px] opacity-100 mt-2 mb-2' : 'max-h-0 opacity-0 mt-0 mb-0'}`}>
                                 <div className="flex flex-col items-end border-r-2 border-[#2f4ea1]/20 pr-4 mr-2">
-                                    <button
-                                        onClick={() => { setIsOpen(false); router.push('/services'); }}
-                                        className="w-full text-right text-lg font-bold text-[#2f4ea1] hover:text-[#1c3166] transition-colors py-3 border-b border-gray-100"
-                                    >
-                                        כל השירותים
-                                    </button>
                                     {departments.map((dept) => (
                                         <button
                                             key={dept.id}

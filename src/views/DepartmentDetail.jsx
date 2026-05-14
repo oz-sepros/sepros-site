@@ -1290,8 +1290,24 @@ const DepartmentDetail = () => {
     };
     const dept = data[id] || data.ppc;
 
+    const serviceSchema = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": dept.title,
+        "description": dept.long,
+        "serviceType": dept.title,
+        "provider": {
+            "@type": "Organization",
+            "name": "Sepros Digital",
+            "url": "https://www.sepros.co.il/"
+        },
+        "areaServed": "IL",
+        "url": `https://www.sepros.co.il/service/${id}`
+    };
+
     return (
         <Reveal className="min-h-screen bg-white pt-32 md:pt-40 pb-20 text-right">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
             <div className="max-w-[1400px] mx-auto px-6">
                 {/* Mobile Title - Appears above image on mobile */}
                 <div className="lg:hidden text-4xl md:text-5xl font-black uppercase mb-8 text-[#2f4ea1] leading-tight flex flex-col-reverse relative z-10">{dept.title}</div>

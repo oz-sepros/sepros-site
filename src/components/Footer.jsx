@@ -35,10 +35,10 @@ const Footer = () => (
                     <div className="space-y-4">
                         <h2 className="text-gray-900 font-black tracking-widest text-[10px] border-b border-gray-200 pb-2 inline-block">מחלקות</h2>
                         <ul className="space-y-2 text-gray-600 font-bold text-xs md:text-sm">
-                            <li><Link href="/department/ppc" className="hover:text-[#2f4ea1] transition-colors">PPC וביצועים</Link></li>
-                            <li><Link href="/department/social" className="hover:text-[#2f4ea1] transition-colors">סושיאל וקריאייטיב</Link></li>
-                            <li><Link href="/department/design" className="hover:text-[#2f4ea1] transition-colors">סטודיו ו-UX/UI</Link></li>
-                            <li><Link href="/department/tech" className="hover:text-[#2f4ea1] transition-colors">פיתוח אתרים</Link></li>
+                            <li><Link href="/service/ppc" className="hover:text-[#2f4ea1] transition-colors">PPC וביצועים</Link></li>
+                            <li><Link href="/service/social" className="hover:text-[#2f4ea1] transition-colors">סושיאל וקריאייטיב</Link></li>
+                            <li><Link href="/service/design" className="hover:text-[#2f4ea1] transition-colors">סטודיו ו-UX/UI</Link></li>
+                            <li><Link href="/service/tech" className="hover:text-[#2f4ea1] transition-colors">פיתוח אתרים</Link></li>
                         </ul>
                     </div>
                     <div className="space-y-4">

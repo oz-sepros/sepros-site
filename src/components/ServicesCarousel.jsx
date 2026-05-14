@@ -109,7 +109,7 @@ const ServicesCarousel = () => {
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
                     {departments.map((dept, i) => (
-                        <div key={i} onClick={() => { trackEvent('click_service_card', { service_id: dept.id }); router.push(`/department/${dept.id}`); }} className="min-w-[85vw] md:min-w-[400px] h-[480px] md:h-[500px] snap-center shrink-0 relative rounded-[2rem] overflow-hidden group transition-all duration-500 cursor-pointer shadow-xl hover:shadow-2xl border border-[#09102c]/5">
+                        <div key={i} onClick={() => { trackEvent('click_service_card', { service_id: dept.id }); router.push(`/service/${dept.id}`); }} className="min-w-[85vw] md:min-w-[400px] h-[480px] md:h-[500px] snap-center shrink-0 relative rounded-[2rem] overflow-hidden group transition-all duration-500 cursor-pointer shadow-xl hover:shadow-2xl border border-[#09102c]/5">
                             {/* Full Background Image */}
                             <img src={dept.image} alt={dept.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1500ms]" />
 
