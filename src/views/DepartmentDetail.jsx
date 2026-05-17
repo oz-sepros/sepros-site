@@ -549,7 +549,7 @@ const DepartmentHeroVisual = ({ category }) => {
 
                                 {/* Main Canvas Area */}
                                 <div className="flex-1 relative bg-gradient-to-br from-[#161d36] to-[#1e1830] overflow-hidden flex flex-col" style={{ backgroundImage: 'linear-gradient(#2a314d 1px, transparent 1px), linear-gradient(90deg, #2a314d 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
-                                    
+
                                     {/* AI Prompt Bar */}
                                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[85%] bg-white/20 backdrop-blur-xl border border-white/30 rounded-lg p-2.5 flex items-center gap-2 z-30 shadow-2xl">
                                         <Sparkles className="text-pink-300" size={16} />
@@ -561,13 +561,13 @@ const DepartmentHeroVisual = ({ category }) => {
                                     {/* The Artboard - Generated Glass Card */}
                                     <div className="flex-1 flex items-center justify-center relative z-20 pb-10">
                                         <div className="relative w-[220px] h-[150px] md:w-[300px] md:h-[200px] rounded-2xl bg-black border-[1.5px] border-white/30 shadow-[0_20px_40px_rgba(236,72,153,0.2)] overflow-hidden flex items-center justify-center group-hover:shadow-[0_20px_60px_rgba(34,211,238,0.4)] transition-all duration-700">
-                                            
+
                                             {/* Generated AI Image */}
                                             <img src="/images/brand_book_ai.png" alt="AI Generated Brand Book" className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-110 transition-transform duration-1000 ease-out" />
-                                            
+
                                             {/* Colorful overlay gradient to keep UI legible */}
                                             <div className="absolute inset-0 bg-gradient-to-t from-[#1b1030]/90 to-transparent"></div>
-                                            
+
                                             {/* Small UI elements overlaid on the image */}
                                             <div className="absolute bottom-3 left-3 flex items-center gap-2 z-10">
                                                 <div className="w-6 h-6 rounded-full bg-gradient-to-r from-pink-500 to-cyan-500 flex items-center justify-center shadow-lg">
@@ -575,7 +575,7 @@ const DepartmentHeroVisual = ({ category }) => {
                                                 </div>
                                                 <div className="text-[9px] text-white font-mono tracking-wider font-bold drop-shadow-md">BrandBook_Generated</div>
                                             </div>
-                                            
+
                                             {/* AI Scanning effect on top of the image */}
                                             <div className="absolute top-0 left-0 w-full h-[3px] bg-pink-400 shadow-[0_0_20px_#ec4899] z-20" style={{ animation: 'scanline 2.5s ease-in-out infinite alternate' }}></div>
                                         </div>
@@ -624,7 +624,8 @@ const DepartmentHeroVisual = ({ category }) => {
                         </div>
 
                         {/* CSS Animations inline */}
-                        <style dangerouslySetInnerHTML={{__html: `
+                        <style dangerouslySetInnerHTML={{
+                            __html: `
                             @keyframes scanline {
                                 0% { top: 0%; }
                                 100% { top: 100%; }
@@ -1290,7 +1291,7 @@ const DepartmentDetail = () => {
             title: "סטודיו וקריאייטיב",
             ctaText: "מוכנים לעצב מותג בלתי נשכח?",
             long: "אנחנו מאפיינים ומעצבים ממשקים ותוצרים שיווקיים שמרגישים טבעיים למשתמש, יחד עם עיצוב פרימיום שמייצר אמון מיידי במותג. אנחנו מעניקים מעטפת מלאה של הסטודיו לכלל הפרויקטים שלנו.",
-            services: ["שפה חזותית וקונספט", "עיצוב ויצירת מסרים", "עיצוב מבוסס בינה מלאכותית (AI)", "בניית ספר מותג"],
+            services: ["שפה חזותית וקונספט", "עיצוב ויצירת מסרים", "זהות תאגידית", "בניית ספר מותג"],
             processTitle: "תהליך העיצוב שלנו",
             processSubtitle: "לייצר חוויה ויזואלית מדויקת ללקוח",
             process: [
@@ -1403,9 +1404,25 @@ const DepartmentDetail = () => {
         "provider": {
             "@type": "Organization",
             "name": "Sepros Digital",
-            "url": "https://www.sepros.co.il/"
+            "url": "https://www.sepros.co.il/",
+            "logo": "https://www.sepros.co.il/images/logo.png"
         },
-        "areaServed": "IL",
+        "areaServed": {
+            "@type": "Country",
+            "name": "Israel"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "שירותי המחלקה",
+            "itemListElement": dept.services.map((s, index) => ({
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": s
+                },
+                "position": index + 1
+            }))
+        },
         "url": `https://www.sepros.co.il/service/${id}`
     };
 
