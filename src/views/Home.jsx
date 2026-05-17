@@ -31,8 +31,8 @@ const Hero = () => {
                 <button id="home_services_btn" onClick={() => { trackEvent('click_hero_services'); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }} className="group bg-[#040b29] text-white px-8 md:px-10 py-4 md:py-5 font-bold text-base tracking-wide flex items-center justify-center gap-3 hover:bg-[#11205c] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(47,78,161,0.3)] transition-all duration-300 rounded-full shadow-lg">
                     השירותים שלנו <ArrowUpLeft size={18} className="group-hover:-translate-x-1 group-hover:translate-y-1 transition-transform" />
                 </button>
-                <button id="home_contact_btn" onClick={() => { trackEvent('click_hero_contact'); router.push('/contact'); }} className="bg-white text-[#0f173b] px-8 md:px-10 py-4 md:py-5 font-bold text-base tracking-wide hover:bg-gray-100 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 rounded-full shadow-lg">
-                    בואו נדבר
+                <button id="home_contact_btn" onClick={() => { trackEvent('click_hero_contact'); router.push('/contact'); }} className="bg-white text-[#0f173b] px-8 md:px-10 py-4 md:py-5 font-black text-lg tracking-wide hover:bg-gray-100 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 rounded-full shadow-lg">
+                    מוכנים לגדול?
                 </button>
             </div>
         </div>
