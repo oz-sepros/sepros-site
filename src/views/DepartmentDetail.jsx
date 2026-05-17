@@ -1033,7 +1033,7 @@ const AnimatedMarketingFunnel = () => {
                 
                 {funnelSteps.map((step, idx) => (
                     <div key={idx} className="relative w-full flex flex-col items-center group">
-                        <div className={`relative flex flex-col items-center justify-center p-5 md:p-7 rounded-[2rem] shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 cursor-default ${step.color} ${step.width} z-10`} style={{ animation: \`fadeInUp 0.8s ease-out forwards\`, animationDelay: \`\${idx * 0.2}s\`, opacity: 0 }}>
+                        <div className={`relative flex flex-col items-center justify-center p-5 md:p-7 rounded-[2rem] shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 cursor-default ${step.color} ${step.width} z-10`} style={{ animation: `fadeInUp 0.8s ease-out forwards`, animationDelay: `${idx * 0.2}s`, opacity: 0 }}>
                             <div className="flex items-center gap-3 mb-1.5">
                                 {step.icon}
                                 <span className="font-black text-xl md:text-2xl tracking-tight">{step.title}</span>
