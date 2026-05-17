@@ -1017,60 +1017,6 @@ const LightboxModal = ({ selectedImage, onNavigate, onClose }) => {
     );
 };
 
-const AnimatedMarketingFunnel = () => {
-    const funnelSteps = [
-        { title: "חשיפה ומודעות", desc: "Top of Funnel (TOFU)", color: "bg-[#e5ecfb] text-[#2f4ea1]", icon: <Globe size={24} />, width: "w-full md:w-[90%]" },
-        { title: "מעורבות ושיקול", desc: "Middle of Funnel (MOFU)", color: "bg-[#b9c8ef] text-[#0b1638]", icon: <Users size={24} />, width: "w-[90%] md:w-[75%]" },
-        { title: "המרה ורכישה", desc: "Bottom of Funnel (BOFU)", color: "bg-[#2f4ea1] text-white", icon: <Target size={24} />, width: "w-[80%] md:w-[60%]" },
-        { title: "שימור ונאמנות", desc: "Retention & Loyalty", color: "bg-[#0b1638] text-white", icon: <Heart size={24} />, width: "w-[70%] md:w-[45%]" },
-    ];
-
-    return (
-        <div className="mt-16 md:mt-24 w-full">
-            <h2 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">אדריכלות משפכי המרה (Funnels)</h2>
-            <div className="flex flex-col items-center gap-3 md:gap-4 w-full max-w-4xl mx-auto py-12 px-4 bg-gradient-to-b from-gray-50 to-white rounded-3xl border border-gray-100 shadow-[0_4px_30px_rgba(0,0,0,0.03)] relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 pointer-events-none"></div>
-                
-                {funnelSteps.map((step, idx) => (
-                    <div key={idx} className="relative w-full flex flex-col items-center group">
-                        <motion.div 
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.6, delay: idx * 0.15, ease: "easeOut" }}
-                            className={`relative flex flex-col items-center justify-center p-5 md:p-7 rounded-[2rem] shadow-sm transition-shadow duration-500 hover:shadow-xl cursor-default ${step.color} ${step.width} z-10`}
-                        >
-                            <div className="flex items-center gap-3 mb-1.5">
-                                {step.icon}
-                                <span className="font-black text-xl md:text-2xl tracking-tight">{step.title}</span>
-                            </div>
-                            <span className="text-xs md:text-sm font-bold opacity-80 uppercase tracking-widest">{step.desc}</span>
-                        </motion.div>
-                        {idx !== funnelSteps.length - 1 && (
-                            <div className="h-6 md:h-8 flex items-center justify-center text-[#2f4ea1]/30 z-0 my-1">
-                                <ChevronDown size={28} className="animate-bounce" />
-                            </div>
-                        )}
-                    </div>
-                ))}
-            </div>
-            
-            <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 w-full lg:w-[95%] mx-auto">
-                {[
-                    { label: "ירידה בעלות רכישה (CAC)", val: "-35%" },
-                    { label: "גידול בערך חיי לקוח (LTV)", val: "x2.5" },
-                    { label: "שיפור יחס המרה (CR)", val: "+150%" }
-                ].map((stat, i) => (
-                    <div key={i} className="bg-white shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 p-8 text-center rounded-2xl relative overflow-hidden group">
-                        <div className="text-5xl md:text-6xl font-black text-[#2f4ea1] mb-2 dir-ltr">{stat.val}</div>
-                        <div className="text-gray-500 text-sm font-bold tracking-widest uppercase">{stat.label}</div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-};
-
 const DepartmentPortfolio = ({ category }) => {
     const [showAllDesign, setShowAllDesign] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
@@ -1167,10 +1113,6 @@ const DepartmentPortfolio = ({ category }) => {
                 </div>
             </div>
         );
-    }
-
-    if (category === 'strategy') {
-        return <AnimatedMarketingFunnel />;
     }
 
     if (category === 'tech') {
