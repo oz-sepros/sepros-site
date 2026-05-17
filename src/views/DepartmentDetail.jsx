@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart, Heart, Send, Brush, PenTool, MousePointer2, Type, Image, Sparkles, Wand2 } from 'lucide-react';
+import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, ChevronDown, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart, Heart, Send, Brush, PenTool, MousePointer2, Type, Image, Sparkles, Wand2 } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
 import FAQ from '../components/FAQ';
@@ -511,58 +511,131 @@ const DepartmentHeroVisual = ({ category }) => {
             case 'design':
                 return (
                     <div className="relative w-full h-full min-h-[300px] md:min-h-[360px] flex items-center justify-center p-4 rounded-3xl bg-[#0b1638] overflow-hidden group">
-                        {/* Background glowing effects */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-600/30 blur-[80px] rounded-full mix-blend-screen group-hover:scale-125 transition-transform duration-1000 ease-in-out"></div>
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-cyan-400/20 blur-[60px] rounded-full mix-blend-screen anim-spin-slow"></div>
+                        {/* Colorful background glowing effects */}
+                        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 bg-pink-500/30 blur-[90px] rounded-full mix-blend-screen group-hover:scale-125 transition-transform duration-1000"></div>
+                        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-64 h-64 bg-cyan-400/30 blur-[90px] rounded-full mix-blend-screen group-hover:scale-125 transition-transform duration-1000"></div>
 
-                        {/* Prompt Input Box at the top */}
-                        <div className="absolute top-6 w-11/12 max-w-[320px] bg-white/10 backdrop-blur-md border border-white/20 rounded-full py-2 px-4 flex items-center gap-3 z-30 shadow-2xl transform group-hover:-translate-y-1 transition-transform duration-500">
-                            <Sparkles className="text-purple-400 shrink-0" size={16} />
-                            <div className="overflow-hidden w-full relative h-4">
-                                <div className="absolute inset-0 whitespace-nowrap text-[11px] text-white/80 font-mono flex items-center tracking-wide" style={{ animation: 'typing 4s steps(40, end) infinite alternate' }}>
-                                    Generate premium brand book...
-                                    <span className="w-1 h-3 bg-purple-400 ml-1 inline-block animate-pulse"></span>
+                        {/* Big Window Frame */}
+                        <div className="relative z-10 w-full max-w-[500px] h-[300px] md:h-[340px] bg-[#1e2542] rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-white/20 flex flex-col overflow-hidden transition-transform group-hover:scale-[1.02] duration-700">
+
+                            {/* Window Header */}
+                            <div className="h-8 bg-gradient-to-r from-[#232942] to-[#2a2342] border-b border-white/10 flex items-center px-4 justify-between shrink-0">
+                                <div className="flex gap-1.5">
+                                    <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+                                    <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+                                    <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+                                </div>
+                                <div className="flex items-center gap-2 bg-white/5 px-2 py-0.5 rounded-full border border-white/10">
+                                    <Sparkles size={10} className="text-pink-400" />
+                                    <div className="text-[10px] text-white/80 font-mono tracking-wider">Sepros_AI_Studio.exe</div>
+                                </div>
+                                <div className="flex gap-2 text-white/60 hover:text-white transition-colors cursor-pointer">
+                                    <Settings size={12} />
+                                </div>
+                            </div>
+
+                            {/* Editor Layout */}
+                            <div className="flex-1 flex w-full relative overflow-hidden">
+
+                                {/* Left Toolbar */}
+                                <div className="w-10 bg-[#171c33] border-r border-white/10 flex flex-col items-center py-3 gap-3 shrink-0 z-20">
+                                    <div className="w-6 h-6 rounded bg-gradient-to-tr from-cyan-400 to-pink-500 text-white flex items-center justify-center shadow-[0_0_10px_rgba(236,72,153,0.5)]"><Wand2 size={12} /></div>
+                                    <div className="w-6 h-6 rounded hover:bg-white/10 text-white/70 flex items-center justify-center cursor-pointer transition-colors"><MousePointer2 size={12} /></div>
+                                    <div className="w-6 h-6 rounded hover:bg-white/10 text-white/70 flex items-center justify-center cursor-pointer transition-colors"><Layout size={12} /></div>
+                                    <div className="w-6 h-6 rounded hover:bg-white/10 text-white/70 flex items-center justify-center cursor-pointer transition-colors"><Type size={12} /></div>
+                                    <div className="w-6 h-6 rounded hover:bg-white/10 text-white/70 flex items-center justify-center cursor-pointer transition-colors"><Palette size={12} /></div>
+                                    <div className="w-6 h-6 rounded hover:bg-white/10 text-white/70 flex items-center justify-center cursor-pointer transition-colors"><Image size={12} /></div>
+                                </div>
+
+                                {/* Main Canvas Area */}
+                                <div className="flex-1 relative bg-gradient-to-br from-[#161d36] to-[#1e1830] overflow-hidden flex flex-col" style={{ backgroundImage: 'linear-gradient(#2a314d 1px, transparent 1px), linear-gradient(90deg, #2a314d 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
+                                    
+                                    {/* AI Prompt Bar */}
+                                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[85%] bg-white/20 backdrop-blur-xl border border-white/30 rounded-lg p-2.5 flex items-center gap-2 z-30 shadow-2xl">
+                                        <Sparkles className="text-pink-300" size={16} />
+                                        <div className="text-[11px] text-white font-mono tracking-wide overflow-hidden whitespace-nowrap border-r-2 border-pink-400 pr-1 w-full" style={{ animation: 'typing 4s steps(40, end) infinite alternate, blink .75s step-end infinite' }}>
+                                            Create a premium brand book UI...
+                                        </div>
+                                    </div>
+
+                                    {/* The Artboard - Generated Glass Card */}
+                                    <div className="flex-1 flex items-center justify-center relative z-20 pb-10">
+                                        <div className="relative w-[220px] h-[150px] md:w-[300px] md:h-[200px] rounded-2xl bg-black border-[1.5px] border-white/30 shadow-[0_20px_40px_rgba(236,72,153,0.2)] overflow-hidden flex items-center justify-center group-hover:shadow-[0_20px_60px_rgba(34,211,238,0.4)] transition-all duration-700">
+                                            
+                                            {/* Generated AI Image */}
+                                            <img src="/images/brand_book_ai.png" alt="AI Generated Brand Book" className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-110 transition-transform duration-1000 ease-out" />
+                                            
+                                            {/* Colorful overlay gradient to keep UI legible */}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-[#1b1030]/90 to-transparent"></div>
+                                            
+                                            {/* Small UI elements overlaid on the image */}
+                                            <div className="absolute bottom-3 left-3 flex items-center gap-2 z-10">
+                                                <div className="w-6 h-6 rounded-full bg-gradient-to-r from-pink-500 to-cyan-500 flex items-center justify-center shadow-lg">
+                                                    <Sparkles size={10} className="text-white" />
+                                                </div>
+                                                <div className="text-[9px] text-white font-mono tracking-wider font-bold drop-shadow-md">BrandBook_Generated</div>
+                                            </div>
+                                            
+                                            {/* AI Scanning effect on top of the image */}
+                                            <div className="absolute top-0 left-0 w-full h-[3px] bg-pink-400 shadow-[0_0_20px_#ec4899] z-20" style={{ animation: 'scanline 2.5s ease-in-out infinite alternate' }}></div>
+                                        </div>
+
+                                        {/* Floating Badge */}
+                                        <div className="absolute top-[20%] right-[10%] md:right-[15%] bg-gradient-to-r from-[#2f4ea1] to-purple-600 px-3 py-1.5 rounded-lg border border-white/20 text-[10px] text-white font-mono shadow-2xl flex items-center gap-2 anim-float-y">
+                                            <div className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse shadow-[0_0_8px_#67e8f9]"></div>
+                                            Match: 99%
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Right Panel (AI Parameters) */}
+                                <div className="hidden sm:flex w-[130px] bg-[#171c33] border-l border-white/10 flex-col shrink-0 z-20 text-left">
+                                    <div className="p-3 border-b border-white/10">
+                                        <div className="text-[9px] text-white/60 font-bold uppercase mb-2 tracking-wider flex items-center justify-between">
+                                            <span>AI Model</span>
+                                            <Sparkles size={10} className="text-pink-400" />
+                                        </div>
+                                        <div className="bg-[#2a1b3d] border border-pink-500/30 rounded px-2 py-1.5 text-[10px] text-pink-200 font-mono flex items-center justify-between shadow-inner">
+                                            <span>Sepros_v3</span>
+                                            <ChevronDown size={10} />
+                                        </div>
+                                    </div>
+                                    <div className="p-3 border-b border-white/10">
+                                        <div className="text-[9px] text-white/60 font-bold uppercase mb-2 tracking-wider">Style Tokens</div>
+                                        <div className="flex flex-wrap gap-1.5">
+                                            <span className="text-[8px] px-2 py-1 rounded-md bg-purple-500/30 text-purple-100 border border-purple-400/50">Minimal</span>
+                                            <span className="text-[8px] px-2 py-1 rounded-md bg-cyan-500/30 text-cyan-100 border border-cyan-400/50">Vibrant</span>
+                                            <span className="text-[8px] px-2 py-1 rounded-md bg-pink-500/30 text-pink-100 border border-pink-400/50">Premium</span>
+                                        </div>
+                                    </div>
+                                    <div className="p-3">
+                                        <div className="text-[9px] text-white/60 font-bold uppercase mb-2 tracking-wider">Generation</div>
+                                        <div className="flex items-center justify-between text-[10px] text-white mb-1.5">
+                                            <span>Progress</span> <span className="text-cyan-300 font-bold">85%</span>
+                                        </div>
+                                        <div className="w-full h-2 bg-[#0f1423] rounded-full overflow-hidden border border-white/5">
+                                            <div className="h-full bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 w-[85%] rounded-full relative">
+                                                <div className="absolute inset-0 bg-white/20 w-full h-full animate-pulse"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Central AI Element (Glowing Orb) */}
-                        <div className="relative z-20 flex items-center justify-center mt-6">
-                            <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-tr from-purple-600 via-indigo-500 to-cyan-400 p-[2px] shadow-[0_0_40px_rgba(139,92,246,0.4)] relative group-hover:shadow-[0_0_60px_rgba(139,92,246,0.6)] transition-all duration-700 animate-pulse">
-                                <div className="w-full h-full bg-[#0b1638] rounded-full flex items-center justify-center relative overflow-hidden backdrop-blur-xl">
-                                    <Wand2 className="text-white/80 relative z-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] group-hover:rotate-12 transition-transform duration-500" size={32} />
-                                    {/* Inner spinning rings */}
-                                    <div className="absolute inset-0 border border-white/10 rounded-full scale-[0.8] animate-spin" style={{ animationDuration: '3s' }}></div>
-                                    <div className="absolute inset-0 border border-white/20 rounded-full scale-[0.6] animate-spin" style={{ animationDuration: '4s', animationDirection: 'reverse' }}></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Floating Output Elements */}
-                        <div className="absolute z-30 top-[35%] md:top-[30%] left-[10%] md:left-[15%] bg-white/5 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10 shadow-xl anim-float-y-delayed origin-bottom-right rotate-[-12deg] group-hover:rotate-[-5deg] group-hover:scale-110 transition-all duration-500">
-                            <div className="flex flex-col items-center gap-1.5">
-                                <Palette size={16} className="text-pink-400" />
-                                <div className="flex gap-1">
-                                    <div className="w-2.5 h-2.5 rounded-full bg-pink-500"></div>
-                                    <div className="w-2.5 h-2.5 rounded-full bg-purple-500"></div>
-                                    <div className="w-2.5 h-2.5 rounded-full bg-indigo-500"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="absolute z-30 bottom-[25%] md:bottom-[20%] right-[10%] md:right-[15%] bg-white/5 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 shadow-xl anim-float-y origin-top-left rotate-[12deg] group-hover:rotate-[5deg] group-hover:scale-110 transition-all duration-500">
-                            <div className="flex flex-col items-center gap-1">
-                                <Type size={16} className="text-cyan-400" />
-                                <div className="text-[10px] text-white/90 font-bold tracking-widest font-mono">Aa</div>
-                            </div>
-                        </div>
-
-                        {/* Style for the typing animation */}
+                        {/* CSS Animations inline */}
                         <style dangerouslySetInnerHTML={{__html: `
+                            @keyframes scanline {
+                                0% { top: 0%; }
+                                100% { top: 100%; }
+                            }
                             @keyframes typing {
-                              0% { width: 0 }
-                              80% { width: 100% }
-                              100% { width: 100% }
+                              from { width: 0 }
+                              to { width: 100% }
+                            }
+                            @keyframes blink {
+                              from, to { border-color: transparent }
+                              50% { border-color: #ec4899 }
                             }
                         `}} />
                     </div>
@@ -1217,7 +1290,7 @@ const DepartmentDetail = () => {
             title: "סטודיו וקריאייטיב",
             ctaText: "מוכנים לעצב מותג בלתי נשכח?",
             long: "אנחנו מאפיינים ומעצבים ממשקים ותוצרים שיווקיים שמרגישים טבעיים למשתמש, יחד עם עיצוב פרימיום שמייצר אמון מיידי במותג. אנחנו מעניקים מעטפת מלאה של הסטודיו לכלל הפרויקטים שלנו.",
-            services: ["שפה חזותית וקונספט", "עיצוב ויצירת מסרים", "זהות תאגידית", "בניית ספר מותג"],
+            services: ["שפה חזותית וקונספט", "עיצוב ויצירת מסרים", "עיצוב מבוסס בינה מלאכותית (AI)", "בניית ספר מותג"],
             processTitle: "תהליך העיצוב שלנו",
             processSubtitle: "לייצר חוויה ויזואלית מדויקת ללקוח",
             process: [
