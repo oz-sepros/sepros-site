@@ -467,8 +467,9 @@ const DepartmentHeroVisual = ({ category }) => {
                     <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-bl from-cyan-50/80 to-blue-50/40 group">
                         <div className="relative z-10 w-[160px] md:w-[180px] h-[320px] md:h-[350px] bg-white rounded-[32px] shadow-[0_10px_40px_-10px_rgba(0,100,200,0.2)] border-[6px] border-gray-900 p-1 -rotate-[3deg] flex flex-col">
                             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-gray-900 rounded-b-xl z-20"></div>
-                            <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-[22px] flex-1 relative overflow-hidden flex items-center justify-center">
-                                <PlayCircle className="text-white/40 absolute z-0" size={48} />
+                            <div className="bg-black rounded-[22px] flex-1 relative overflow-hidden flex items-center justify-center">
+                                <iframe className="absolute inset-0 w-full h-full z-0 pointer-events-none scale-[1.05] md:scale-[1.1]" src="https://www.youtube.com/embed/ce4XWYqPApc?autoplay=1&mute=1&controls=0&loop=1&playlist=ce4XWYqPApc&playsinline=1" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+                                <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
                                 <div className="absolute right-2 bottom-20 flex flex-col gap-4 z-20">
                                     <div className="flex flex-col items-center gap-1 relative">
                                         <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white relative z-10"><Send size={16} /></div>
