@@ -993,6 +993,18 @@ const DepartmentPortfolio = ({ category }) => {
     const [showAllDesign, setShowAllDesign] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
 
+    // Lock body scroll when lightbox is open
+    useEffect(() => {
+        if (selectedImage) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [selectedImage]);
+
     if (category === 'social') {
         return (
             <div className="mt-10 md:mt-16 w-full">
@@ -1195,18 +1207,6 @@ const DepartmentPortfolio = ({ category }) => {
 
         const videoProjects = designProjects.filter(p => p.isVideo);
         const imageProjects = designProjects.filter(p => !p.isVideo);
-
-        // Lock body scroll when lightbox is open
-        useEffect(() => {
-            if (selectedImage) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
-            return () => {
-                document.body.style.overflow = '';
-            };
-        }, [selectedImage]);
 
         return (
             <div className="mt-16 md:mt-24">
