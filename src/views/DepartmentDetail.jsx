@@ -1228,7 +1228,7 @@ const DepartmentPortfolio = ({ category }) => {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-16">
                     {videoProjects.map((project, i) => (
                         <div key={i} 
-                            onClick={() => setSelectedImage({ id: project.id, fallback: project.image, title: project.title, isVideo: project.isVideo })} 
+                            onClick={() => setSelectedImage({ index: i, items: videoProjects })} 
                             onMouseEnter={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) v.play().catch(() => { }); } }}
                             onMouseLeave={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } } }}
                             className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 aspect-square w-full">
@@ -1242,7 +1242,7 @@ const DepartmentPortfolio = ({ category }) => {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                     {imageProjects.map((project, i) => (
                         <div key={i} 
-                            onClick={() => setSelectedImage({ id: project.id, fallback: project.image, title: project.title, isVideo: project.isVideo })} 
+                            onClick={() => setSelectedImage({ index: i, items: imageProjects })} 
                             className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 aspect-square w-full">
                             <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                         </div>
@@ -1258,11 +1258,19 @@ const DepartmentPortfolio = ({ category }) => {
                                 <svg className="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg>
                             </button>
 
-                            <motion.div initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} transition={{ type: 'spring', damping: 25, stiffness: 300 }} className="flex flex-col items-center justify-center max-w-[95vw] md:max-w-[80vw]" onClick={(e) => e.stopPropagation()}>
-                                {selectedImage.isVideo ? (
-                                    <video src={selectedImage.fallback} autoPlay loop controls playsInline className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" />
+                            <button className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-all hover:scale-110 z-[110]" onClick={(e) => { e.stopPropagation(); setSelectedImage(prev => ({...prev, index: (prev.index + 1) % prev.items.length})); }}>
+                                <ChevronLeft className="w-10 h-10 md:w-16 md:h-16" />
+                            </button>
+
+                            <button className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-all hover:scale-110 z-[110]" onClick={(e) => { e.stopPropagation(); setSelectedImage(prev => ({...prev, index: (prev.index - 1 + prev.items.length) % prev.items.length})); }}>
+                                <ChevronRight className="w-10 h-10 md:w-16 md:h-16" />
+                            </button>
+
+                            <motion.div key={selectedImage.index} initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', damping: 25, stiffness: 300 }} className="flex flex-col items-center justify-center max-w-[85vw] md:max-w-[70vw]" onClick={(e) => e.stopPropagation()}>
+                                {selectedImage.items[selectedImage.index].isVideo ? (
+                                    <video src={selectedImage.items[selectedImage.index].image} autoPlay loop controls playsInline className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" />
                                 ) : (
-                                    <img src={selectedImage.fallback} className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" alt={selectedImage.title} />
+                                    <img src={selectedImage.items[selectedImage.index].image} className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" alt={selectedImage.items[selectedImage.index].title} />
                                 )}
                             </motion.div>
                         </motion.div>
