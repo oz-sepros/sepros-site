@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart, Heart, Send, Brush, PenTool, MousePointer2, Type, Image } from 'lucide-react';
+import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart, Heart, Send, Brush, PenTool, MousePointer2, Type, Image, Sparkles, Wand2 } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
 import FAQ from '../components/FAQ';
@@ -511,103 +511,60 @@ const DepartmentHeroVisual = ({ category }) => {
             case 'design':
                 return (
                     <div className="relative w-full h-full min-h-[300px] md:min-h-[360px] flex items-center justify-center p-4 rounded-3xl bg-[#0b1638] overflow-hidden group">
-                        {/* Big Window Frame */}
-                        <div className="relative w-full max-w-[480px] h-[280px] md:h-[320px] bg-[#1a1f35] rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 flex flex-col overflow-hidden transition-transform group-hover:scale-105 duration-700">
+                        {/* Background glowing effects */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-600/30 blur-[80px] rounded-full mix-blend-screen group-hover:scale-125 transition-transform duration-1000 ease-in-out"></div>
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-cyan-400/20 blur-[60px] rounded-full mix-blend-screen anim-spin-slow"></div>
 
-                            {/* Window Header */}
-                            <div className="h-8 bg-[#232942] border-b border-white/5 flex items-center px-4 justify-between shrink-0">
-                                <div className="flex gap-1.5">
-                                    <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
-                                    <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
-                                    <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
-                                </div>
-                                <div className="text-[10px] text-white/40 font-mono">Hero_Design_v2.fig</div>
-                                <div className="flex gap-2 text-white/40">
-                                    <Layout size={12} />
-                                    <Settings size={12} />
-                                </div>
-                            </div>
-
-                            {/* Editor Layout */}
-                            <div className="flex-1 flex w-full relative overflow-hidden">
-
-                                {/* Left Toolbar (Photoshop style) */}
-                                <div className="w-10 bg-[#1e2337] border-r border-white/5 flex flex-col items-center py-3 gap-3 shrink-0 z-20">
-                                    <div className="w-6 h-6 rounded bg-[#2f4ea1] text-white flex items-center justify-center"><MousePointer2 size={12} /></div>
-                                    <div className="w-6 h-6 rounded hover:bg-white/5 text-white/50 flex items-center justify-center cursor-pointer"><PenTool size={12} /></div>
-                                    <div className="w-6 h-6 rounded hover:bg-white/5 text-white/50 flex items-center justify-center cursor-pointer"><Type size={12} /></div>
-                                    <div className="w-6 h-6 rounded hover:bg-white/5 text-white/50 flex items-center justify-center cursor-pointer"><Brush size={12} /></div>
-                                    <div className="w-6 h-6 rounded hover:bg-white/5 text-white/50 flex items-center justify-center cursor-pointer"><Palette size={12} /></div>
-                                    <div className="w-6 h-6 rounded hover:bg-white/5 text-white/50 flex items-center justify-center cursor-pointer"><Image size={12} /></div>
-                                </div>
-
-                                {/* Main Canvas Area */}
-                                <div className="flex-1 relative bg-[#121626] overflow-hidden flex items-center justify-center" style={{ backgroundImage: 'linear-gradient(#232942 1px, transparent 1px), linear-gradient(90deg, #232942 1px, transparent 1px)', backgroundSize: '20px 20px' }}>
-
-                                    {/* Artboard */}
-                                    <div className="relative w-[160px] h-[160px] md:w-[180px] md:h-[180px] bg-white rounded-lg shadow-2xl flex items-center justify-center overflow-hidden">
-                                        {/* Photoshop/Figma Checkered pattern for transparency */}
-                                        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000)', backgroundSize: '16px 16px', backgroundPosition: '0 0, 8px 8px' }}></div>
-
-                                        {/* Design Elements */}
-                                        <div className="relative w-24 h-24 bg-gradient-to-tr from-pink-500 to-purple-500 rounded-full mix-blend-multiply opacity-80 -translate-x-4 -translate-y-4 shadow-lg hover:scale-105 transition-transform duration-500"></div>
-                                        <div className="absolute w-24 h-24 bg-gradient-to-tr from-cyan-400 to-blue-500 rounded-lg mix-blend-multiply opacity-80 translate-x-4 translate-y-4 shadow-lg rotate-12 hover:rotate-6 transition-transform duration-500"></div>
-
-                                        {/* Vector Pen Path with handles */}
-                                        <svg className="absolute inset-0 w-full h-full z-10 overflow-visible pointer-events-none">
-                                            {/* The curve */}
-                                            <path d="M 40 140 C 60 40, 120 40, 140 140" fill="transparent" stroke="#2f4ea1" strokeWidth="2" strokeDasharray="250" strokeDashoffset="250" style={{ animation: 'drawPath 4s ease-in-out infinite alternate' }} />
-                                            {/* Bezier Handles */}
-                                            <line x1="40" y1="140" x2="60" y2="40" stroke="#2f4ea1" strokeWidth="1" opacity="0.5" />
-                                            <line x1="140" y1="140" x2="120" y2="40" stroke="#2f4ea1" strokeWidth="1" opacity="0.5" />
-                                            <circle cx="60" cy="40" r="3" fill="#2f4ea1" />
-                                            <circle cx="120" cy="40" r="3" fill="#2f4ea1" />
-                                            {/* Anchor points */}
-                                            <rect x="36" y="136" width="8" height="8" fill="white" stroke="#2f4ea1" strokeWidth="2" />
-                                            <rect x="136" y="136" width="8" height="8" fill="white" stroke="#2f4ea1" strokeWidth="2" />
-                                        </svg>
-
-                                        {/* Active Selection Box */}
-                                        <div className="absolute top-[35px] left-[55px] md:top-[45px] md:left-[65px] w-[90px] h-[90px] border-2 border-[#2f4ea1] z-20 pointer-events-none rotate-12">
-                                            <div className="absolute -top-1.5 -left-1.5 w-2.5 h-2.5 bg-white border-2 border-[#2f4ea1] rounded-sm"></div>
-                                            <div className="absolute -top-1.5 -right-1.5 w-2.5 h-2.5 bg-white border-2 border-[#2f4ea1] rounded-sm"></div>
-                                            <div className="absolute -bottom-1.5 -left-1.5 w-2.5 h-2.5 bg-white border-2 border-[#2f4ea1] rounded-sm"></div>
-                                            <div className="absolute -bottom-1.5 -right-1.5 w-2.5 h-2.5 bg-white border-2 border-[#2f4ea1] rounded-sm"></div>
-                                        </div>
-                                    </div>
-
-                                    {/* Cursor */}
-                                    <MousePointer2 className="absolute text-[#09102c] fill-white z-30 drop-shadow-lg" size={20} style={{ animation: 'cursorMove 8s ease-in-out infinite' }} />
-                                </div>
-
-                                {/* Right Panel (Layers & Properties) */}
-                                <div className="hidden sm:flex w-[120px] bg-[#1e2337] border-l border-white/5 flex-col shrink-0 z-20 text-left">
-                                    {/* Layers Section */}
-                                    <div className="p-3 border-b border-white/5">
-                                        <div className="text-[9px] text-white/40 font-bold uppercase mb-2 tracking-wider">Layers</div>
-                                        <div className="flex flex-col gap-1.5 text-[10px] text-white/70">
-                                            <div className="flex items-center gap-1.5 bg-white/10 px-1.5 py-1 rounded"><PenTool size={10} className="text-[#2f4ea1]" /> Vector 1</div>
-                                            <div className="flex items-center gap-1.5 px-1.5 py-1"><div className="w-2.5 h-2.5 rounded-full bg-pink-500"></div> Ellipse</div>
-                                            <div className="flex items-center gap-1.5 px-1.5 py-1"><div className="w-2.5 h-2.5 rounded bg-cyan-400"></div> Rectangle</div>
-                                        </div>
-                                    </div>
-                                    {/* Design/Properties Section */}
-                                    <div className="p-3">
-                                        <div className="text-[9px] text-white/40 font-bold uppercase mb-2 tracking-wider">Design</div>
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <div className="w-4 h-4 rounded bg-cyan-400"></div>
-                                            <span className="text-[9px] text-white font-mono uppercase">#00E5FF</span>
-                                        </div>
-                                        <div className="flex items-center justify-between text-[9px] text-white/70 bg-white/5 rounded px-1.5 py-1 mb-2">
-                                            <span>W</span> <span className="font-mono">240</span>
-                                        </div>
-                                        <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden mt-3">
-                                            <div className="w-full h-full bg-[#2f4ea1]"></div>
-                                        </div>
-                                    </div>
+                        {/* Prompt Input Box at the top */}
+                        <div className="absolute top-6 w-11/12 max-w-[320px] bg-white/10 backdrop-blur-md border border-white/20 rounded-full py-2 px-4 flex items-center gap-3 z-30 shadow-2xl transform group-hover:-translate-y-1 transition-transform duration-500">
+                            <Sparkles className="text-purple-400 shrink-0" size={16} />
+                            <div className="overflow-hidden w-full relative h-4">
+                                <div className="absolute inset-0 whitespace-nowrap text-[11px] text-white/80 font-mono flex items-center tracking-wide" style={{ animation: 'typing 4s steps(40, end) infinite alternate' }}>
+                                    Generate premium brand book...
+                                    <span className="w-1 h-3 bg-purple-400 ml-1 inline-block animate-pulse"></span>
                                 </div>
                             </div>
                         </div>
+
+                        {/* Central AI Element (Glowing Orb) */}
+                        <div className="relative z-20 flex items-center justify-center mt-6">
+                            <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-tr from-purple-600 via-indigo-500 to-cyan-400 p-[2px] shadow-[0_0_40px_rgba(139,92,246,0.4)] relative group-hover:shadow-[0_0_60px_rgba(139,92,246,0.6)] transition-all duration-700 animate-pulse">
+                                <div className="w-full h-full bg-[#0b1638] rounded-full flex items-center justify-center relative overflow-hidden backdrop-blur-xl">
+                                    <Wand2 className="text-white/80 relative z-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] group-hover:rotate-12 transition-transform duration-500" size={32} />
+                                    {/* Inner spinning rings */}
+                                    <div className="absolute inset-0 border border-white/10 rounded-full scale-[0.8] animate-spin" style={{ animationDuration: '3s' }}></div>
+                                    <div className="absolute inset-0 border border-white/20 rounded-full scale-[0.6] animate-spin" style={{ animationDuration: '4s', animationDirection: 'reverse' }}></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Floating Output Elements */}
+                        <div className="absolute z-30 top-[35%] md:top-[30%] left-[10%] md:left-[15%] bg-white/5 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10 shadow-xl anim-float-y-delayed origin-bottom-right rotate-[-12deg] group-hover:rotate-[-5deg] group-hover:scale-110 transition-all duration-500">
+                            <div className="flex flex-col items-center gap-1.5">
+                                <Palette size={16} className="text-pink-400" />
+                                <div className="flex gap-1">
+                                    <div className="w-2.5 h-2.5 rounded-full bg-pink-500"></div>
+                                    <div className="w-2.5 h-2.5 rounded-full bg-purple-500"></div>
+                                    <div className="w-2.5 h-2.5 rounded-full bg-indigo-500"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="absolute z-30 bottom-[25%] md:bottom-[20%] right-[10%] md:right-[15%] bg-white/5 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 shadow-xl anim-float-y origin-top-left rotate-[12deg] group-hover:rotate-[5deg] group-hover:scale-110 transition-all duration-500">
+                            <div className="flex flex-col items-center gap-1">
+                                <Type size={16} className="text-cyan-400" />
+                                <div className="text-[10px] text-white/90 font-bold tracking-widest font-mono">Aa</div>
+                            </div>
+                        </div>
+
+                        {/* Style for the typing animation */}
+                        <style dangerouslySetInnerHTML={{__html: `
+                            @keyframes typing {
+                              0% { width: 0 }
+                              80% { width: 100% }
+                              100% { width: 100% }
+                            }
+                        `}} />
                     </div>
                 );
             case 'tech':
