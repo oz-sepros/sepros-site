@@ -1185,14 +1185,15 @@ const DepartmentPortfolio = ({ category }) => {
             { id: "design_1", title: 'קמפיין מדברנד', type: 'Video Campaign', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-2', isVideo: true, image: '/portfolio/design/medabrand-3.mp4' },
             { id: "design_2", title: 'מודעת אינסטגרם מדברנד', type: 'Social Media', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/medabrand.png' },
             { id: "design_3", title: 'עיצוב קריאייטיב', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/new-one-6.png' },
-            { id: "design_4", title: 'קמפיין רימרקטינג', type: 'Performance', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-2', isVideo: true, image: '/portfolio/design/medabrand-4.mp4' },
-            { id: "design_5", title: 'קריאייטיב PR', type: 'Social Media', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/new-one-7.png' },
+            { id: "design_4", title: 'קמפיין רימרקטינג', type: 'Performance', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/medabrand-4.mp4' },
+            { id: "design_5", title: 'קריאייטיב PR', type: 'Social Media', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', image: '/portfolio/design/new-one-7.png' },
             { id: "design_6", title: 'קמפיין וידאו', type: 'Video', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/new-one-4.mp4' },
             { id: "design_7", title: 'סרטון אווירה', type: 'Atmosphere', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/new-one-3.mp4' },
             { id: "design_8", title: 'סרטון תדמית', type: 'Branding', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/fbcvb.mp4' }
         ];
 
-        const visibleProjects = showAllDesign ? designProjects : designProjects.slice(0, 6);
+        const videoProjects = designProjects.filter(p => p.isVideo);
+        const imageProjects = designProjects.filter(p => !p.isVideo);
 
         return (
             <div className="mt-16 md:mt-24">
@@ -1203,19 +1204,16 @@ const DepartmentPortfolio = ({ category }) => {
                     </div>
                 </div>
 
-                {/* Refined Dense Grid (Smaller items, 4 columns on desktop, 2 on mobile) */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[140px] md:auto-rows-[180px] grid-flow-row-dense">
-                    {visibleProjects.map((project, i) => (
+                {/* Video Gallery Section */}
+                <h3 className="text-gray-900 font-black text-2xl md:text-3xl mt-12 mb-6 tracking-tight">גלריית וידאו וקמפיינים</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[140px] md:auto-rows-[180px] grid-flow-row-dense mb-16">
+                    {videoProjects.map((project, i) => (
                         <div key={i} 
                             onClick={() => setSelectedImage({ id: project.id, fallback: project.image, title: project.title, isVideo: project.isVideo })} 
                             onMouseEnter={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) v.play().catch(() => { }); } }}
                             onMouseLeave={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } } }}
                             className={`relative group overflow-hidden rounded-xl md:rounded-2xl bg-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 ${project.spanClass}`}>
-                            {project.isVideo ? (
-                                <video src={project.image} preload="metadata" muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-                            ) : (
-                                <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-                            )}
+                            <video src={project.image} preload="metadata" muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                             <div className="absolute inset-x-0 bottom-0 h-[80%] bg-gradient-to-t from-[#0b1638] via-[#0b1638]/40 to-transparent flex flex-col justify-end p-4 md:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <span className="text-blue-400 font-extrabold text-[10px] md:text-xs tracking-widest uppercase mb-1">{project.type}</span>
                                 <h3 className="text-white font-black text-sm md:text-lg leading-tight">{project.title}</h3>
@@ -1224,13 +1222,21 @@ const DepartmentPortfolio = ({ category }) => {
                     ))}
                 </div>
 
-                {!showAllDesign && designProjects.length >= 6 && (
-                    <div className="flex justify-center mt-10 md:mt-12 mb-4">
-                        <button onClick={() => setShowAllDesign(true)} className="px-8 py-3 bg-white border border-gray-200 text-[#2f4ea1] font-bold rounded-full shadow-sm hover:border-[#2f4ea1] transition-colors">
-                            הצג עבודות נוספות
-                        </button>
-                    </div>
-                )}
+                {/* Images Gallery Section */}
+                <h3 className="text-gray-900 font-black text-2xl md:text-3xl mt-12 mb-6 tracking-tight">מיתוג וקריאייטיב</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[140px] md:auto-rows-[180px] grid-flow-row-dense">
+                    {imageProjects.map((project, i) => (
+                        <div key={i} 
+                            onClick={() => setSelectedImage({ id: project.id, fallback: project.image, title: project.title, isVideo: project.isVideo })} 
+                            className={`relative group overflow-hidden rounded-xl md:rounded-2xl bg-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 ${project.spanClass}`}>
+                            <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                            <div className="absolute inset-x-0 bottom-0 h-[80%] bg-gradient-to-t from-[#0b1638] via-[#0b1638]/40 to-transparent flex flex-col justify-end p-4 md:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span className="text-blue-400 font-extrabold text-[10px] md:text-xs tracking-widest uppercase mb-1">{project.type}</span>
+                                <h3 className="text-white font-black text-sm md:text-lg leading-tight">{project.title}</h3>
+                            </div>
+                        </div>
+                    ))}
+                </div>
 
                 {/* Lightbox Modal Overlay */}
                 {selectedImage && (
@@ -1240,11 +1246,11 @@ const DepartmentPortfolio = ({ category }) => {
                         </button>
 
                         {selectedImage.isVideo ? (
-                            <video src={selectedImage.fallback} autoPlay loop controls playsInline className="max-w-[90vw] max-h-[75vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)]" onClick={(e) => e.stopPropagation()} />
+                            <video src={selectedImage.fallback} autoPlay loop controls playsInline className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-in fade-in zoom-in-95 duration-300" onClick={(e) => e.stopPropagation()} />
                         ) : (
-                            <img src={selectedImage.fallback} className="max-w-[90vw] max-h-[75vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)]" alt={selectedImage.title} onClick={(e) => e.stopPropagation()} />
+                            <img src={selectedImage.fallback} className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-in fade-in zoom-in-95 duration-300" alt={selectedImage.title} onClick={(e) => e.stopPropagation()} />
                         )}
-                        <h3 className="text-white tracking-widest mt-6 font-bold text-lg md:text-xl">{selectedImage.title}</h3>
+                        <h3 className="text-white tracking-widest mt-6 font-bold text-lg md:text-xl animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150">{selectedImage.title}</h3>
                     </div>
                 )}
             </div>
