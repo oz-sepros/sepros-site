@@ -138,26 +138,38 @@ const ServicesCarousel = () => {
                     ))}
                 </div>
 
-                {/* Mobile arrows aligned exactly like desktop */}
-                <div className="flex md:hidden items-center justify-center gap-4 mt-6 dir-ltr">
-                    <button onClick={() => {
-                        const carousel = scrollRef.current;
-                        if (!carousel) return;
-                        const firstChild = carousel.children[0];
-                        const gap = parseFloat(window.getComputedStyle(carousel).gap) || 0;
-                        carousel.scrollBy({ left: -(firstChild.offsetWidth + gap), behavior: 'smooth' });
-                    }} className="w-12 h-12 shrink-0 rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm flex items-center justify-center hover:bg-gray-50 transition-all active:scale-95">
-                        <ChevronLeft size={24} />
-                    </button>
-                    <button onClick={() => {
-                        const carousel = scrollRef.current;
-                        if (!carousel) return;
-                        const firstChild = carousel.children[0];
-                        const gap = parseFloat(window.getComputedStyle(carousel).gap) || 0;
-                        carousel.scrollBy({ left: (firstChild.offsetWidth + gap), behavior: 'smooth' });
-                    }} className="w-12 h-12 shrink-0 rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm flex items-center justify-center hover:bg-gray-50 transition-all active:scale-95">
-                        <ChevronRight size={24} />
-                    </button>
+                {/* Mobile arrows and dots indicator */}
+                <div className="flex md:hidden flex-col items-center justify-center gap-4 mt-6 dir-ltr">
+                    <div className="flex items-center justify-center gap-6">
+                        <button onClick={() => {
+                            const carousel = scrollRef.current;
+                            if (!carousel) return;
+                            const firstChild = carousel.children[0];
+                            const gap = parseFloat(window.getComputedStyle(carousel).gap) || 0;
+                            carousel.scrollBy({ left: -(firstChild.offsetWidth + gap), behavior: 'smooth' });
+                        }} className="w-12 h-12 shrink-0 rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm flex items-center justify-center hover:bg-gray-50 transition-all active:scale-95">
+                            <ChevronLeft size={24} />
+                        </button>
+                        
+                        <div className="flex items-center justify-center gap-1.5 dir-rtl">
+                            {departments.map((_, i) => (
+                                <div 
+                                    key={i} 
+                                    className={`h-2 rounded-full transition-all duration-300 ${activeIndex === i ? 'bg-[#2f4ea1] w-5' : 'bg-gray-300 w-2'}`}
+                                />
+                            ))}
+                        </div>
+
+                        <button onClick={() => {
+                            const carousel = scrollRef.current;
+                            if (!carousel) return;
+                            const firstChild = carousel.children[0];
+                            const gap = parseFloat(window.getComputedStyle(carousel).gap) || 0;
+                            carousel.scrollBy({ left: (firstChild.offsetWidth + gap), behavior: 'smooth' });
+                        }} className="w-12 h-12 shrink-0 rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm flex items-center justify-center hover:bg-gray-50 transition-all active:scale-95">
+                            <ChevronRight size={24} />
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
