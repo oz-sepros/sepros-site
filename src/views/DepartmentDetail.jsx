@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useRouter } from 'next/navigation';
 import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, ChevronDown, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart, Heart, Send, Brush, PenTool, MousePointer2, Type, Image, Sparkles, Wand2 } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
@@ -1212,12 +1213,8 @@ const DepartmentPortfolio = ({ category }) => {
                             onClick={() => setSelectedImage({ id: project.id, fallback: project.image, title: project.title, isVideo: project.isVideo })} 
                             onMouseEnter={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) v.play().catch(() => { }); } }}
                             onMouseLeave={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } } }}
-                            className={`relative group overflow-hidden rounded-xl md:rounded-2xl bg-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 ${project.spanClass}`}>
-                            <video src={project.image} preload="metadata" muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-                            <div className="absolute inset-x-0 bottom-0 h-[80%] bg-gradient-to-t from-[#0b1638] via-[#0b1638]/40 to-transparent flex flex-col justify-end p-4 md:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span className="text-blue-400 font-extrabold text-[10px] md:text-xs tracking-widest uppercase mb-1">{project.type}</span>
-                                <h3 className="text-white font-black text-sm md:text-lg leading-tight">{project.title}</h3>
-                            </div>
+                            className={`relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 flex items-center justify-center ${project.spanClass}`}>
+                            <video src={project.image} preload="metadata" muted playsInline className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-105" />
                         </div>
                     ))}
                 </div>
@@ -1228,31 +1225,30 @@ const DepartmentPortfolio = ({ category }) => {
                     {imageProjects.map((project, i) => (
                         <div key={i} 
                             onClick={() => setSelectedImage({ id: project.id, fallback: project.image, title: project.title, isVideo: project.isVideo })} 
-                            className={`relative group overflow-hidden rounded-xl md:rounded-2xl bg-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 ${project.spanClass}`}>
-                            <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-                            <div className="absolute inset-x-0 bottom-0 h-[80%] bg-gradient-to-t from-[#0b1638] via-[#0b1638]/40 to-transparent flex flex-col justify-end p-4 md:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span className="text-blue-400 font-extrabold text-[10px] md:text-xs tracking-widest uppercase mb-1">{project.type}</span>
-                                <h3 className="text-white font-black text-sm md:text-lg leading-tight">{project.title}</h3>
-                            </div>
+                            className={`relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 flex items-center justify-center ${project.spanClass}`}>
+                            <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-105" />
                         </div>
                     ))}
                 </div>
 
                 {/* Lightbox Modal Overlay */}
+                <AnimatePresence>
                 {selectedImage && (
-                    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#09102c]/95 p-4 md:p-8 backdrop-blur-md transition-opacity" onClick={() => setSelectedImage(null)}>
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#09102c]/95 p-4 md:p-8 backdrop-blur-md transition-opacity" onClick={() => setSelectedImage(null)}>
                         <button className="absolute top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-white transition-colors z-[110]" onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}>
                             <svg className="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg>
                         </button>
 
-                        {selectedImage.isVideo ? (
-                            <video src={selectedImage.fallback} autoPlay loop controls playsInline className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-in fade-in zoom-in-95 duration-300" onClick={(e) => e.stopPropagation()} />
-                        ) : (
-                            <img src={selectedImage.fallback} className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-in fade-in zoom-in-95 duration-300" alt={selectedImage.title} onClick={(e) => e.stopPropagation()} />
-                        )}
-                        <h3 className="text-white tracking-widest mt-6 font-bold text-lg md:text-xl animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150">{selectedImage.title}</h3>
-                    </div>
+                        <motion.div initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} transition={{ type: 'spring', damping: 25, stiffness: 300 }} className="flex flex-col items-center justify-center max-w-[95vw] md:max-w-[80vw]" onClick={(e) => e.stopPropagation()}>
+                            {selectedImage.isVideo ? (
+                                <video src={selectedImage.fallback} autoPlay loop controls playsInline className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" />
+                            ) : (
+                                <img src={selectedImage.fallback} className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" alt={selectedImage.title} />
+                            )}
+                        </motion.div>
+                    </motion.div>
                 )}
+                </AnimatePresence>
             </div>
         );
     }
