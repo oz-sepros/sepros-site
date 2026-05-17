@@ -4,7 +4,7 @@ import { platformsData } from '../assets/platformLogos';
 const PlatformsMarquee = () => {
     return (
         <div className="pt-4 pb-3 bg-transparent overflow-hidden flex flex-col items-center relative dir-ltr" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}>
-            <p className="text-[#2f4ea1] uppercase tracking-[0.4em] text-[11px] mb-6 z-20 font-black">שותפי פרסום</p>
+            <p className="text-[#2f4ea1] uppercase tracking-[0.2em] text-sm md:text-base mb-6 z-20 font-black">שותפי פרסום</p>
 
             <DraggableMarquee speed={35} direction="ltr">
                 {platformsData.map((plat, i) => (

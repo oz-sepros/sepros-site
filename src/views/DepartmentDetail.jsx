@@ -789,23 +789,23 @@ const AnimatedSeoGraph = () => {
                         {/* Tooltips */}
                         <div className="absolute top-[80%] left-[0%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none"></div>
-                            <div className="absolute top-8 left-0 md:left-1/2 md:-translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">2,100 כניסות</div>
+                            <div className="absolute top-8 left-0 md:left-1/2 md:-translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 group-active/pt:opacity-100 transition-opacity whitespace-nowrap pointer-events-none md:pointer-events-none">2,100 כניסות</div>
                         </div>
                         <div className="absolute top-[70%] left-[25%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0.6s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none" style={{ animationDelay: '0.6s' }}></div>
-                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">3,850 כניסות</div>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 group-active/pt:opacity-100 transition-opacity whitespace-nowrap pointer-events-none md:pointer-events-none">3,850 כניסות</div>
                         </div>
                         <div className="absolute top-[45%] left-[50%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.2s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none" style={{ animationDelay: '1.2s' }}></div>
-                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">5,900 כניסות</div>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 group-active/pt:opacity-100 transition-opacity whitespace-nowrap pointer-events-none md:pointer-events-none">5,900 כניסות</div>
                         </div>
                         <div className="absolute top-[12.5%] left-[85%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.8s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none" style={{ animationDelay: '1.8s' }}></div>
-                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">9,420 כניסות</div>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 group-active/pt:opacity-100 transition-opacity whitespace-nowrap pointer-events-none md:pointer-events-none">9,420 כניסות</div>
                         </div>
                         <div className="absolute top-[5%] left-[100%] w-8 h-8 md:w-8 md:h-8 bg-[#2f4ea1] border-[6px] border-white rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-110 cursor-pointer shadow-lg transition-all group/pt z-20" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '2.5s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none"></div>
-                            <div className="absolute top-1/2 right-[120%] -translate-y-1/2 bg-[#2f4ea1] text-white text-[15px] font-black py-2 px-4 rounded shadow-xl opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap w-max pointer-events-none flex flex-col items-center">
+                            <div className="absolute top-1/2 right-[100%] md:right-[120%] -translate-y-1/2 bg-[#2f4ea1] text-white text-[15px] font-black py-2 px-4 rounded shadow-xl opacity-100 transition-opacity whitespace-nowrap w-max pointer-events-none flex flex-col items-center">
                                 <span>12,800 כניסות</span>
                                 <span className="text-blue-200 text-xs mt-0.5">כיום</span>
                             </div>
@@ -919,23 +919,28 @@ const SponsoredPpcGraph = () => {
                         {/* Tooltips */}
                         <div className="absolute top-[75%] left-[0%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none"></div>
-                            <div className="absolute top-8 left-0 md:left-1/2 md:-translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">₪11,500 הכנסות</div>
+                            <div className="absolute top-8 left-0 md:left-1/2 md:-translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 group-active/pt:opacity-100 transition-opacity whitespace-nowrap pointer-events-none md:pointer-events-none">₪11,500 הכנסות</div>
                         </div>
                         <div className="absolute top-[55%] left-[35%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '0.6s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none" style={{ animationDelay: '0.6s' }}></div>
-                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">₪38,200 הכנסות</div>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 group-active/pt:opacity-100 transition-opacity whitespace-nowrap pointer-events-none md:pointer-events-none">₪38,200 הכנסות</div>
                         </div>
                         <div className="absolute top-[25%] left-[75%] w-[26px] h-[26px] md:w-5 md:h-5 bg-white border-[5px] border-[#2f4ea1] rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-125 cursor-pointer shadow-md transition-all group/pt z-10" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '1.2s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none" style={{ animationDelay: '1.2s' }}></div>
-                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap md:pointer-events-none">₪82,000 הכנסות</div>
+                            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0b1638] text-white text-[13px] font-bold py-2 px-3 rounded shadow-lg opacity-0 group-hover/pt:opacity-100 group-active/pt:opacity-100 transition-opacity whitespace-nowrap pointer-events-none md:pointer-events-none">₪82,000 הכנסות</div>
                         </div>
                         <div className="absolute top-[5%] left-[100%] w-8 h-8 md:w-8 md:h-8 bg-[#2f4ea1] border-[6px] border-white rounded-full -translate-x-1/2 -translate-y-1/2 md:hover:scale-110 cursor-pointer shadow-lg transition-all group/pt z-20" style={{ animation: 'fadeInUp 0.5s forwards', animationDelay: '2.5s', opacity: 0 }}>
                             <div className="absolute inset-[-4px] rounded-full animate-ping bg-[#2f4ea1]/50 pointer-events-none"></div>
-                            <div className="absolute top-1/2 right-[120%] -translate-y-1/2 bg-[#2f4ea1] text-white text-[15px] font-black py-2 px-4 rounded shadow-xl opacity-0 group-hover/pt:opacity-100 transition-opacity whitespace-nowrap w-max pointer-events-none flex flex-col items-center">
+                            <div className="absolute top-1/2 right-[100%] md:right-[120%] -translate-y-1/2 bg-[#2f4ea1] text-white text-[15px] font-black py-2 px-4 rounded shadow-xl opacity-100 transition-opacity whitespace-nowrap w-max pointer-events-none flex flex-col items-center">
                                 <span>₪154,500 הכנסות</span>
                                 <span className="text-blue-200 text-xs mt-0.5">כיום</span>
                             </div>
                         </div>
+
+                        <style dangerouslySetInnerHTML={{__html:`
+                            @keyframes drawGraph { to { stroke-dashoffset: 0; } }
+                            @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+                        `}} />
                     </div>
 
                     <div className="flex justify-between items-center text-gray-400 font-bold text-xs md:text-sm mt-8 dir-ltr px-2 uppercase tracking-widest relative z-0 pointer-events-none">
