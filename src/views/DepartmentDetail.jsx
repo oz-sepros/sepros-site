@@ -1196,6 +1196,18 @@ const DepartmentPortfolio = ({ category }) => {
         const videoProjects = designProjects.filter(p => p.isVideo);
         const imageProjects = designProjects.filter(p => !p.isVideo);
 
+        // Lock body scroll when lightbox is open
+        useEffect(() => {
+            if (selectedImage) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+            return () => {
+                document.body.style.overflow = '';
+            };
+        }, [selectedImage]);
+
         return (
             <div className="mt-16 md:mt-24">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
@@ -1207,26 +1219,26 @@ const DepartmentPortfolio = ({ category }) => {
 
                 {/* Video Gallery Section */}
                 <h3 className="text-gray-900 font-black text-2xl md:text-3xl mt-12 mb-6 tracking-tight">גלריית וידאו וקמפיינים</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[140px] md:auto-rows-[180px] grid-flow-row-dense mb-16">
+                <div className="columns-2 md:columns-4 gap-3 md:gap-4 mb-16 space-y-3 md:space-y-4">
                     {videoProjects.map((project, i) => (
                         <div key={i} 
                             onClick={() => setSelectedImage({ id: project.id, fallback: project.image, title: project.title, isVideo: project.isVideo })} 
                             onMouseEnter={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) v.play().catch(() => { }); } }}
                             onMouseLeave={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } } }}
-                            className={`relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 flex items-center justify-center ${project.spanClass}`}>
-                            <video src={project.image} preload="metadata" muted playsInline className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-105" />
+                            className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 break-inside-avoid w-full inline-block">
+                            <video src={project.image} preload="metadata" muted playsInline className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                         </div>
                     ))}
                 </div>
 
                 {/* Images Gallery Section */}
                 <h3 className="text-gray-900 font-black text-2xl md:text-3xl mt-12 mb-6 tracking-tight">מיתוג וקריאייטיב</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[140px] md:auto-rows-[180px] grid-flow-row-dense">
+                <div className="columns-2 md:columns-4 gap-3 md:gap-4 space-y-3 md:space-y-4">
                     {imageProjects.map((project, i) => (
                         <div key={i} 
                             onClick={() => setSelectedImage({ id: project.id, fallback: project.image, title: project.title, isVideo: project.isVideo })} 
-                            className={`relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 flex items-center justify-center ${project.spanClass}`}>
-                            <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-105" />
+                            className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 break-inside-avoid w-full inline-block">
+                            <img src={project.image} alt={project.title} loading="lazy" className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                         </div>
                     ))}
                 </div>
