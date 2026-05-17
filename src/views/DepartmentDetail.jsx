@@ -1206,11 +1206,15 @@ const DepartmentPortfolio = ({ category }) => {
                 {/* Refined Dense Grid (Smaller items, 4 columns on desktop, 2 on mobile) */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[140px] md:auto-rows-[180px] grid-flow-row-dense">
                     {visibleProjects.map((project, i) => (
-                        <div key={i} onClick={() => setSelectedImage({ id: project.id, fallback: project.image, title: project.title, isVideo: project.isVideo })} className={`relative group overflow-hidden rounded-xl md:rounded-2xl bg-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 ${project.spanClass}`}>
+                        <div key={i} 
+                            onClick={() => setSelectedImage({ id: project.id, fallback: project.image, title: project.title, isVideo: project.isVideo })} 
+                            onMouseEnter={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) v.play().catch(() => { }); } }}
+                            onMouseLeave={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } } }}
+                            className={`relative group overflow-hidden rounded-xl md:rounded-2xl bg-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 ${project.spanClass}`}>
                             {project.isVideo ? (
-                                <video src={project.image || `/portfolio/${project.id}.mp4`} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                                <video src={project.image} preload="metadata" muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                             ) : (
-                                <img src={`/portfolio/${project.id}.webp`} onError={(e) => { e.target.onerror = null; e.target.src = project.image; }} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                                <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                             )}
                             <div className="absolute inset-x-0 bottom-0 h-[80%] bg-gradient-to-t from-[#0b1638] via-[#0b1638]/40 to-transparent flex flex-col justify-end p-4 md:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <span className="text-blue-400 font-extrabold text-[10px] md:text-xs tracking-widest uppercase mb-1">{project.type}</span>
@@ -1236,9 +1240,9 @@ const DepartmentPortfolio = ({ category }) => {
                         </button>
 
                         {selectedImage.isVideo ? (
-                            <video src={selectedImage.fallback || `/portfolio/${selectedImage.id}.mp4`} autoPlay loop controls playsInline className="max-w-[90vw] max-h-[75vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)]" onClick={(e) => e.stopPropagation()} />
+                            <video src={selectedImage.fallback} autoPlay loop controls playsInline className="max-w-[90vw] max-h-[75vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)]" onClick={(e) => e.stopPropagation()} />
                         ) : (
-                            <img src={`/portfolio/${selectedImage.id}.webp`} onError={(e) => { e.target.onerror = null; e.target.src = selectedImage.fallback; }} className="max-w-[90vw] max-h-[75vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)]" alt={selectedImage.title} onClick={(e) => e.stopPropagation()} />
+                            <img src={selectedImage.fallback} className="max-w-[90vw] max-h-[75vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)]" alt={selectedImage.title} onClick={(e) => e.stopPropagation()} />
                         )}
                         <h3 className="text-white tracking-widest mt-6 font-bold text-lg md:text-xl">{selectedImage.title}</h3>
                     </div>
