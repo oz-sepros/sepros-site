@@ -20,15 +20,33 @@ const ServicesPage = () => {
 
     const servicesSchema = {
         "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "השירותים שלנו",
-        "url": "https://www.sepros.co.il/services",
-        "itemListElement": services.map((srv, index) => ({
-            "@type": "ListItem",
-            "position": index + 1,
-            "name": srv.title,
-            "url": `https://www.sepros.co.il/service/${srv.id}`
-        }))
+        "@type": "Service",
+        "name": "שירותי דיגיטל - ספרוס",
+        "description": "סוכנות ספרוס מעניקה מעטפת שירותי דיגיטל 360: קידום אתרים, ניהול קמפיינים ממומנים, סושיאל ו-UGC, מיתוג ופיתוח אתרים.",
+        "provider": {
+            "@type": "Organization",
+            "name": "Sepros Digital",
+            "url": "https://www.sepros.co.il/",
+            "logo": "https://www.sepros.co.il/images/logo.png"
+        },
+        "areaServed": {
+            "@type": "Country",
+            "name": "Israel"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "מחלקות הדיגיטל של ספרוס",
+            "itemListElement": services.map((srv, index) => ({
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": srv.title,
+                    "description": srv.desc,
+                    "url": `https://www.sepros.co.il/service/${srv.id}`
+                },
+                "position": index + 1
+            }))
+        }
     };
 
     return (

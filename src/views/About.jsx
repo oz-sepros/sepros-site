@@ -1,3 +1,4 @@
+"use client";
 import AboutSection from '../components/AboutSection';
 import StatsCounter from '../components/StatsCounter';
 import ContactForm from '../components/ContactForm';
@@ -35,3 +36,4 @@ const About = () => {
 };
 
 export default About;
+

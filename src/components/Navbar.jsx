@@ -95,7 +95,7 @@ const Navbar = () => {
                         onMouseLeave={() => setIsDropdownOpen(false)}
                     >
                         <button
-                            onClick={() => router.push('/services')}
+                            onClick={() => router.push('/service')}
                             className={`flex items-center gap-1 text-sm font-bold transition-colors cursor-pointer ${isSolid
                                     ? 'text-gray-700 group-hover:text-[#2f4ea1]'
                                     : 'text-white/90 group-hover:text-white'
@@ -219,7 +219,7 @@ const Navbar = () => {
 
                         <div className="w-full py-2">
                             <button
-                                onClick={() => router.push('/services')}
+                                onClick={() => router.push('/service')}
                                 className="w-full flex items-center justify-start gap-2 text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors py-2 cursor-pointer"
                             >
                                 <span>שירותים</span>

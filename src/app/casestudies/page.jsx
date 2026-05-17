@@ -1,10 +1,14 @@
-import PageComponent from '../../views/CaseStudies';
+﻿import PageComponent from '../../views/CaseStudies';
 
 export const metadata = {
-    title: 'קייס סטאדיז | Sepros',
-    description: 'הסיפורים מאחורי ההצלחות שלנו - מקרים, נתונים, ולקוחות מרוצים.',
+    title: 'תיקי עבודות | ספרוס',
+    description: 'צפו בתיקי העבודות (Case Studies) של ספרוס: קמפיינים מנצחים, אתרי פרימיום ומהלכי שיווק שהביאו תוצאות מוכחות והחזר השקעה גבוה.',
+    openGraph: {
+        title: 'תיקי עבודות | ספרוס',
+        description: 'צפו בתיקי העבודות (Case Studies) של ספרוס: קמפיינים מנצחים, אתרי פרימיום ומהלכי שיווק שהביאו תוצאות מוכחות והחזר השקעה גבוה.',
+    }
 };
 
-export default function Page() {
+export default function CaseStudiesPage() {
     return <PageComponent />;
 }

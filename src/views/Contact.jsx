@@ -1,3 +1,4 @@
+"use client";
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
 import { MapPin, Clock, Users, Instagram, Facebook, Linkedin } from 'lucide-react';
@@ -55,3 +56,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
