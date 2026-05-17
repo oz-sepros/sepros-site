@@ -278,27 +278,16 @@ const Navbar = () => {
                             בואו נדבר
                         </Link>
 
-                        {/* Mobile Menu Footer / Contact & Social */}
+                        {/* Mobile Menu Footer / Social */}
                         <div className="w-full mt-10 pt-8 border-t border-gray-100 flex flex-col items-center gap-8 pb-4">
-                            <div className="flex flex-col items-center gap-4">
-                                <a href="tel:0500000000" className="flex items-center gap-2 text-gray-600 font-bold hover:text-[#2f4ea1] transition-colors dir-ltr">
-                                    <Phone size={18} />
-                                    <span>050-000-0000</span>
-                                </a>
-                                <a href="mailto:office@sepros.co.il" className="flex items-center gap-2 text-gray-600 font-bold hover:text-[#2f4ea1] transition-colors">
-                                    <Mail size={18} />
-                                    <span>office@sepros.co.il</span>
-                                </a>
-                            </div>
-
                             <div className="flex items-center justify-center gap-4 w-full">
-                                <a href="#" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
+                                <a href="https://www.instagram.com/sepros_digital/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
                                     <Instagram size={20} />
                                 </a>
-                                <a href="#" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
+                                <a href="https://www.facebook.com/Sepros360DigitalMarketing" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
                                     <Facebook size={20} />
                                 </a>
-                                <a href="#" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
+                                <a href="https://www.linkedin.com/company/sepros-online-marketing/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
                                     <Linkedin size={20} />
                                 </a>
                             </div>

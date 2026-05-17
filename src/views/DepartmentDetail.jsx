@@ -16,16 +16,16 @@ const ProcessTimeline = ({ title, subtitle, steps }) => {
             if (!containerRef.current) return;
             const rect = containerRef.current.getBoundingClientRect();
             const viewHeight = window.innerHeight;
-            
+
             // Starts tracking when the top of the container crosses the center of the viewport
             const start = rect.top - viewHeight / 2;
             // Finishes when the bottom crosses the center
             const end = rect.bottom - viewHeight / 2;
             const total = end - start;
-            
+
             let currentProgress = (-start / total) * 100;
             currentProgress = Math.max(0, Math.min(100, currentProgress));
-            
+
             setProgress(currentProgress);
         };
 
@@ -42,20 +42,20 @@ const ProcessTimeline = ({ title, subtitle, steps }) => {
                 <p className="text-[#2f4ea1] font-bold mt-2 tracking-widest text-sm md:text-base">{subtitle}</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-4 relative max-w-6xl mx-auto px-4 mt-8 md:mt-0" ref={containerRef}>
-                
+
                 {/* Desktop Scroll Progress Line */}
                 <div className="hidden md:block absolute top-[2.25rem] left-[12%] right-[12%] h-[2px] bg-gray-100 z-0 overflow-hidden rounded-full">
-                    <div 
-                        className="h-full bg-[#2f4ea1]" 
-                        style={{ width: `${progress}%`, marginLeft: 'auto' }} 
+                    <div
+                        className="h-full bg-[#2f4ea1]"
+                        style={{ width: `${progress}%`, marginLeft: 'auto' }}
                     ></div>
                 </div>
 
                 {/* Mobile Vertical Scroll Progress Line */}
                 <div className="block md:hidden absolute top-[2.5rem] bottom-[2.5rem] right-[48px] w-[2px] bg-gray-100 z-0 overflow-hidden rounded-full">
-                    <div 
-                        className="w-full bg-[#2f4ea1]" 
-                        style={{ height: `${progress}%` }} 
+                    <div
+                        className="w-full bg-[#2f4ea1]"
+                        style={{ height: `${progress}%` }}
                     ></div>
                 </div>
                 {steps.map((step, idx) => (
@@ -83,7 +83,7 @@ const SocialCarousel = () => {
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
     const [autoPlay, setAutoPlay] = useState(true);
-    
+
     // הסרטונים האמיתיים (YouTube Shorts) של הלקוח
     const baseItems = [
         { id: "ce4XWYqPApc" },
@@ -136,11 +136,11 @@ const SocialCarousel = () => {
         const distance = touchStart - touchEnd;
         const isLeftSwipe = distance > 50;
         const isRightSwipe = distance < -50;
-        
+
         // בעברית RTL: החלקת ימינה מביאה מהצד השמאלי (Next). החלקת שמאלה מביאה מהצד הימני (Prev)
         if (isRightSwipe) handleNext();
         if (isLeftSwipe) handlePrev();
-        
+
         // החזרת הניגון האוטומטי אחרי כמה שניות של חוסר מגע
         setTimeout(() => setAutoPlay(true), 2500);
     };
@@ -155,7 +155,7 @@ const SocialCarousel = () => {
     };
 
     return (
-        <div 
+        <div
             className="relative w-full flex flex-col items-center justify-center pb-12 md:pb-20 pt-8 md:pt-14 mt-4 md:mt-8 overflow-hidden touch-pan-y"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -164,7 +164,7 @@ const SocialCarousel = () => {
             onTouchEnd={onTouchEnd}
         >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-[800px] h-[300px] bg-[#2f4ea1]/5 blur-[80px] rounded-full pointer-events-none"></div>
-            
+
             <h3 className="text-4xl md:text-5xl font-black text-[#2f4ea1] mb-2 md:mb-4 text-center relative z-10 tracking-tight text-balance">הצצה לתוכן שאנחנו יוצרים</h3>
             <p className="text-gray-600 text-lg md:text-xl text-center max-w-2xl mb-6 md:mb-10 relative z-10 px-6 font-medium text-balance">תוכן שמניע לפעולה - UGC, רילסים, פרסומות קצרות, טרנדים, לפני/אחרי.</p>
 
@@ -194,8 +194,8 @@ const SocialCarousel = () => {
                             classNames = 'translate-x-[260px] md:translate-x-[420px] scale-100 z-10 opacity-30 blur-[3px] shadow-sm';
                             break;
                         default:
-                            classNames = offset > 0 
-                                ? '-translate-x-[340px] md:-translate-x-[600px] scale-100 z-0 opacity-0 pointer-events-none' 
+                            classNames = offset > 0
+                                ? '-translate-x-[340px] md:-translate-x-[600px] scale-100 z-0 opacity-0 pointer-events-none'
                                 : 'translate-x-[340px] md:translate-x-[600px] scale-100 z-0 opacity-0 pointer-events-none';
                             break;
                     }
@@ -207,14 +207,14 @@ const SocialCarousel = () => {
                                 else { setActive(i); setPlaying(false); }
                             }}
                             className={`absolute transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] w-[240px] md:w-[280px] aspect-[9/16] rounded-2xl md:rounded-[2rem] overflow-hidden bg-black ${classNames}`}>
-                            
+
                             {isActive && playing ? (
-                                <iframe 
+                                <iframe
                                     className="w-full h-full object-cover"
-                                    src={`https://www.youtube.com/embed/${item.id}?autoplay=1&mute=0&controls=1&rel=0`} 
-                                    title="YouTube Shorts" 
-                                    frameBorder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    src={`https://www.youtube.com/embed/${item.id}?autoplay=1&mute=0&controls=1&rel=0`}
+                                    title="YouTube Shorts"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen>
                                 </iframe>
                             ) : (
@@ -250,21 +250,21 @@ const AnimatedFollowers = () => {
 };
 
 const codeData = [
-  { text: "const ", color: "text-pink-400" },
-  { text: "buildFuture", color: "text-white" },
-  { text: " = ", color: "text-blue-300" },
-  { text: "async ", color: "text-yellow-300" },
-  { text: "() => {\n", color: "text-white" },
-  { text: "  await ", color: "text-pink-400" },
-  { text: "sepros.", color: "text-cyan-300" },
-  { text: "develop", color: "text-green-300" },
-  { text: "({\n", color: "text-white" },
-  { text: "    performance: ", color: "text-gray-400" },
-  { text: "100,\n", color: "text-orange-300" },
-  { text: "    design: ", color: "text-gray-400" },
-  { text: "'premium'\n", color: "text-orange-300" },
-  { text: "  });\n", color: "text-white" },
-  { text: "}", color: "text-white" }
+    { text: "const ", color: "text-pink-400" },
+    { text: "buildFuture", color: "text-white" },
+    { text: " = ", color: "text-blue-300" },
+    { text: "async ", color: "text-yellow-300" },
+    { text: "() => {\n", color: "text-white" },
+    { text: "  await ", color: "text-pink-400" },
+    { text: "sepros.", color: "text-cyan-300" },
+    { text: "develop", color: "text-green-300" },
+    { text: "({\n", color: "text-white" },
+    { text: "    performance: ", color: "text-gray-400" },
+    { text: "100,\n", color: "text-orange-300" },
+    { text: "    design: ", color: "text-gray-400" },
+    { text: "'premium'\n", color: "text-orange-300" },
+    { text: "  });\n", color: "text-white" },
+    { text: "}", color: "text-white" }
 ];
 const characters = [];
 codeData.forEach(block => {
@@ -321,7 +321,7 @@ const AnimatedSeoSearch = () => {
             <div className="bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(47,78,161,0.2)] border-2 border-blue-100 p-4 flex flex-col gap-2 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-1.5 h-full bg-[#2f4ea1]"></div>
                 <div className="flex items-center gap-2 mb-1">
-                    <div className="w-4 h-4 bg-gray-100 rounded-full flex items-center justify-center"><Globe size={10} className="text-gray-400"/></div>
+                    <div className="w-4 h-4 bg-gray-100 rounded-full flex items-center justify-center"><Globe size={10} className="text-gray-400" /></div>
                     <div className="text-xs text-gray-500 font-medium dir-ltr text-left">yourdomain.co.il</div>
                 </div>
                 <div className="text-sm font-black text-[#2f4ea1] mb-1 dir-rtl text-right">האתר שלכם | בניית אתרים וקידום בגוגל</div>
@@ -355,7 +355,7 @@ const AnimatedStrategyFlow = () => {
             {steps.map((step, idx) => (
                 <div key={idx} className={`flex flex-col ${step.ml || ''}`}>
                     <div className="bg-white rounded-xl shadow-md border border-gray-100 p-2 md:p-3 flex items-center gap-3 relative z-10">
-                        <div className={`w-8 h-8 rounded-full ${step.colorClass} flex items-center justify-center`}><step.icon size={16}/></div>
+                        <div className={`w-8 h-8 rounded-full ${step.colorClass} flex items-center justify-center`}><step.icon size={16} /></div>
                         <div className="flex-1">
                             <div className="text-xs md:text-sm font-bold text-gray-800 dir-ltr text-left">{step.label}</div>
                         </div>
@@ -393,7 +393,7 @@ const AnimatedPpcGraph = () => {
             <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-5 flex-1 relative overflow-hidden z-20">
                 <div className="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-green-500"></div>
                 <div className="flex justify-between items-start mb-4">
-                    <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center"><TrendingUp size={20}/></div>
+                    <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center"><TrendingUp size={20} /></div>
                     <span className="bg-green-50 text-green-700 text-[10px] font-black px-2 py-1 rounded border border-green-100 animate-pulse">ACTIVE CAMPAIGN</span>
                 </div>
                 <div className="text-xs font-bold text-gray-400 mb-1 dir-ltr text-left">CPA (Cost Per Action)</div>
@@ -440,7 +440,7 @@ const AnimatedAnalyticsGraph = () => {
                     <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest dir-ltr text-left">Traffic</div>
                     <div className="text-lg md:text-xl font-black text-gray-900 dir-ltr text-left">124,592</div>
                 </div>
-                <div className="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1"><ArrowUpLeft size={12}/> 24%</div>
+                <div className="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1"><ArrowUpLeft size={12} /> 24%</div>
             </div>
         </div>
     );
@@ -467,9 +467,8 @@ const DepartmentHeroVisual = ({ category }) => {
                     <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-bl from-cyan-50/80 to-blue-50/40 group">
                         <div className="relative z-10 w-[160px] md:w-[180px] h-[320px] md:h-[350px] bg-white rounded-[32px] shadow-[0_10px_40px_-10px_rgba(0,100,200,0.2)] border-[6px] border-gray-900 p-1 -rotate-[3deg] flex flex-col">
                             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-gray-900 rounded-b-xl z-20"></div>
-                            <div className="bg-black rounded-[22px] flex-1 relative overflow-hidden flex items-center justify-center">
-                                <iframe className="absolute inset-0 w-full h-full z-0 pointer-events-none scale-[1.05] md:scale-[1.1]" src="https://www.youtube.com/embed/ce4XWYqPApc?autoplay=1&mute=1&controls=0&loop=1&playlist=ce4XWYqPApc&playsinline=1" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
-                                <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
+                            <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-[22px] flex-1 relative overflow-hidden flex items-center justify-center">
+                                <PlayCircle className="text-white/40 absolute z-0" size={48} />
                                 <div className="absolute right-2 bottom-20 flex flex-col gap-4 z-20">
                                     <div className="flex flex-col items-center gap-1 relative">
                                         <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white relative z-10"><Send size={16} /></div>
@@ -514,7 +513,7 @@ const DepartmentHeroVisual = ({ category }) => {
                     <div className="relative w-full h-full min-h-[300px] md:min-h-[360px] flex items-center justify-center p-4 rounded-3xl bg-[#0b1638] overflow-hidden group">
                         {/* Big Window Frame */}
                         <div className="relative w-full max-w-[480px] h-[280px] md:h-[320px] bg-[#1a1f35] rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 flex flex-col overflow-hidden transition-transform group-hover:scale-105 duration-700">
-                            
+
                             {/* Window Header */}
                             <div className="h-8 bg-[#232942] border-b border-white/5 flex items-center px-4 justify-between shrink-0">
                                 <div className="flex gap-1.5">
@@ -531,7 +530,7 @@ const DepartmentHeroVisual = ({ category }) => {
 
                             {/* Editor Layout */}
                             <div className="flex-1 flex w-full relative overflow-hidden">
-                                
+
                                 {/* Left Toolbar (Photoshop style) */}
                                 <div className="w-10 bg-[#1e2337] border-r border-white/5 flex flex-col items-center py-3 gap-3 shrink-0 z-20">
                                     <div className="w-6 h-6 rounded bg-[#2f4ea1] text-white flex items-center justify-center"><MousePointer2 size={12} /></div>
@@ -544,16 +543,16 @@ const DepartmentHeroVisual = ({ category }) => {
 
                                 {/* Main Canvas Area */}
                                 <div className="flex-1 relative bg-[#121626] overflow-hidden flex items-center justify-center" style={{ backgroundImage: 'linear-gradient(#232942 1px, transparent 1px), linear-gradient(90deg, #232942 1px, transparent 1px)', backgroundSize: '20px 20px' }}>
-                                    
+
                                     {/* Artboard */}
                                     <div className="relative w-[160px] h-[160px] md:w-[180px] md:h-[180px] bg-white rounded-lg shadow-2xl flex items-center justify-center overflow-hidden">
                                         {/* Photoshop/Figma Checkered pattern for transparency */}
                                         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000)', backgroundSize: '16px 16px', backgroundPosition: '0 0, 8px 8px' }}></div>
-                                        
+
                                         {/* Design Elements */}
                                         <div className="relative w-24 h-24 bg-gradient-to-tr from-pink-500 to-purple-500 rounded-full mix-blend-multiply opacity-80 -translate-x-4 -translate-y-4 shadow-lg hover:scale-105 transition-transform duration-500"></div>
                                         <div className="absolute w-24 h-24 bg-gradient-to-tr from-cyan-400 to-blue-500 rounded-lg mix-blend-multiply opacity-80 translate-x-4 translate-y-4 shadow-lg rotate-12 hover:rotate-6 transition-transform duration-500"></div>
-                                        
+
                                         {/* Vector Pen Path with handles */}
                                         <svg className="absolute inset-0 w-full h-full z-10 overflow-visible pointer-events-none">
                                             {/* The curve */}
@@ -631,7 +630,7 @@ const DepartmentHeroVisual = ({ category }) => {
             case 'analytics':
                 return (
                     <div className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center p-4 md:p-8 rounded-3xl bg-gradient-to-bl from-blue-50/50 to-gray-50 overflow-hidden group">
-                         <AnimatedAnalyticsGraph />
+                        <AnimatedAnalyticsGraph />
                     </div>
                 );
             case 'strategy':
@@ -748,7 +747,7 @@ const AnimatedSeoGraph = () => {
                 <div className="lg:w-[55%] w-full bg-white rounded-3xl p-6 md:p-10 border border-gray-100 shadow-[0_20px_50px_rgba(47,78,161,0.05)] flex flex-col justify-center relative group">
                     <div className="flex justify-between items-end mb-8 relative z-10 w-full">
                         <div className="text-right">
-                             <h3 className="font-bold text-gray-900 text-2xl tracking-tight">נפח תנועה אורגנית (כניסות)</h3>
+                            <h3 className="font-bold text-gray-900 text-2xl tracking-tight">נפח תנועה אורגנית (כניסות)</h3>
                         </div>
                         <div className="bg-[#2f4ea1]/5 text-[#2f4ea1] font-black text-2xl md:text-4xl px-5 py-3 rounded-xl dir-ltr text-center shadow-inner border border-[#2f4ea1]/10">
                             +345%
@@ -760,7 +759,7 @@ const AnimatedSeoGraph = () => {
                             <line x1="0" y1="100" x2="1000" y2="100" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
                             <line x1="0" y1="200" x2="1000" y2="200" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
                             <line x1="0" y1="300" x2="1000" y2="300" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
-                            
+
                             <path
                                 d="M0,400 L0,320 C100,320 150,330 250,280 C350,230 400,260 500,180 C600,100 700,150 850,50 C950,0 1000,20 1000,20 L1000,400 Z"
                                 fill="url(#seo-gradient)"
@@ -776,7 +775,7 @@ const AnimatedSeoGraph = () => {
                                 strokeLinecap="round"
                                 strokeDasharray="1500"
                                 strokeDashoffset="1500"
-                                style={{ animation: 'drawGraph 2.5s cubic-bezier(0.22,1,0.36,1) forwards' }} 
+                                style={{ animation: 'drawGraph 2.5s cubic-bezier(0.22,1,0.36,1) forwards' }}
                             />
 
                             <defs>
@@ -812,7 +811,8 @@ const AnimatedSeoGraph = () => {
                             </div>
                         </div>
 
-                        <style dangerouslySetInnerHTML={{__html:`
+                        <style dangerouslySetInnerHTML={{
+                            __html: `
                             @keyframes drawGraph { to { stroke-dashoffset: 0; } }
                             @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
                             @keyframes pulsePoint {
@@ -878,7 +878,7 @@ const SponsoredPpcGraph = () => {
                 <div className="lg:w-[55%] w-full bg-white rounded-3xl p-6 md:p-10 border border-gray-100 shadow-[0_20px_50px_rgba(47,78,161,0.05)] flex flex-col justify-center relative group">
                     <div className="flex justify-between items-end mb-8 relative z-10 w-full">
                         <div className="text-right">
-                             <h3 className="font-bold text-gray-900 text-2xl tracking-tight">החזר השקעה בפרסום (ROAS)</h3>
+                            <h3 className="font-bold text-gray-900 text-2xl tracking-tight">החזר השקעה בפרסום (ROAS)</h3>
                         </div>
                         <div className="bg-[#2f4ea1]/5 text-[#2f4ea1] font-black text-2xl md:text-4xl px-5 py-3 rounded-xl dir-ltr text-center shadow-inner border border-[#2f4ea1]/10">
                             x4.5
@@ -890,7 +890,7 @@ const SponsoredPpcGraph = () => {
                             <line x1="0" y1="100" x2="1000" y2="100" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
                             <line x1="0" y1="200" x2="1000" y2="200" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
                             <line x1="0" y1="300" x2="1000" y2="300" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
-                            
+
                             <path
                                 d="M0,350 L0,300 C150,300 200,250 350,220 C500,190 600,150 750,100 C880,50 950,20 1000,20 L1000,400 Z"
                                 fill="url(#ppc-gradient)"
@@ -906,7 +906,7 @@ const SponsoredPpcGraph = () => {
                                 strokeLinecap="round"
                                 strokeDasharray="1500"
                                 strokeDashoffset="1500"
-                                style={{ animation: 'drawGraph 2.5s cubic-bezier(0.22,1,0.36,1) forwards' }} 
+                                style={{ animation: 'drawGraph 2.5s cubic-bezier(0.22,1,0.36,1) forwards' }}
                             />
 
                             <defs>
@@ -938,7 +938,8 @@ const SponsoredPpcGraph = () => {
                             </div>
                         </div>
 
-                        <style dangerouslySetInnerHTML={{__html:`
+                        <style dangerouslySetInnerHTML={{
+                            __html: `
                             @keyframes drawGraph { to { stroke-dashoffset: 0; } }
                             @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
                         `}} />
@@ -971,8 +972,8 @@ const DepartmentPortfolio = ({ category }) => {
     if (category === 'seo') {
         return (
             <div className="mt-10 md:mt-16 w-full">
-                 <AnimatedSeoGraph />
-                 <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 w-full lg:w-[95%] mx-auto">
+                <AnimatedSeoGraph />
+                <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 w-full lg:w-[95%] mx-auto">
                     {[
                         { label: "צמיחה בטראפיק", val: "+280%" },
                         { label: "עמוד ראשון", val: "150+" },
@@ -983,25 +984,25 @@ const DepartmentPortfolio = ({ category }) => {
                             <div className="text-gray-500 text-sm font-bold tracking-widest uppercase">{stat.label}</div>
                         </div>
                     ))}
-                 </div>
+                </div>
             </div>
         );
     }
 
     if (category === 'ppc') {
         return (
-             <div className="mt-16 md:mt-24">
-                 <div className="mb-14">
-                     <h2 className="text-gray-900 font-black text-2xl md:text-4xl mb-5 border-r-4 border-[#2f4ea1] pr-4">אקוסיסטם של המרות</h2>
-                     <p className="text-gray-600 text-lg md:text-xl font-medium leading-relaxed max-w-4xl">
-                         יצירת נוכחות דיגיטלית רב-ערוצית היא קריטית לשמירה על עליונות (Top Of Mind) אצל הלקוח. אנחנו פורסים את המסרים שלכם על פני כל הפלטפורמות החמות ביותר – החל מקמפיינים מבוססי החלטה בגוגל חיפוש, דרך וידאו ברשתות המטא, וכלה בלינקדאין ו-TikTok. המודעות יעטפו את הגולש מכל עבר באמצעות רימרקטינג דינמי חכם.
-                     </p>
-                 </div>
-                 <div className="mb-16 -mx-6 md:mx-0 rounded-3xl overflow-hidden py-10 bg-gray-50 border border-gray-100 shadow-inner">
-                     <PlatformsMarquee />
-                 </div>
-                 <SponsoredPpcGraph />
-                 <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 w-full lg:w-[95%] mx-auto">
+            <div className="mt-16 md:mt-24">
+                <div className="mb-14">
+                    <h2 className="text-gray-900 font-black text-2xl md:text-4xl mb-5 border-r-4 border-[#2f4ea1] pr-4">אקוסיסטם של המרות</h2>
+                    <p className="text-gray-600 text-lg md:text-xl font-medium leading-relaxed max-w-4xl">
+                        יצירת נוכחות דיגיטלית רב-ערוצית היא קריטית לשמירה על עליונות (Top Of Mind) אצל הלקוח. אנחנו פורסים את המסרים שלכם על פני כל הפלטפורמות החמות ביותר – החל מקמפיינים מבוססי החלטה בגוגל חיפוש, דרך וידאו ברשתות המטא, וכלה בלינקדאין ו-TikTok. המודעות יעטפו את הגולש מכל עבר באמצעות רימרקטינג דינמי חכם.
+                    </p>
+                </div>
+                <div className="mb-16 -mx-6 md:mx-0 rounded-3xl overflow-hidden py-10 bg-gray-50 border border-gray-100 shadow-inner">
+                    <PlatformsMarquee />
+                </div>
+                <SponsoredPpcGraph />
+                <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 w-full lg:w-[95%] mx-auto">
                     {[
                         { label: "החזר השקעה (ROAS)", val: "x4.5" },
                         { label: "ירידה בעלות לליד", val: "-45%" },
@@ -1012,8 +1013,8 @@ const DepartmentPortfolio = ({ category }) => {
                             <div className="text-gray-500 text-sm font-bold tracking-widest uppercase">{stat.label}</div>
                         </div>
                     ))}
-                 </div>
-             </div>
+                </div>
+            </div>
         );
     }
 
@@ -1051,11 +1052,11 @@ const DepartmentPortfolio = ({ category }) => {
                 <p className="text-gray-500 mb-8 font-medium">כדי לראות את איכות הפיתוח המלאה, לחצו על הפרויקטים וצפו בהם באוויר.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {webProjects.map((project, i) => (
-                        <div key={i} 
-                             onClick={() => window.open(project.link, '_blank')} 
-                             onMouseEnter={(e) => { const v = e.currentTarget.querySelector('video'); if (v) v.play().catch(()=>{}); }}
-                             onMouseLeave={(e) => { const v = e.currentTarget.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } }}
-                             className="bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] p-0 group cursor-pointer relative overflow-hidden rounded-xl border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block">
+                        <div key={i}
+                            onClick={() => window.open(project.link, '_blank')}
+                            onMouseEnter={(e) => { const v = e.currentTarget.querySelector('video'); if (v) v.play().catch(() => { }); }}
+                            onMouseLeave={(e) => { const v = e.currentTarget.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } }}
+                            className="bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] p-0 group cursor-pointer relative overflow-hidden rounded-xl border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block">
                             {/* Browser Top Bar */}
                             <div className="h-7 md:h-8 bg-[#F5F7FA] border-b border-gray-200 flex items-center px-4 gap-2 z-20 relative">
                                 <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
@@ -1067,11 +1068,11 @@ const DepartmentPortfolio = ({ category }) => {
                             </div>
                             <div className="aspect-video bg-gray-100 overflow-hidden relative group-hover:shadow-inner">
                                 {/* Scrolling Image Layer */}
-                                <div 
+                                <div
                                     className="absolute inset-0 w-full h-full bg-cover bg-top transition-all duration-[8000ms] ease-in-out group-hover:bg-bottom"
                                     style={{ backgroundImage: `url('/portfolio/${project.id}.webp'), url('${project.image}')` }}
                                 ></div>
-                                
+
                                 <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#09102c]/90 via-[#09102c]/40 to-transparent flex flex-col justify-end p-4 transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
                                     <span className="text-white font-bold tracking-wide text-sm drop-shadow-md">{project.title}</span>
                                 </div>
@@ -1106,11 +1107,11 @@ const DepartmentPortfolio = ({ category }) => {
         return (
             <div className="mt-16 md:mt-24 group">
                 <h2 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">אסטרטגיה אורגנית שמנצחת את האלגוריתם</h2>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
                     <div className="bg-white rounded-[2rem] p-8 md:p-12 border border-gray-100 flex flex-col justify-end items-center overflow-hidden relative shadow-lg hover:shadow-xl transition-shadow group-hover:border-[#2f4ea1]/20">
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#F5F7FA]/80 pointer-events-none z-0"></div>
-                        
+
                         {/* CSS Bar Chart Mockup */}
                         <div className="w-full h-32 flex items-end justify-between gap-1 md:gap-2 mb-8 opacity-90 relative z-10 px-0 md:px-4">
                             {[15, 25, 30, 45, 60, 100].map((h, idx) => (
@@ -1196,7 +1197,7 @@ const DepartmentPortfolio = ({ category }) => {
                         <button className="absolute top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-white transition-colors z-[110]" onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}>
                             <svg className="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg>
                         </button>
-                        
+
                         <img src={`/portfolio/${selectedImage.id}.webp`} onError={(e) => { e.target.onerror = null; e.target.src = selectedImage.fallback; }} className="max-w-[90vw] max-h-[75vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)]" alt={selectedImage.title} onClick={(e) => e.stopPropagation()} />
                         <h3 className="text-white tracking-widest mt-6 font-bold text-lg md:text-xl">{selectedImage.title}</h3>
                     </div>
@@ -1213,8 +1214,8 @@ const DepartmentDetail = () => {
     const router = useRouter();
 
     const data = {
-        ppc: { 
-            title: "ניהול מדיה", 
+        ppc: {
+            title: "ניהול מדיה",
             long: "אנחנו מנהלים תקציבי ענק באופטימיזציה מקסימלית. הגישה שלנו לניהול מדיה היא מדעית: ניתוח קהלים, שיפור יחס המרה ושימוש בכלי AI לניהול בידים.",
             services: ["חיפוש ורשת המדיה בגוגל", "ניהול מטא (פייסבוק/אינסטגרם)", "קמפיינים בטיקטוק ולינקדאין", "קניה ישירה"],
             processTitle: "איך מתנהל קמפיין ברמה גבוהה?",
@@ -1233,16 +1234,16 @@ const DepartmentDetail = () => {
                 { q: "האם יש לכם שקיפות מלאה לנתונים ולתקציב?", a: "לחלוטין. אתם בעלי החשבון המקורי, והתשלום על המדיה משולם ישירות לפלטפורמה. אנו מספקים לוחות בקרה (Dashboards) חיים בהם תוכלו לראות בזמן אמת לאן הכסף הולך וכמה המרות הגיעו." }
             ]
         },
-        social: { 
-            title: "סושיאל ו-UGC", 
-            long: "הסיפור שלכם צריך לפגוש את הלקוחות בדיוק במקום שבו הם נמצאים. אנחנו לוקחים מותגים והופכים אותם לתופעת רשת בעזרת שפה ויזואלית ייחודית, הפקות וידאו ויראליות, ואסטרטגיית סושיאל שעוצרת את הגלילה (Scroll-stoppers). העידן החדש דורש תוכן מהיר, חד, ומבוסס דאטה.", 
+        social: {
+            title: "סושיאל ו-UGC",
+            long: "הסיפור שלכם צריך לפגוש את הלקוחות בדיוק במקום שבו הם נמצאים. אנחנו לוקחים מותגים והופכים אותם לתופעת רשת בעזרת שפה ויזואלית ייחודית, הפקות וידאו ויראליות, ואסטרטגיית סושיאל שעוצרת את הגלילה (Scroll-stoppers). העידן החדש דורש תוכן מהיר, חד, ומבוסס דאטה.",
             services: ["הפקת Reels ו-TikTok", "צילום UGC איכותי למותגים", "ניהול עמודים ותחזוקה שוטפת", "שיווק משפיענים"],
             processTitle: "המתכון להפוך לוויראלי",
             processSubtitle: "איך עובדת מחלקת הסושיאל שלנו",
             process: [
                 { title: "קריאייטיב וסטוריטלינג", desc: "ראיונות עומק ופיצוח רעיוני לכל סרטון, כתיבת תסריטים מרתקים שמחזיקים במיוחד את זמן הצפייה של דור ה-Z.", icon: <Lightbulb size={28} /> },
                 { title: "ימי צילום והפקת UGC", desc: "הקלטות שטח איכותיות עם קריינים, משפיענים או לקוחות, המייצרות אותנטיות מוכחת המניעה לפעולה.", icon: <Camera size={28} /> },
-                { title: "עריכה דינמית", desc: "עריכת פוסט-פרודקשן קצבית הכוללת אנימציות וטקסטים דינמיים שמונעים מהגולש להמשיך לגלול הלאה.", icon: <Video  size={28} /> },
+                { title: "עריכה דינמית", desc: "עריכת פוסט-פרודקשן קצבית הכוללת אנימציות וטקסטים דינמיים שמונעים מהגולש להמשיך לגלול הלאה.", icon: <Video size={28} /> },
                 { title: "הפצה רוחבית ברשת", desc: "תזמון מדויק של הפוסטים בחוקיות האלגוריתם כדי לייצר תפוצה אורגנית וממומנת מקסימלית במקביל.", icon: <Users size={28} /> }
             ],
             faqs: [
@@ -1253,9 +1254,9 @@ const DepartmentDetail = () => {
                 { q: "איך אתם מודדים הצלחה בסושיאל?", a: "מלבד מדדי חשיפה ומעורבות קלאסיים (צפיות, לייקים, תגובות, שמירות), אנחנו מסנכרנים את התנועה האורגנית יחד עם מחלקת המדיה כדי לזהות צמיחה מדויקת בהמרות (קניות או נטישות סל)." }
             ]
         },
-        design: { 
-            title: "סטודיו וקריאייטיב", 
-            long: "אנחנו מאפיינים ומעצבים ממשקים ותוצרים שיווקיים שמרגישים טבעיים למשתמש, יחד עם עיצוב פרימיום שמייצר אמון מיידי במותג. אנחנו מעניקים מעטפת מלאה של הסטודיו לכלל הפרויקטים שלנו.", 
+        design: {
+            title: "סטודיו וקריאייטיב",
+            long: "אנחנו מאפיינים ומעצבים ממשקים ותוצרים שיווקיים שמרגישים טבעיים למשתמש, יחד עם עיצוב פרימיום שמייצר אמון מיידי במותג. אנחנו מעניקים מעטפת מלאה של הסטודיו לכלל הפרויקטים שלנו.",
             services: ["שפה חזותית וקונספט", "עיצוב ויצירת מסרים", "זהות תאגידית", "בניית מארזי UI/UX"],
             processTitle: "תהליך העיצוב שלנו",
             processSubtitle: "לייצר חוויה ויזואלית מדויקת ללקוח",
@@ -1273,9 +1274,9 @@ const DepartmentDetail = () => {
                 { q: "האם אנחנו מקבלים את קבצי המקור (פתוחים)?", a: "בהחלט. בסיום פרויקט מיתוג או עיצוב ממשק, ולאחר שמאושר ב-100%, מועבר לכם מסמך Handoff מסודר כולל כל קבצי ה-Figma / Illustrator פתוחים ושייכים לכם בלעדית." }
             ]
         },
-        tech: { 
-            title: "בניית אתרים", 
-            long: "האתר הוא הבית שלכם בדיגיטל. אנחנו בונים מערכות ווב מורכבות המתקדמות ביותר בסביבת הלקוח תוך שימת דגש תמידית לביצועים ולטכנולוגיה.", 
+        tech: {
+            title: "בניית אתרים",
+            long: "האתר הוא הבית שלכם בדיגיטל. אנחנו בונים מערכות ווב מורכבות המתקדמות ביותר בסביבת הלקוח תוך שימת דגש תמידית לביצועים ולטכנולוגיה.",
             services: ["אפליקציות אינטרנט מתקדמות", "דפי נחיתה חכמים לאיקומרס", "חיבורי API ל-CRM הקיים", "אבטחה ותחזוקה"],
             processTitle: "איך אנחנו בונים אתרים?",
             processSubtitle: "התהליך שמאחורי הפיתוח של נברטי הדיגיטל",
@@ -1293,9 +1294,9 @@ const DepartmentDetail = () => {
                 { q: "הקוד מותאם לקידום בגוגל?", a: "באופן מוחלט. אנחנו קודם כל סוכנות שיווק. בניית אתר שאינו משרת SEO או יחסי המרה חוטא למטרה בעינינו. לאתרים שלנו יש תגיות סמנטיות מובנות, תמונות ברזולוציית WebP וקוד קליל שתורם ישירות לדרישות הליבה (Core Web Vitals) של גוגל." }
             ]
         },
-        seo: { 
-            title: "SEO & GEO", 
-            long: "להיות בראש תוצאות החיפוש זו ריצה למרחקים ארוכים. אנחנו משלבים איכויות טכניות באסטרטגיית תוכן שבונה מומנטום של סמכות מוכחת גם עבור ביטויים ותוכן מקומי או גלובאלי.", 
+        seo: {
+            title: "SEO & GEO",
+            long: "להיות בראש תוצאות החיפוש זו ריצה למרחקים ארוכים. אנחנו משלבים איכויות טכניות באסטרטגיית תוכן שבונה מומנטום של סמכות מוכחת גם עבור ביטויים ותוכן מקומי או גלובאלי.",
             services: ["בדיקות טכניות שוטפות", "שיפור תנועה ספציפית וקרוס-זונג", "בניית פרופיל קישורים פוטנטי", "אופטימיזציה למנועי בינה מלאכותית (GEO)"],
             processTitle: "איך למצב את עצמכם בטופ?",
             processSubtitle: "התהליך האורגני שלנו",
@@ -1333,9 +1334,9 @@ const DepartmentDetail = () => {
                 { q: "האם אתם גם מיישמים את האסטרטגיה או רק בונים אותה?", a: "אנו סוכנות 360 – למעשה לאחר החתימה הסופית על ספר האסטרטגיה, אנו מיד מטמיעים אותו בצוותי הקריאייטיב, המדיה והחומרים השיווקיים שלנו כדי ליישם באופן מעשי ולדאוג שהתכנון פוגש את המציאות בחפיפה מלאה." }
             ]
         },
-        analytics: { 
-            title: "אנליטיקס ודאטה", 
-            long: "בלי מדידה אין שיפור. אנחנו עוזרים לכם להבין בדיוק מה קורה באתר, מאיפה מגיעים הלקוחות הרווחיים ואיך לייעל את התקציב.", 
+        analytics: {
+            title: "אנליטיקס ודאטה",
+            long: "בלי מדידה אין שיפור. אנחנו עוזרים לכם להבין בדיוק מה קורה באתר, מאיפה מגיעים הלקוחות הרווחיים ואיך לייעל את התקציב.",
             services: ["הטמעת GA4 ו-Tag Manager", "דאשבורדים בזמן אמת", "מעקב המרות מתקדם", "BigQuery"],
             processTitle: "שליטה מלאה על הדאטה שלכם",
             processSubtitle: "איך אנליטיקס אמיתי צריך להראות",
