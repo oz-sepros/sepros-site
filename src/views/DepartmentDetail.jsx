@@ -990,6 +990,33 @@ const SponsoredPpcGraph = () => {
     );
 };
 
+const LightboxModal = ({ selectedImage, onNavigate, onClose }) => {
+    const item = selectedImage.items[selectedImage.index];
+    return (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#09102c]/95 p-4 md:p-8 backdrop-blur-md transition-opacity" onClick={onClose}>
+            <button className="absolute top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-white transition-colors z-[110]" onClick={(e) => { e.stopPropagation(); onClose(); }}>
+                <svg className="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+
+            <button className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-all hover:scale-110 z-[110]" onClick={(e) => { e.stopPropagation(); onNavigate(1); }}>
+                <ChevronLeft className="w-10 h-10 md:w-16 md:h-16" />
+            </button>
+
+            <button className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-all hover:scale-110 z-[110]" onClick={(e) => { e.stopPropagation(); onNavigate(-1); }}>
+                <ChevronRight className="w-10 h-10 md:w-16 md:h-16" />
+            </button>
+
+            <motion.div key={selectedImage.index} initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', damping: 25, stiffness: 300 }} className="flex flex-col items-center justify-center max-w-[85vw] md:max-w-[70vw]" onClick={(e) => e.stopPropagation()}>
+                {item.isVideo ? (
+                    <video src={item.image} autoPlay loop controls playsInline className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" />
+                ) : (
+                    <img src={item.image} className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" alt={item.title} />
+                )}
+            </motion.div>
+        </motion.div>
+    );
+};
+
 const DepartmentPortfolio = ({ category }) => {
     const [showAllDesign, setShowAllDesign] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
@@ -1253,27 +1280,11 @@ const DepartmentPortfolio = ({ category }) => {
                 {mounted && createPortal(
                     <AnimatePresence>
                     {selectedImage && (
-                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#09102c]/95 p-4 md:p-8 backdrop-blur-md transition-opacity" onClick={() => setSelectedImage(null)}>
-                            <button className="absolute top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-white transition-colors z-[110]" onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}>
-                                <svg className="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg>
-                            </button>
-
-                            <button className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-all hover:scale-110 z-[110]" onClick={(e) => { e.stopPropagation(); setSelectedImage(prev => ({...prev, index: (prev.index + 1) % prev.items.length})); }}>
-                                <ChevronLeft className="w-10 h-10 md:w-16 md:h-16" />
-                            </button>
-
-                            <button className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-all hover:scale-110 z-[110]" onClick={(e) => { e.stopPropagation(); setSelectedImage(prev => ({...prev, index: (prev.index - 1 + prev.items.length) % prev.items.length})); }}>
-                                <ChevronRight className="w-10 h-10 md:w-16 md:h-16" />
-                            </button>
-
-                            <motion.div key={selectedImage.index} initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', damping: 25, stiffness: 300 }} className="flex flex-col items-center justify-center max-w-[85vw] md:max-w-[70vw]" onClick={(e) => e.stopPropagation()}>
-                                {selectedImage.items[selectedImage.index].isVideo ? (
-                                    <video src={selectedImage.items[selectedImage.index].image} autoPlay loop controls playsInline className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" />
-                                ) : (
-                                    <img src={selectedImage.items[selectedImage.index].image} className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" alt={selectedImage.items[selectedImage.index].title} />
-                                )}
-                            </motion.div>
-                        </motion.div>
+                        <LightboxModal 
+                            selectedImage={selectedImage} 
+                            onClose={() => setSelectedImage(null)} 
+                            onNavigate={(dir) => setSelectedImage(prev => ({ ...prev, index: (prev.index + dir + prev.items.length) % prev.items.length }))} 
+                        />
                     )}
                     </AnimatePresence>,
                     document.body
