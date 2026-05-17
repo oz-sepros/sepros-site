@@ -1182,12 +1182,14 @@ const DepartmentPortfolio = ({ category }) => {
 
     if (category === 'design') {
         const designProjects = [
-            { id: "brand_1", title: 'קמפיין ראשי', type: 'Hero Banner', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=1000' },
-            { id: "social_1", title: 'פוסט סושיאל מרובע', type: 'Social Media', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800' },
-            { id: "banner_1", title: 'באנר רימרקטינג', type: 'Web Banners', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1541462608143-67571c6738dd?q=80&w=800' },
-            { id: "ux_1", title: 'אפיון ממשק נייד', type: 'UI/UX', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800' },
-            { id: "story_1", title: 'מודעת סטורי נדל"ן', type: 'Performance', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-2', image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800' },
-            { id: "banner_2", title: 'קריאייטיב PR', type: 'Articles', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000' }
+            { id: "design_1", title: 'קמפיין מדברנד', type: 'Video Campaign', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-2', isVideo: true, image: '/portfolio/design/medabrand-3.mp4' },
+            { id: "design_2", title: 'מודעת אינסטגרם מדברנד', type: 'Social Media', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/medabrand.png' },
+            { id: "design_3", title: 'עיצוב קריאייטיב', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/new-one-6.png' },
+            { id: "design_4", title: 'קמפיין רימרקטינג', type: 'Performance', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-2', isVideo: true, image: '/portfolio/design/medabrand-4.mp4' },
+            { id: "design_5", title: 'קריאייטיב PR', type: 'Social Media', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/new-one-7.png' },
+            { id: "design_6", title: 'קמפיין וידאו', type: 'Video', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/new-one-4.mp4' },
+            { id: "design_7", title: 'סרטון אווירה', type: 'Atmosphere', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/new-one-3.mp4' },
+            { id: "design_8", title: 'סרטון תדמית', type: 'Branding', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/fbcvb.mp4' }
         ];
 
         const visibleProjects = showAllDesign ? designProjects : designProjects.slice(0, 6);
