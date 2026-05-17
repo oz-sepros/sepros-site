@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useRouter } from 'next/navigation';
 import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, ChevronDown, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart, Heart, Send, Brush, PenTool, MousePointer2, Type, Image, Sparkles, Wand2 } from 'lucide-react';
@@ -992,6 +993,11 @@ const SponsoredPpcGraph = () => {
 const DepartmentPortfolio = ({ category }) => {
     const [showAllDesign, setShowAllDesign] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // Lock body scroll when lightbox is open
     useEffect(() => {
@@ -1219,48 +1225,51 @@ const DepartmentPortfolio = ({ category }) => {
 
                 {/* Video Gallery Section */}
                 <h3 className="text-gray-900 font-black text-2xl md:text-3xl mt-12 mb-6 tracking-tight">גלריית וידאו וקמפיינים</h3>
-                <div className="columns-2 md:columns-4 gap-3 md:gap-4 mb-16 space-y-3 md:space-y-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-16">
                     {videoProjects.map((project, i) => (
                         <div key={i} 
                             onClick={() => setSelectedImage({ id: project.id, fallback: project.image, title: project.title, isVideo: project.isVideo })} 
                             onMouseEnter={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) v.play().catch(() => { }); } }}
                             onMouseLeave={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } } }}
-                            className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 break-inside-avoid w-full inline-block">
-                            <video src={project.image} preload="metadata" muted playsInline className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                            className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 aspect-square w-full">
+                            <video src={project.image} preload="metadata" muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                         </div>
                     ))}
                 </div>
 
                 {/* Images Gallery Section */}
                 <h3 className="text-gray-900 font-black text-2xl md:text-3xl mt-12 mb-6 tracking-tight">מיתוג וקריאייטיב</h3>
-                <div className="columns-2 md:columns-4 gap-3 md:gap-4 space-y-3 md:space-y-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                     {imageProjects.map((project, i) => (
                         <div key={i} 
                             onClick={() => setSelectedImage({ id: project.id, fallback: project.image, title: project.title, isVideo: project.isVideo })} 
-                            className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 break-inside-avoid w-full inline-block">
-                            <img src={project.image} alt={project.title} loading="lazy" className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                            className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 aspect-square w-full">
+                            <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                         </div>
                     ))}
                 </div>
 
-                {/* Lightbox Modal Overlay */}
-                <AnimatePresence>
-                {selectedImage && (
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#09102c]/95 p-4 md:p-8 backdrop-blur-md transition-opacity" onClick={() => setSelectedImage(null)}>
-                        <button className="absolute top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-white transition-colors z-[110]" onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}>
-                            <svg className="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg>
-                        </button>
+                {/* Lightbox Modal Overlay using Portal */}
+                {mounted && createPortal(
+                    <AnimatePresence>
+                    {selectedImage && (
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#09102c]/95 p-4 md:p-8 backdrop-blur-md transition-opacity" onClick={() => setSelectedImage(null)}>
+                            <button className="absolute top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-white transition-colors z-[110]" onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}>
+                                <svg className="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg>
+                            </button>
 
-                        <motion.div initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} transition={{ type: 'spring', damping: 25, stiffness: 300 }} className="flex flex-col items-center justify-center max-w-[95vw] md:max-w-[80vw]" onClick={(e) => e.stopPropagation()}>
-                            {selectedImage.isVideo ? (
-                                <video src={selectedImage.fallback} autoPlay loop controls playsInline className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" />
-                            ) : (
-                                <img src={selectedImage.fallback} className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" alt={selectedImage.title} />
-                            )}
+                            <motion.div initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} transition={{ type: 'spring', damping: 25, stiffness: 300 }} className="flex flex-col items-center justify-center max-w-[95vw] md:max-w-[80vw]" onClick={(e) => e.stopPropagation()}>
+                                {selectedImage.isVideo ? (
+                                    <video src={selectedImage.fallback} autoPlay loop controls playsInline className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" />
+                                ) : (
+                                    <img src={selectedImage.fallback} className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" alt={selectedImage.title} />
+                                )}
+                            </motion.div>
                         </motion.div>
-                    </motion.div>
+                    )}
+                    </AnimatePresence>,
+                    document.body
                 )}
-                </AnimatePresence>
             </div>
         );
     }
