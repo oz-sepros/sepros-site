@@ -1033,13 +1033,19 @@ const AnimatedMarketingFunnel = () => {
                 
                 {funnelSteps.map((step, idx) => (
                     <div key={idx} className="relative w-full flex flex-col items-center group">
-                        <div className={`relative flex flex-col items-center justify-center p-5 md:p-7 rounded-[2rem] shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 cursor-default ${step.color} ${step.width} z-10`} style={{ animation: `fadeInUp 0.8s ease-out forwards`, animationDelay: `${idx * 0.2}s`, opacity: 0 }}>
+                        <motion.div 
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.6, delay: idx * 0.15, ease: "easeOut" }}
+                            className={`relative flex flex-col items-center justify-center p-5 md:p-7 rounded-[2rem] shadow-sm transition-shadow duration-500 hover:shadow-xl cursor-default ${step.color} ${step.width} z-10`}
+                        >
                             <div className="flex items-center gap-3 mb-1.5">
                                 {step.icon}
                                 <span className="font-black text-xl md:text-2xl tracking-tight">{step.title}</span>
                             </div>
                             <span className="text-xs md:text-sm font-bold opacity-80 uppercase tracking-widest">{step.desc}</span>
-                        </div>
+                        </motion.div>
                         {idx !== funnelSteps.length - 1 && (
                             <div className="h-6 md:h-8 flex items-center justify-center text-[#2f4ea1]/30 z-0 my-1">
                                 <ChevronDown size={28} className="animate-bounce" />
