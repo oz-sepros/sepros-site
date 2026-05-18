@@ -7,8 +7,12 @@ import Footer from '../components/Footer';
 const heebo = Heebo({ subsets: ['hebrew', 'latin'], weight: ['300', '400', '500', '700', '900'] });
 
 export const metadata = {
+  metadataBase: new URL('https://www.sepros.co.il'),
   title: 'Sepros Digital',
   description: 'שיווק דיגיטלי שמביא תוצאות',
+  openGraph: {
+    images: ['/logos/Logo.svg'],
+  },
 };
 
 export default function RootLayout({ children }) {

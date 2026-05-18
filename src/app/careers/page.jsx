@@ -1,8 +1,11 @@
-﻿import PageComponent from '../../views/Careers';
+import PageComponent from '../../views/Careers';
 
 export const metadata = {
     title: 'דרושים | ספרוס',
     description: 'הצטרפו לצוות המנצח של ספרוס! מחפשים כישרונות בניהול קמפיינים, SEO, קריאייטיב ופיתוח לבוא לצמוח איתנו בסביבה טכנולוגית מתקדמת.',
+    alternates: {
+        canonical: '/careers'
+    },
     openGraph: {
         title: 'דרושים | ספרוס',
         description: 'הצטרפו לצוות המנצח של ספרוס! מחפשים כישרונות בניהול קמפיינים, SEO, קריאייטיב ופיתוח לבוא לצמוח איתנו בסביבה טכנולוגית מתקדמת.',

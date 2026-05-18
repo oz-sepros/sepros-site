@@ -1,8 +1,11 @@
-﻿import PageComponent from '../../views/Articles';
+import PageComponent from '../../views/Articles';
 
 export const metadata = {
     title: 'מאמרים | ספרוס',
     description: 'הבלוג של ספרוס - חדשות, עדכונים, מדריכים מקצועיים וטיפים מתקדמים בשיווק דיגיטלי, קידום אורגני, PPC ופיתוח.',
+    alternates: {
+        canonical: '/articles'
+    },
     openGraph: {
         title: 'מאמרים | ספרוס',
         description: 'הבלוג של ספרוס - חדשות, עדכונים, מדריכים מקצועיים וטיפים מתקדמים בשיווק דיגיטלי, קידום אורגני, PPC ופיתוח.',

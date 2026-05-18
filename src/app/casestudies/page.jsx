@@ -1,8 +1,11 @@
-﻿import PageComponent from '../../views/CaseStudies';
+import PageComponent from '../../views/CaseStudies';
 
 export const metadata = {
     title: 'תיקי עבודות | ספרוס',
     description: 'צפו בתיקי העבודות (Case Studies) של ספרוס: קמפיינים מנצחים, אתרי פרימיום ומהלכי שיווק שהביאו תוצאות מוכחות והחזר השקעה גבוה.',
+    alternates: {
+        canonical: '/casestudies'
+    },
     openGraph: {
         title: 'תיקי עבודות | ספרוס',
         description: 'צפו בתיקי העבודות (Case Studies) של ספרוס: קמפיינים מנצחים, אתרי פרימיום ומהלכי שיווק שהביאו תוצאות מוכחות והחזר השקעה גבוה.',
