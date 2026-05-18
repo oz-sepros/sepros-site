@@ -1276,9 +1276,6 @@ const DepartmentPortfolio = ({ category }) => {
             { id: "design_19", title: 'פורט', type: 'Video Campaign', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/videos/פורט.mp4' },
             
             // Images
-            { id: "design_2", title: 'מודעת אינסטגרם מדברנד', type: 'Social Media', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/videos/medabrand.png' },
-            { id: "design_3", title: 'עיצוב קריאייטיב', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/new-one-6.png' },
-            { id: "design_5", title: 'קריאייטיב PR', type: 'Social Media', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', image: '/portfolio/design/images/new-one-7.png' },
             { id: "design_9", title: 'קריאייטיב FB 1', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB_1.jpg' },
             { id: "design_10", title: 'קריאייטיב FB 2', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB_2.jpg' },
             { id: "design_11", title: 'קריאייטיב FB 3', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB_3.jpg' },
