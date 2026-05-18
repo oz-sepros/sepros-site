@@ -134,18 +134,18 @@ const ContactForm = ({ isMainSection = false }) => {
                         <form className="space-y-6 text-right" onSubmit={handleSubmit}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-[#09102c] text-sm font-bold tracking-wide">שם מלא <span className="text-red-500">*</span></label>
-                                    <input required onInvalid={e => e.target.setCustomValidity('נא להזין שם מלא')} onInput={e => { e.target.setCustomValidity(''); setFormData({ ...formData, fullName: e.target.value }); setFormError(''); }} type="text" value={formData.fullName} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="ישראל ישראלי" />
+                                    <label htmlFor="fullName" className="text-[#09102c] text-sm font-bold tracking-wide">שם מלא <span className="text-red-500">*</span></label>
+                                    <input id="fullName" name="fullName" required onInvalid={e => e.target.setCustomValidity('נא להזין שם מלא')} onInput={e => { e.target.setCustomValidity(''); setFormData({ ...formData, fullName: e.target.value }); setFormError(''); }} type="text" value={formData.fullName} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="ישראל ישראלי" />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[#09102c] text-sm font-bold tracking-wide">חברה</label>
-                                    <input type="text" value={formData.company} onChange={e => setFormData({ ...formData, company: e.target.value })} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="שם העסק" />
+                                    <label htmlFor="company" className="text-[#09102c] text-sm font-bold tracking-wide">חברה</label>
+                                    <input id="company" name="company" type="text" value={formData.company} onChange={e => setFormData({ ...formData, company: e.target.value })} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="שם העסק" />
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-[#09102c] text-sm font-bold tracking-wide">טלפון <span className="text-red-500">*</span></label>
-                                    <input required onInvalid={e => {
+                                    <label htmlFor="phone" className="text-[#09102c] text-sm font-bold tracking-wide">טלפון <span className="text-red-500">*</span></label>
+                                    <input id="phone" name="phone" required onInvalid={e => {
                                         if (!e.target.value) e.target.setCustomValidity('נא להזין מספר טלפון');
                                     }} onInput={e => { 
                                         const val = e.target.value;
@@ -161,22 +161,22 @@ const ContactForm = ({ isMainSection = false }) => {
                                     }} type="tel" value={formData.phone} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all dir-ltr text-right" placeholder="050-1234567" />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[#09102c] text-sm font-bold tracking-wide">אימייל עבודה <span className="text-red-500">*</span></label>
-                                    <input required onInvalid={e => e.target.setCustomValidity('נא להזין כתובת אימייל חוקית')} onInput={e => { e.target.setCustomValidity(''); setFormData({ ...formData, email: e.target.value }); setFormError(''); }} type="email" value={formData.email} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="email@company.com" />
+                                    <label htmlFor="email" className="text-[#09102c] text-sm font-bold tracking-wide">אימייל עבודה <span className="text-red-500">*</span></label>
+                                    <input id="email" name="email" required onInvalid={e => e.target.setCustomValidity('נא להזין כתובת אימייל חוקית')} onInput={e => { e.target.setCustomValidity(''); setFormData({ ...formData, email: e.target.value }); setFormError(''); }} type="email" value={formData.email} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all" placeholder="email@company.com" />
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="text-[#09102c] text-sm font-bold tracking-wide">איך נוכל לעזור?</label>
-                                <textarea rows="4" value={formData.msg} onChange={e => {setFormData({ ...formData, msg: e.target.value }); setFormError('');}} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all resize-none" placeholder="ספרו לנו על הפרויקט שלכם..."></textarea>
+                                <label htmlFor="msg" className="text-[#09102c] text-sm font-bold tracking-wide">איך נוכל לעזור?</label>
+                                <textarea id="msg" name="msg" rows="4" value={formData.msg} onChange={e => {setFormData({ ...formData, msg: e.target.value }); setFormError('');}} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[#09102c] focus:border-[#2f4ea1] focus:ring-2 focus:ring-[#2f4ea1]/20 outline-none transition-all resize-none" placeholder="ספרו לנו על הפרויקט שלכם..."></textarea>
                             </div>
 
                             <div className="flex flex-col gap-3 py-2">
-                                <label className="flex items-center gap-3 cursor-pointer group text-right">
-                                    <input required onInvalid={e => e.target.setCustomValidity('חובה לאשר את מדיניות הפרטיות')} onInput={e => { e.target.setCustomValidity(''); }} type="checkbox" checked={formData.privacy_policy} onChange={e => setFormData({ ...formData, privacy_policy: e.target.checked })} className="w-5 h-5 rounded border-gray-300 text-[#2f4ea1] focus:ring-[#2f4ea1]" />
+                                <label htmlFor="privacy_policy" className="flex items-center gap-3 cursor-pointer group text-right">
+                                    <input id="privacy_policy" name="privacy_policy" required onInvalid={e => e.target.setCustomValidity('חובה לאשר את מדיניות הפרטיות')} onInput={e => { e.target.setCustomValidity(''); }} type="checkbox" checked={formData.privacy_policy} onChange={e => setFormData({ ...formData, privacy_policy: e.target.checked })} className="w-5 h-5 rounded border-gray-300 text-[#2f4ea1] focus:ring-[#2f4ea1]" />
                                     <span className="text-sm text-gray-600 group-hover:text-[#09102c] transition-colors">אני מאשר/ת את <a href="/privacy" className="text-[#2f4ea1] underline underline-offset-4" target="_blank" rel="noopener noreferrer">מדיניות הפרטיות</a> של האתר <span className="text-red-500">*</span></span>
                                 </label>
-                                <label className="flex items-center gap-3 cursor-pointer group text-right">
-                                    <input type="checkbox" checked={formData.divur} onChange={e => setFormData({ ...formData, divur: e.target.checked })} className="w-5 h-5 rounded border-gray-300 text-[#2f4ea1] focus:ring-[#2f4ea1]" />
+                                <label htmlFor="divur" className="flex items-center gap-3 cursor-pointer group text-right">
+                                    <input id="divur" name="divur" type="checkbox" checked={formData.divur} onChange={e => setFormData({ ...formData, divur: e.target.checked })} className="w-5 h-5 rounded border-gray-300 text-[#2f4ea1] focus:ring-[#2f4ea1]" />
                                     <span className="text-sm text-gray-600 group-hover:text-[#09102c] transition-colors">אני מאשר/ת קבלת תוכן פרסומי, עדכונים והטבות למייל ולנייד</span>
                                 </label>
                             </div>
