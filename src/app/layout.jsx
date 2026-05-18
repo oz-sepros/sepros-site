@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Analytics } from '@vercel/analytics/react';
 
-const heebo = Heebo({ subsets: ['hebrew', 'latin'], weight: ['300', '400', '500', '700', '900'] });
+const heebo = Heebo({ subsets: ['hebrew', 'latin'], weight: ['300', '400', '500', '700', '900'], display: 'swap', preload: true });
 
 export const metadata = {
   metadataBase: new URL('https://www.sepros.co.il'),
