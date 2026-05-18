@@ -35,10 +35,13 @@ const Footer = () => (
                     <div className="space-y-4">
                         <h2 className="text-gray-900 font-black tracking-widest text-[10px] border-b border-gray-200 pb-2 inline-block">מחלקות</h2>
                         <ul className="space-y-2 text-gray-600 font-bold text-xs md:text-sm">
-                            <li><Link href="/service/ppc" className="hover:text-[#2f4ea1] transition-colors">PPC וביצועים</Link></li>
-                            <li><Link href="/service/social" className="hover:text-[#2f4ea1] transition-colors">סושיאל וקריאייטיב</Link></li>
-                            <li><Link href="/service/design" className="hover:text-[#2f4ea1] transition-colors">סטודיו ו-UX/UI</Link></li>
-                            <li><Link href="/service/tech" className="hover:text-[#2f4ea1] transition-colors">פיתוח אתרים</Link></li>
+                            <li><Link href="/service/ppc" className="hover:text-[#2f4ea1] transition-colors">ניהול מדיה</Link></li>
+                            <li><Link href="/service/social" className="hover:text-[#2f4ea1] transition-colors">סושיאל ו-UGC</Link></li>
+                            <li><Link href="/service/design" className="hover:text-[#2f4ea1] transition-colors">סטודיו וקריאייטיב</Link></li>
+                            <li><Link href="/service/tech" className="hover:text-[#2f4ea1] transition-colors">בניית אתרים</Link></li>
+                            <li><Link href="/service/seo" className="hover:text-[#2f4ea1] transition-colors">SEO & GEO</Link></li>
+                            <li><Link href="/service/strategy" className="hover:text-[#2f4ea1] transition-colors">אסטרטגיה שיווקית</Link></li>
+                            <li><Link href="/service/analytics" className="hover:text-[#2f4ea1] transition-colors">אנליטיקס ודאטה</Link></li>
                         </ul>
                     </div>
                     <div className="space-y-4">
@@ -46,7 +49,7 @@ const Footer = () => (
                         <ul className="space-y-2 text-gray-600 font-bold text-xs md:text-sm">
                             <li><Link href="/about" className="hover:text-[#2f4ea1] transition-colors">אודות הסוכנות</Link></li>
                             <li><Link href="/articles" className="hover:text-[#2f4ea1] transition-colors">מאמרים</Link></li>
-                            <li><Link href="/careers" className="hover:text-[#2f4ea1] transition-colors">קריירה (דרושים)</Link></li>
+                            <li><Link href="/careers" className="hover:text-[#2f4ea1] transition-colors">דרושים</Link></li>
                             <li><Link href="/contact" className="hover:text-[#2f4ea1] transition-colors">צרו קשר</Link></li>
                         </ul>
                     </div>

@@ -9,10 +9,10 @@ const ServicesPage = () => {
     const router = useRouter();
 
     const services = [
-        { id: 'ppc', icon: Target, title: 'ניהול מדיה (PPC)', desc: 'קמפיינים מבוססי ROI בגוגל, פייסבוק, וטיקטוק.', image: '/services/dept_ppc.png' },
+        { id: 'ppc', icon: Target, title: 'ניהול מדיה', desc: 'קמפיינים מבוססי ROI בגוגל, פייסבוק, וטיקטוק.', image: '/services/dept_ppc.png' },
         { id: 'social', icon: Share2, title: 'סושיאל ו-UGC', desc: 'נוכחות דיגיטלית שיוצרת מעורבות שיא.', image: '/services/dept_social.png' },
         { id: 'design', icon: Palette, title: 'סטודיו וקריאייטיב', desc: 'עיצוב UI/UX פרימיום ושפה חזותית מנצחת.', image: '/services/dept_design.png' },
-        { id: 'tech', icon: Code, title: 'בניית אתרים ופיתוח', desc: 'בניית מערכות ווב מורכבות המתקדמות ביותר.', image: '/services/dept_tech.png' },
+        { id: 'tech', icon: Code, title: 'בניית אתרים', desc: 'בניית מערכות ווב מורכבות המתקדמות ביותר.', image: '/services/dept_tech.png' },
         { id: 'seo', icon: Search, title: 'SEO & GEO', desc: 'אסטרטגיית תוכן שמביאה למקומות הראשונים.', image: '/services/dept_seo.png' },
         { id: 'strategy', icon: Lightbulb, title: 'אסטרטגיה שיווקית', desc: 'בניית מותג מנצח ותוכנית עבודה חדה.', image: '/services/dept_strategy.png' },
         { id: 'analytics', icon: BarChart3, title: 'אנליטיקס ודאטה', desc: 'הפיכת הררי מידע להחלטות שוות כסף.', image: '/services/dept_analytics.png' }
