@@ -992,43 +992,15 @@ const SponsoredPpcGraph = () => {
 
 const LightboxModal = ({ selectedImage, onNavigate, onClose }) => {
     const item = selectedImage.items[selectedImage.index];
-    const [touchStart, setTouchStart] = useState(null);
-    const [touchEnd, setTouchEnd] = useState(null);
     const [isMuted, setIsMuted] = useState(true);
-
-    const minSwipeDistance = 50;
-
-    const onTouchStart = (e) => {
-        setTouchEnd(null);
-        setTouchStart(e.targetTouches[0].clientX);
-    }
-
-    const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
-
-    const onTouchEnd = () => {
-        if (!touchStart || !touchEnd) return;
-        const distance = touchStart - touchEnd;
-        const isLeftSwipe = distance > minSwipeDistance;
-        const isRightSwipe = distance < -minSwipeDistance;
-        
-        if (isRightSwipe) {
-            onNavigate(1);
-        }
-        if (isLeftSwipe) {
-            onNavigate(-1);
-        }
-    }
 
     return (
         <motion.div 
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }} 
             exit={{ opacity: 0 }} 
-            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#09102c]/95 p-4 md:p-8 backdrop-blur-md transition-opacity" 
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white/70 p-4 md:p-8 backdrop-blur-md transition-opacity" 
             onClick={onClose}
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
         >
             <button className="absolute top-6 right-6 md:top-10 md:right-10 text-white drop-shadow-md hover:scale-110 transition-all bg-black/30 p-2 rounded-full z-[110]" onClick={(e) => { e.stopPropagation(); onClose(); }}>
                 <svg className="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
@@ -1042,7 +1014,22 @@ const LightboxModal = ({ selectedImage, onNavigate, onClose }) => {
                 <ChevronRight className="w-8 h-8 md:w-12 md:h-12" />
             </button>
 
-            <motion.div key={selectedImage.index} initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', damping: 25, stiffness: 300 }} className="flex flex-col items-center justify-center max-w-[95vw] md:max-w-[70vw] relative" onClick={(e) => e.stopPropagation()}>
+            <motion.div 
+                key={selectedImage.index} 
+                initial={{ scale: 0.95, opacity: 0, x: 20 }} 
+                animate={{ scale: 1, opacity: 1, x: 0 }} 
+                exit={{ scale: 0.95, opacity: 0, x: -20 }} 
+                transition={{ type: 'spring', damping: 25, stiffness: 300 }} 
+                className="flex flex-col items-center justify-center max-w-[95vw] md:max-w-[70vw] relative cursor-grab active:cursor-grabbing" 
+                onClick={(e) => e.stopPropagation()}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.8}
+                onDragEnd={(e, { offset }) => {
+                    if (offset.x < -50) onNavigate(-1);
+                    else if (offset.x > 50) onNavigate(1);
+                }}
+            >
                 {item.isVideo ? (
                     <div className="relative group">
                         <video src={item.image} autoPlay loop muted={isMuted} playsInline className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" />
