@@ -172,7 +172,7 @@ const Navbar = () => {
                 <button
                     className={`lg:hidden transition-opacity duration-300 ${isSolid ? 'text-gray-800' : 'text-white'} ${isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
                     onClick={() => setIsOpen(true)}
-                    aria-label="Open menu"
+                    aria-label="פתח תפריט"
                 >
                     <Menu size={28} />
                 </button>
@@ -201,7 +201,7 @@ const Navbar = () => {
                         <button
                             className="text-gray-800"
                             onClick={() => setIsOpen(false)}
-                            aria-label="Close menu"
+                            aria-label="סגור תפריט"
                         >
                             <X size={28} />
                         </button>

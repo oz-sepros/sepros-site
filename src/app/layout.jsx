@@ -12,7 +12,7 @@ export const metadata = {
   title: 'Sepros Digital',
   description: 'שיווק דיגיטלי שמביא תוצאות',
   openGraph: {
-    images: ['/logos/Logo.svg'],
+    images: ['/about/team.png'],
   },
 };
 
