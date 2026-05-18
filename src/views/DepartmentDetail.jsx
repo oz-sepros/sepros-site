@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useRouter } from 'next/navigation';
-import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, ChevronDown, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart, Heart, Send, Brush, PenTool, MousePointer2, Type, Image, Sparkles, Wand2 } from 'lucide-react';
+import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, ChevronDown, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart, Heart, Send, Brush, PenTool, MousePointer2, Type, Image, Sparkles, Wand2, VolumeX, Volume2 } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
 import FAQ from '../components/FAQ';
@@ -992,25 +992,69 @@ const SponsoredPpcGraph = () => {
 
 const LightboxModal = ({ selectedImage, onNavigate, onClose }) => {
     const item = selectedImage.items[selectedImage.index];
+    const [touchStart, setTouchStart] = useState(null);
+    const [touchEnd, setTouchEnd] = useState(null);
+    const [isMuted, setIsMuted] = useState(true);
+
+    const minSwipeDistance = 50;
+
+    const onTouchStart = (e) => {
+        setTouchEnd(null);
+        setTouchStart(e.targetTouches[0].clientX);
+    }
+
+    const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+        
+        if (isRightSwipe) {
+            onNavigate(1);
+        }
+        if (isLeftSwipe) {
+            onNavigate(-1);
+        }
+    }
+
     return (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#09102c]/95 p-4 md:p-8 backdrop-blur-md transition-opacity" onClick={onClose}>
-            <button className="absolute top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-white transition-colors z-[110]" onClick={(e) => { e.stopPropagation(); onClose(); }}>
-                <svg className="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg>
+        <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }} 
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#09102c]/95 p-4 md:p-8 backdrop-blur-md transition-opacity" 
+            onClick={onClose}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+        >
+            <button className="absolute top-6 right-6 md:top-10 md:right-10 text-white drop-shadow-md hover:scale-110 transition-all bg-black/30 p-2 rounded-full z-[110]" onClick={(e) => { e.stopPropagation(); onClose(); }}>
+                <svg className="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
 
-            <button className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-all hover:scale-110 z-[110]" onClick={(e) => { e.stopPropagation(); onNavigate(1); }}>
-                <ChevronLeft className="w-10 h-10 md:w-16 md:h-16" />
+            <button className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white drop-shadow-lg bg-black/30 p-3 rounded-full hover:bg-black/50 transition-all hover:scale-110 z-[110]" onClick={(e) => { e.stopPropagation(); onNavigate(1); }}>
+                <ChevronLeft className="w-8 h-8 md:w-12 md:h-12" />
             </button>
 
-            <button className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-all hover:scale-110 z-[110]" onClick={(e) => { e.stopPropagation(); onNavigate(-1); }}>
-                <ChevronRight className="w-10 h-10 md:w-16 md:h-16" />
+            <button className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white drop-shadow-lg bg-black/30 p-3 rounded-full hover:bg-black/50 transition-all hover:scale-110 z-[110]" onClick={(e) => { e.stopPropagation(); onNavigate(-1); }}>
+                <ChevronRight className="w-8 h-8 md:w-12 md:h-12" />
             </button>
 
-            <motion.div key={selectedImage.index} initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', damping: 25, stiffness: 300 }} className="flex flex-col items-center justify-center max-w-[85vw] md:max-w-[70vw]" onClick={(e) => e.stopPropagation()}>
+            <motion.div key={selectedImage.index} initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', damping: 25, stiffness: 300 }} className="flex flex-col items-center justify-center max-w-[95vw] md:max-w-[70vw] relative" onClick={(e) => e.stopPropagation()}>
                 {item.isVideo ? (
-                    <video src={item.image} autoPlay loop controls playsInline className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" />
+                    <div className="relative group">
+                        <video src={item.image} autoPlay loop muted={isMuted} playsInline className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" />
+                        <button 
+                            onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }}
+                            className="absolute bottom-4 left-4 bg-black/60 text-white p-3 rounded-full backdrop-blur-sm transition-all hover:bg-black/80 z-[120]"
+                        >
+                            {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+                        </button>
+                    </div>
                 ) : (
-                    <img src={item.image} className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" alt={item.title} />
+                    <img src={item.image} className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20 pointer-events-none" alt={item.title} />
                 )}
             </motion.div>
         </motion.div>
@@ -1022,9 +1066,14 @@ const DepartmentPortfolio = ({ category }) => {
     const [visibleImageRows, setVisibleImageRows] = useState(1);
     const [selectedImage, setSelectedImage] = useState(null);
     const [mounted, setMounted] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         setMounted(true);
+        const checkMobile = () => setIsMobile(window.innerWidth < 768 || window.matchMedia("(hover: none)").matches);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
     // Lock body scroll when lightbox is open
@@ -1274,7 +1323,7 @@ const DepartmentPortfolio = ({ category }) => {
                             onMouseLeave={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } } }}
                             className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 aspect-square w-full"
                         >
-                            <video src={project.image} preload="metadata" muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                            <video src={project.image} preload="metadata" autoPlay={isMobile} loop={isMobile} muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                         </div>
                     ))}
                 </div>
@@ -1303,7 +1352,7 @@ const DepartmentPortfolio = ({ category }) => {
                                             onMouseLeave={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } } }}
                                             className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 aspect-square w-full"
                                         >
-                                            <video src={project.image} preload="metadata" muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                                            <video src={project.image} preload="metadata" autoPlay={isMobile} loop={isMobile} muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                                         </div>
                                     ))}
                                 </div>
