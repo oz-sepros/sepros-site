@@ -6,7 +6,6 @@ const ClientsMarquee = () => {
         { name: "Dimri", file: "DIMRI_דמרי צבעוני.svg", className: "scale-125 md:scale-[1.4]" },
         { name: "Azorim", file: "azorim_אזורים צבעוני.svg" },
         { name: "Israel Canada", file: "israel canda_ישראל קנדה צבעוני.svg", className: "scale-[1.3] md:scale-[1.4]" },
-        { name: "Oron", file: "oron_אורון צבעוני.svg", className: "scale-90 md:scale-95" },
         { name: "Dona", file: "dona.svg", className: "scale-90 md:scale-95" },
         { name: "Shikun & Binui", file: "shikun.svg", className: "opacity-80 scale-110" }
     ];
