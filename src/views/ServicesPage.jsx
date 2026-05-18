@@ -74,7 +74,7 @@ const ServicesPage = () => {
                                     <div className="p-8 flex flex-col flex-grow relative">
                                         <div className="w-12 h-1 bg-[#2f4ea1] rounded-full mb-6"></div>
                                         <h2 className="text-2xl font-black text-gray-900 mb-3 group-hover:text-[#2f4ea1] transition-colors">{srv.title}</h2>
-                                        <p className="text-gray-500 font-medium leading-relaxed mb-8 flex-grow">{srv.desc}</p>
+                                        <p className="text-gray-600 font-medium leading-relaxed mb-8 flex-grow">{srv.desc}</p>
                                         <div className="flex items-center text-[#2f4ea1] font-black text-base tracking-widest gap-2 group/btn mt-auto">
                                             גלו את המחלקה
                                             <ArrowUpLeft size={20} className="group-hover/btn:-translate-x-1 group-hover/btn:translate-y-1 transition-transform" />

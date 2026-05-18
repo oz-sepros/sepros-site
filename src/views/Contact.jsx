@@ -18,7 +18,7 @@ const Contact = () => {
                              <MapPin size={32} />
                          </div>
                          <h2 className="text-xl font-bold text-[#0b1638] mb-2">המשרדים שלנו</h2>
-                         <p className="text-gray-500 mb-4">קפה מעולה וחניה חופשית</p>
+                         <p className="text-gray-600 mb-4">קפה מעולה וחניה חופשית</p>
                          <span className="text-[#2f4ea1] font-black text-lg">עתיר ידע 16, כפר סבא</span>
                     </Reveal>
 
@@ -27,7 +27,7 @@ const Contact = () => {
                              <Clock size={32} />
                          </div>
                          <h2 className="text-xl font-bold text-[#0b1638] mb-2">שעות פעילות</h2>
-                         <p className="text-gray-500 mb-4">ימים א'-ה'</p>
+                         <p className="text-gray-600 mb-4">ימים א'-ה'</p>
                          <span className="text-[#2f4ea1] font-black text-lg dir-ltr">09:30-18:00</span>
                     </Reveal>
 
@@ -36,7 +36,7 @@ const Contact = () => {
                              <Users size={32} />
                          </div>
                          <h2 className="text-xl font-bold text-[#0b1638] mb-2">קהילה</h2>
-                         <p className="text-gray-500 mb-4">הישארו מעודכנים בחדשות שלנו</p>
+                         <p className="text-gray-600 mb-4">הישארו מעודכנים בחדשות שלנו</p>
                          <div className="flex items-center gap-4 justify-center mt-2">
                              <a href="https://www.instagram.com/sepros_digital" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-[#2f4ea1] hover:bg-[#2f4ea1] hover:text-white hover:-translate-y-1 transition-all border border-gray-100">
                                  <Instagram size={20} />

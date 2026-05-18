@@ -124,7 +124,7 @@ const ContactForm = ({ isMainSection = false }) => {
 
                         <Reveal className="space-y-8">
                             <div className="flex flex-col items-start">
-                                <p className="text-gray-500 text-lg md:text-xl font-medium leading-relaxed max-w-md">השאירו פרטים והצוות שלנו יחזור אליכם בהקדם האפשרי עם כל המידע הדרוש למהלך הבא שלכם.</p>
+                                <p className="text-gray-600 text-lg md:text-xl font-medium leading-relaxed max-w-md">השאירו פרטים והצוות שלנו יחזור אליכם בהקדם האפשרי עם כל המידע הדרוש למהלך הבא שלכם.</p>
                             </div>
                         </Reveal>
                     </div>

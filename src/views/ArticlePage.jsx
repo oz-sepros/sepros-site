@@ -133,7 +133,7 @@ const ArticlePage = () => {
             <article className="min-h-screen bg-[#F5F7FA] pt-32 md:pt-40 pb-20 px-6">
                 <div className="max-w-3xl mx-auto flex flex-col">
                     {/* Breadcrumbs */}
-                    <div className="flex items-center gap-2 text-gray-500 text-sm font-bold mb-8 self-start">
+                    <div className="flex items-center gap-2 text-gray-600 text-sm font-bold mb-8 self-start">
                         <button onClick={() => router.push('/')} className="hover:text-[#2f4ea1] transition-colors">ראשי</button>
                         <ChevronLeft size={14} />
                         <button onClick={() => router.push('/articles')} className="hover:text-[#2f4ea1] transition-colors">מאמרים</button>
@@ -148,7 +148,7 @@ const ArticlePage = () => {
                         <h1 className="text-4xl md:text-6xl font-black text-gray-900 leading-tight mb-6">
                             {article.title}
                         </h1>
-                        <p className="text-gray-500 font-bold tracking-widest">{article.date}</p>
+                        <p className="text-gray-600 font-bold tracking-widest">{article.date}</p>
                     </div>
 
                     <div className="w-full h-[400px] bg-gray-100 rounded-2xl overflow-hidden mb-12 relative shadow-sm">

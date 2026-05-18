@@ -56,14 +56,13 @@ const Footer = () => (
                     <div className="space-y-4">
                         <h2 className="text-gray-900 font-black tracking-widest text-[10px] border-b border-gray-200 pb-2 inline-block">משפטי</h2>
                         <ul className="space-y-2 text-gray-600 font-bold text-xs md:text-sm">
-                            <li><button className="hover:text-gray-900 transition-colors">תנאי שימוש</button></li>
                             <li><Link href="/privacy" className="hover:text-gray-900 transition-colors">מדיניות פרטיות</Link></li>
-                            <li><button className="hover:text-gray-900 transition-colors">הצהרת נגישות</button></li>
+                            <li><Link href="/accessibility" className="hover:text-gray-900 transition-colors">הצהרת נגישות</Link></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div className="pt-6 border-t border-gray-200 flex justify-center text-[8px] md:text-[10px] font-bold tracking-widest text-gray-400">
+            <div className="pt-6 border-t border-gray-200 flex justify-center text-[8px] md:text-[10px] font-bold tracking-widest text-gray-600">
                 <p dir="ltr">© 2026 SEPROS DIGITAL GROUP. ALL RIGHTS RESERVED.</p>
             </div>
         </div>

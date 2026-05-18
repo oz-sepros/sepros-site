@@ -85,17 +85,17 @@ const CaseStudy = () => {
                         <div className="text-center w-full md:w-1/3 border-b md:border-b-0 md:border-l border-gray-100 pb-8 md:pb-0 md:pl-8">
                             <TrendingUp size={40} className="text-[#2f4ea1] mx-auto mb-4" />
                             <div className="text-5xl font-black text-gray-900 mb-2 dir-ltr"><AnimatedMetric prefix="+" end={350} suffix="%" /></div>
-                            <div className="text-gray-500 font-bold text-sm tracking-wide">עלייה בלידים איכותיים</div>
+                            <div className="text-gray-600 font-bold text-sm tracking-wide">עלייה בלידים איכותיים</div>
                         </div>
                         <div className="text-center w-full md:w-1/3 border-b md:border-b-0 md:border-l border-gray-100 pb-8 md:pb-0 md:pl-8">
                             <Target size={40} className="text-[#2f4ea1] mx-auto mb-4" />
                             <div className="text-5xl font-black text-gray-900 mb-2 dir-ltr"><AnimatedMetric prefix="-" end={45} suffix="%" /></div>
-                            <div className="text-gray-500 font-bold text-sm tracking-wide">ירידה בעלות רכישת לקוח (CPA)</div>
+                            <div className="text-gray-600 font-bold text-sm tracking-wide">ירידה בעלות רכישת לקוח (CPA)</div>
                         </div>
                         <div className="text-center w-full md:w-1/3">
                             <BarChart3 size={40} className="text-[#2f4ea1] mx-auto mb-4" />
                             <div className="text-5xl font-black text-gray-900 mb-2 dir-ltr"><AnimatedMetric prefix="X" end={4} suffix="" /></div>
-                            <div className="text-gray-500 font-bold text-sm tracking-wide">החזר השקעה (ROAS)</div>
+                            <div className="text-gray-600 font-bold text-sm tracking-wide">החזר השקעה (ROAS)</div>
                         </div>
                     </Reveal>
 
@@ -135,15 +135,15 @@ const CaseStudy = () => {
                                 <h4 className="text-xl font-black text-[#09102c] mb-6 border-b-2 border-[#2f4ea1] inline-block pb-2">תקציר הפרויקט</h4>
                                 <div className="space-y-6">
                                     <div>
-                                        <div className="text-xs text-gray-400 font-bold tracking-widest uppercase mb-1">שירותים שסופקו</div>
+                                        <div className="text-xs text-gray-600 font-bold tracking-widest uppercase mb-1">שירותים שסופקו</div>
                                         <div className="text-gray-800 font-bold">ניהול קמפיינים (PPC)<br/>אופטימיזציית יחס המרה (CRO)<br/>אוטומציות דאטה</div>
                                     </div>
                                     <div>
-                                        <div className="text-xs text-gray-400 font-bold tracking-widest uppercase mb-1">פלטפורמות</div>
+                                        <div className="text-xs text-gray-600 font-bold tracking-widest uppercase mb-1">פלטפורמות</div>
                                         <div className="text-gray-800 font-bold">Google Ads, LinkedIn, Hubspot</div>
                                     </div>
                                     <div>
-                                        <div className="text-xs text-gray-400 font-bold tracking-widest uppercase mb-1">זמן ביצוע</div>
+                                        <div className="text-xs text-gray-600 font-bold tracking-widest uppercase mb-1">זמן ביצוע</div>
                                         <div className="text-gray-800 font-bold">3 חודשים (רבעון מלא)</div>
                                     </div>
                                 </div>

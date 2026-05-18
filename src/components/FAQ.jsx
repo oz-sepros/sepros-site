@@ -33,9 +33,9 @@ const FAQ = ({ title = "שאלות נפוצות", data = [], className = "" }) =
                 <div className="space-y-4">
                     {data.map((item, i) => (
                         <div key={i} className="faq-item reveal active border-b border-gray-200">
-                            <button onClick={() => setOpenIndex(openIndex === i ? -1 : i)} className="w-full py-5 flex justify-between items-center text-right group gap-6 md:gap-8">
+                            <button aria-expanded={openIndex === i} aria-label={openIndex === i ? "סגור שאלה" : "פתח שאלה"} onClick={() => setOpenIndex(openIndex === i ? -1 : i)} className="w-full py-5 flex justify-between items-center text-right group gap-6 md:gap-8">
                                 <h3 className={`text-lg md:text-xl font-bold transition-colors ${openIndex === i ? 'text-[#2f4ea1]' : 'text-gray-800 group-hover:text-[#2f4ea1]'}`}>{item.q}</h3>
-                                {openIndex === i ? <Minus className="text-[#2f4ea1] shrink-0" /> : <Plus className="text-gray-400 shrink-0" />}
+                                {openIndex === i ? <Minus className="text-[#2f4ea1] shrink-0" /> : <Plus className="text-gray-600 shrink-0" />}
                             </button>
                             <div className={`overflow-hidden transition-all duration-500 ${openIndex === i ? 'max-h-60 pb-5' : 'max-h-0'}`}>
                                 <p className="text-gray-600 text-sm md:text-base font-light leading-relaxed">{item.a}</p>

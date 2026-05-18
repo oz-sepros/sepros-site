@@ -113,7 +113,7 @@ const JobApplicationForm = ({ jobTitle, onClose }) => {
     if (status === 'success') {
         return (
             <Reveal className="bg-green-50 border border-green-200 p-8 md:p-12 rounded-xl mt-8 text-center shadow-sm relative dir-rtl">
-                <button type="button" onClick={() => { if (onClose) onClose(); setStatus('idle'); }} className="absolute top-4 left-4 text-gray-400 hover:text-gray-600"><X size={20} /></button>
+                <button aria-label="סגור" type="button" onClick={() => { if (onClose) onClose(); setStatus('idle'); }} className="absolute top-4 left-4 text-gray-600 hover:text-gray-600"><X size={20} /></button>
                 <div className="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                 </div>
@@ -188,7 +188,7 @@ const JobApplicationForm = ({ jobTitle, onClose }) => {
                                     <UploadCloud size={24} />
                                 </div>
                                 <p className="text-[#09102c] font-bold text-sm mb-1">לחצו כאן כדי להעלות קובץ</p>
-                                <p className="text-gray-500 text-xs">עד 5MB, בפורמט Word או PDF בלבד</p>
+                                <p className="text-gray-600 text-xs">עד 5MB, בפורמט Word או PDF בלבד</p>
                             </>
                         ) : (
                             <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg border border-gray-200 w-full max-w-sm justify-between dir-rtl" onClick={(e) => e.stopPropagation()}>
@@ -196,7 +196,7 @@ const JobApplicationForm = ({ jobTitle, onClose }) => {
                                     <FileText className="text-[#2f4ea1] shrink-0" size={20} />
                                     <span className="text-sm font-bold text-gray-700 truncate dir-ltr" dir="ltr">{file.name}</span>
                                 </div>
-                                <button type="button" onClick={() => { setFile(null); if (fileInputRef.current) fileInputRef.current.value = ''; }} className="text-gray-400 hover:text-red-500 transition-colors p-1">
+                                <button aria-label="מחק קובץ" type="button" onClick={() => { setFile(null); if (fileInputRef.current) fileInputRef.current.value = ''; }} className="text-gray-600 hover:text-red-500 transition-colors p-1">
                                     <X size={18} />
                                 </button>
                             </div>

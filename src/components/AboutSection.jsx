@@ -20,11 +20,11 @@ const AboutSection = ({ isMainHeading = false }) => {
                 <div className="grid grid-cols-2 gap-8 border-t border-gray-100 pt-8">
                     <div>
                         <div className="text-4xl font-black text-[#2f4ea1] mb-2">100%</div>
-                        <div className="text-gray-500 font-bold uppercase text-[11px] tracking-widest">מיקוד ב-ROI</div>
+                        <div className="text-gray-600 font-bold uppercase text-[11px] tracking-widest">מיקוד ב-ROI</div>
                     </div>
                     <div>
                         <div className="text-4xl font-black text-gray-900 mb-2">24/7</div>
-                        <div className="text-gray-500 font-bold uppercase text-[11px] tracking-widest">ניטור דאטה</div>
+                        <div className="text-gray-600 font-bold uppercase text-[11px] tracking-widest">ניטור דאטה</div>
                     </div>
                 </div>
             </Reveal>

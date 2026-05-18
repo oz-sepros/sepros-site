@@ -87,19 +87,19 @@ const Careers = () => {
                                         <div className="flex flex-wrap items-center gap-2">
                                             <span className="text-[#2f4ea1] text-[10px] font-bold tracking-widest bg-[#2f4ea1]/10 px-3 py-1 rounded-sm">{job.type}</span>
                                             {job.labels?.map((label, idx) => (
-                                                <span key={idx} className="text-gray-500 text-[10px] font-bold tracking-widest border border-gray-200 px-3 py-1 rounded-sm bg-white">{label}</span>
+                                                <span key={idx} className="text-gray-600 text-[10px] font-bold tracking-widest border border-gray-200 px-3 py-1 rounded-sm bg-white">{label}</span>
                                             ))}
                                         </div>
                                     </div>
                                     <div className="mt-2 md:mt-0">
-                                        {expandedJob === i ? <Minus className="text-[#2f4ea1] shrink-0" /> : <Plus className="text-gray-400 shrink-0" />}
+                                        {expandedJob === i ? <Minus className="text-[#2f4ea1] shrink-0" /> : <Plus className="text-gray-600 shrink-0" />}
                                     </div>
                                 </div>
 
                                 <div className={`overflow-hidden transition-all duration-500 ease-in-out ${expandedJob === i ? 'max-h-[1500px] mt-6 opacity-100' : 'max-h-0 opacity-0'}`}>
                                     <p className="text-gray-600 text-sm leading-relaxed mb-4">{job.fullDesc}</p>
                                     <h5 className="text-gray-900 font-bold text-sm mb-2">דרישות סף:</h5>
-                                    <ul className="list-disc pl-4 pr-6 text-gray-500 text-sm space-y-1 mb-6">
+                                    <ul className="list-disc pl-4 pr-6 text-gray-600 text-sm space-y-1 mb-6">
                                         <li>ניסיון מוכח של שנתיים לפחות בתפקיד רלוונטי.</li>
                                         <li>הבנה מעמיקה בעולמות השיווק והדיגיטל.</li>
                                         <li>יחסי אנוש מעולים, סדר, ארגון ויכולת עמידה ביעדים.</li>

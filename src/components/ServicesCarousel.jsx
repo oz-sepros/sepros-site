@@ -80,7 +80,7 @@ const ServicesCarousel = () => {
                 </div>
                 {/* Desktop arrows moved up */}
                 <div className="hidden md:flex gap-4 dir-ltr">
-                    <button onClick={() => {
+                    <button aria-label="הקודם" onClick={() => {
                         const carousel = scrollRef.current;
                         if (!carousel) return;
                         const firstChild = carousel.children[0];
@@ -89,7 +89,7 @@ const ServicesCarousel = () => {
                     }} className="w-12 h-12 rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm flex items-center justify-center hover:bg-gray-50 transition-colors">
                         <ChevronLeft size={24} />
                     </button>
-                    <button onClick={() => {
+                    <button aria-label="הבא" onClick={() => {
                         const carousel = scrollRef.current;
                         if (!carousel) return;
                         const firstChild = carousel.children[0];
@@ -141,7 +141,7 @@ const ServicesCarousel = () => {
                 {/* Mobile arrows and dots indicator */}
                 <div className="flex md:hidden flex-col items-center justify-center gap-4 mt-6 dir-ltr">
                     <div className="flex items-center justify-center gap-6">
-                        <button onClick={() => {
+                        <button aria-label="הקודם" onClick={() => {
                             const carousel = scrollRef.current;
                             if (!carousel) return;
                             const firstChild = carousel.children[0];
@@ -160,7 +160,7 @@ const ServicesCarousel = () => {
                             ))}
                         </div>
 
-                        <button onClick={() => {
+                        <button aria-label="הבא" onClick={() => {
                             const carousel = scrollRef.current;
                             if (!carousel) return;
                             const firstChild = carousel.children[0];

@@ -229,7 +229,7 @@ const Navbar = () => {
                                         setIsMobileDepartmentsOpen(!isMobileDepartmentsOpen);
                                     }}
                                     size={24} 
-                                    className={`text-gray-400 transition-transform duration-300 ${isMobileDepartmentsOpen ? 'rotate-180' : ''}`} 
+                                    className={`text-gray-600 transition-transform duration-300 ${isMobileDepartmentsOpen ? 'rotate-180' : ''}`} 
                                 />
                             </button>
 
@@ -281,16 +281,16 @@ const Navbar = () => {
                         {/* Mobile Menu Footer / Social */}
                         <div className="w-full mt-10 pt-8 border-t border-gray-100 flex flex-col items-center gap-8 pb-4">
                             <div className="flex items-center justify-center gap-4 w-full">
-                                <a href="https://www.instagram.com/sepros_digital/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
+                                <a href="https://www.instagram.com/sepros_digital/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
                                     <Instagram size={20} />
                                 </a>
-                                <a href="https://www.facebook.com/Sepros360DigitalMarketing" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
+                                <a href="https://www.facebook.com/Sepros360DigitalMarketing" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
                                     <Facebook size={20} />
                                 </a>
-                                <a href="https://www.linkedin.com/company/sepros-online-marketing/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
+                                <a href="https://www.linkedin.com/company/sepros-online-marketing/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
                                     <Linkedin size={20} />
                                 </a>
-                                <a href="https://www.tiktok.com/@sepros_dm" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="group w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md relative overflow-hidden">
+                                <a href="https://www.tiktok.com/@sepros_dm" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="group w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md relative overflow-hidden">
                                     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIiBmaWxsPSJjdXJyZW50Q29sb3IiPgogIDxwYXRoIGQ9Ik00NDgsMjA5LjkxYTIxMC4wNiwyMTAuMDYsMCwwLDEtMTIyLjc3LTM5LjI1VjM0OS4zOEExNjIuNTUsMTYyLjU1LDAsMSwxLDE4NSwxODguMzFWMjc4LjJhNzQuNjIsNzQuNjIsMCwxLDAsNTIuMjMsNzEuMThWMGw4OCwwYTEyMS4xOCwxMjEuMTgsMCwwLDAsMS44NiwyMi4xN2gwQTEyMi4xOCwxMjIuMTgsMCwwLDAsMzgxLDEwMi4zOWExMjEuNDMsMTIxLjQzLDAsMCwwLDY3LDIwLjE0WiIvPgo8L3N2Zz4K" alt="TikTok" className="w-[18px] h-[18px] opacity-60 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert transition-all" />
                                 </a>
                             </div>

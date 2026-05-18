@@ -68,7 +68,7 @@ const ProcessTimeline = ({ title, subtitle, steps }) => {
                         </div>
                         <div>
                             <h3 className="font-black text-lg md:text-xl text-gray-900 mb-1 md:mb-2 group-hover:text-[#2f4ea1] transition-colors">{step.title}</h3>
-                            <p className="text-gray-500 text-sm md:text-[15px] leading-relaxed max-w-[250px] md:mx-auto text-balance">{step.desc}</p>
+                            <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed max-w-[250px] md:mx-auto text-balance">{step.desc}</p>
                         </div>
                     </div>
                 ))}
@@ -171,8 +171,8 @@ const SocialCarousel = () => {
             <p className="text-gray-600 text-lg md:text-xl text-center max-w-2xl mb-6 md:mb-10 relative z-10 px-6 font-medium text-balance">תוכן שמניע לפעולה - UGC, רילסים, פרסומות קצרות, טרנדים, לפני/אחרי.</p>
 
             <div className="relative flex items-center justify-center w-full h-[460px] md:h-[550px] max-w-[1200px] mx-auto">
-                <button onClick={handlePrev} className="absolute right-2 md:right-12 top-1/2 z-40 p-3 md:p-4 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.15)] text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-all hover:scale-110 -translate-y-1/2"><ChevronRight size={24} /></button>
-                <button onClick={handleNext} className="absolute left-2 md:left-12 top-1/2 z-40 p-3 md:p-4 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.15)] text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-all hover:scale-110 -translate-y-1/2"><ChevronLeft size={24} /></button>
+                <button aria-label="הקודם" onClick={handlePrev} className="absolute right-2 md:right-12 top-1/2 z-40 p-3 md:p-4 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.15)] text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-all hover:scale-110 -translate-y-1/2"><ChevronRight size={24} /></button>
+                <button aria-label="הבא" onClick={handleNext} className="absolute left-2 md:left-12 top-1/2 z-40 p-3 md:p-4 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.15)] text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-all hover:scale-110 -translate-y-1/2"><ChevronLeft size={24} /></button>
 
                 {items.map((item, i) => {
                     const offset = getOffset(i);
@@ -323,8 +323,8 @@ const AnimatedSeoSearch = () => {
             <div className="bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(47,78,161,0.2)] border-2 border-blue-100 p-4 flex flex-col gap-2 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-1.5 h-full bg-[#2f4ea1]"></div>
                 <div className="flex items-center gap-2 mb-1">
-                    <div className="w-4 h-4 bg-gray-100 rounded-full flex items-center justify-center"><Globe size={10} className="text-gray-400" /></div>
-                    <div className="text-xs text-gray-500 font-medium dir-ltr text-left">yourdomain.co.il</div>
+                    <div className="w-4 h-4 bg-gray-100 rounded-full flex items-center justify-center"><Globe size={10} className="text-gray-600" /></div>
+                    <div className="text-xs text-gray-600 font-medium dir-ltr text-left">yourdomain.co.il</div>
                 </div>
                 <div className="text-sm font-black text-[#2f4ea1] mb-1 dir-rtl text-right">האתר שלכם | בניית אתרים וקידום בגוגל</div>
                 <div className="h-2 bg-gray-200 rounded w-full"></div>
@@ -398,12 +398,12 @@ const AnimatedPpcGraph = () => {
                     <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center"><TrendingUp size={20} /></div>
                     <span className="bg-green-50 text-green-700 text-[10px] font-black px-2 py-1 rounded border border-green-100 animate-pulse">ACTIVE CAMPAIGN</span>
                 </div>
-                <div className="text-xs font-bold text-gray-400 mb-1 dir-ltr text-left">CPA (Cost Per Action)</div>
+                <div className="text-xs font-bold text-gray-600 mb-1 dir-ltr text-left">CPA (Cost Per Action)</div>
                 <div className="text-2xl font-black text-gray-800 mb-4 dir-ltr text-left transition-all duration-300">₪{cpa.toFixed(2)} <span className="text-sm text-emerald-500 font-bold">-{(128.5 - cpa).toFixed(1)}%</span></div>
                 <div className="relative h-2 bg-gray-100 rounded-full overflow-hidden">
                     <div className="absolute top-0 left-0 h-full bg-emerald-500 rounded-full animate-[progress_2s_ease-out_infinite]"></div>
                 </div>
-                <div className="mt-2 text-[10px] text-gray-400 text-right dir-ltr text-left">Optimizing bids...</div>
+                <div className="mt-2 text-[10px] text-gray-600 text-right dir-ltr text-left">Optimizing bids...</div>
             </div>
             <div className="w-24 bg-white rounded-xl shadow-lg border border-gray-100 p-3 flex flex-col items-center justify-center -translate-y-4 animate-bounce z-10 hidden sm:flex" style={{ animationDuration: '3s' }}>
                 <Target size={24} className="text-blue-500 mb-2" />
@@ -439,7 +439,7 @@ const AnimatedAnalyticsGraph = () => {
             </div>
             <div className="mt-4 pt-2 flex justify-between items-center">
                 <div className="space-y-1">
-                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest dir-ltr text-left">Traffic</div>
+                    <div className="text-[10px] font-bold text-gray-600 uppercase tracking-widest dir-ltr text-left">Traffic</div>
                     <div className="text-lg md:text-xl font-black text-gray-900 dir-ltr text-left">124,592</div>
                 </div>
                 <div className="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1"><ArrowUpLeft size={12} /> 24%</div>
@@ -741,7 +741,7 @@ const AnimatedSeoGraph = () => {
             <div className="text-center mb-10 md:mb-16">
                 <span className="inline-block bg-[#2f4ea1]/10 text-[#2f4ea1] px-4 py-2 rounded-full text-sm font-bold tracking-widest mb-4 uppercase shadow-sm">דוגמה לנתוני לקוח</span>
                 <h2 className="text-[#0b1638] font-black text-3xl md:text-5xl text-balance">לכבוש את המקומות שמוכרים</h2>
-                <p className="text-gray-500 font-medium max-w-2xl mx-auto mt-4 md:mt-6 text-balance md:text-lg">תהליך ה-SEO שלנו מייצר סמכות אמיתית ברשת. ככה נראית השתלטות על הביטויים התחרותיים בענף שמכפיל את כמות הכניסות ממשלמים פוטנציאלים.</p>
+                <p className="text-gray-600 font-medium max-w-2xl mx-auto mt-4 md:mt-6 text-balance md:text-lg">תהליך ה-SEO שלנו מייצר סמכות אמיתית ברשת. ככה נראית השתלטות על הביטויים התחרותיים בענף שמכפיל את כמות הכניסות ממשלמים פוטנציאלים.</p>
             </div>
 
             <div className="flex flex-col lg:flex-row gap-6 md:gap-10 items-stretch">
@@ -749,7 +749,7 @@ const AnimatedSeoGraph = () => {
                 <div className="lg:w-[45%] w-full bg-[#f8f9fa] rounded-3xl p-6 md:p-10 border border-gray-200/60 shadow-inner flex flex-col justify-center">
                     <div className="text-right mb-8">
                         <h3 className="font-bold text-gray-900 text-2xl tracking-tight">ככה זה נראה במקום הראשון</h3>
-                        <p className="text-gray-500 text-base mt-2">תוצאות אורגניות בגוגל (ללא קידום ממומן)</p>
+                        <p className="text-gray-600 text-base mt-2">תוצאות אורגניות בגוגל (ללא קידום ממומן)</p>
                     </div>
 
                     <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm transition-all hover:shadow-lg cursor-pointer group mb-6 relative overflow-hidden">
@@ -768,7 +768,7 @@ const AnimatedSeoGraph = () => {
                         <div className="flex items-center gap-3 mb-3 dir-ltr justify-end">
                             <span className="text-sm text-gray-800 tracking-wide">https://www.competitor.co.il</span>
                             <div className="w-7 h-7 bg-gray-100 rounded-full flex items-center justify-center shrink-0">
-                                <Globe size={14} className="text-gray-500" />
+                                <Globe size={14} className="text-gray-600" />
                             </div>
                         </div>
                         <h3 className="text-[#1a0dab] font-normal text-xl md:text-2xl mb-2 font-arial dir-rtl text-right">המתחרה הכי גדול שלכם</h3>
@@ -856,7 +856,7 @@ const AnimatedSeoGraph = () => {
                         `}} />
                     </div>
 
-                    <div className="flex justify-between items-center text-gray-400 font-bold text-xs md:text-sm mt-8 dir-ltr px-2 uppercase tracking-widest relative z-0 pointer-events-none">
+                    <div className="flex justify-between items-center text-gray-600 font-bold text-xs md:text-sm mt-8 dir-ltr px-2 uppercase tracking-widest relative z-0 pointer-events-none">
                         <span>Jan</span>
                         <span>Mar</span>
                         <span>Jun</span>
@@ -876,7 +876,7 @@ const SponsoredPpcGraph = () => {
             <div className="text-center mb-10 md:mb-16">
                 <span className="inline-block bg-[url('#')] bg-[#2f4ea1]/10 text-[#2f4ea1] px-4 py-2 rounded-full text-sm font-bold tracking-widest mb-4 uppercase shadow-sm">דוגמה לנתוני לקוח</span>
                 <h2 className="text-[#0b1638] font-black text-3xl md:text-5xl text-balance">לכבוש את החיפושים שמוכרים</h2>
-                <p className="text-gray-500 font-medium max-w-2xl mx-auto mt-4 md:mt-6 text-balance md:text-lg">המטרה שלנו היא לא רק טראפיק, אלא המרות שורות תחתונות. ככה נראית השתלטות ממומנת שמביאה לידים חמים ומכפילה את החזר ההשקעה.</p>
+                <p className="text-gray-600 font-medium max-w-2xl mx-auto mt-4 md:mt-6 text-balance md:text-lg">המטרה שלנו היא לא רק טראפיק, אלא המרות שורות תחתונות. ככה נראית השתלטות ממומנת שמביאה לידים חמים ומכפילה את החזר ההשקעה.</p>
             </div>
 
             <div className="flex flex-col lg:flex-row gap-6 md:gap-10 items-stretch">
@@ -884,7 +884,7 @@ const SponsoredPpcGraph = () => {
                 <div className="lg:w-[45%] w-full bg-[#f8f9fa] rounded-3xl p-6 md:p-10 border border-gray-200/60 shadow-inner flex flex-col justify-center">
                     <div className="text-right mb-8">
                         <h3 className="font-bold text-gray-900 text-2xl tracking-tight">ככה נראית מודעה מנצחת</h3>
-                        <p className="text-gray-500 text-base mt-2">תוצאות ממומנות בגוגל (PPC)</p>
+                        <p className="text-gray-600 text-base mt-2">תוצאות ממומנות בגוגל (PPC)</p>
                     </div>
 
                     <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm transition-all hover:shadow-lg cursor-pointer group mb-6 relative overflow-hidden">
@@ -978,7 +978,7 @@ const SponsoredPpcGraph = () => {
                         `}} />
                     </div>
 
-                    <div className="flex justify-between items-center text-gray-400 font-bold text-xs md:text-sm mt-8 dir-ltr px-2 uppercase tracking-widest relative z-0 pointer-events-none">
+                    <div className="flex justify-between items-center text-gray-600 font-bold text-xs md:text-sm mt-8 dir-ltr px-2 uppercase tracking-widest relative z-0 pointer-events-none">
                         <span>Q1</span>
                         <span>Q2</span>
                         <span>Q3</span>
@@ -1002,15 +1002,15 @@ const LightboxModal = ({ selectedImage, onNavigate, onClose }) => {
             className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white/70 p-4 md:p-8 backdrop-blur-md transition-opacity" 
             onClick={onClose}
         >
-            <button className="absolute top-6 right-6 md:top-10 md:right-10 text-white drop-shadow-md hover:scale-110 transition-all bg-black/30 p-2 rounded-full z-[110]" onClick={(e) => { e.stopPropagation(); onClose(); }}>
+            <button aria-label="סגור" className="absolute top-6 right-6 md:top-10 md:right-10 text-white drop-shadow-md hover:scale-110 transition-all bg-black/30 p-2 rounded-full z-[110]" onClick={(e) => { e.stopPropagation(); onClose(); }}>
                 <svg className="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
 
-            <button className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white drop-shadow-lg bg-black/30 p-3 rounded-full hover:bg-black/50 transition-all hover:scale-110 z-[110]" onClick={(e) => { e.stopPropagation(); onNavigate(1); }}>
+            <button aria-label="הבא" className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white drop-shadow-lg bg-black/30 p-3 rounded-full hover:bg-black/50 transition-all hover:scale-110 z-[110]" onClick={(e) => { e.stopPropagation(); onNavigate(1); }}>
                 <ChevronLeft className="w-8 h-8 md:w-12 md:h-12" />
             </button>
 
-            <button className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white drop-shadow-lg bg-black/30 p-3 rounded-full hover:bg-black/50 transition-all hover:scale-110 z-[110]" onClick={(e) => { e.stopPropagation(); onNavigate(-1); }}>
+            <button aria-label="הקודם" className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white drop-shadow-lg bg-black/30 p-3 rounded-full hover:bg-black/50 transition-all hover:scale-110 z-[110]" onClick={(e) => { e.stopPropagation(); onNavigate(-1); }}>
                 <ChevronRight className="w-8 h-8 md:w-12 md:h-12" />
             </button>
 
@@ -1033,7 +1033,7 @@ const LightboxModal = ({ selectedImage, onNavigate, onClose }) => {
                 {item.isVideo ? (
                     <div className="relative group">
                         <video src={item.image} autoPlay loop muted={isMuted} playsInline className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20" />
-                        <button 
+                        <button aria-label={isMuted ? "הפעל סאונד" : "השתק סאונד"}
                             onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }}
                             className="absolute bottom-4 left-4 bg-black/60 text-white p-3 rounded-full backdrop-blur-sm transition-all hover:bg-black/80 z-[120]"
                         >
@@ -1095,7 +1095,7 @@ const DepartmentPortfolio = ({ category }) => {
                     ].map((stat, i) => (
                         <div key={i} className="bg-white shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 p-8 text-center rounded-2xl relative overflow-hidden group">
                             <div className="text-5xl md:text-6xl font-black text-[#2f4ea1] mb-2 dir-ltr">{stat.val}</div>
-                            <div className="text-gray-500 text-sm font-bold tracking-widest uppercase">{stat.label}</div>
+                            <div className="text-gray-600 text-sm font-bold tracking-widest uppercase">{stat.label}</div>
                         </div>
                     ))}
                 </div>
@@ -1124,7 +1124,7 @@ const DepartmentPortfolio = ({ category }) => {
                     ].map((stat, i) => (
                         <div key={i} className="bg-white shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 p-8 text-center rounded-2xl relative overflow-hidden group">
                             <div className="text-5xl md:text-6xl font-black text-[#2f4ea1] mb-2 dir-ltr">{stat.val}</div>
-                            <div className="text-gray-500 text-sm font-bold tracking-widest uppercase">{stat.label}</div>
+                            <div className="text-gray-600 text-sm font-bold tracking-widest uppercase">{stat.label}</div>
                         </div>
                     ))}
                 </div>
@@ -1144,7 +1144,7 @@ const DepartmentPortfolio = ({ category }) => {
                     ].map((stat, i) => (
                         <div key={i} className="bg-white shadow-sm hover:shadow-md transition-shadow border border-gray-100 p-8 text-center rounded-lg">
                             <div className="text-5xl font-black text-[#2f4ea1] mb-2 dir-ltr">{stat.val}</div>
-                            <div className="text-gray-500 text-sm font-bold tracking-widest">{stat.label}</div>
+                            <div className="text-gray-600 text-sm font-bold tracking-widest">{stat.label}</div>
                         </div>
                     ))}
                 </div>
@@ -1163,7 +1163,7 @@ const DepartmentPortfolio = ({ category }) => {
         return (
             <div className="mt-16 md:mt-24">
                 <h2 className="text-gray-900 font-black text-2xl md:text-3xl mb-8 border-r-4 border-[#2f4ea1] pr-4">פרויקטים נבחרים (Web)</h2>
-                <p className="text-gray-500 mb-8 font-medium">כדי לראות את איכות הפיתוח המלאה, לחצו על הפרויקטים וצפו בהם באוויר.</p>
+                <p className="text-gray-600 mb-8 font-medium">כדי לראות את איכות הפיתוח המלאה, לחצו על הפרויקטים וצפו בהם באוויר.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {webProjects.map((project, i) => (
                         <div key={i}
@@ -1205,7 +1205,7 @@ const DepartmentPortfolio = ({ category }) => {
                 <div className="mt-16 md:mt-24 pt-16 border-t border-gray-100">
                     <div className="text-center mb-10">
                         <h2 className="text-[#0b1638] font-black text-2xl md:text-4xl text-balance">מובילים טכנולוגית</h2>
-                        <p className="text-gray-500 font-bold mt-2 tracking-widest">הכלים שאנחנו עובדים איתם</p>
+                        <p className="text-gray-600 font-bold mt-2 tracking-widest">הכלים שאנחנו עובדים איתם</p>
                     </div>
                     <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto" dir="ltr">
                         {['React', 'Next.js', 'Node.js', 'Tailwind CSS', 'Vercel', 'AWS', 'Shopify', 'WordPress Elementor'].map(tech => (
@@ -1236,7 +1236,7 @@ const DepartmentPortfolio = ({ category }) => {
                         </div>
 
                         <div className="text-4xl md:text-5xl font-black text-[#0b1638] mb-2 tracking-tighter relative z-10 hover:text-[#2f4ea1] transition-colors">צמיחה אורגנית</div>
-                        <div className="text-gray-500 font-extrabold text-sm uppercase tracking-widest relative z-10">טראפיק איכותי שמייצר לידים</div>
+                        <div className="text-gray-600 font-extrabold text-sm uppercase tracking-widest relative z-10">טראפיק איכותי שמייצר לידים</div>
                     </div>
 
                     <div className="bg-[#2f4ea1] rounded-[2rem] p-8 md:p-12 border border-[#2f4ea1] flex flex-col justify-center items-center shadow-lg hover:shadow-xl transition-shadow relative overflow-hidden">
@@ -1248,7 +1248,7 @@ const DepartmentPortfolio = ({ category }) => {
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-xs text-gray-800 font-bold">sepros.co.il</span>
-                                    <span className="text-[11px] text-gray-500 truncate mt-0.5">https://www.sepros.co.il</span>
+                                    <span className="text-[11px] text-gray-600 truncate mt-0.5">https://www.sepros.co.il</span>
                                 </div>
                             </div>
                             <div className="text-[#1a0dab] text-lg md:text-xl font-bold mb-2 hover:underline cursor-pointer tracking-tight">ספרוס - סוכנות הדיגיטל המובילה בישראל</div>
@@ -1301,7 +1301,7 @@ const DepartmentPortfolio = ({ category }) => {
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
                     <div>
                         <h2 className="text-gray-900 font-black text-3xl md:text-4xl mb-3 border-r-4 border-[#2f4ea1] pr-4 tracking-tight">שפה ויזואלית מנצחת</h2>
-                        <p className="text-gray-500 font-medium max-w-2xl text-balance">מספרי מותג, דרך באנרים מניעים לפעולה ועד ממשקי משתמש מורכבים.</p>
+                        <p className="text-gray-600 font-medium max-w-2xl text-balance">מספרי מותג, דרך באנרים מניעים לפעולה ועד ממשקי משתמש מורכבים.</p>
                     </div>
                 </div>
 
