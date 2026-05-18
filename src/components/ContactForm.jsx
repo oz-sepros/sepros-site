@@ -9,6 +9,7 @@ const ContactForm = ({ isMainSection = false }) => {
     const [status, setStatus] = useState('idle');
     const [formError, setFormError] = useState('');
     const pathname = usePathname();
+    const HeadingTag = isMainSection ? 'h1' : 'h2';
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -119,7 +120,7 @@ const ContactForm = ({ isMainSection = false }) => {
                                 <div className="w-2.5 h-2.5 rounded-full bg-[#2f4ea1]"></div>
                                 <span className="text-[#2f4ea1] font-extrabold text-base tracking-widest uppercase">שותפים לדרך</span>
                             </div>
-                            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-[#2f4ea1] mb-12 leading-tight">מוכנים <br /> <span>לגדול?</span></h2>
+                            <HeadingTag className="text-4xl md:text-6xl lg:text-7xl font-black text-[#2f4ea1] mb-12 leading-tight">מוכנים <br /> <span>לגדול?</span></HeadingTag>
                         </Reveal>
 
                         <Reveal className="space-y-8">
