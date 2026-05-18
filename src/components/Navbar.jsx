@@ -111,8 +111,8 @@ const Navbar = () => {
 
                         <div
                             className={`absolute top-full right-0 w-64 pt-6 transition-all duration-300 ${isDropdownOpen
-                                    ? 'opacity-100 visible translate-y-0'
-                                    : 'opacity-0 invisible -translate-y-4'
+                                    ? 'opacity-100 visible translate-y-0 pointer-events-auto'
+                                    : 'opacity-0 invisible -translate-y-4 pointer-events-none'
                                 }`}
                         >
                             <div className="bg-white border border-gray-100 p-2 shadow-xl rounded-lg">
