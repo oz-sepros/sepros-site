@@ -9,7 +9,7 @@ const PlatformsMarquee = () => {
             <DraggableMarquee speed={35} direction="ltr">
                 {platformsData.map((plat, i) => (
                     <div key={i} title={plat.name} className="group w-[160px] md:w-[200px] h-12 md:h-16 cursor-grab active:cursor-grabbing shrink-0 flex items-center justify-center mx-4 md:mx-6">
-                        <img src={plat.logo} alt={`שותף פרסום של ספרוס - ${plat.name}`} className="max-w-full max-h-full object-contain pointer-events-none select-none drop-shadow-sm grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300" draggable="false" />
+                        <img src={plat.logo} alt={`שותף פרסום של ספרוס - ${plat.name}`} className="max-w-full max-h-full object-contain pointer-events-none select-none drop-shadow-sm grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300" draggable="false" loading="lazy" />
                     </div>
                 ))}
             </DraggableMarquee>

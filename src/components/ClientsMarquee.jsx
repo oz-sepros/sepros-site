@@ -20,6 +20,7 @@ const ClientsMarquee = () => {
                             alt={client.name} 
                             className={`max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none ${client.className || ''}`}
                             draggable="false"
+                            loading="lazy"
                         />
                     </div>
                 ))}
