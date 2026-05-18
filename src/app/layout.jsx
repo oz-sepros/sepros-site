@@ -11,9 +11,7 @@ export const metadata = {
   metadataBase: new URL('https://www.sepros.co.il'),
   title: 'Sepros Digital',
   description: 'שיווק דיגיטלי שמביא תוצאות',
-  openGraph: {
-    images: ['/og-image.jpg'],
-  },
+  openGraph: {},
 };
 
 export default function RootLayout({ children }) {
