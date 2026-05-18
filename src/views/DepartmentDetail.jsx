@@ -1266,31 +1266,31 @@ const DepartmentPortfolio = ({ category }) => {
     if (category === 'design') {
         const designProjects = [
             // Videos
-            { id: "design_1", title: 'קמפיין מדברנד', type: 'Video Campaign', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-2', isVideo: true, image: '/portfolio/design/videos/medabrand-3.mp4' },
-            { id: "design_4", title: 'קמפיין רימרקטינג', type: 'Performance', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/videos/medabrand-4.mp4' },
-            { id: "design_6", title: 'קמפיין וידאו', type: 'Video', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/videos/new-one-4.mp4' },
-            { id: "design_7", title: 'סרטון אווירה', type: 'Atmosphere', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/videos/new-one-3.mp4' },
-            { id: "design_8", title: 'סרטון תדמית', type: 'Branding', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/videos/fbcvb.mp4' },
-            { id: "design_17", title: 'ישראל קנדה', type: 'Video Campaign', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/videos/ישראל קנדבה.mp4' },
-            { id: "design_18", title: 'כלמוביל', type: 'Video Campaign', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/videos/כלמוביל.mp4' },
-            { id: "design_19", title: 'פורט', type: 'Video Campaign', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/videos/פורט.mp4' },
+            { id: "design_1", title: 'קמפיין מדברנד', type: 'Video Campaign', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-2', isVideo: true, image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/videos/medabrand-3.mp4' },
+            { id: "design_4", title: 'קמפיין רימרקטינג', type: 'Performance', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/videos/medabrand-4.mp4' },
+            { id: "design_6", title: 'קמפיין וידאו', type: 'Video', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', isVideo: true, image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/videos/new-one-4.mp4' },
+            { id: "design_7", title: 'סרטון אווירה', type: 'Atmosphere', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/videos/new-one-3.mp4' },
+            { id: "design_8", title: 'סרטון תדמית', type: 'Branding', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/videos/fbcvb.mp4' },
+            { id: "design_17", title: 'ישראל קנדה', type: 'Video Campaign', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/videos/ישראל קנדבה.mp4' },
+            { id: "design_18", title: 'כלמוביל', type: 'Video Campaign', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/videos/כלמוביל.mp4' },
+            { id: "design_19", title: 'פורט', type: 'Video Campaign', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/videos/פורט.mp4' },
             
             // Images
-            { id: "design_9", title: 'קריאייטיב FB 1', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB_1.jpg' },
-            { id: "design_10", title: 'קריאייטיב FB 2', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB_2.jpg' },
-            { id: "design_11", title: 'קריאייטיב FB 3', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB_3.jpg' },
-            { id: "design_12", title: 'קריאייטיב FB 4', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB_4.jpg' },
-            { id: "design_13", title: 'באנר 4', type: 'Banner', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', image: '/portfolio/design/images/banner_4.jpg' },
-            { id: "design_14", title: 'קריאייטיב ANTIGONUS 5', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB 1_ANTIGONUS 5.png' },
-            { id: "design_15", title: 'קריאייטיב SHARET 14', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB 1_SHARET 14.png' },
-            { id: "design_16", title: 'קריאייטיב SHARET 60', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB 1_SHARET 60.png' },
-            { id: "design_20", title: 'קריאייטיב אירועים', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB_events_C2.jpg' },
-            { id: "design_21", title: 'קריאייטיב משרד 1', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB_office 1.jpg' },
-            { id: "design_22", title: 'קריאייטיב משרד B2', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB_office_B2.jpg' },
-            { id: "design_23", title: 'קריאייטיב משרד C1', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB_office_C1.jpg' },
-            { id: "design_24", title: 'עיצוב קריאייטיב 10', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/NEW ONE FOR (10).png' },
-            { id: "design_25", title: 'עיצוב קריאייטיב 8', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/NEW ONE FOR (8).png' },
-            { id: "design_26", title: 'עיצוב קריאייטיב 9', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/NEW ONE FOR (9).png' }
+            { id: "design_9", title: 'קריאייטיב FB 1', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/images/FB_1.jpg' },
+            { id: "design_10", title: 'קריאייטיב FB 2', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/images/FB_2.jpg' },
+            { id: "design_11", title: 'קריאייטיב FB 3', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/images/FB_3.jpg' },
+            { id: "design_12", title: 'קריאייטיב FB 4', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/images/FB_4.jpg' },
+            { id: "design_13", title: 'באנר 4', type: 'Banner', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/images/banner_4.jpg' },
+            { id: "design_14", title: 'קריאייטיב ANTIGONUS 5', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/images/FB 1_ANTIGONUS 5.png' },
+            { id: "design_15", title: 'קריאייטיב SHARET 14', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/images/FB 1_SHARET 14.png' },
+            { id: "design_16", title: 'קריאייטיב SHARET 60', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/images/FB 1_SHARET 60.png' },
+            { id: "design_20", title: 'קריאייטיב אירועים', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/images/FB_events_C2.jpg' },
+            { id: "design_21", title: 'קריאייטיב משרד 1', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/images/FB_office 1.jpg' },
+            { id: "design_22", title: 'קריאייטיב משרד B2', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/images/FB_office_B2.jpg' },
+            { id: "design_23", title: 'קריאייטיב משרד C1', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/images/FB_office_C1.jpg' },
+            { id: "design_24", title: 'עיצוב קריאייטיב 10', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/images/NEW ONE FOR (10).png' },
+            { id: "design_25", title: 'עיצוב קריאייטיב 8', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/images/NEW ONE FOR (8).png' },
+            { id: "design_26", title: 'עיצוב קריאייטיב 9', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: 'https://lfj7shbkd42namji.public.blob.vercel-storage.com/images/NEW ONE FOR (9).png' }
         ];
 
         const videoProjects = designProjects.filter(p => p.isVideo);
