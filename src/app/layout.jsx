@@ -3,6 +3,7 @@ import Script from 'next/script';
 import '../index.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { Analytics } from '@vercel/analytics/react';
 
 const heebo = Heebo({ subsets: ['hebrew', 'latin'], weight: ['300', '400', '500', '700', '900'] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
