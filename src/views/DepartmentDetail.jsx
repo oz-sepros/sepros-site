@@ -1018,7 +1018,8 @@ const LightboxModal = ({ selectedImage, onNavigate, onClose }) => {
 };
 
 const DepartmentPortfolio = ({ category }) => {
-    const [showAllDesign, setShowAllDesign] = useState(false);
+    const [visibleVideoRows, setVisibleVideoRows] = useState(1);
+    const [visibleImageRows, setVisibleImageRows] = useState(1);
     const [selectedImage, setSelectedImage] = useState(null);
     const [mounted, setMounted] = useState(false);
 
@@ -1228,14 +1229,25 @@ const DepartmentPortfolio = ({ category }) => {
 
     if (category === 'design') {
         const designProjects = [
-            { id: "design_1", title: 'קמפיין מדברנד', type: 'Video Campaign', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-2', isVideo: true, image: '/portfolio/design/medabrand-3.mp4' },
-            { id: "design_2", title: 'מודעת אינסטגרם מדברנד', type: 'Social Media', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/medabrand.png' },
-            { id: "design_3", title: 'עיצוב קריאייטיב', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/new-one-6.png' },
-            { id: "design_4", title: 'קמפיין רימרקטינג', type: 'Performance', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/medabrand-4.mp4' },
-            { id: "design_5", title: 'קריאייטיב PR', type: 'Social Media', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', image: '/portfolio/design/new-one-7.png' },
-            { id: "design_6", title: 'קמפיין וידאו', type: 'Video', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/new-one-4.mp4' },
-            { id: "design_7", title: 'סרטון אווירה', type: 'Atmosphere', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/new-one-3.mp4' },
-            { id: "design_8", title: 'סרטון תדמית', type: 'Branding', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/fbcvb.mp4' }
+            // Videos
+            { id: "design_1", title: 'קמפיין מדברנד', type: 'Video Campaign', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-2', isVideo: true, image: '/portfolio/design/videos/medabrand-3.mp4' },
+            { id: "design_4", title: 'קמפיין רימרקטינג', type: 'Performance', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/videos/medabrand-4.mp4' },
+            { id: "design_6", title: 'קמפיין וידאו', type: 'Video', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/videos/new-one-4.mp4' },
+            { id: "design_7", title: 'סרטון אווירה', type: 'Atmosphere', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/videos/new-one-3.mp4' },
+            { id: "design_8", title: 'סרטון תדמית', type: 'Branding', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', isVideo: true, image: '/portfolio/design/videos/fbcvb.mp4' },
+            
+            // Images
+            { id: "design_2", title: 'מודעת אינסטגרם מדברנד', type: 'Social Media', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/videos/medabrand.png' },
+            { id: "design_3", title: 'עיצוב קריאייטיב', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/new-one-6.png' },
+            { id: "design_5", title: 'קריאייטיב PR', type: 'Social Media', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', image: '/portfolio/design/images/new-one-7.png' },
+            { id: "design_9", title: 'קריאייטיב FB 1', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB_1.jpg' },
+            { id: "design_10", title: 'קריאייטיב FB 2', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB_2.jpg' },
+            { id: "design_11", title: 'קריאייטיב FB 3', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB_3.jpg' },
+            { id: "design_12", title: 'קריאייטיב FB 4', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB_4.jpg' },
+            { id: "design_13", title: 'באנר 4', type: 'Banner', spanClass: 'col-span-2 md:col-span-2 row-span-1 md:row-span-1', image: '/portfolio/design/images/banner_4.jpg' },
+            { id: "design_14", title: 'קריאייטיב ANTIGONUS 5', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB 1_ANTIGONUS 5.png' },
+            { id: "design_15", title: 'קריאייטיב SHARET 14', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB 1_SHARET 14.png' },
+            { id: "design_16", title: 'קריאייטיב SHARET 60', type: 'Creative', spanClass: 'col-span-1 md:col-span-1 row-span-1 md:row-span-1', image: '/portfolio/design/images/FB 1_SHARET 60.png' }
         ];
 
         const videoProjects = designProjects.filter(p => p.isVideo);
@@ -1251,30 +1263,139 @@ const DepartmentPortfolio = ({ category }) => {
                 </div>
 
                 {/* Video Gallery Section */}
-                <h3 className="text-gray-900 font-black text-2xl md:text-3xl mt-12 mb-6 tracking-tight">גלריית וידאו וקמפיינים</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-16">
-                    {videoProjects.map((project, i) => (
-                        <div key={i} 
-                            onClick={() => setSelectedImage({ index: i, items: videoProjects })} 
+                {/* Video Gallery Section */}
+                <h3 className="text-gray-900 font-black text-2xl md:text-3xl mt-12 mb-6 tracking-tight">גלריית וידאו</h3>
+                
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                    {videoProjects.slice(0, 4).map((project, i) => (
+                        <div key={project.id} 
+                            onClick={() => setSelectedImage({ index: i, items: videoProjects.slice(0, visibleVideoRows * 4) })} 
                             onMouseEnter={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) v.play().catch(() => { }); } }}
                             onMouseLeave={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } } }}
-                            className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 aspect-square w-full">
+                            className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 aspect-square w-full"
+                        >
                             <video src={project.image} preload="metadata" muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                         </div>
                     ))}
                 </div>
 
+                <AnimatePresence initial={false}>
+                    {Array.from({ length: Math.ceil(videoProjects.length / 4) - 1 }).map((_, rowIndex) => {
+                        const isVisible = visibleVideoRows > rowIndex + 1;
+                        if (!isVisible) return null;
+                        
+                        const rowItems = videoProjects.slice((rowIndex + 1) * 4, (rowIndex + 2) * 4);
+                        
+                        return (
+                            <motion.div
+                                key={rowIndex}
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.5, ease: "easeInOut" }}
+                                className="overflow-hidden"
+                            >
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pt-3 md:pt-4">
+                                    {rowItems.map((project, i) => (
+                                        <div key={project.id} 
+                                            onClick={() => setSelectedImage({ index: (rowIndex + 1) * 4 + i, items: videoProjects.slice(0, visibleVideoRows * 4) })} 
+                                            onMouseEnter={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) v.play().catch(() => { }); } }}
+                                            onMouseLeave={(e) => { if(project.isVideo) { const v = e.currentTarget.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } } }}
+                                            className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 aspect-square w-full"
+                                        >
+                                            <video src={project.image} preload="metadata" muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                                        </div>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        );
+                    })}
+                </AnimatePresence>
+
+                {videoProjects.length > 4 && (
+                    <div className="flex justify-center mt-8 mb-16">
+                        <button 
+                            onClick={() => {
+                                if (visibleVideoRows >= Math.ceil(videoProjects.length / 4)) {
+                                    setVisibleVideoRows(1);
+                                } else {
+                                    setVisibleVideoRows(prev => prev + 1);
+                                }
+                            }}
+                            className="text-[#2f4ea1] border border-[#2f4ea1] hover:bg-[#2f4ea1] hover:text-white px-8 py-2.5 rounded-full font-bold transition-all shadow-sm hover:shadow-md flex items-center gap-2"
+                        >
+                            {visibleVideoRows >= Math.ceil(videoProjects.length / 4) ? 'הצג פחות' : 'הצג עוד'}
+                            <motion.div animate={{ rotate: visibleVideoRows >= Math.ceil(videoProjects.length / 4) ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                                <ChevronDown size={18} />
+                            </motion.div>
+                        </button>
+                    </div>
+                )}
+
                 {/* Images Gallery Section */}
                 <h3 className="text-gray-900 font-black text-2xl md:text-3xl mt-12 mb-6 tracking-tight">מיתוג וקריאייטיב</h3>
+                
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-                    {imageProjects.map((project, i) => (
-                        <div key={i} 
-                            onClick={() => setSelectedImage({ index: i, items: imageProjects })} 
-                            className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 aspect-square w-full">
+                    {imageProjects.slice(0, 4).map((project, i) => (
+                        <div key={project.id} 
+                            onClick={() => setSelectedImage({ index: i, items: imageProjects.slice(0, visibleImageRows * 4) })} 
+                            className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 aspect-square w-full"
+                        >
                             <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                         </div>
                     ))}
                 </div>
+
+                <AnimatePresence initial={false}>
+                    {Array.from({ length: Math.ceil(imageProjects.length / 4) - 1 }).map((_, rowIndex) => {
+                        const isVisible = visibleImageRows > rowIndex + 1;
+                        if (!isVisible) return null;
+                        
+                        const rowItems = imageProjects.slice((rowIndex + 1) * 4, (rowIndex + 2) * 4);
+                        
+                        return (
+                            <motion.div
+                                key={rowIndex}
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.5, ease: "easeInOut" }}
+                                className="overflow-hidden"
+                            >
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pt-3 md:pt-4">
+                                    {rowItems.map((project, i) => (
+                                        <div key={project.id} 
+                                            onClick={() => setSelectedImage({ index: (rowIndex + 1) * 4 + i, items: imageProjects.slice(0, visibleImageRows * 4) })} 
+                                            className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 aspect-square w-full"
+                                        >
+                                            <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                                        </div>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        );
+                    })}
+                </AnimatePresence>
+
+                {imageProjects.length > 4 && (
+                    <div className="flex justify-center mt-8 mb-8">
+                        <button 
+                            onClick={() => {
+                                if (visibleImageRows >= Math.ceil(imageProjects.length / 4)) {
+                                    setVisibleImageRows(1);
+                                } else {
+                                    setVisibleImageRows(prev => prev + 1);
+                                }
+                            }}
+                            className="text-[#2f4ea1] border border-[#2f4ea1] hover:bg-[#2f4ea1] hover:text-white px-8 py-2.5 rounded-full font-bold transition-all shadow-sm hover:shadow-md flex items-center gap-2"
+                        >
+                            {visibleImageRows >= Math.ceil(imageProjects.length / 4) ? 'הצג פחות' : 'הצג עוד'}
+                            <motion.div animate={{ rotate: visibleImageRows >= Math.ceil(imageProjects.length / 4) ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                                <ChevronDown size={18} />
+                            </motion.div>
+                        </button>
+                    </div>
+                )}
 
                 {/* Lightbox Modal Overlay using Portal */}
                 {mounted && createPortal(
