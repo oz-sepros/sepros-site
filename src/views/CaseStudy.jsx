@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { ArrowUpLeft, Target, BarChart3, TrendingUp, CheckCircle2 } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import Reveal from '../components/Reveal';
@@ -53,10 +54,14 @@ const CaseStudy = () => {
             {/* Hero Section */}
             <div className="relative min-h-[70vh] flex items-center justify-center pt-32 pb-20 px-6 overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <img 
+                    <Image 
                         src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000" 
                         alt="Case Study Cover" 
-                        className="w-full h-full object-cover opacity-20"
+                        fill
+                        priority={true}
+                        fetchPriority="high"
+                        sizes="100vw"
+                        className="object-cover opacity-20"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-[#09102c]/95 via-[#09102c]/95 to-[#F5F7FA]"></div>
                 </div>
@@ -152,11 +157,13 @@ const CaseStudy = () => {
                     </div>
 
                     {/* Gallery or Large Image */}
-                    <Reveal className="mt-20 rounded-3xl overflow-hidden shadow-xl border border-gray-100">
-                        <img 
+                    <Reveal className="mt-20 rounded-3xl overflow-hidden shadow-xl border border-gray-100 relative aspect-video">
+                        <Image 
                             src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1600" 
                             alt="Project Dashboard" 
-                            className="w-full h-auto object-cover"
+                            fill
+                            sizes="(max-width: 1200px) 100vw, 1200px"
+                            className="object-cover"
                         />
                     </Reveal>
                 </div>

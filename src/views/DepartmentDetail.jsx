@@ -1,9 +1,10 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useRouter } from 'next/navigation';
-import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, ChevronDown, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart, Heart, Send, Brush, PenTool, MousePointer2, Type, Image, Sparkles, Wand2, VolumeX, Volume2 } from 'lucide-react';
+import { ExternalLink, CheckCircle2, ChevronLeft, ChevronRight, ChevronDown, PlayCircle, ArrowLeft, ArrowUpLeft, TrendingUp, Search, MonitorSmartphone, Code2, Globe, Target, LineChart, Palette, Layout, Settings, Users, BarChart, Lightbulb, Compass, FileText, Camera, Video, MessageSquare, Briefcase, PieChart, Heart, Send, Brush, PenTool, MousePointer2, Type, Image as ImageIcon, Sparkles, Wand2, VolumeX, Volume2 } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
 import FAQ from '../components/FAQ';
@@ -221,7 +222,7 @@ const SocialCarousel = () => {
                                 </iframe>
                             ) : (
                                 <>
-                                    <img src={`https://img.youtube.com/vi/${item.id}/hqdefault.jpg`} alt="שורטס - דוגמה" loading="lazy" className="w-full h-full object-cover transition-transform duration-1000 md:group-hover:scale-105" />
+                                    <Image src={`https://img.youtube.com/vi/${item.id}/hqdefault.jpg`} alt="שורטס - דוגמה" fill sizes="(max-width: 768px) 240px, 280px" className="object-cover transition-transform duration-1000 md:group-hover:scale-105" />
                                     <div className={`absolute inset-0 transition-colors duration-500 flex items-center justify-center ${isActive ? 'bg-black/10 hover:bg-black/20' : 'bg-black/40'}`}>
                                         {isActive && (
                                             <div className="w-16 h-16 md:w-20 md:h-20 bg-white/95 backdrop-blur-md rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(0,0,0,0.3)] hover:scale-110 hover:bg-white transition-transform duration-300">
@@ -546,7 +547,7 @@ const DepartmentHeroVisual = ({ category }) => {
                                     <div className="w-6 h-6 rounded hover:bg-white/10 text-white/70 flex items-center justify-center cursor-pointer transition-colors"><Layout size={12} /></div>
                                     <div className="w-6 h-6 rounded hover:bg-white/10 text-white/70 flex items-center justify-center cursor-pointer transition-colors"><Type size={12} /></div>
                                     <div className="w-6 h-6 rounded hover:bg-white/10 text-white/70 flex items-center justify-center cursor-pointer transition-colors"><Palette size={12} /></div>
-                                    <div className="w-6 h-6 rounded hover:bg-white/10 text-white/70 flex items-center justify-center cursor-pointer transition-colors"><Image size={12} /></div>
+                                    <div className="w-6 h-6 rounded hover:bg-white/10 text-white/70 flex items-center justify-center cursor-pointer transition-colors"><ImageIcon size={12} /></div>
                                 </div>
 
                                 {/* Main Canvas Area */}
@@ -565,7 +566,7 @@ const DepartmentHeroVisual = ({ category }) => {
                                         <div className="relative w-[220px] h-[150px] md:w-[300px] md:h-[200px] rounded-2xl bg-black border-[1.5px] border-white/30 shadow-[0_20px_40px_rgba(236,72,153,0.2)] overflow-hidden flex items-center justify-center group-hover:shadow-[0_20px_60px_rgba(34,211,238,0.4)] transition-all duration-700">
 
                                             {/* Generated AI Image */}
-                                            <img src="/images/brand_book_ai.png" alt="AI Generated Brand Book" className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-110 transition-transform duration-1000 ease-out" />
+                                            <Image src="/images/brand_book_ai.png" alt="AI Generated Brand Book" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover opacity-100 group-hover:scale-110 transition-transform duration-1000 ease-out" />
 
                                             {/* Colorful overlay gradient to keep UI legible */}
                                             <div className="absolute inset-0 bg-gradient-to-t from-[#1b1030]/90 to-transparent"></div>
@@ -1041,7 +1042,9 @@ const LightboxModal = ({ selectedImage, onNavigate, onClose }) => {
                         </button>
                     </div>
                 ) : (
-                    <img src={item.image} className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/20 pointer-events-none" alt={item.title} />
+                    <div className="relative w-full h-[85vh]">
+                        <Image src={item.image} fill sizes="100vw" className="object-contain rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] pointer-events-none" alt={item.title} />
+                    </div>
                 )}
             </motion.div>
         </motion.div>
@@ -1384,7 +1387,7 @@ const DepartmentPortfolio = ({ category }) => {
                             onClick={() => setSelectedImage({ index: i, items: imageProjects.slice(0, visibleImageRows * 4) })} 
                             className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 aspect-square w-full"
                         >
-                            <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                            <Image src={project.image} alt={project.title} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                         </div>
                     ))}
                 </div>
@@ -1411,7 +1414,7 @@ const DepartmentPortfolio = ({ category }) => {
                                             onClick={() => setSelectedImage({ index: (rowIndex + 1) * 4 + i, items: imageProjects.slice(0, visibleImageRows * 4) })} 
                                             className="relative group overflow-hidden rounded-xl md:rounded-2xl bg-black/5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200/50 aspect-square w-full"
                                         >
-                                            <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                                            <Image src={project.image} alt={project.title} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                                         </div>
                                     ))}
                                 </div>

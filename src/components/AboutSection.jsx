@@ -1,4 +1,5 @@
 import Reveal from './Reveal';
+import Image from 'next/image';
 
 const AboutSection = ({ isMainHeading = false }) => {
     const HeadingTag = isMainHeading ? 'h1' : 'h2';
@@ -29,7 +30,7 @@ const AboutSection = ({ isMainHeading = false }) => {
                 </div>
             </Reveal>
             <Reveal className="relative aspect-[4/3] lg:aspect-square">
-                <img src="/about/team.png" alt="צוות ספרוס שיווק דיגיטלי - משרד פרסום מקצועי" loading="lazy" className="w-full h-full object-cover grayscale opacity-90 rounded-[2rem] shadow-xl" />
+                <Image src="/about/team.png" alt="צוות ספרוס שיווק דיגיטלי - משרד פרסום מקצועי" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover grayscale opacity-90 rounded-[2rem] shadow-xl" />
                 <div className="absolute inset-0 bg-[#09102c] opacity-10 rounded-[2rem]"></div>
                 <div className="absolute -bottom-8 -right-8 w-48 h-48 md:w-56 md:h-56 bg-[#2f4ea1] rounded-[2rem] flex items-center justify-center p-8 hidden sm:flex shadow-[0_20px_50px_rgba(43,57,145,0.4)]">
                     <p className="text-white font-black text-xl md:text-2xl leading-tight text-center">בונים את העתיד של הדיגיטל</p>

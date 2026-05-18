@@ -2,6 +2,7 @@
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
+import Image from 'next/image';
 import PageTransition from '../components/PageTransition';
 import ContactForm from '../components/ContactForm';
 
@@ -152,7 +153,7 @@ const ArticlePage = () => {
                     </div>
 
                     <div className="w-full h-[400px] bg-gray-100 rounded-2xl overflow-hidden mb-12 relative shadow-sm">
-                        <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
+                        <Image src={article.image} alt={article.title} fill priority={true} fetchPriority="high" sizes="(max-width: 1024px) 100vw, 800px" className="object-cover" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                     </div>
 

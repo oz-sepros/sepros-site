@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import Reveal from '../components/Reveal';
 import PageTransition from '../components/PageTransition';
 import { Target, Share2, Palette, Code, Search, BarChart3, Lightbulb, ArrowUpLeft } from 'lucide-react';
@@ -66,7 +67,7 @@ const ServicesPage = () => {
                                 <div key={i} onClick={() => router.push(`/service/${srv.id}`)} className="bg-white rounded-[2rem] overflow-hidden group cursor-pointer shadow-md hover:shadow-2xl hover:shadow-[#2f4ea1]/10 transition-all border border-gray-100 flex flex-col h-full hover:-translate-y-2 duration-500">
                                     <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
                                         <div className="absolute inset-0 bg-[#09102c]/20 group-hover:bg-transparent transition-colors z-10 duration-500"></div>
-                                        <img src={srv.image} alt={srv.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                        <Image src={srv.image} alt={srv.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                                         <div className="absolute top-6 left-6 w-12 h-12 bg-white/90 backdrop-blur-md rounded-2xl flex items-center justify-center text-[#2f4ea1] shadow-lg z-20 group-hover:scale-110 transition-transform">
                                             <Icon size={24} strokeWidth={2} />
                                         </div>
