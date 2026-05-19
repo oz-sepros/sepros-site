@@ -27,6 +27,7 @@ export async function generateMetadata({ params }) {
             canonical: `/service/${id}`
         },
         openGraph: {
+        images: ['/opengraph-image.jpg'],
             title: dept.title,
             description: dept.description,
         }

@@ -7,6 +7,7 @@ export const metadata = {
         canonical: '/about'
     },
     openGraph: {
+        images: ['/opengraph-image.jpg'],
         title: 'אודות | ספרוס',
         description: 'הכירו את ספרוס, סוכנות הדיגיטל המובילה שמתמחה בבניית אסטרטגיות שיווקיות מנצחות, פיתוח אתרים וניהול מדיה. מביאים שקיפות, דאטה ותוצאות.',
     }

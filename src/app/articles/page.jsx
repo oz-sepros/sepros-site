@@ -7,6 +7,7 @@ export const metadata = {
         canonical: '/articles'
     },
     openGraph: {
+        images: ['/opengraph-image.jpg'],
         title: 'מאמרים | ספרוס',
         description: 'הבלוג של ספרוס - חדשות, עדכונים, מדריכים מקצועיים וטיפים מתקדמים בשיווק דיגיטלי, קידום אורגני, PPC ופיתוח.',
     }

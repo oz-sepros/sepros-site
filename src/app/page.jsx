@@ -7,6 +7,7 @@ export const metadata = {
         canonical: '/'
     },
     openGraph: {
+        images: ['/opengraph-image.jpg'],
         title: 'ספרוס - סוכנות דיגיטל | Sepros Digital',
         description: 'סוכנות דיגיטל 360 המעניקה פתרונות שיווק מקיפים: קידום אורגני (SEO), ניהול מדיה ו-PPC, סושיאל ו-UGC, פיתוח אתרים ועיצוב. מביאים תוצאות עם דאטה אמיתי.',
     }

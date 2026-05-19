@@ -7,6 +7,7 @@ export const metadata = {
         canonical: '/contact'
     },
     openGraph: {
+        images: ['/opengraph-image.jpg'],
         title: 'צור קשר | ספרוס',
         description: 'מוכנים להזניק את העסק שלכם? צרו קשר עם ספרוס עוד היום לפגישת ייעוץ ובניית אסטרטגיה שיווקית שתעיף את המותג שלכם קדימה.',
     }

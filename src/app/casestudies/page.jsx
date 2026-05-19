@@ -7,6 +7,7 @@ export const metadata = {
         canonical: '/casestudies'
     },
     openGraph: {
+        images: ['/opengraph-image.jpg'],
         title: 'תיקי עבודות | ספרוס',
         description: 'צפו בתיקי העבודות (Case Studies) של ספרוס: קמפיינים מנצחים, אתרי פרימיום ומהלכי שיווק שהביאו תוצאות מוכחות והחזר השקעה גבוה.',
     }
