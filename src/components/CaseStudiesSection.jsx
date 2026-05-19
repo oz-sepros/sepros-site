@@ -4,6 +4,7 @@ import { trackEvent } from '../utils/analytics';
 import { useRouter } from 'next/navigation';
 import Reveal from './Reveal';
 import SpotlightCard from './SpotlightCard';
+import Link from 'next/link';
 const CaseStudiesSection = () => {
     const router = useRouter();
     const cases = [
@@ -28,7 +29,7 @@ const CaseStudiesSection = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 dir-rtl">
                     {cases.map((c, i) => (
-                        <div key={i} onClick={() => { trackEvent('click_case_study', { case_name: c.name }); router.push(`/casestudies/demo-project-${i}`); }}>
+                        <Link key={i} href={`/casestudies/demo-project-${i}`} onClick={() => trackEvent('click_case_study', { case_name: c.name })} className="block">
                             <SpotlightCard
                                 style={{ background: 'linear-gradient(135deg, #09102c 0%, #1e3082 50%, #6869ba 100%)' }}
                                 className="group p-5 md:p-8 lg:p-10 rounded-[1.5rem] md:rounded-[2rem] cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 h-[130px] md:h-[420px] text-right"
@@ -48,7 +49,7 @@ const CaseStudiesSection = () => {
                                     </div>
                                 </div>
                             </SpotlightCard>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>

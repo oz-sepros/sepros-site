@@ -5,6 +5,7 @@ import ContactForm from '../components/ContactForm';
 import Reveal from '../components/Reveal';
 import PageTransition from '../components/PageTransition';
 import SpotlightCard from '../components/SpotlightCard';
+import Link from 'next/link';
 
 const CaseStudies = () => {
     const router = useRouter();
@@ -28,7 +29,7 @@ const CaseStudies = () => {
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 dir-rtl">
                         {cases.map((c, i) => (
-                            <div key={i} onClick={() => router.push(`/casestudies/demo-project-${i}`)}>
+                            <Link key={i} href={`/casestudies/demo-project-${i}`} className="block">
                                 <SpotlightCard
                                     style={{ background: 'linear-gradient(135deg, #09102c 0%, #1e3082 50%, #6869ba 100%)' }}
                                     className="group p-5 md:p-8 lg:p-10 rounded-[1.5rem] md:rounded-[2rem] cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 h-[130px] md:h-[420px] text-right"
@@ -48,7 +49,7 @@ const CaseStudies = () => {
                                         </div>
                                     </div>
                                 </SpotlightCard>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>

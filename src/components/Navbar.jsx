@@ -218,20 +218,18 @@ const Navbar = () => {
                         </Link>
 
                         <div className="w-full py-2">
-                            <button
-                                onClick={() => router.push('/service')}
-                                className="w-full flex items-center justify-start gap-2 text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors py-2 cursor-pointer"
-                            >
+                            <Link href="/service" className="w-full flex items-center justify-start gap-2 text-2xl font-extrabold text-gray-900 hover:text-[#2f4ea1] transition-colors py-2 cursor-pointer">
                                 <span>שירותים</span>
                                 <ChevronDown 
                                     onClick={(e) => {
+                                        e.preventDefault();
                                         e.stopPropagation();
                                         setIsMobileDepartmentsOpen(!isMobileDepartmentsOpen);
                                     }}
                                     size={24} 
                                     className={`text-gray-600 transition-transform duration-300 ${isMobileDepartmentsOpen ? 'rotate-180' : ''}`} 
                                 />
-                            </button>
+                            </Link>
 
                             <div className={`w-full overflow-hidden transition-all duration-300 ${isMobileDepartmentsOpen ? 'max-h-[500px] opacity-100 mt-2 mb-2' : 'max-h-0 opacity-0 mt-0 mb-0'}`}>
                                 <div className="flex flex-col items-end border-r-2 border-[#2f4ea1]/20 pr-4 mr-2">
@@ -281,13 +279,13 @@ const Navbar = () => {
                         {/* Mobile Menu Footer / Social */}
                         <div className="w-full mt-10 pt-8 border-t border-gray-100 flex flex-col items-center gap-8 pb-4">
                             <div className="flex items-center justify-center gap-4 w-full">
-                                <a href="https://www.instagram.com/sepros_digital/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
+                                <a href="https://www.instagram.com/sepros_digital/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
                                     <Instagram size={20} />
                                 </a>
-                                <a href="https://www.facebook.com/Sepros360DigitalMarketing" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
+                                <a href="https://www.facebook.com/Sepros360DigitalMarketing" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
                                     <Facebook size={20} />
                                 </a>
-                                <a href="https://www.linkedin.com/company/sepros-online-marketing/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
+                                <a href="https://www.linkedin.com/company/sepros-online-marketing/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md">
                                     <Linkedin size={20} />
                                 </a>
                                 <a href="https://www.tiktok.com/@sepros_dm" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="group w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#2f4ea1] hover:text-white hover:border-transparent transition-all shadow-sm hover:shadow-md relative overflow-hidden">

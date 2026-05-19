@@ -1,4 +1,5 @@
 "use client";
+import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
@@ -110,7 +111,7 @@ const ArticlePage = () => {
         return (
             <div className="min-h-screen bg-[#F5F7FA] flex flex-col items-center justify-center text-gray-900">
                 <h1 className="text-4xl font-black mb-4">מאמר לא נמצא</h1>
-                <button onClick={() => router.push('/articles')} className="text-[#2f4ea1] hover:underline">חזרה לבלוג</button>
+                <Link href="/articles" className="text-[#2f4ea1] hover:underline">חזרה לבלוג</Link>
             </div>
         );
     }
@@ -135,9 +136,9 @@ const ArticlePage = () => {
                 <div className="max-w-3xl mx-auto flex flex-col">
                     {/* Breadcrumbs */}
                     <div className="flex items-center gap-2 text-gray-600 text-sm font-bold mb-8 self-start">
-                        <button onClick={() => router.push('/')} className="hover:text-[#2f4ea1] transition-colors">ראשי</button>
+                        <Link href="/" className="hover:text-[#2f4ea1] transition-colors">ראשי</Link>
                         <ChevronLeft size={14} />
-                        <button onClick={() => router.push('/articles')} className="hover:text-[#2f4ea1] transition-colors">מאמרים</button>
+                        <Link href="/articles" className="hover:text-[#2f4ea1] transition-colors">מאמרים</Link>
                         <ChevronLeft size={14} />
                         <span className="text-gray-900">{article.title}</span>
                     </div>

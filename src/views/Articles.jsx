@@ -1,4 +1,5 @@
 "use client";
+import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -42,7 +43,7 @@ const Articles = () => {
                     </p>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {articles.map((art, i) => (
-                            <div key={i} onClick={() => router.push(`/articles/${art.slug}`)} className="bg-white hover:shadow-lg shadow-sm border border-gray-100 group cursor-pointer hover:border-[#2f4ea1]/30 transition-all rounded-xl overflow-hidden flex flex-col">
+                            <Link key={i} href={`/articles/${art.slug}`} className="bg-white hover:shadow-lg shadow-sm border border-gray-100 group cursor-pointer hover:border-[#2f4ea1]/30 transition-all rounded-xl overflow-hidden flex flex-col block">
                                 <div className="aspect-video bg-gray-50 relative overflow-hidden">
                                     <Image src={art.image} alt={art.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-all duration-700" />
                                     <div className="absolute top-4 right-4 bg-[#2f4ea1] text-white text-[10px] font-bold px-3 py-1 tracking-widest rounded-sm">{art.tag}</div>
@@ -53,7 +54,7 @@ const Articles = () => {
                                     <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">{art.desc}</p>
                                     <span className="text-[#2f4ea1] text-xs font-bold tracking-widest flex items-center gap-1 group-hover:-translate-x-2 transition-transform w-fit">קראו עוד <ChevronLeft size={14} /></span>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>

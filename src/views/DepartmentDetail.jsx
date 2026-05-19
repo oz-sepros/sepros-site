@@ -1,4 +1,5 @@
 "use client";
+import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { createPortal } from 'react-dom';
@@ -1691,7 +1692,7 @@ const DepartmentDetail = () => {
                 <div className="mt-20 md:mt-24 p-8 md:p-12 bg-gray-50 border border-[#2f4ea1]/20 text-gray-900 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-right rounded-2xl shadow-lg relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-[#2f4ea1]/10 to-transparent pointer-events-none"></div>
                     <h2 className="text-2xl md:text-3xl font-black relative z-10 text-[#2f4ea1]">{dept.ctaText || "מוכנים להתחיל לעבוד?"}</h2>
-                    <button id="dept_contact_btn" onClick={() => router.push('/contact')} className="bg-[#2f4ea1] text-white px-8 py-4 font-black tracking-widest hover:bg-[#0747cc] transition-all rounded-full relative z-10 shadow-md">בואו נתחיל</button>
+                    <Link href="/contact" id="dept_contact_btn" className="bg-[#2f4ea1] text-white px-8 py-4 font-black tracking-widest hover:bg-[#0747cc] transition-all rounded-full relative z-10 shadow-md inline-block">בואו נתחיל</Link>
                 </div>
             </div>
         </Reveal>

@@ -1,4 +1,5 @@
 "use client";
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Reveal from '../components/Reveal';
@@ -64,7 +65,7 @@ const ServicesPage = () => {
                         {services.map((srv, i) => {
                             const Icon = srv.icon;
                             return (
-                                <div key={i} onClick={() => router.push(`/service/${srv.id}`)} className="bg-white rounded-[2rem] overflow-hidden group cursor-pointer shadow-md hover:shadow-2xl hover:shadow-[#2f4ea1]/10 transition-all border border-gray-100 flex flex-col h-full hover:-translate-y-2 duration-500">
+                                <Link key={i} href={`/service/${srv.id}`} className="bg-white rounded-[2rem] overflow-hidden group cursor-pointer shadow-md hover:shadow-2xl hover:shadow-[#2f4ea1]/10 transition-all border border-gray-100 flex flex-col h-full hover:-translate-y-2 duration-500 block">
                                     <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
                                         <div className="absolute inset-0 bg-[#09102c]/20 group-hover:bg-transparent transition-colors z-10 duration-500"></div>
                                         <Image src={srv.image} alt={srv.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -81,7 +82,7 @@ const ServicesPage = () => {
                                             <ArrowUpLeft size={20} className="group-hover/btn:-translate-x-1 group-hover/btn:translate-y-1 transition-transform" />
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             );
                         })}
                     </div>
