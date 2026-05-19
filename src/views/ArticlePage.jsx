@@ -170,9 +170,9 @@ const ArticlePage = () => {
                             <h3 className="text-2xl font-black text-gray-900 mb-2">רוצים לקחת את המותג שלכם שלב אחד קדימה?</h3>
                             <p className="text-gray-600 font-light max-w-md">הצוות המשפטי והקריאייטיב שלנו זמין להתייעצות קצרה וממוקדת, ללא עלות.</p>
                         </div>
-                        <button onClick={() => router.push('/contact')} className="bg-[#2f4ea1] text-white px-8 py-4 font-black whitespace-nowrap hover:bg-[#1c3166] rounded-full transition-all shadow-md group-hover:-translate-y-1 w-full md:w-auto">
+                        <Link href="/contact" className="bg-[#2f4ea1] text-white px-8 py-4 font-black whitespace-nowrap hover:bg-[#1c3166] rounded-full transition-all shadow-md group-hover:-translate-y-1 w-full md:w-auto inline-block text-center">
                             דברו איתנו עכשיו
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </article>

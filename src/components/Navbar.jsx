@@ -57,7 +57,6 @@ const Navbar = () => {
 
     const handleDeptSelect = (id) => {
         trackEvent('click_nav_department', { department_id: id });
-        router.push(`/service/${id}`);
         setIsDropdownOpen(false);
         setIsOpen(false);
     };
@@ -94,8 +93,8 @@ const Navbar = () => {
                         onMouseEnter={() => setIsDropdownOpen(true)}
                         onMouseLeave={() => setIsDropdownOpen(false)}
                     >
-                        <button
-                            onClick={() => router.push('/service')}
+                        <Link
+                            href="/service"
                             className={`flex items-center gap-1 text-sm font-bold transition-colors cursor-pointer ${isSolid
                                     ? 'text-gray-700 group-hover:text-[#2f4ea1]'
                                     : 'text-white/90 group-hover:text-white'
@@ -103,11 +102,15 @@ const Navbar = () => {
                         >
                             שירותים
                             <ChevronDown
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                }}
                                 size={14}
                                 className={`transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''
                                     }`}
                             />
-                        </button>
+                        </Link>
 
                         <div
                             className={`absolute top-full right-0 w-64 pt-6 transition-all duration-300 ${isDropdownOpen
@@ -117,13 +120,14 @@ const Navbar = () => {
                         >
                             <div className="bg-white border border-gray-100 p-2 shadow-xl rounded-lg">
                                 {departments.map((dept) => (
-                                    <button
+                                    <Link
                                         key={dept.id}
+                                        href={`/service/${dept.id}`}
                                         onClick={() => handleDeptSelect(dept.id)}
-                                        className="w-full text-right px-6 py-4 text-xs font-bold text-gray-600 hover:bg-gray-50 hover:text-[#2f4ea1] rounded-md transition-all border-b border-gray-100 last:border-0"
+                                        className="block w-full text-right px-6 py-4 text-xs font-bold text-gray-600 hover:bg-gray-50 hover:text-[#2f4ea1] rounded-md transition-all border-b border-gray-100 last:border-0"
                                     >
                                         {dept.label}
-                                    </button>
+                                    </Link>
                                 ))}
                             </div>
                         </div>
@@ -234,13 +238,14 @@ const Navbar = () => {
                             <div className={`w-full overflow-hidden transition-all duration-300 ${isMobileDepartmentsOpen ? 'max-h-[500px] opacity-100 mt-2 mb-2' : 'max-h-0 opacity-0 mt-0 mb-0'}`}>
                                 <div className="flex flex-col items-end border-r-2 border-[#2f4ea1]/20 pr-4 mr-2">
                                     {departments.map((dept) => (
-                                        <button
+                                        <Link
                                             key={dept.id}
+                                            href={`/service/${dept.id}`}
                                             onClick={() => handleDeptSelect(dept.id)}
-                                            className="w-full text-right text-lg font-bold text-gray-600 hover:text-[#2f4ea1] transition-colors py-3"
+                                            className="block w-full text-right text-lg font-bold text-gray-600 hover:text-[#2f4ea1] transition-colors py-3"
                                         >
                                             {dept.label}
-                                        </button>
+                                        </Link>
                                     ))}
                                 </div>
                             </div>
