@@ -22,7 +22,6 @@ export default function RootLayout({ children }) {
         {/* Start cookieyes banner */}
         <Script id="cookieyes" src="https://cdn-cookieyes.com/client_data/32e34cbf98bf807aa868f28abb4fd710/script.js" strategy="afterInteractive"></Script>
         {/* End cookieyes banner */}
-        <Script id="enable-accessibility" src="https://cdn.enable.co.il/licenses/enable-L37957xifecoynq-0519-82197/init.js" strategy="afterInteractive"></Script>
       </head>
       <body className={`${heebo.className} min-h-screen bg-white text-gray-900 selection:bg-[#2f4ea1] selection:text-white antialiased`} suppressHydrationWarning>
         <Navbar />

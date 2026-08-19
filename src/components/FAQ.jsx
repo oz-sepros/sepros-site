@@ -15,7 +15,7 @@ const FAQ = ({ title = "שאלות נפוצות", data = [], className = "" }) =
             "name": item.q,
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": item.a
+                "text": item.plainAnswer || (typeof item.a === 'string' ? item.a : "")
             }
         }))
     };
