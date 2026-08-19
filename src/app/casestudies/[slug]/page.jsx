@@ -1,3 +1,12 @@
-"use client";
 import PageComponent from '../../../views/CaseStudy';
-export default PageComponent;
+
+export const metadata = {
+    robots: {
+        index: false,
+        follow: false
+    }
+};
+
+export default function CaseStudyPage() {
+    return <PageComponent />;
+}

@@ -6,6 +6,10 @@ export const metadata = {
     alternates: {
         canonical: '/casestudies'
     },
+    robots: {
+        index: false,
+        follow: false
+    },
     openGraph: {
         images: ['/opengraph-image.jpg'],
         title: 'תיקי עבודות | ספרוס',

@@ -1486,7 +1486,7 @@ const DepartmentDetail = () => {
                 { q: "תוך כמה זמן נראה תוצאות מהקמפיינים?", a: "קמפיינים ממומנים מתחילים להביא תנועה באופן מיידי עם עלייתם לאוויר. בדרך כלל לוקח 2-4 שבועות של איסוף נתונים ואופטימיזציה עד שמגיעים ליציבות וליחסי המרה אופטימליים, תלוי בתקציב, במתחרים ובתחום." },
                 { q: "באילו פלטפורמות אתם מנהלים קמפיינים?", a: "אנו מנהלים קמפיינים במגוון רחב של פלטפורמות בהתאם לקהל היעד שלכם: גוגל (חיפוש, מדיה, שופינג, יוטיוב), מטא (פייסבוק ואינסטגרם), טיקטוק, לינקדאין ועוד. לכל פלטפורמה אסטרטגיה מותאמת." },
                 { q: "האם אתם עובדים עם עסקים B2B או B2C?", a: "שנינו! יש לנו ניסיון מוכח ועשיר גם עם חברות B2B מורכבות שמחפשות לידים איכותיים (למשל טכנולוגיה, שירותים עסקיים ותעשייה) וגם עם מותגי B2C שממוקדים במכירות איקומרס ויצירת מודעות למותג." },
-                { q: "איך אתם מחשבים את התקציב החודשי המומלץ?", a: "אנחנו מנתחים את התחרותיות בענף, ערוצי הפרסום הרצויים ויעדי הצמיחה העסקיים שלכם, ואז בונים מודל השקעה (ROAS Model) שממליץ על תקציב נקודתי ומאפשר טווח סקייל בטוח." },
+                { q: "איך אתם מחשבים את התקציב החודשי המומלץ?", a: <>אנחנו מנתחים את התחרותיות בענף, ערוצי הפרסום הרצויים ויעדי הצמיחה העסקיים שלכם, ואז בונים מודל השקעה (<Link href="/articles/double-your-roas" className="text-[#2f4ea1] hover:underline font-medium">ROAS Model</Link>) שממליץ על תקציב נקודתי ומאפשר טווח סקייל בטוח.</>, plainAnswer: "אנחנו מנתחים את התחרותיות בענף, ערוצי הפרסום הרצויים ויעדי הצמיחה העסקיים שלכם, ואז בונים מודל השקעה (ROAS Model) שממליץ על תקציב נקודתי ומאפשר טווח סקייל בטוח." },
                 { q: "האם יש לכם שקיפות מלאה לנתונים ולתקציב?", a: "לחלוטין. אתם בעלי החשבון המקורי, והתשלום על המדיה משולם ישירות לפלטפורמה. אנו מספקים לוחות בקרה (Dashboards) חיים בהם תוכלו לראות בזמן אמת לאן הכסף הולך וכמה המרות הגיעו." }
             ]
         },
@@ -1540,7 +1540,7 @@ const DepartmentDetail = () => {
             processTitle: "איך אנחנו בונים אתרים?",
             processSubtitle: "התהליך שמאחורי הפיתוח של נברטי הדיגיטל",
             process: [
-                { title: "אפיון ועיצוב UX/UI", desc: "חקר קהל יעד, בניית מפות מסע משתמש, ועיצוב דפי נחיתה וממשקים ברזולוציית פיקסל-פרפקט.", icon: <MonitorSmartphone size={28} /> },
+                { title: "אפיון ועיצוב UX/UI", desc: <>חקר קהל יעד, בניית מפות מסע משתמש, ו<Link href="/articles/ux-color-psychology" className="text-[#2f4ea1] hover:underline font-medium">עיצוב דפי נחיתה וממשקים</Link> ברזולוציית פיקסל-פרפקט.</>, icon: <MonitorSmartphone size={28} /> },
                 { title: "פיתוח קדמי וקוד", desc: "כתיבת קוד נקי, סמנטי ומהיר בטכנולוגיות חדישות לטובת ביצועים מקסימליים וחוויה חלקה ב-120fps.", icon: <Code2 size={28} /> },
                 { title: "אבטחה ובקרה (QA)", desc: "בדיקות מעמיקות ושבירת המערכת במגוון דפדפנים ומכשירים בכדי לוודא שאין צווארי בקבוק ותקלות.", icon: <CheckCircle2 size={28} /> },
                 { title: "השקה וניטור רציף", desc: "עלייה חגיגית לאוויר, חיבור לאנליטיקס ופיקסלים, ותפעול שרת המבטיח יציבות של 99.9% גם בתנועה גדולה.", icon: <Globe size={28} /> }
@@ -1571,7 +1571,7 @@ const DepartmentDetail = () => {
                 { q: "תוך כמה זמן נראה השפעה של תהליך SEO?", a: "תהליך קידום אורגני הוא השקעה אסטרטגית עמוקה. תוצאות תנודותיות לרוב יורגשו לאחר 3 חודשים, כאשר קפיצות מובהקות ותשואת ה-ROI המרכזית צפות במלוא עוצמתן תוך 6 עד 9 חודשים." },
                 { q: "האם אתם כותבים גם את המאמרים לאתר?", a: "חד משמעית. מחלקת ה-SEO שלנו כוללת למעשה תא תוכן סגור שמכיל קופירייטרים בעלי רקע מוטה SEO שמייצרים טקסט בעל ערך אמיתי לגולשים שגם נסרק ומאונדקס בצורה אופטימלית על ידי גוגל." },
                 { q: "איך אתם מודדים ובונים קישורים חיצוניים?", a: "אנו לא עושים שימוש ב'חוות קישורים' פאסיביות שעלולות לגרור ענישה. הגישה מתבססת על Digital PR: קשר רצוף עם בורד עיתונאים לפרסום אורגני במגזינים אקטואליים רבי עוצמה ברמות שונות של סמכות (DA)." },
-                { q: "מה מתבצע בצד הטכני של האתר?", a: "בדיקת מהירות שרתי, סגירת לופים (404), צמצום JS עודף, בניית מפות אתר, פירור לחם (Breadcrumbs), ושיפור כללי של מדדי ה-Core Web Vitals שגוגל דורשת כדי לפרוס אמינות." }
+                { q: "מה מתבצע בצד הטכני של האתר?", a: <>בדיקת מהירות שרתי, סגירת לופים (404), צמצום JS עודף, בניית מפות אתר, פירור לחם (Breadcrumbs), ושיפור כללי של <Link href="/articles/technical-seo-2026" className="text-[#2f4ea1] hover:underline font-medium">מדדי ה-Core Web Vitals</Link> שגוגל דורשת כדי לפרוס אמינות.</>, plainAnswer: "בדיקת מהירות שרתי, סגירת לופים (404), צמצום JS עודף, בניית מפות אתר, פירור לחם (Breadcrumbs), ושיפור כללי של מדדי ה-Core Web Vitals שגוגל דורשת כדי לפרוס אמינות." }
             ]
         },
         strategy: {
@@ -1654,13 +1654,16 @@ const DepartmentDetail = () => {
         <Reveal className="min-h-screen bg-white pt-32 md:pt-40 pb-20 text-right">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
             <div className="max-w-[1400px] mx-auto px-6">
+                {/* Screen-reader-only semantic H1 to satisfy heading outline accessibility */}
+                <h1 className="sr-only">{dept.title}</h1>
+
                 {/* Mobile Title - Appears above image on mobile */}
-                <div className="lg:hidden text-4xl md:text-5xl font-black uppercase mb-8 text-[#2f4ea1] leading-tight flex flex-col-reverse relative z-10">{dept.title}</div>
+                <div aria-hidden="true" className="lg:hidden text-4xl md:text-5xl font-black uppercase mb-8 text-[#2f4ea1] leading-tight flex flex-col-reverse relative z-10">{dept.title}</div>
 
                 <div className="flex flex-col lg:flex-row gap-12 md:gap-16 items-stretch">
                     <div className="lg:w-[60%] flex flex-col justify-center order-last lg:order-first mt-2 lg:mt-0">
                         {/* Desktop Title */}
-                        <h1 className="hidden lg:flex text-4xl md:text-5xl lg:text-6xl font-black uppercase mb-6 text-[#2f4ea1] leading-tight flex-col-reverse relative z-10">{dept.title}</h1>
+                        <div aria-hidden="true" className="hidden lg:flex text-4xl md:text-5xl lg:text-6xl font-black uppercase mb-6 text-[#2f4ea1] leading-tight flex-col-reverse relative z-10">{dept.title}</div>
                         <p className="text-gray-600 text-xl md:text-2xl font-normal mb-10 leading-relaxed text-balance relative z-10">{dept.long}</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
                             {dept.services.map((s, i) => (

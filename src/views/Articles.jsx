@@ -11,10 +11,10 @@ const Articles = () => {
     const router = useRouter();
 
     const articles = [
-        { slug: 'technical-seo-2026', title: "המדריך המלא ל-SEO טכני ב-2026", date: "15 מרץ, 2026", isoDate: "2026-03-15T00:00:00+02:00", desc: "כל מה שצריך לדעת על Core Web Vitals, סריקה של גוגל ואיך להכין את האתר שלכם לעידן ה-AI.", tag: "SEO", image: "/articles/article_seo.png" },
-        { slug: 'double-your-roas', title: "איך להכפיל את ה-ROAS בקמפיינים בגוגל", date: "2 מרץ, 2026", isoDate: "2026-03-02T00:00:00+02:00", desc: "סודות האופטימיזציה שסוכנויות לא מגלות: חלוקת תקציב חכמה, טיוב המרות ובידינג מבוסס ערך.", tag: "PPC", image: "/articles/article_roas.png" },
-        { slug: 'tiktok-or-instagram', title: "טיקטוק או אינסטגרם? איפה הקהל שלכם נמצא", date: "28 פברואר, 2026", isoDate: "2026-02-28T00:00:00+02:00", desc: "ניתוח מעמיק של פלטפורמות הסושיאל המובילות וכיצד לבנות אסטרטגיית תוכן שפוגעת בול במטרה.", tag: "סושיאל", image: "/articles/article_social.png" },
-        { slug: 'ux-color-psychology', title: "עיצוב UX שמוכר: פסיכולוגיה של צבעים וממשק", date: "10 פברואר, 2026", isoDate: "2026-02-10T00:00:00+02:00", desc: "איך למקם כפתורי הנעה לפעולה, באילו צבעים להשתמש ואיך לבנות אמון דרך חוויית משתמש מושלמת.", tag: "UX/UI", image: "/articles/article_ux.png" },
+        { slug: 'technical-seo-2026', title: "SEO טכני ב-2026: שלושת עמודי התווך שחשוב להכיר", date: "15 מרץ, 2026", isoDate: "2026-03-15T00:00:00+02:00", desc: "כל מה שצריך לדעת על Core Web Vitals, סריקה של גוגל ואיך להכין את האתר שלכם לעידן ה-AI.", tag: "SEO", image: "/articles/article_seo.png", imageAlt: "לוח נתונים ותרשימים לאופטימיזציה טכנית של אתר" },
+        { slug: 'double-your-roas', title: "שיפור ROAS בקמפיינים בגוגל: הדרכים שכדאי להכיר", date: "2 מרץ, 2026", isoDate: "2026-03-02T00:00:00+02:00", desc: "סודות האופטימיזציה שסוכנויות לא מגלות: חלוקת תקציב חכמה, טיוב המרות ובידינג מבוסס ערך.", tag: "PPC", image: "/articles/article_roas.png", imageAlt: "לוח ביצועי שיווק דיגיטלי המציג נתוני ROAS" },
+        { slug: 'tiktok-or-instagram', title: "טיקטוק או אינסטגרם? איפה הקהל שלכם נמצא", date: "28 פברואר, 2026", isoDate: "2026-02-28T00:00:00+02:00", desc: "ניתוח מעמיק של פלטפורמות הסושיאל המובילות וכיצד לבנות אסטרטגיית תוכן שפוגעת בול במטרה.", tag: "סושיאל", image: "/articles/article_social.png", imageAlt: "טלפון וסמלים של רשתות חברתיות, בהן טיקטוק ואינסטגרם" },
+        { slug: 'ux-color-psychology', title: "עיצוב UX שמניע לפעולה: העקרונות שכדאי להכיר", date: "10 פברואר, 2026", isoDate: "2026-02-10T00:00:00+02:00", desc: "איך למקם כפתורי הנעה לפעולה, באילו צבעים להשתמש ואיך לבנות אמון דרך חוויית משתמש מושלמת.", tag: "UX/UI", image: "/articles/article_ux.png", imageAlt: "ממשקי אפליקציה לצד מניפת צבעים לתכנון עיצוב UX" },
     ];
 
     const blogSchema = {
@@ -26,7 +26,7 @@ const Articles = () => {
         "blogPost": articles.map(a => ({
             "@type": "BlogPosting",
             "headline": a.title,
-            "url": `https://www.sepros.co.il/article/${a.slug}`,
+            "url": `https://www.sepros.co.il/articles/${a.slug}`,
             "datePublished": a.isoDate,
             "description": a.desc
         }))
@@ -45,7 +45,7 @@ const Articles = () => {
                         {articles.map((art, i) => (
                             <Link key={i} href={`/articles/${art.slug}`} className="bg-white hover:shadow-lg shadow-sm border border-gray-100 group cursor-pointer hover:border-[#2f4ea1]/30 transition-all rounded-xl overflow-hidden flex flex-col block">
                                 <div className="aspect-video bg-gray-50 relative overflow-hidden">
-                                    <Image src={art.image} alt={art.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-all duration-700" />
+                                    <Image src={art.image} alt={art.imageAlt} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-all duration-700" />
                                     <div className="absolute top-4 right-4 bg-[#2f4ea1] text-white text-[10px] font-bold px-3 py-1 tracking-widest rounded-sm">{art.tag}</div>
                                 </div>
                                 <div className="p-6 flex-grow flex flex-col">

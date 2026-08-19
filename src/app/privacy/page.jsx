@@ -2,7 +2,7 @@ import PageComponent from '../../views/PrivacyPolicy';
 
 export const metadata = {
     title: 'מדיניות פרטיות | ספרוס',
-    description: 'מדיניות הפרטיות של ספרוס.',
+    description: 'מדיניות הפרטיות של ספרוס: מידע על איסוף ושימוש בנתונים, עוגיות, כלי אנליטיקה, שמירת מידע וזכויות המשתמשים באתר.',
     alternates: {
         canonical: '/privacy'
     },
