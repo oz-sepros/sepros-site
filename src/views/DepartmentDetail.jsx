@@ -90,16 +90,16 @@ const SocialCarousel = () => {
 
     // הסרטונים האמיתיים (YouTube Shorts) של הלקוח
     const baseItems = [
-        { id: "ce4XWYqPApc" },
-        { id: "SFHBRCBtvog" },
-        { id: "8D6dfBAYmvY" },
-        { id: "D8hOZ_PXC-4" },
-        { id: "v1qFbJElfJ4" },
-        { id: "pUF5lAJ85vg" },
-        { id: "a5OyApZs98g" },
-        { id: "5AVwndFocNU" },
-        { id: "XE9emYNGeKo" },
-        { id: "zRZstpNyqrk" }
+        { id: "ce4XWYqPApc", title: "מה אתם הייתם עושים עם 13,000 ש\"ח בשנה?" },
+        { id: "SFHBRCBtvog", title: "קונספט ייחודי בחופים EAST!" },
+        { id: "8D6dfBAYmvY", title: "Exchange Ramat-Gan" },
+        { id: "D8hOZ_PXC-4", title: "בונים את זה!" },
+        { id: "v1qFbJElfJ4", title: "איזה סוג אתם?" },
+        { id: "pUF5lAJ85vg", title: "איך באמת מצלמים סרטון לנדל\"ן!" },
+        { id: "a5OyApZs98g", title: "כלמוביל Energy" },
+        { id: "5AVwndFocNU", title: "חייב סרטון סושיאל דחוף" },
+        { id: "XE9emYNGeKo", title: "עצור עצור רגע!" },
+        { id: "zRZstpNyqrk", title: "טרנד תינוקות" }
     ];
     // נכפיל את המערך כדי למנוע קפיצות ויזואליות במצב מעגל אינסופי
     const items = [...baseItems, ...baseItems];
@@ -174,7 +174,6 @@ const SocialCarousel = () => {
 
             <div className="relative flex items-center justify-center w-full h-[460px] md:h-[550px] max-w-[1200px] mx-auto">
                 <button aria-label="הקודם" onClick={handlePrev} className="absolute right-2 md:right-12 top-1/2 z-40 p-3 md:p-4 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.15)] text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-all hover:scale-110 -translate-y-1/2"><ChevronRight size={24} /></button>
-                <button aria-label="הבא" onClick={handleNext} className="absolute left-2 md:left-12 top-1/2 z-40 p-3 md:p-4 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.15)] text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-all hover:scale-110 -translate-y-1/2"><ChevronLeft size={24} /></button>
 
                 {items.map((item, i) => {
                     const offset = getOffset(i);
@@ -206,24 +205,34 @@ const SocialCarousel = () => {
 
                     return (
                         <div key={i}
+                            role="button"
+                            tabIndex={isActive ? 0 : -1}
+                            aria-label={`נגן סרטון: ${item.title}`}
                             onClick={() => {
                                 if (isActive) setPlaying(true);
                                 else { setActive(i); setPlaying(false); }
                             }}
-                            className={`absolute transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] w-[240px] md:w-[280px] aspect-[9/16] rounded-2xl md:rounded-[2rem] overflow-hidden bg-black ${classNames}`}>
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    if (isActive) setPlaying(true);
+                                    else { setActive(i); setPlaying(false); }
+                                }
+                            }}
+                            className={`absolute transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] w-[240px] md:w-[280px] aspect-[9/16] rounded-2xl md:rounded-[2rem] overflow-hidden bg-black focus:outline-none focus:ring-2 focus:ring-[#2f4ea1] focus:ring-offset-2 ${classNames}`}>
 
                             {isActive && playing ? (
                                 <iframe
                                     className="w-full h-full object-cover"
                                     src={`https://www.youtube.com/embed/${item.id}?autoplay=1&mute=0&controls=1&rel=0`}
-                                    title="YouTube Shorts"
+                                    title={item.title}
                                     frameBorder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen>
                                 </iframe>
                             ) : (
                                 <>
-                                    <Image src={`https://img.youtube.com/vi/${item.id}/hqdefault.jpg`} alt="שורטס - דוגמה" fill sizes="(max-width: 768px) 240px, 280px" className="object-cover transition-transform duration-1000 md:group-hover:scale-105" />
+                                    <Image src={`https://img.youtube.com/vi/${item.id}/hqdefault.jpg`} alt="" fill sizes="(max-width: 768px) 240px, 280px" className="object-cover transition-transform duration-1000 md:group-hover:scale-105" />
                                     <div className={`absolute inset-0 transition-colors duration-500 flex items-center justify-center ${isActive ? 'bg-black/10 hover:bg-black/20' : 'bg-black/40'}`}>
                                         {isActive && (
                                             <div className="w-16 h-16 md:w-20 md:h-20 bg-white/95 backdrop-blur-md rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(0,0,0,0.3)] hover:scale-110 hover:bg-white transition-transform duration-300">
@@ -236,6 +245,7 @@ const SocialCarousel = () => {
                         </div>
                     )
                 })}
+                <button aria-label="הבא" onClick={handleNext} className="absolute left-2 md:left-12 top-1/2 z-40 p-3 md:p-4 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.15)] text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-all hover:scale-110 -translate-y-1/2"><ChevronLeft size={24} /></button>
             </div>
 
         </div>
@@ -1170,8 +1180,10 @@ const DepartmentPortfolio = ({ category }) => {
                 <p className="text-gray-600 mb-8 font-medium">כדי לראות את איכות הפיתוח המלאה, לחצו על הפרויקטים וצפו בהם באוויר.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {webProjects.map((project, i) => (
-                        <div key={i}
-                            onClick={() => window.open(project.link, '_blank')}
+                        <a key={i}
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             onMouseEnter={(e) => { const v = e.currentTarget.querySelector('video'); if (v) v.play().catch(() => { }); }}
                             onMouseLeave={(e) => { const v = e.currentTarget.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } }}
                             className="bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] p-0 group cursor-pointer relative overflow-hidden rounded-xl border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block">
@@ -1199,7 +1211,7 @@ const DepartmentPortfolio = ({ category }) => {
                                     <ExternalLink size={14} className="text-[#2f4ea1]" />
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     ))}
                 </div>
 
@@ -1521,7 +1533,7 @@ const DepartmentDetail = () => {
             process: [
                 { title: "בריף וגיבוש קונספט", desc: "הבנת ערכי המותג, גיבוש קהל היעד ובניית לוח השראה חזותי המגדיר את הפאליטה והאווירה הכללית.", icon: <FileText size={28} /> },
                 { title: "יצירת זהות (Branding)", desc: "עיצוב ויצירת מסרים, טיפוגרפיה ושפה גרפית שמשלבים מראה ויזואלי מהוקצע שעוזר לעורר אמינות רגשית.", icon: <Palette size={28} /> },
-                { title: "פרוטוטייפים לאישור", desc: "בניית מוקאפים, דפי נחיתה אינטראקטיביים או מצגות מותג בכדי לחוש את העיצוב בדיוק כפי שהלקוח יחווה.", icon: <Layout size={28} /> },
+                { title: "פרוטוטייפים לאישור", desc: <>בניית מוקאפים, דפי נחיתה אינטראקטיביים או מצגות מותג בכדי לחוש את <Link href="/articles/ux-color-psychology" className="text-[#2f4ea1] hover:underline font-medium">עיצוב ה-UX</Link> בדיוק כפי שהלקוח יחווה.</>, icon: <Layout size={28} /> },
                 { title: "מסירה מנוהלת (Handoff)", desc: "אריזת כלל מרכיבי הסטודיו לתיק אחיד והעברת הקבצים למחלקת הפיתוח תוך ליווי טכני שוטף.", icon: <Briefcase size={28} /> }
             ],
             faqs: [
@@ -1650,9 +1662,35 @@ const DepartmentDetail = () => {
         "url": `https://www.sepros.co.il/service/${id}`
     };
 
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "בית",
+                "item": "https://www.sepros.co.il/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "שירותים",
+                "item": "https://www.sepros.co.il/service"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": dept.title,
+                "item": `https://www.sepros.co.il/service/${id}`
+            }
+        ]
+    };
+
     return (
         <Reveal className="min-h-screen bg-white pt-32 md:pt-40 pb-20 text-right">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
             <div className="max-w-[1400px] mx-auto px-6">
                 {/* Screen-reader-only semantic H1 to satisfy heading outline accessibility */}
                 <h1 className="sr-only">{dept.title}</h1>

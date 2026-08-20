@@ -698,6 +698,72 @@ Approved removal of the Enable Accessibility Widget integration (`cdn.enable.co.
 
 - None
 
+---
+
+## Change Log - 2026-08-19 (Phase 2 Safe Implementation Batch)
+
+### Approved Changes
+1. **BreadcrumbList Structured Data**:
+   - Added BreadcrumbList JSON-LD schema blocks to dynamic templates (`/service/[id]` and `/articles/[slug]`).
+2. **Careers Accordion Accessibility**:
+   - Restructured job listing cards to use native `<button>` accordion triggers with `aria-expanded` and `aria-controls` bindings, wrapped inside `<h2>` heading blocks, with all inner content converted to valid HTML phrasing `<span>` elements (removing invalid `<div>`/`<h2>` inside `<button>` nesting).
+3. **Portfolio Native Anchors**:
+   - Swapped clickable project card wrapper `div` blocks with semantic `<a>` anchor tags targeting external client sites with target/rel constraints.
+4. **Design Contextual Link**:
+   - Added contextual internal link to UX design article inside Design Process Step 3 description by wrapping `"עיצוב ה-UX"` in a `<Link>` component.
+5. **Article Schema Image Paths & Semantic Attributes**:
+   - Converted dynamic article image values in structured schema from relative paths (`/articles/...`) to absolute production URLs (`https://www.sepros.co.il/articles/...`).
+   - Added recommended semantic attributes to JSON-LD block: `"mainEntityOfPage"` linking to dynamic canonical article URL and `"publisher"` referencing factual Sepros organization parameters and SVG logo.
+6. **Social Video Carousel Accessibility & Authoritative Mapping**:
+   - Mapped authoritative titles to all 10 YouTube Shorts items in the carousel, preserving existing IDs and array order.
+   - Wrapped video triggers in keyboard-accessible cards with `role="button"`, focus styles, custom `onKeyDown` handlers (for Enter/Space playback triggers), and dynamic unique accessible names (`aria-label={`נגן סרטון: ${item.title}`}`).
+   - Prevented keyboard traps and focus leaks on off-screen invisible cards by dynamically binding `tabIndex={isActive ? 0 : -1}`.
+   - Cleared duplicate text readers announcements by setting video thumbnail images to decorative empty alt tags (`alt=""`).
+   - Configured dynamic playing video iframe elements to receive the corresponding `title={item.title}` instead of a generic string.
+   - Reordered DOM nesting of Right/Left Chevrons and map loops to establish a sequential, natural Tab ring progression (Right Chevron -> Active Card -> Left Chevron).
+
+### Affected Pages
+- `/service/[id]` (PPC, Social, Design, Tech, SEO, Strategy, Analytics detail pages)
+- `/articles/[slug]` (All 4 dynamic articles)
+- `/careers`
+
+### Edited Files
+- [`src/views/DepartmentDetail.jsx`](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx)
+- [`src/views/ArticlePage.jsx`](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/ArticlePage.jsx)
+- [`src/views/Careers.jsx`](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/Careers.jsx)
+
+### Test Results
+
+**Passed**
+- Successful production compilation (`npm.cmd run build`).
+- Verified BreadcrumbList schema on `/service/tech` and `/articles/technical-seo-2026` via browser DOM script extraction.
+- Verified dynamic Article schemas render absolute image paths, mainEntityOfPage canonical association, and publisher details correctly on all 4 articles using test script.
+- Verified dynamic video carousel titles, unique aria-labels, empty thumbnail alts, playing iframe titles, and reordered natural Tab progression flow on `/service/social` via browser subagent.
+- Keyboard navigation (Tab focus) and trigger selection (Space/Enter) verified on Careers job trigger buttons and portfolio card anchor elements.
+- Expand/collapse toggle controls and form field inputs on Careers list items verified.
+- Visual design, positioning, borders, spacing, and hover animations validated as fully preserved.
+
+### Manual Verification
+- `/careers`
+  - Press `Tab` to navigate to job cards. Confirm visual focus outline and press `Space` or `Enter` to expand/collapse.
+- `/service/tech`
+  - Navigate to project cards. Press `Tab` to focus, press `Enter` to verify it launches link in a new tab.
+- `/service/design`
+  - Scroll to process step 3. Verify link "עיצוב ה-UX" is styled correctly and navigates to the UX article.
+- `/articles/[slug]`
+  - Inspect dynamic source code of the page, confirm absolute path in `"image"` JSON-LD matches `https://www.sepros.co.il/articles/...`.
+- `/service/social`
+  - Press `Tab` to focus Right Chevron, press `Tab` to focus active center video card (verify aria-label matches title), press `Tab` to focus Left Chevron. Press `Enter`/`Space` on focused active card to verify video plays inside iframe with matching title.
+
+### Intentionally Not Changed
+- Organization (homepage/about), Service, and FAQPage existing schemas (no duplicates or sameAs modifications).
+- `/accessibility` layout, content, and metadata (OpenGraph tags are NOT implemented yet).
+- General FAQ heading structure (h3 inside buttons kept to preserve outline accessibility).
+- JobPosting schema (left for human input review).
+- Authorship details and leadership bios.
+- VideoObject schema blocks for Shorts videos (deferred/optional due to missing publishing date/description assets).
+
+
 
 
 
