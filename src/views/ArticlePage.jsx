@@ -127,17 +127,10 @@ const ArticlePage = () => {
         "image": [`https://www.sepros.co.il${article.image}`],
         "datePublished": article.isoDate,
         "author": [{
-            "@type": "Organization",
-            "name": "Sepros Digital",
-            "url": "https://www.sepros.co.il"
+            "@id": "https://www.sepros.co.il/#organization"
         }],
         "publisher": {
-            "@type": "Organization",
-            "name": "Sepros Digital",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://www.sepros.co.il/logos/Logo.svg"
-            }
+            "@id": "https://www.sepros.co.il/#organization"
         },
         "mainEntityOfPage": {
             "@type": "WebPage",

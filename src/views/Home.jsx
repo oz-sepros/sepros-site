@@ -25,7 +25,7 @@ const Hero = () => {
             </h1>
 
             <p className="text-white/90 text-lg md:text-xl max-w-3xl mx-auto mb-6 md:mb-10 leading-relaxed font-normal">
-                ספרוס משלבת דאטה, מדיה וקריאייטיב כדי להצמיח עסקים בעידן החדש. אנחנו לא רק מנהלים קמפיינים – אנחנו בונים את עתיד המותג שלכם.
+                ספרוס היא סוכנות דיגיטל המשלבת דאטה, מדיה וקריאייטיב כדי להצמיח עסקים בעידן החדש. אנחנו לא רק מנהלים קמפיינים – אנחנו בונים את עתיד המותג שלכם.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
@@ -53,9 +53,9 @@ const ClientsSection = () => {
 
 
 const homeFaqData = [
-    { q: "איך אתם מודדים הצלחה בקמפיינים?", a: "אנחנו מתמקדים במדדי שורה תחתונה (ROI/ROAS). לכל לקוח אנחנו בונים דאשבורד נתונים בזמן אמת שמחבר בין השקעת המדיה לבין המכירות בפועל." },
+    { q: "איך אתם מודדים הצלחה בקמפיינים?", a: "אנחנו מתמקדים במדדי שורה תחתונה (ROI/ROAS). לכל לקוח PPC אנחנו בונים דאשבורד נתונים שמתעדכן באופן אוטומטי ומחבר בין השקעת המדיה לבין המכירות בפועל." },
     { q: "מה מייחד את ספרוס משאר הסוכנויות?", a: "השילוב בין טכנולוגיה לקריאייטיב. אנחנו סוכנות בוטיק, מה שאומר שכל לקוח מקבל יחס אישי מאנשי המקצוע הבכירים ביותר, ללא שכבות ניהול מיותרות." },
-    { q: "תוך כמה זמן אפשר לראות תוצאות?", a: "ב-PPC תוצאות ראשוניות נראות תוך ימים, אך אופטימיזציה אמיתית דורשת 30-90 יום. ב-SEO התהליך לוקח בין 3 ל-6 חודשים לבניית סמכות משמעותית." },
+    { q: "תוך כמה זמן אפשר לראות תוצאות?", a: "ב-PPC אפשר לראות נתונים ותוצאות ראשוניות כבר בימים הראשונים, כאשר תהליך האופטימיזציה משתפר ככל שמצטבר יותר דאטה. ב-SEO מדובר בתהליך ארוך טווח, וקצב ההתקדמות תלוי בין היתר במצב האתר, בתחרות ובנקודת הפתיחה." },
     { q: "האם אתם עובדים עם עסקים קטנים?", a: "אנחנו מתמחים בעבודה עם מותגים בינוניים וגדולים או סטארטאפים בשלבי צמיחה (Scale) שיש להם תקציבי שיווק משמעותיים ויעדים שאפתניים." }
 ];
 
@@ -63,9 +63,10 @@ const Home = () => {
     const orgSchema = {
         "@context": "https://schema.org",
         "@type": "Organization",
+        "@id": "https://www.sepros.co.il/#organization",
         "name": "Sepros Digital",
         "url": "https://www.sepros.co.il",
-        "logo": "https://www.sepros.co.il/logo.png",
+        "logo": "https://www.sepros.co.il/logos/Logo.svg",
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "0528910085",
@@ -81,9 +82,21 @@ const Home = () => {
         }
     };
 
+    const websiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://www.sepros.co.il/#website",
+        "url": "https://www.sepros.co.il",
+        "name": "ספרוס - סוכנות דיגיטל | Sepros Digital",
+        "publisher": {
+            "@id": "https://www.sepros.co.il/#organization"
+        }
+    };
+
     return (
         <div className="pt-0 relative">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
             {/* Subtle Figma-style dot pattern overlay */}
             <div className="absolute inset-0 z-[50] pointer-events-none" style={{
                 backgroundImage: 'radial-gradient(#09102c 1.5px, transparent 1.5px)',

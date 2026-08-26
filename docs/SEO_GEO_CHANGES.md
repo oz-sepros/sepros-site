@@ -761,9 +761,113 @@ Approved removal of the Enable Accessibility Widget integration (`cdn.enable.co.
 - General FAQ heading structure (h3 inside buttons kept to preserve outline accessibility).
 - JobPosting schema (left for human input review).
 - Authorship details and leadership bios.
-- VideoObject schema blocks for Shorts videos (deferred/optional due to missing publishing date/description assets).
-
-
-
-
-
+- VideoObject schema blocks for Shorts videos (deferred/optional due to missing publishing date/description assets). 
+ 
+ ---
+ 
+ ## 2026-08-23 — PPC Copy Optimization
+ 
+ ### Request / Approval
+ 
+ Approved implementation of the paid media (PPC) content optimization batch:
+ 1. Added PPC context to visible Hero copy on `/service/ppc` (PPC/Paid channels and data approach).
+ 2. Softened the Process Step 4 ROAS daily promise and corrected spelling typo `"ושכוכפול"`.
+ 3. Rephrased organic/PPC graph description to remove the "doubled ROI" guarantee.
+ 4. Corrected real-time dashboard tracking claims in FAQ 5 to specify automatic updating.
+ 5. Softened FAQ 4 "safe scaling" phrasing to reflect metric-guided budget scaling.
+ 
+ All other visual, code structure, B2B/B2C segmentations, and numerical metric parameters remain completely unchanged.
+ 
+ ### Changes Made
+ 
+ | URL | Type | Area | Before | After | File |
+ |---|---|---|---|---|---|
+ | `/service/ppc` | GEO / Content | Hero Paragraph | `אנחנו מנהלים תקציבי ענק באופטימיזציה מקסימלית...` | `אנחנו מנהלים קמפיינים ותקציבי PPC במגוון פלטפורמות, בגישה מבוססת דאטה...` | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+ | `/service/ppc` | GEO / Content | Process Step 4 | `שיפור יחס ה-ROAS מיום ליום ושכוכפול רוחבי...` | `אופטימיזציה שוטפת לשיפור יחס ה-ROAS ושכפול רוחבי...` | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+ | `/service/ppc` | GEO / Content | Graph Paragraph | `המטרה שלנו היא לא רק טראפיק, אלא המרות שורות תחתונות. ככה נראית השתלטות ממומנת שמביאה לידים חמים ומכפילה את החזר ההשקעה.` | `המטרה שלנו היא לא רק טראפיק, אלא המרות ותוצאות עסקיות. כך נראית פעילות ממומנת שממוקדת בלידים איכותיים ובשיפור ביצועי הקמפיינים.` | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+ | `/service/ppc` | GEO / Content | FAQ 4 | `...טווח סקייל בטוח.` | `...טווח הסקייל בהתאם ליעדי ולביצועים.` | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+ | `/service/ppc` | GEO / Content | FAQ 5 | `...לוחות בקרה (Dashboards) חיים בהם תוכלו לראות בזמן אמת לאן הכסף הולך וכמה המרות הגיעו.` | `...לוחות בקרה (Dashboards) שמתעדכנים באופן אוטומטי, ובהם תוכלו לעקוב אחר התקציבים, הביצועים וההמרות.` | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+ 
+ ### Automatic Safe Fixes
+ 
+ - Corrected typo `ושכוכפול` to `ושכפול`.
+ 
+ ### Files Modified
+ 
+ - `src/views/DepartmentDetail.jsx`
+ - `docs/SEO_GEO_AUDIT.md`
+ - `docs/SEO_GEO_CHANGES.md`
+ 
+ ### Verification
+ 
+ - [x] Production build compiles successfully (`npm run build`).
+ - [x] Verified visible PPC copy updates on localhost.
+ - [x] Verified `FAQPage` JSON-LD schema is synchronized with the new phrasing.
+ - [x] Confirmed zero visual or layout regressions.
+ 
+ ### Intentionally Not Changed
+ 
+ - H1 title "ניהול מדיה" (kept verbatim).
+ - PPC stats counters (x4.5 ROAS, -45% CPL, +350% Sales, graph values) (pending factual verification).
+ - B2B/B2C FAQ experience fields (pending factual verification).
+ 
+ ---
+ 
+ ## 2026-08-23 — Social Content Optimization
+ 
+ ### Request / Approval
+ 
+ Approved implementation of the paid social (Social and UGC) content optimization batch:
+ 1. Updated metadata (SEO Title and Meta Description) on `/service/social` to target UGC management and data approach, ensuring OpenGraph stays synchronized.
+ 2. Softened Hero paragraph description: replaced `"אנחנו לוקחים מותגים והופכים אותם לתופעת רשת בעזרת"` with `"אנחנו עוזרים למותגים לבלוט ברשת בעזרת"`. (Intentionally kept `"הפקות וידאו ויראליות"`).
+ 3. Replaced process section title `"המתכון להפוך לוויראלי"` with `"איך יוצרים תוכן שעוצר את הגלילה?"` to reduce repetitive virality claims.
+ 4. Softened Process Step 4 description to remove the absolute "מקסימלית" claim and awkward "בחוקיות האלגוריתם" wording.
+ 5. Rewrote FAQ 1 answer to focus on exposure, engagement, and conversion: replaced `"במטרה להגיע לוויראליות אמיתית ולהמיר צופים ללקוחות."` with `"במטרה לייצר חשיפה, מעורבות ולהפוך צופים ללקוחות."`.
+ 6. Rewrote FAQ 3 answer to remove the 3-5 posts per week universal operational requirement.
+ 7. Rewrote FAQ 4 answer to remove the unsupported claim that UGC converts at substantially higher rates in the overwhelming majority of cases.
+ 8. Rewrote FAQ 5 answer to soften social measurement attribution/tracking claims and align with general conversions.
+ 9. Confirmed influencer marketing capability as factual based on company input.
+ 10. Corrected stale alt-text audit log entries regarding YouTube Shorts video cover images.
+ 
+ All other visual designs, layout, video carousel playback logic, keyboard navigation, and numeric stats values (+12,400, 12k, 450) remain completely unchanged. The CTA `"מוכנים להפוך לוויראליים?"` and visual `"Viral!"` label have been intentionally retained. The `"13,000 ש"ח"` portfolio video title has been removed from the pending factual verification queue as it is part of a client project title, not a Sepros marketing claim.
+ 
+ ### Changes Made
+ 
+ | URL | Type | Area | Before | After | File |
+ |---|---|---|---|---|---|
+ | `/service/social` | SEO | Metadata | `סושיאל דומיננטי וקריאייטיב - הפקות שוברות רשת | ספרוס` | `ניהול סושיאל ו-UGC למותגים | ספרוס` | [page.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/app/service/[id]/page.jsx) |
+ | `/service/social` | SEO | Metadata | `הפקת סרטונים ויראליים, שורטס וטיקטוק למותגים. שפה ויזואלית ייחודית ואסטרטגיית סושיאל שעוצרת את הגלילה ומייצרת לידים.` | `ניהול סושיאל ויצירת UGC למותגים, כולל Reels, TikTok, הפקות וידאו, ניהול עמודים, תוכן שוטף ואסטרטגיית סושיאל מבוססת דאטה.` | [page.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/app/service/[id]/page.jsx) |
+ | `/service/social` | GEO / Content | Hero long | `...אנחנו לוקחים מותגים והופכים אותם לתופעת רשת בעזרת...` | `...אנחנו עוזרים למותגים לבלוט ברשת בעזרת...` | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+ | `/service/social` | GEO / Content | Process title | `המתכון להפוך לוויראלי` | `איך יוצרים תוכן שעוצר את הגלילה?` | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+ | `/service/social` | GEO / Content | Process Step 4 | `תזמון מדויק של הפוסטים בחוקיות האלגוריתם כדי לייצר תפוצה אורגנית וממומנת מקסימלית במקביל.` | `תזמון והפצת התוכן בהתאם לפלטפורמה ולקהל היעד, במטרה לחזק את החשיפה האורגנית והממומנת.` | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+ | `/service/social` | GEO / Content | FAQ 1 | `...במטרה להגיע לוויראליות אמיתית ולהמיר צופים ללקוחות.` | `...במטרה לייצר חשיפה, מעורבות ולהפוך צופים ללקוחות.` | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+ | `/service/social` | GEO / Content | FAQ 3 | `התדירות נבנית על בסיס קהל היעד והתחום. כדי לשמור על רלוונטיות באלגוריתם, מותגים לרוב מחייבים העלאה של 3 עד 5 פוסטים/רילסים בשבוע, בנוסף לפעילות סטורי קבועה.` | `התדירות נקבעת בהתאם למותג, לקהל היעד, לפלטפורמות ולמטרות הפעילות. אנחנו בונים תוכנית תוכן וקצב פרסום שמתאימים לאסטרטגיה ולפעילות השוטפת של כל לקוח.` | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+ | `/service/social` | GEO / Content | FAQ 4 | `UGC (User Generated Content) הוא תוכן שמצולם בסגנון 'טבעי' ונראה כאילו נוצר על ידי לקוח שלכם. הוא נתפס כאותנטי, הרבה פחות פרסומי, וברוב המוחץ של המקרים ממיר באחוזים גבוהים בהרבה מקריאייטיב גרפי.` | `UGC (User Generated Content) הוא תוכן שנוצר בסגנון טבעי ואותנטי, המדמה תוכן של משתמשים ולקוחות. הפורמט משתלב באופן טבעי בפיד ויכול לחזק אמון, מעורבות וחיבור למותג.` | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+ | `/service/social` | GEO / Content | FAQ 5 | `מלבד מדדי חשיפה ומעורבות קלאסיים (צפיות, לייקים, תגובות, שמירות), אנחנו מסנכרנים את התנועה האורגנית יחד עם מחלקת המדיה כדי לזהות צמיחה מדויקת בהמרות (קניות או נטישות סל).` | `אנחנו בוחנים מדדי חשיפה ומעורבות כמו צפיות, לייקים, תגובות ושמירות, ובשילוב נתוני המדיה והאתר בוחנים גם את התרומה של פעילות הסושיאל ליעדים העסקיים ולהמרות.` | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+ 
+ ### Automatic Safe Fixes
+ 
+ - None
+ 
+ ### Files Modified
+ 
+ - `src/app/service/[id]/page.jsx`
+ - `src/views/DepartmentDetail.jsx`
+ - `docs/SEO_GEO_AUDIT.md`
+ - `docs/SEO_GEO_CHANGES.md`
+ 
+ ### Verification
+ 
+ - [x] Production build compiles successfully (`npm run build`).
+ - [x] Verified visible Social copy updates on localhost.
+ - [x] Verified `FAQPage` JSON-LD schema is synchronized with the new phrasing.
+ - [x] Confirmed zero visual, layout, and keyboard-focus regressions.
+ 
+ ### Intentionally Not Changed
+ 
+ - H1 title "סושיאל ו-UGC" (kept verbatim).
+ - Engagement stats and followers counter figures (+12,400, 12k, 450) (kept verbatim, pending factual verification).
+ - Video Carousel base items titles and YouTube IDs (kept verbatim).
+ - CTA title "מוכנים להפוך לוויראליים?" (kept verbatim).
+ - Visual phone mockup "Viral!" badge (kept verbatim).
+ - Portfolio video title with "13,000 ש"ח" (kept verbatim).

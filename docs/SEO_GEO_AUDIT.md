@@ -74,7 +74,7 @@ The following table evaluates metadata for all active pages in the SEO scope. Ti
 | `/about` | `אודות | ספרוס` | 12 | `PASS` | `KEEP CURRENT` | `הכירו את ספרוס, סוכנות הדיגיטל המובילה שמתמחה בבניית אסטרטגיות שיווקיות מנצחות, פיתוח אתרים וניהול מדיה...` | 140 | `PASS` | `KEEP CURRENT` | `https://www.sepros.co.il/about` | `PASS` |
 | `/service` | `שירותי דיגיטל | ספרוס` | 21 | `PASS` | `KEEP CURRENT` | `מגוון שירותי הדיגיטל של ספרוס: קמפיינים ממומנים, SEO, סושיאל וויראלי, מיתוג, אסטרטגיה ופיתוח אתרים...` | 138 | `PASS` | `KEEP CURRENT` | `https://www.sepros.co.il/service` | `PASS` |
 | `/service/ppc` | `PPC וביצועים - התוצאות שלכם, המספרים שלנו | ספרוס` | 48 | `PASS` | `KEEP CURRENT` | `ניהול תקציבי פרסום באופטימיזציה מקסימלית: גוגל, מטא, טיקטוק ועוד. ניתוח קהלים ושיפור יחס המרה להחזר השקעה (ROAS) מנצח.` | 120 | `PASS` | `KEEP CURRENT` | `https://www.sepros.co.il/service/ppc` | `PASS` |
-| `/service/social` | `סושיאל דומיננטי וקריאייטיב - הפקות שוברות רשת | ספרוס` | 52 | `PASS` | `KEEP CURRENT` | `הפקת סרטונים ויראליים, שורטס וטיקטוק למותגים. שפה ויזואלית ייחודית ואסטרטגיית סושיאל שעוצרת את הגלילה ומייצרת לידים.` | 120 | `PASS` | `KEEP CURRENT` | `https://www.sepros.co.il/service/social` | `PASS` |
+| `/service/social` | `ניהול סושיאל ו-UGC למותגים | ספרוס` | 35 | `PASS` | `KEEP CURRENT` | `ניהול סושיאל ויצירת UGC למותגים, כולל Reels, TikTok, הפקות וידאו, ניהול עמודים, תוכן שוטף ואסטרטגיית סושיאל מבוססת דאטה.` | 126 | `PASS` | `KEEP CURRENT` | `https://www.sepros.co.il/service/social` | `PASS` |
 | `/service/design` | `סטודיו וקריאייטיב פרימיום למותגים | ספרוס` | 40 | `PASS` | `KEEP CURRENT` | `עיצוב שפה חזותית, קונספט, זהות ומיתוג תאגידי. בניית ספרי מותג ויצירת מסרים שמרגישים טבעיים ומייצרים אמון.` | 110 | `PASS` | `KEEP CURRENT` | `https://www.sepros.co.il/service/design` | `PASS` |
 | `/service/tech` | `פיתוח אתרים ואפליקציות - טכנולוגיה מתקדמת | ספרוס` | 48 | `PASS` | `KEEP CURRENT` | `בניית אתרים מהירים ומתקדמים ב-React/Next.js. איקומרס מתקדם, פיתוח מערכות וחיבורי API לביצועי שיא וקידום אורגני מעולה.` | 122 | `PASS` | `KEEP CURRENT` | `https://www.sepros.co.il/service/tech` | `PASS` |
 | `/service/seo` | `קידום אורגני (SEO) - להיות בראש בגוגל | ספרוס` | 44 | `PASS` | `KEEP CURRENT` | `קידום אתרים אורגני טכני עמוק בשילוב אסטרטגיית תוכן לבניית סמכות מול גוגל. מחקר מילים, בניית קישורים והובלת תוצאות החיפוש.` | 123 | `PASS` | `KEEP CURRENT` | `https://www.sepros.co.il/service/seo` | `PASS` |
@@ -97,27 +97,27 @@ The following table evaluates metadata for all active pages in the SEO scope. Ti
 Detailed evaluation of heading hierarchy, ALTs, internal links, and technical indicators for all active pages.
 
 ### 1. Homepage (`/`)
-* **H1 / Headings**: `PASS` (H1: `שיווק דיגיטלי שמביא תוצאות.`). Heading hierarchy is logical and outlines service categories as H2s.
+* **H1 / Headings**: `PASS` (H1: `שיווק דיגיטלי שמביא תוצאות.`). Heading hierarchy is logical and outlines service categories as H2s. FAQ trigger triggers normalized to valid HTML5 `<h3><button>...</button></h3>`.
 * **Images / ALT**: `PASS` (No meaningful images lacking descriptive ALTs).
 * **Internal Linking**: Good. Links out to services hub and individual services.
-* **Technical**: Canonical alternates configured. Indexability verified. Organization schema is present.
+* **Technical**: Canonical alternates configured. Indexability verified. Organization schema is present (with canonical `@id` reference and corrected SVG logo URL), and WebSite schema is present.
 
 ### 2. About Page (`/about`)
 * **H1 / Headings**: `PASS` (H1: `בוטיק של תוצאות בעולם של דאטה.`). 
 * **Images / ALT**: `PASS` (Team image contains appropriate Hebrew descriptive ALT).
 * **Internal Linking**: Points contextually to `/contact`.
-* **Technical**: Canonical alternates configured. Organization schema is present.
+* **Technical**: Canonical alternates configured. Organization schema is present (with canonical `@id` reference and corrected SVG logo URL), and AboutPage schema is present linking to the organization.
 
 ### 3. Services Hub (`/service`)
 * **H1 / Headings**: `PASS` (H1: `השירותים שלנו`).
 * **Images / ALT**: `PASS` (No layout images missing ALTs).
 * **Internal Linking**: Links to all 7 departments.
-* **Technical**: Canonical alternates configured.
+* **Technical**: Canonical alternates configured. Service schema provider is connected to the canonical organization `@id`.
 
 ### 4. Individual Service Pages (`/service/[id]`) — PPC, Social, Design, Tech, SEO, Strategy, Analytics
 * **H1 / Headings**: `PASS` (Resolved: Implemented a single off-screen semantic `<h1>` tag with `sr-only` class to establish the document heading outline, converting responsive titles to visually visible `aria-hidden` elements to preserve the layout exactly and prevent duplication).
 * **Images / ALT**:
-  - `/service/social`: `REVIEW` (YouTube video cover image uses generic `alt="שורטס - דוגמה"`).
+  - `/service/social`: `PASS` (Verified: YouTube cover images use empty `alt=""` and parent triggers contain descriptive `aria-label`).
   - `/service/design`: `PASS` (Brand book illustration uses `alt="AI Generated Brand Book"`, which accurately describes the visual content).
 * **Internal Linking**: `REVIEW`. High-relevance link opportunities:
   - `/service/seo` $\rightarrow$ `/articles/technical-seo-2026` (Resolved: Linked `"מדדי ה-Core Web Vitals"`)
@@ -214,7 +214,7 @@ This queue groups unresolved work requiring future review, copywriting, or techn
 ### Image ALT
 | URL | Issue | Current State | Suggested Action | Priority | Approval Required |
 |---|---|---|---|---|---|
-| `/service/social` | Generic ALT on YouTube thumbnail | `alt="שורטס - דוגמה"` | Improve to: `alt="סרטון שורטס ויראלי לדוגמה של לקוח ספרוס"` (enhances context) | **LOW** | **YES** |
+| `/service/social` | Generic ALT on YouTube thumbnail | Resolved: Visual gallery elements use empty `alt=""` and parent triggers contain descriptive `aria-label`. | - | **PASS** | **NO** |
 | `/articles/[slug]` | ALT text inherits title | Resolved: Implemented `imageAlt` field with unique descriptive text for each article. | - | **LOW** | **NO** |
 
 ### Internal Linking
@@ -303,6 +303,7 @@ All indexable pages serve unique search intents, divided cleanly between Commerc
 ## Content Quality
 Landing page content is written in clear Hebrew. However, there are generic marketing claims ("100% ROI", "24/7 data tracking", "99.9% uptime") that lack client evidence or inline proof. 
 * **Trust proofs**: Client project results and performance metrics are missing on dynamic `/service/[id]` pages (`HUMAN INPUT REQUIRED`).
+* **Verified Dashboard Claim**: Factual business input confirmed that every PPC client receives an automatically updating dashboard. The phrase "בזמן אמת" was replaced with "מתעדכן באופן אוטומטי" since updates occur daily rather than in real-time.
 
 ---
 
@@ -320,8 +321,7 @@ The global header/footer navigation maps all pages, preventing orphans.
 ---
 
 ## Image / Media
-Descriptive ALT tags are populated on all primary logos, about photos, and article images (via `imageAlt`).
-* **Opportunity**: The social YouTube Shorts cover images share a static, hardcoded `alt="שורטס - דוגמה"`. Adding specific accessibility names to individual video cards requires descriptive title inputs (`HUMAN INPUT REQUIRED`).
+* **Opportunity**: The social YouTube Shorts cover images use empty `alt=""` and parent triggers contain descriptive `aria-label` based on mapped video titles (`PASS`).
 
 ---
 
@@ -387,21 +387,40 @@ This backlog groups new unresolved Phase 2 findings. **None of these items are a
 |---|---|---|---|---|---|---|---|---|---|
 | `/accessibility` | Technical SEO | Missing OG tags | No `openGraph` block | Add OG properties matching page title/description | **FAIL** | **MEDIUM** | YES | NO | [page.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/app/accessibility/page.jsx) |
 | `/accessibility` | On-Page SEO | Short meta description | 74 chars description | Apply descriptive 140-char meta text | **REVIEW** | **LOW** | YES | YES | [page.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/app/accessibility/page.jsx) |
-| `/service/[id]` | On-Page SEO | Invalid semantic heading nesting | `h3` inside `button` in FAQs | Preserve `h3` to maintain screen reader outline | **KEEP CURRENT** | **LOW** | NO | NO | [FAQ.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/components/FAQ.jsx) |
+| `/` | On-Page SEO / A11y | Invalid semantic heading nesting | `h3` inside `button` in FAQs | Normalize trigger to valid `<h3><button>...</button></h3>` nesting | **PASS** | **LOW** | YES | NO | [FAQ.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/components/FAQ.jsx) |
 | `/careers` | On-Page SEO | Job item triggers use button elements | Accordion restructuring implemented | Native `<h2> <button> ... </button> </h2>` handles Enter/Space with clean phrasing spans inside | **PASS** | **LOW** | YES | NO | [Careers.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/Careers.jsx) |
 | `/service/[id]` | On-Page SEO | Portfolio cards converted to native anchors | Cards converted from div to `<a>` | Native focus and crawlable paths enabled | **PASS** | **LOW** | YES | NO | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
 | `/service/design` | Internal Links | Link opportunity | Linked "עיצוב ה-UX" inside Process step 3 | Links safely to `/articles/ux-color-psychology` | **PASS** | **MEDIUM** | YES | NO | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
 | `/service/analytics` | Internal Links | Link opportunity | proposed traffic source link is weak | Skip analytics $\rightarrow$ Tech SEO article link | **SKIP** | **MEDIUM** | NO | NO | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
 | `/service/social` | Image / Media | YouTube thumbnails alt optimization | Carousel controls accessible names added | Dynamic title aria-labels and decorative empty alts | **PASS** | **LOW** | YES | YES | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
 | Inner Pages | Structured Data | Breadcrumbs schema added | BreadcrumbList schemas rendered in dynamic templates | Fully verified dynamic title/URL outputs | **PASS** | **LOW** | YES | NO | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+| Site-wide | Structured Data | Duplicate and 404 logo schema paths | Standalone disconnected Organization blocks | Unify Organization under canonical `@id`, correct logo URLs to validated SVG path, and add WebSite / AboutPage schemas | **PASS** | **MEDIUM** | YES | NO | Multiple View Files |
+| `/` / `/about` | GEO / Content | Agency identity and team details missing in copy | Vague Hero and omitted SEO/Social specialties in team description | Add agency identity to Hero copy and expand team details in About section | **PASS** | **MEDIUM** | YES | NO | [Home.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/Home.jsx), [AboutSection.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/components/AboutSection.jsx) |
+| `/` | GEO / Content | FAQ campaign success dashboard claim | Claimed real-time "בזמן אמת" dashboard | Rephrase to specify automated updates matching daily refresh | **PASS** | **MEDIUM** | YES | NO | [Home.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/Home.jsx) |
+| `/` | On-Page / GEO | SEO card ranking guarantee | Card description "מביאה למקומות הראשונים" | Rephrase to "מגדילה חשיפה אורגנית" to avoid ranking guarantee | **PASS** | **MEDIUM** | YES | NO | [ServicesCarousel.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/components/ServicesCarousel.jsx) |
+| `/` | GEO / Content | FAQ result timeline ranges | Stated PPC (30-90 days) and SEO (3-6 months) fixed ranges | Rephrase to conditional wording to avoid implying guaranteed timelines | **PASS** | **MEDIUM** | YES | NO | [Home.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/Home.jsx) |
+| `/` | GEO / Content | FAQ target client validation | Verify "האם אתם עובדים עם עסקים קטנים?" | Target profile (medium/large and scaleups) confirmed | **PASS** | **LOW** | NO | YES | [Home.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/Home.jsx) |
+| `/` | GEO / Content | FAQ boutique agency model | Verify "מה מייחד את ספרוס משאר הסוכנויות?" | Boutique model and direct client service confirmed | **PASS** | **LOW** | NO | YES | [Home.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/Home.jsx) |
+| `/about` | GEO / Content | Continuous monitoring claim | Badge "24/7 ניטור דאטה" | CRM and Analytics continuous tracking structure confirmed | **PASS** | **LOW** | NO | YES | [AboutSection.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/components/AboutSection.jsx) |
 | `/careers` | Structured Data | Missing Job Posting schema | No `JobPosting` tag | Implement schema for active vacancies in jobs array | **HUMAN INPUT REQUIRED** | **LOW** | YES | YES | [Careers.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/Careers.jsx) |
 | `/accessibility` | GEO / Content | Accessibility statement placeholder | "הצהרת הנגישות בבנייה" | Gather and apply final accessibility statement text | **HUMAN INPUT REQUIRED** | **HIGH** | YES | YES | [Accessibility.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/Accessibility.jsx) |
 | `/articles/[slug]` | GEO / Content | Anonymous authorship | Published under brand | Add author profiles/writer details to articles data | **HUMAN INPUT REQUIRED** | **MEDIUM** | YES | YES | [ArticlePage.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/ArticlePage.jsx) |
 | `/about` | GEO / Content | Leadership biographies missing | No leadership team bios | Gather professional bios of founders/key leaders | **HUMAN INPUT REQUIRED** | **LOW** | YES | YES | [AboutSection.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/components/AboutSection.jsx) |
 | `/service/[id]` | GEO / Content | Project statistics missing | No client result proof | Gather case studies metrics and performance facts | **HUMAN INPUT REQUIRED** | **LOW** | YES | YES | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
 | `/service/social` | GEO / Content | YouTube Shorts titles mapped | Carousel baseItems loaded with authoritative titles | Mapped dynamic titles and play trigger aria-labels | **PASS** | **LOW** | YES | YES | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+| `/service/social` | GEO / Content | Social Hero & Copy Cleanup | Hero description, process heading, FAQ 1/3/4/5, and metadata | Optimize metadata, soften Hero/FAQ/Process copy, and clean up virality language | **PASS** | **MEDIUM** | YES | NO | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+| `/service/analytics` | GEO / Content | Analytics copy cleanup & typos | Real-time claims, weekly reviews, and grammar typos | Apply dashboard and weekly review phrasing, correct "פריסת" and "יפהפה" typos | **PASS** | **MEDIUM** | YES | NO | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+| `/service/seo` | On-Page / SEO | SEO Cross-Zone typo | Typo "קרוס-זונג" in services card | Correct "קרוס-זונג" to "קרוס-זון" (surrounding copy remains pending review) | **PASS** | **MEDIUM** | YES | NO | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+| `/service/analytics` | GEO / Content | BigQuery business integration | GA4 connection with BigQuery | Verify if BigQuery storage pipeline is set up for clients | **HUMAN INPUT REQUIRED** | **MEDIUM** | NO | YES | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+| `/service/analytics` | GEO / Content | GTM Server-Side validation | Google Tag Manager Server-side capability | GTM server container setup confirmed as active service offering | **PASS** | **LOW** | NO | YES | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+| `/service/seo` | On-Page / SEO | SEO FAQ 5 grammar correction | Typo "בדיקת מהירות שרתי" in technical FAQ 5 | Correct "בדיקת מהירות שרתי" to "בדיקת מהירות שרתים" | **PASS** | **LOW** | YES | NO | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+| `/service/ppc` | GEO / Content | PPC Hero & Copy Cleanup | Hero PPC phrasing, ROAS scaling, ROI doubling guarantee, and Dashboard automatic updates | Rephrase Hero long description, Process Step 4, Graph text, and FAQ 4/5 answers | **PASS** | **MEDIUM** | YES | NO | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+| `/service/ppc` | GEO / Content | PPC B2C/e-commerce validation | eCommerce campaign experience | Verify eCommerce/retail performance history for B2C clients | **HUMAN INPUT REQUIRED** | **MEDIUM** | NO | YES | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
+| `/service/ppc` | GEO / Content | PPC stats numeric verification | PPC stats (x4.5 ROAS, -45% CPL, +350% Sales, graph values) | Verify client performance stats for paid media metrics | **HUMAN INPUT REQUIRED** | **MEDIUM** | NO | YES | [DepartmentDetail.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/DepartmentDetail.jsx) |
 | `/service/strategy` | Content Gaps | Missing strategy article | Strategy hub page only | Write strategic marketing cluster support post | **POTENTIAL OPPORTUNITY** | **MEDIUM** | YES | YES | [Articles.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/Articles.jsx) |
+
 | `/service/analytics` | Content Gaps | Missing analytics article | Analytics hub page only | Write data analytics cluster support post | **POTENTIAL OPPORTUNITY** | **MEDIUM** | YES | YES | [Articles.jsx](file:///c:/Users/Sandra/Desktop/sepros-site/src/views/Articles.jsx) |
+
 
 ---
 
@@ -607,6 +626,7 @@ This section lists exact actionable steps prior to committing our Phase 2 optimi
 5. **Strategy and Analytics posts**: Provide content for the strategy and analytics cluster gap articles.
 6. **GA4 / GTM Measurement IDs**: Provide active GA4 (G-XXXXXX) or GTM (GTM-XXXXXX) containers to set up script tags.
 7. **LocalBusiness details**: Provide official company phone numbers, coordinates, and operating hours.
+8. **Homepage statistics**: Confirm and verify the exact figures for active clients (150+), managed campaigns (1200+), and budgets (50M+) on the Homepage.
 
 ### C. REQUIRES EXTERNAL DATA
 1. **Google Search Console Access**: Access search console account data to monitor canonical selection, CTR queries, and crawling issues.
