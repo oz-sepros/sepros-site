@@ -26,10 +26,7 @@ const ServicesPage = () => {
         "name": "שירותי דיגיטל - ספרוס",
         "description": "סוכנות ספרוס מעניקה מעטפת שירותי דיגיטל 360: קידום אתרים, ניהול קמפיינים ממומנים, סושיאל ו-UGC, מיתוג ופיתוח אתרים.",
         "provider": {
-            "@type": "Organization",
-            "name": "Sepros Digital",
-            "url": "https://www.sepros.co.il/",
-            "logo": "https://www.sepros.co.il/images/logo.png"
+            "@id": "https://www.sepros.co.il/#organization"
         },
         "areaServed": {
             "@type": "Country",

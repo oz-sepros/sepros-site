@@ -80,23 +80,36 @@ const Careers = () => {
 
                     <div className="space-y-6">
                         {jobs.map((job, i) => (
-                            <div key={i} className="bg-gray-50 border border-gray-200 p-6 rounded-xl hover:border-[#2f4ea1]/30 hover:shadow-md transition-all cursor-pointer group shadow-sm" onClick={() => setExpandedJob(expandedJob === i ? null : i)}>
-                                <div className="flex flex-col md:flex-row justify-between md:items-start gap-4">
-                                    <div>
-                                        <h2 className="text-xl md:text-2xl font-black text-gray-900 group-hover:text-[#2f4ea1] transition-colors mb-3">{job.title}</h2>
-                                        <div className="flex flex-wrap items-center gap-2">
-                                            <span className="text-[#2f4ea1] text-[10px] font-bold tracking-widest bg-[#2f4ea1]/10 px-3 py-1 rounded-sm">{job.type}</span>
-                                            {job.labels?.map((label, idx) => (
-                                                <span key={idx} className="text-gray-600 text-[10px] font-bold tracking-widest border border-gray-200 px-3 py-1 rounded-sm bg-white">{label}</span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div className="mt-2 md:mt-0">
-                                        {expandedJob === i ? <Minus className="text-[#2f4ea1] shrink-0" /> : <Plus className="text-gray-600 shrink-0" />}
-                                    </div>
-                                </div>
+                            <div key={i} className="bg-gray-50 border border-gray-200 rounded-xl hover:border-[#2f4ea1]/30 hover:shadow-md transition-all group shadow-sm">
+                                <h2 className="m-0 text-xl md:text-2xl font-black text-gray-900 group-hover:text-[#2f4ea1] transition-colors">
+                                    <button
+                                        id={`job-header-${i}`}
+                                        aria-expanded={expandedJob === i}
+                                        aria-controls={`job-panel-${i}`}
+                                        onClick={() => setExpandedJob(expandedJob === i ? null : i)}
+                                        className="w-full text-right p-6 flex flex-col md:flex-row justify-between md:items-start gap-4 font-black"
+                                    >
+                                        <span className="block text-right">
+                                            <span className="block text-xl md:text-2xl font-black text-gray-900 group-hover:text-[#2f4ea1] transition-colors mb-3">{job.title}</span>
+                                            <span className="flex flex-wrap items-center gap-2">
+                                                <span className="text-[#2f4ea1] text-[10px] font-bold tracking-widest bg-[#2f4ea1]/10 px-3 py-1 rounded-sm">{job.type}</span>
+                                                {job.labels?.map((label, idx) => (
+                                                    <span key={idx} className="text-gray-600 text-[10px] font-bold tracking-widest border border-gray-200 px-3 py-1 rounded-sm bg-white">{label}</span>
+                                                ))}
+                                            </span>
+                                        </span>
+                                        <span className="block mt-2 md:mt-0 shrink-0">
+                                            {expandedJob === i ? <Minus className="text-[#2f4ea1] shrink-0" /> : <Plus className="text-gray-600 shrink-0" />}
+                                        </span>
+                                    </button>
+                                </h2>
 
-                                <div className={`overflow-hidden transition-all duration-500 ease-in-out ${expandedJob === i ? 'max-h-[1500px] mt-6 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                <div 
+                                    id={`job-panel-${i}`}
+                                    role="region"
+                                    aria-labelledby={`job-header-${i}`}
+                                    className={`overflow-hidden px-6 transition-all duration-500 ease-in-out ${expandedJob === i ? 'max-h-[1500px] pb-6 opacity-100' : 'max-h-0 opacity-0'}`}
+                                >
                                     <p className="text-gray-600 text-sm leading-relaxed mb-4">{job.fullDesc}</p>
                                     <h5 className="text-gray-900 font-bold text-sm mb-2">דרישות סף:</h5>
                                     <ul className="list-disc pl-4 pr-6 text-gray-600 text-sm space-y-1 mb-6">

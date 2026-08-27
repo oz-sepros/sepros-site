@@ -124,18 +124,49 @@ const ArticlePage = () => {
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": article.title,
-        "image": [article.image],
+        "image": [`https://www.sepros.co.il${article.image}`],
         "datePublished": article.isoDate,
         "author": [{
-            "@type": "Organization",
-            "name": "Sepros Digital",
-            "url": "https://www.sepros.co.il"
-        }]
+            "@id": "https://www.sepros.co.il/#organization"
+        }],
+        "publisher": {
+            "@id": "https://www.sepros.co.il/#organization"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://www.sepros.co.il/articles/${slug}`
+        }
+    };
+
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "בית",
+                "item": "https://www.sepros.co.il/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "מאמרים",
+                "item": "https://www.sepros.co.il/articles"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": article.title,
+                "item": `https://www.sepros.co.il/articles/${slug}`
+            }
+        ]
     };
 
     return (
         <PageTransition>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
             <article className="min-h-screen bg-[#F5F7FA] pt-32 md:pt-40 pb-20 px-6">
                 <div className="max-w-3xl mx-auto flex flex-col">
                     {/* Breadcrumbs */}

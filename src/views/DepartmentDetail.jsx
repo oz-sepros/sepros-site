@@ -90,16 +90,16 @@ const SocialCarousel = () => {
 
     // הסרטונים האמיתיים (YouTube Shorts) של הלקוח
     const baseItems = [
-        { id: "ce4XWYqPApc" },
-        { id: "SFHBRCBtvog" },
-        { id: "8D6dfBAYmvY" },
-        { id: "D8hOZ_PXC-4" },
-        { id: "v1qFbJElfJ4" },
-        { id: "pUF5lAJ85vg" },
-        { id: "a5OyApZs98g" },
-        { id: "5AVwndFocNU" },
-        { id: "XE9emYNGeKo" },
-        { id: "zRZstpNyqrk" }
+        { id: "ce4XWYqPApc", title: "מה אתם הייתם עושים עם 13,000 ש\"ח בשנה?" },
+        { id: "SFHBRCBtvog", title: "קונספט ייחודי בחופים EAST!" },
+        { id: "8D6dfBAYmvY", title: "Exchange Ramat-Gan" },
+        { id: "D8hOZ_PXC-4", title: "בונים את זה!" },
+        { id: "v1qFbJElfJ4", title: "איזה סוג אתם?" },
+        { id: "pUF5lAJ85vg", title: "איך באמת מצלמים סרטון לנדל\"ן!" },
+        { id: "a5OyApZs98g", title: "כלמוביל Energy" },
+        { id: "5AVwndFocNU", title: "חייב סרטון סושיאל דחוף" },
+        { id: "XE9emYNGeKo", title: "עצור עצור רגע!" },
+        { id: "zRZstpNyqrk", title: "טרנד תינוקות" }
     ];
     // נכפיל את המערך כדי למנוע קפיצות ויזואליות במצב מעגל אינסופי
     const items = [...baseItems, ...baseItems];
@@ -174,7 +174,6 @@ const SocialCarousel = () => {
 
             <div className="relative flex items-center justify-center w-full h-[460px] md:h-[550px] max-w-[1200px] mx-auto">
                 <button aria-label="הקודם" onClick={handlePrev} className="absolute right-2 md:right-12 top-1/2 z-40 p-3 md:p-4 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.15)] text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-all hover:scale-110 -translate-y-1/2"><ChevronRight size={24} /></button>
-                <button aria-label="הבא" onClick={handleNext} className="absolute left-2 md:left-12 top-1/2 z-40 p-3 md:p-4 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.15)] text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-all hover:scale-110 -translate-y-1/2"><ChevronLeft size={24} /></button>
 
                 {items.map((item, i) => {
                     const offset = getOffset(i);
@@ -206,24 +205,34 @@ const SocialCarousel = () => {
 
                     return (
                         <div key={i}
+                            role="button"
+                            tabIndex={isActive ? 0 : -1}
+                            aria-label={`נגן סרטון: ${item.title}`}
                             onClick={() => {
                                 if (isActive) setPlaying(true);
                                 else { setActive(i); setPlaying(false); }
                             }}
-                            className={`absolute transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] w-[240px] md:w-[280px] aspect-[9/16] rounded-2xl md:rounded-[2rem] overflow-hidden bg-black ${classNames}`}>
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    if (isActive) setPlaying(true);
+                                    else { setActive(i); setPlaying(false); }
+                                }
+                            }}
+                            className={`absolute transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] w-[240px] md:w-[280px] aspect-[9/16] rounded-2xl md:rounded-[2rem] overflow-hidden bg-black focus:outline-none focus:ring-2 focus:ring-[#2f4ea1] focus:ring-offset-2 ${classNames}`}>
 
                             {isActive && playing ? (
                                 <iframe
                                     className="w-full h-full object-cover"
                                     src={`https://www.youtube.com/embed/${item.id}?autoplay=1&mute=0&controls=1&rel=0`}
-                                    title="YouTube Shorts"
+                                    title={item.title}
                                     frameBorder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen>
                                 </iframe>
                             ) : (
                                 <>
-                                    <Image src={`https://img.youtube.com/vi/${item.id}/hqdefault.jpg`} alt="שורטס - דוגמה" fill sizes="(max-width: 768px) 240px, 280px" className="object-cover transition-transform duration-1000 md:group-hover:scale-105" />
+                                    <Image src={`https://img.youtube.com/vi/${item.id}/hqdefault.jpg`} alt="" fill sizes="(max-width: 768px) 240px, 280px" className="object-cover transition-transform duration-1000 md:group-hover:scale-105" />
                                     <div className={`absolute inset-0 transition-colors duration-500 flex items-center justify-center ${isActive ? 'bg-black/10 hover:bg-black/20' : 'bg-black/40'}`}>
                                         {isActive && (
                                             <div className="w-16 h-16 md:w-20 md:h-20 bg-white/95 backdrop-blur-md rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(0,0,0,0.3)] hover:scale-110 hover:bg-white transition-transform duration-300">
@@ -236,6 +245,7 @@ const SocialCarousel = () => {
                         </div>
                     )
                 })}
+                <button aria-label="הבא" onClick={handleNext} className="absolute left-2 md:left-12 top-1/2 z-40 p-3 md:p-4 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.15)] text-[#2f4ea1] rounded-full hover:bg-[#2f4ea1] hover:text-white transition-all hover:scale-110 -translate-y-1/2"><ChevronLeft size={24} /></button>
             </div>
 
         </div>
@@ -743,7 +753,7 @@ const AnimatedSeoGraph = () => {
             <div className="text-center mb-10 md:mb-16">
                 <span className="inline-block bg-[#2f4ea1]/10 text-[#2f4ea1] px-4 py-2 rounded-full text-sm font-bold tracking-widest mb-4 uppercase shadow-sm">דוגמה לנתוני לקוח</span>
                 <h2 className="text-[#0b1638] font-black text-3xl md:text-5xl text-balance">לכבוש את המקומות שמוכרים</h2>
-                <p className="text-gray-600 font-medium max-w-2xl mx-auto mt-4 md:mt-6 text-balance md:text-lg">תהליך ה-SEO שלנו מייצר סמכות אמיתית ברשת. ככה נראית השתלטות על הביטויים התחרותיים בענף שמכפיל את כמות הכניסות ממשלמים פוטנציאלים.</p>
+                <p className="text-gray-600 font-medium max-w-2xl mx-auto mt-4 md:mt-6 text-balance md:text-lg">תהליך ה-SEO שלנו נועד לבנות סמכות ונוכחות אורגנית לאורך זמן. כך יכולה להיראות צמיחה בחשיפה ובתנועה מביטויים תחרותיים ורלוונטיים לעסק.</p>
             </div>
 
             <div className="flex flex-col lg:flex-row gap-6 md:gap-10 items-stretch">
@@ -774,7 +784,7 @@ const AnimatedSeoGraph = () => {
                             </div>
                         </div>
                         <h3 className="text-[#1a0dab] font-normal text-xl md:text-2xl mb-2 font-arial dir-rtl text-right">המתחרה הכי גדול שלכם</h3>
-                        <p className="text-[#4d5156] text-sm md:text-base leading-relaxed font-arial dir-rtl text-right">תיאור העסק של המתחרה שנמצא מתחתיכם ומאבד את מרבית הטראפיק בענף ממש ברגעים אלו.</p>
+                        <p className="text-[#4d5156] text-sm md:text-base leading-relaxed font-arial dir-rtl text-right">תיאור העסק של מתחרה שמופיע לצדכם בתוצאות החיפוש ומתחרה על תשומת הלב של אותו קהל.</p>
                     </div>
                 </div>
 
@@ -878,7 +888,7 @@ const SponsoredPpcGraph = () => {
             <div className="text-center mb-10 md:mb-16">
                 <span className="inline-block bg-[url('#')] bg-[#2f4ea1]/10 text-[#2f4ea1] px-4 py-2 rounded-full text-sm font-bold tracking-widest mb-4 uppercase shadow-sm">דוגמה לנתוני לקוח</span>
                 <h2 className="text-[#0b1638] font-black text-3xl md:text-5xl text-balance">לכבוש את החיפושים שמוכרים</h2>
-                <p className="text-gray-600 font-medium max-w-2xl mx-auto mt-4 md:mt-6 text-balance md:text-lg">המטרה שלנו היא לא רק טראפיק, אלא המרות שורות תחתונות. ככה נראית השתלטות ממומנת שמביאה לידים חמים ומכפילה את החזר ההשקעה.</p>
+                <p className="text-gray-600 font-medium max-w-2xl mx-auto mt-4 md:mt-6 text-balance md:text-lg">המטרה שלנו היא לא רק טראפיק, אלא המרות ותוצאות עסקיות. כך נראית פעילות ממומנת שממוקדת בלידים איכותיים ובשיפור ביצועי הקמפיינים.</p>
             </div>
 
             <div className="flex flex-col lg:flex-row gap-6 md:gap-10 items-stretch">
@@ -1170,8 +1180,10 @@ const DepartmentPortfolio = ({ category }) => {
                 <p className="text-gray-600 mb-8 font-medium">כדי לראות את איכות הפיתוח המלאה, לחצו על הפרויקטים וצפו בהם באוויר.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {webProjects.map((project, i) => (
-                        <div key={i}
-                            onClick={() => window.open(project.link, '_blank')}
+                        <a key={i}
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             onMouseEnter={(e) => { const v = e.currentTarget.querySelector('video'); if (v) v.play().catch(() => { }); }}
                             onMouseLeave={(e) => { const v = e.currentTarget.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } }}
                             className="bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] p-0 group cursor-pointer relative overflow-hidden rounded-xl border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block">
@@ -1199,7 +1211,7 @@ const DepartmentPortfolio = ({ category }) => {
                                     <ExternalLink size={14} className="text-[#2f4ea1]" />
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     ))}
                 </div>
 
@@ -1472,7 +1484,7 @@ const DepartmentDetail = () => {
         ppc: {
             title: "ניהול מדיה",
             ctaText: "מוכנים להרים קמפיין מנצח?",
-            long: "אנחנו מנהלים תקציבי ענק באופטימיזציה מקסימלית. הגישה שלנו לניהול מדיה היא מדעית: ניתוח קהלים, שיפור יחס המרה ושימוש בכלי AI לניהול בידים.",
+            long: "אנחנו מנהלים קמפיינים ותקציבי PPC במגוון פלטפורמות, בגישה מבוססת דאטה: ניתוח קהלים, שיפור יחס המרה ושימוש בכלי AI לניהול בידים ואופטימיזציה שוטפת.",
             services: ["חיפוש ורשת המדיה בגוגל", "ניהול מטא (פייסבוק/אינסטגרם)", "קמפיינים בטיקטוק ולינקדאין", "קניה ישירה"],
             processTitle: "איך מתנהל קמפיין ברמה גבוהה?",
             processSubtitle: "השיטה המדעית מאחורי הלקוחות שלנו",
@@ -1480,35 +1492,35 @@ const DepartmentDetail = () => {
                 { title: "מחקר ואסטרטגיה", desc: "ניתוח מקיף של נתוני השוק, זיהוי קהלי מטרה רלוונטיים ומחקר מילות מפתח ליצירת יתרון תחרותי.", icon: <Search size={28} /> },
                 { title: "בניית סטאפ", desc: "הגדרת קמפיינים מדויקת, פילוח פיקסלים קפדני וחלוקת תקציבים אסטרטגית המוכוונת תוצאות מקסימליות.", icon: <Settings size={28} /> },
                 { title: "השקה וטסטים (A/B)", desc: "העלאת קריאייטיבים לאוויר תחת בקרת תקציב מחמירה ובדיקת וריאציות לאיתור המודעה האפקטיבית ביותר.", icon: <Target size={28} /> },
-                { title: "אופטימיזציה וסקייל", desc: "שיפור יחס ה-ROAS מיום ליום ושכפול רוחבי של קמפיינים רווחיים לתקציבים גבוהים משמעותית.", icon: <TrendingUp size={28} /> }
+                { title: "אופטימיזציה וסקייל", desc: "אופטימיזציה שוטפת לשיפור יחס ה-ROAS ושכפול רוחבי של קמפיינים רווחיים לתקציבים גבוהים יותר.", icon: <TrendingUp size={28} /> }
             ],
             faqs: [
                 { q: "תוך כמה זמן נראה תוצאות מהקמפיינים?", a: "קמפיינים ממומנים מתחילים להביא תנועה באופן מיידי עם עלייתם לאוויר. בדרך כלל לוקח 2-4 שבועות של איסוף נתונים ואופטימיזציה עד שמגיעים ליציבות וליחסי המרה אופטימליים, תלוי בתקציב, במתחרים ובתחום." },
                 { q: "באילו פלטפורמות אתם מנהלים קמפיינים?", a: "אנו מנהלים קמפיינים במגוון רחב של פלטפורמות בהתאם לקהל היעד שלכם: גוגל (חיפוש, מדיה, שופינג, יוטיוב), מטא (פייסבוק ואינסטגרם), טיקטוק, לינקדאין ועוד. לכל פלטפורמה אסטרטגיה מותאמת." },
                 { q: "האם אתם עובדים עם עסקים B2B או B2C?", a: "שנינו! יש לנו ניסיון מוכח ועשיר גם עם חברות B2B מורכבות שמחפשות לידים איכותיים (למשל טכנולוגיה, שירותים עסקיים ותעשייה) וגם עם מותגי B2C שממוקדים במכירות איקומרס ויצירת מודעות למותג." },
-                { q: "איך אתם מחשבים את התקציב החודשי המומלץ?", a: <>אנחנו מנתחים את התחרותיות בענף, ערוצי הפרסום הרצויים ויעדי הצמיחה העסקיים שלכם, ואז בונים מודל השקעה (<Link href="/articles/double-your-roas" className="text-[#2f4ea1] hover:underline font-medium">ROAS Model</Link>) שממליץ על תקציב נקודתי ומאפשר טווח סקייל בטוח.</>, plainAnswer: "אנחנו מנתחים את התחרותיות בענף, ערוצי הפרסום הרצויים ויעדי הצמיחה העסקיים שלכם, ואז בונים מודל השקעה (ROAS Model) שממליץ על תקציב נקודתי ומאפשר טווח סקייל בטוח." },
-                { q: "האם יש לכם שקיפות מלאה לנתונים ולתקציב?", a: "לחלוטין. אתם בעלי החשבון המקורי, והתשלום על המדיה משולם ישירות לפלטפורמה. אנו מספקים לוחות בקרה (Dashboards) חיים בהם תוכלו לראות בזמן אמת לאן הכסף הולך וכמה המרות הגיעו." }
+                { q: "איך אתם מחשבים את התקציב החודשי המומלץ?", a: <>אנחנו מנתחים את התחרותיות בענף, ערוצי הפרסום הרצויים ויעדי הצמיחה העסקיים שלכם, ואז בונים מודל השקעה (<Link href="/articles/double-your-roas" className="text-[#2f4ea1] hover:underline font-medium">ROAS Model</Link>) שמסייע להגדיר את התקציב ואת טווח הסקייל בהתאם ליעדים ולביצועים.</>, plainAnswer: "אנחנו מנתחים את התחרותיות בענף, ערוצי הפרסום הרצויים ויעדי הצמיחה העסקיים שלכם, ואז בונים מודל השקעה (ROAS Model) שמסייע להגדיר את התקציב ואת טווח הסקייל בהתאם ליעדים ולביצועים." },
+                { q: "האם יש לכם שקיפות מלאה לנתונים ולתקציב?", a: "לחלוטין. אתם בעלי החשבון המקורי, והתשלום על המדיה משולם ישירות לפלטפורמה. אנו מספקים לוחות בקרה (Dashboards) שמתעדכנים באופן אוטומטי, ובהם תוכלו לעקוב אחר התקציבים, הביצועים וההמרות." }
             ]
         },
         social: {
             title: "סושיאל ו-UGC",
             ctaText: "מוכנים להפוך לוויראליים?",
-            long: "הסיפור שלכם צריך לפגוש את הלקוחות בדיוק במקום שבו הם נמצאים. אנחנו לוקחים מותגים והופכים אותם לתופעת רשת בעזרת שפה ויזואלית ייחודית, הפקות וידאו ויראליות, ואסטרטגיית סושיאל שעוצרת את הגלילה (Scroll-stoppers). העידן החדש דורש תוכן מהיר, חד, ומבוסס דאטה.",
+            long: "הסיפור שלכם צריך לפגוש את הלקוחות בדיוק במקום שבו הם נמצאים. אנחנו עוזרים למותגים לבלוט ברשת בעזרת שפה ויזואלית ייחודית, הפקות וידאו ויראליות, ואסטרטגיית סושיאל שעוצרת את הגלילה (Scroll-stoppers). העידן החדש דורש תוכן מהיר, חד, ומבוסס דאטה.",
             services: ["הפקת Reels ו-TikTok", "צילום UGC איכותי למותגים", "ניהול עמודים ותחזוקה שוטפת", "שיווק משפיענים"],
-            processTitle: "המתכון להפוך לוויראלי",
+            processTitle: "איך יוצרים תוכן שעוצר את הגלילה?",
             processSubtitle: "איך עובדת מחלקת הסושיאל שלנו",
             process: [
                 { title: "קריאייטיב וסטוריטלינג", desc: "ראיונות עומק ופיצוח רעיוני לכל סרטון, כתיבת תסריטים מרתקים שמחזיקים במיוחד את זמן הצפייה של דור ה-Z.", icon: <Lightbulb size={28} /> },
                 { title: "ימי צילום והפקת UGC", desc: "הקלטות שטח איכותיות עם קריינים, משפיענים או לקוחות, המייצרות אותנטיות מוכחת המניעה לפעולה.", icon: <Camera size={28} /> },
                 { title: "עריכה דינמית", desc: "עריכת פוסט-פרודקשן קצבית הכוללת אנימציות וטקסטים דינמיים שמונעים מהגולש להמשיך לגלול הלאה.", icon: <Video size={28} /> },
-                { title: "הפצה רוחבית ברשת", desc: "תזמון מדויק של הפוסטים בחוקיות האלגוריתם כדי לייצר תפוצה אורגנית וממומנת מקסימלית במקביל.", icon: <Users size={28} /> }
+                { title: "הפצה רוחבית ברשת", desc: "תזמון והפצת התוכן בהתאם לפלטפורמה ולקהל היעד, במטרה לחזק את החשיפה האורגנית והממומנת.", icon: <Users size={28} /> }
             ],
             faqs: [
-                { q: "מה ההבדל בין ניהול סושיאל רגיל למה שאתם עושים?", a: "אנחנו לא רק מעלים פוסטים עיצוביים. אנחנו מייצרים שפה, אסטרטגיה ותוכן וידאו קצר שמבוסס על טרנדים והבנה עמוקה של האלגוריתמים, במטרה להגיע לוויראליות אמיתית ולהמיר צופים ללקוחות." },
+                { q: "מה ההבדל בין ניהול סושיאל רגיל למה שאתם עושים?", a: "אנחנו לא רק מעלים פוסטים עיצוביים. אנחנו מייצרים שפה, אסטרטגיה ותוכן וידאו קצר שמבוסס על טרנדים והבנה עמוקה של האלגוריתמים, במטרה לייצר חשיפה, מעורבות ולהפוך צופים ללקוחות." },
                 { q: "האם אתם מפיקים את סרטוני הוידאו והרילסים?", a: "בהחלט. יש לנו צוות קריאייטיב וצילום שדואג להכל מהקצה לקצה: החל מרמת הקונספט, מתן ערך דרך UGC אותנטי, ועד יום צילומים מעשי בשטח הדואג שהתוכן יהיה מניע לפעולה." },
-                { q: "באיזו תדירות מתפרסמים הפוסטים?", a: "התדירות נבנית על בסיס קהל היעד והתחום. כדי לשמור על רלוונטיות באלגוריתם, מותגים לרוב מחייבים העלאה של 3 עד 5 פוסטים/רילסים בשבוע, בנוסף לפעילות סטורי קבועה." },
-                { q: "מה זה בעצם UGC ולמה זה כה חשוב?", a: "UGC (User Generated Content) הוא תוכן שמצולם בסגנון 'טבעי' ונראה כאילו נוצר על ידי לקוח שלכם. הוא נתפס כאותנטי, הרבה פחות פרסומי, וברוב המוחץ של המקרים ממיר באחוזים גבוהים בהרבה מקריאייטיב גרפי." },
-                { q: "איך אתם מודדים הצלחה בסושיאל?", a: "מלבד מדדי חשיפה ומעורבות קלאסיים (צפיות, לייקים, תגובות, שמירות), אנחנו מסנכרנים את התנועה האורגנית יחד עם מחלקת המדיה כדי לזהות צמיחה מדויקת בהמרות (קניות או נטישות סל)." }
+                { q: "באיזו תדירות מתפרסמים הפוסטים?", a: "התדירות נקבעת בהתאם למותג, לקהל היעד, לפלטפורמות ולמטרות הפעילות. אנחנו בונים תוכנית תוכן וקצב פרסום שמתאימים לאסטרטגיה ולפעילות השוטפת של כל לקוח." },
+                { q: "מה זה בעצם UGC ולמה זה כה חשוב?", a: "UGC (User Generated Content) הוא תוכן שנוצר בסגנון טבעי ואותנטי, המדמה תוכן של משתמשים ולקוחות. הפורמט משתלב באופן טבעי בפיד ויכול לחזק אמון, מעורבות וחיבור למותג." },
+                { q: "איך אתם מודדים הצלחה בסושיאל?", a: "אנחנו בוחנים מדדי חשיפה ומעורבות כמו צפיות, לייקים, תגובות ושמירות, ובשילוב נתוני המדיה והאתר בוחנים גם את התרומה של פעילות הסושיאל ליעדים העסקיים ולהמרות." }
             ]
         },
         design: {
@@ -1521,7 +1533,7 @@ const DepartmentDetail = () => {
             process: [
                 { title: "בריף וגיבוש קונספט", desc: "הבנת ערכי המותג, גיבוש קהל היעד ובניית לוח השראה חזותי המגדיר את הפאליטה והאווירה הכללית.", icon: <FileText size={28} /> },
                 { title: "יצירת זהות (Branding)", desc: "עיצוב ויצירת מסרים, טיפוגרפיה ושפה גרפית שמשלבים מראה ויזואלי מהוקצע שעוזר לעורר אמינות רגשית.", icon: <Palette size={28} /> },
-                { title: "פרוטוטייפים לאישור", desc: "בניית מוקאפים, דפי נחיתה אינטראקטיביים או מצגות מותג בכדי לחוש את העיצוב בדיוק כפי שהלקוח יחווה.", icon: <Layout size={28} /> },
+                { title: "פרוטוטייפים לאישור", desc: <>בניית מוקאפים, דפי נחיתה אינטראקטיביים או מצגות מותג בכדי לחוש את <Link href="/articles/ux-color-psychology" className="text-[#2f4ea1] hover:underline font-medium">עיצוב ה-UX</Link> בדיוק כפי שהלקוח יחווה.</>, icon: <Layout size={28} /> },
                 { title: "מסירה מנוהלת (Handoff)", desc: "אריזת כלל מרכיבי הסטודיו לתיק אחיד והעברת הקבצים למחלקת הפיתוח תוך ליווי טכני שוטף.", icon: <Briefcase size={28} /> }
             ],
             faqs: [
@@ -1555,23 +1567,23 @@ const DepartmentDetail = () => {
         },
         seo: {
             title: "SEO & GEO",
-            ctaText: "מוכנים להגיע למקום הראשון?",
+            ctaText: "מוכנים לחזק את הנוכחות האורגנית?",
             long: "להיות בראש תוצאות החיפוש זו ריצה למרחקים ארוכים. אנחנו משלבים איכויות טכניות באסטרטגיית תוכן שבונה מומנטום של סמכות מוכחת גם עבור ביטויים ותוכן מקומי או גלובאלי.",
-            services: ["בדיקות טכניות שוטפות", "שיפור תנועה ספציפית וקרוס-זונג", "בניית פרופיל קישורים פוטנטי", "אופטימיזציה למנועי בינה מלאכותית (GEO)"],
+            services: ["בדיקות טכניות שוטפות", "שיפור תנועה ספציפית וקרוס-זון", "בניית פרופיל קישורים איכותי", "אופטימיזציה למנועי בינה מלאכותית (GEO)"],
             processTitle: "איך למצב את עצמכם בטופ?",
             processSubtitle: "התהליך האורגני שלנו",
             process: [
                 { title: "אודיט טכני וליבת התוכן", desc: "סריקה מלאה של קודי האתר לאיתור שגיאות קריטיות לצד מציאת הזדמנויות של ביטויי מפתח ממוקדים שלא מנוצלים.", icon: <Search size={28} /> },
                 { title: "אופטימיזציה מקומית (On-Page)", desc: "התאמת תוכן כירורגית: שיפור מהירויות טעינה, כותרות H1/H2 תקינות ועדכון תגיות מטא באופן שוטף.", icon: <Code2 size={28} /> },
                 { title: "בניית תוכן עשיר לגולש", desc: "הפקת מאמרים, עמודי נחיתה ומדריכים שמובילים באופן טבעי את הגולש לתשובה אותה הוא מעוניין לקרוא.", icon: <MessageSquare size={28} /> },
-                { title: "פרופיל קישורים ואוטוריטה", desc: "רכישת קישורים איכותיים מאתרים חזקים ברשת (Off-Page) ובניית סמכות מותג למנועי הבינה המלאכותית (GEO) כדי לקבע נוכחות בתשובות ה-AI.", icon: <TrendingUp size={28} /> }
+                { title: "פרופיל קישורים ואוטוריטה", desc: "רכישת קישורים איכותיים מאתרים חזקים ברשת (Off-Page) ובניית סמכות מותג למנועי הבינה המלאכותית (GEO) כדי לשפר את הנוכחות והסיכוי להופיע בתשובות מבוססות AI.", icon: <TrendingUp size={28} /> }
             ],
             faqs: [
-                { q: "מה זה GEO לעומת SEO?", a: "GEO (Generative Engine Optimization) מתייחס להתאמת התוכן שלכם למנועי החיפוש החדשים המבוססים על בינה מלאכותית (כמו ChatGPT, Perplexity, וגוגל SGE). בזמן ש-SEO מתמקד בדירוג הקלאסי לצד המתחרים, GEO מוודא שה-AI ימליץ עליכם כתשובה המוחלטת." },
-                { q: "תוך כמה זמן נראה השפעה של תהליך SEO?", a: "תהליך קידום אורגני הוא השקעה אסטרטגית עמוקה. תוצאות תנודותיות לרוב יורגשו לאחר 3 חודשים, כאשר קפיצות מובהקות ותשואת ה-ROI המרכזית צפות במלוא עוצמתן תוך 6 עד 9 חודשים." },
-                { q: "האם אתם כותבים גם את המאמרים לאתר?", a: "חד משמעית. מחלקת ה-SEO שלנו כוללת למעשה תא תוכן סגור שמכיל קופירייטרים בעלי רקע מוטה SEO שמייצרים טקסט בעל ערך אמיתי לגולשים שגם נסרק ומאונדקס בצורה אופטימלית על ידי גוגל." },
-                { q: "איך אתם מודדים ובונים קישורים חיצוניים?", a: "אנו לא עושים שימוש ב'חוות קישורים' פאסיביות שעלולות לגרור ענישה. הגישה מתבססת על Digital PR: קשר רצוף עם בורד עיתונאים לפרסום אורגני במגזינים אקטואליים רבי עוצמה ברמות שונות של סמכות (DA)." },
-                { q: "מה מתבצע בצד הטכני של האתר?", a: <>בדיקת מהירות שרתי, סגירת לופים (404), צמצום JS עודף, בניית מפות אתר, פירור לחם (Breadcrumbs), ושיפור כללי של <Link href="/articles/technical-seo-2026" className="text-[#2f4ea1] hover:underline font-medium">מדדי ה-Core Web Vitals</Link> שגוגל דורשת כדי לפרוס אמינות.</>, plainAnswer: "בדיקת מהירות שרתי, סגירת לופים (404), צמצום JS עודף, בניית מפות אתר, פירור לחם (Breadcrumbs), ושיפור כללי של מדדי ה-Core Web Vitals שגוגל דורשת כדי לפרוס אמינות." }
+                { q: "מה זה GEO לעומת SEO?", a: "GEO (Generative Engine Optimization) מתייחס להתאמת התוכן והנוכחות הדיגיטלית למנועים ומערכות חיפוש המבוססים על בינה מלאכותית. בעוד SEO מתמקד בשיפור הנראות והדירוג בתוצאות החיפוש האורגניות, GEO מתמקד בחיזוק הסמכות, ההקשר והמידע על המותג כדי לשפר את הסיכוי שלו להופיע בתשובות מבוססות AI." },
+                { q: "תוך כמה זמן נראה השפעה של תהליך SEO?", a: "תהליך קידום אורגני הוא השקעה לטווח ארוך, וקצב ההתקדמות משתנה בהתאם למצב האתר, רמת התחרות והתחום. במקרים רבים ניתן להתחיל לזהות השפעה לאחר מספר חודשים, בעוד ששיפור משמעותי בדירוגים ובתנועה האורגנית נבנה בהדרגה לאורך זמן." },
+                { q: "האם אתם כותבים גם את המאמרים לאתר?", a: "כן. כחלק מתהליך ה-SEO אנחנו יוצרים ומבצעים אופטימיזציה לתכנים בהתאם לאסטרטגיה וליעדי הקידום. התוכן נכתב בשיתוף אנשי מקצוע מהתחומים הרלוונטיים ועובר עריכה והתאמה לחיפוש, לקהל היעד ולמטרות העסקיות." },
+                { q: "איך אתם מודדים ובונים קישורים חיצוניים?", a: "אנחנו מתמקדים בבניית פרופיל קישורים איכותי ורלוונטי, בין היתר באמצעות כתבות יח״צ ופרסום תוכן באתרים מתאימים. המטרה היא לחזק את סמכות האתר והמותג לאורך זמן, תוך הימנעות משיטות קישורים שעלולות לפגוע בקידום האורגני." },
+                { q: "מה מתבצע בצד הטכני של האתר?", a: <>בדיקת מהירות שרתים, סגירת לופים (404), צמצום JS עודף, בניית מפות אתר, פירור לחם (Breadcrumbs), ושיפור כללי של <Link href="/articles/technical-seo-2026" className="text-[#2f4ea1] hover:underline font-medium">מדדי ה-Core Web Vitals</Link> שגוגל דורשת כדי לפרוס אמינות.</>, plainAnswer: "בדיקת מהירות שרתים, סגירת לופים (404), צמצום JS עודף, בניית מפות אתר, פירור לחם (Breadcrumbs), ושיפור כללי של מדדי ה-Core Web Vitals שגוגל דורשת כדי לפרוס אמינות." }
             ]
         },
         strategy: {
@@ -1599,19 +1611,19 @@ const DepartmentDetail = () => {
             title: "אנליטיקס ודאטה",
             ctaText: "מוכנים להשתלט על הדאטה שלכם?",
             long: "בלי מדידה אין שיפור. אנחנו עוזרים לכם להבין בדיוק מה קורה באתר, מאיפה מגיעים הלקוחות הרווחיים ואיך לייעל את התקציב.",
-            services: ["הטמעת GA4 ו-Tag Manager", "דאשבורדים בזמן אמת", "מעקב המרות מתקדם", "BigQuery"],
+            services: ["הטמעת GA4 ו-Tag Manager", "דאשבורדים שמתעדכנים אוטומטית", "מעקב המרות מתקדם", "BigQuery"],
             processTitle: "שליטה מלאה על הדאטה שלכם",
             processSubtitle: "איך אנליטיקס אמיתי צריך להראות",
             process: [
                 { title: "מיפוי KPI והגדרות", desc: "הבנת כלל המדדים הדרושים שעוקבים אחר הלקוח - מלחיצת החשיפה הראשונה דרך הכנסת מוצרים לסל, ועד קליטת הטופס ב-CRM.", icon: <Target size={28} /> },
-                { title: "הטמעות טכניות מתקדמות", desc: "פריסה אירועים (Events) באמצעות Google Tag Manager (GTM) שרת-צד כדי לנקות חריגות הנגרמות עקב חוסמי פרסומות.", icon: <Settings size={28} /> },
-                { title: "דאשבורדים מותאמים אישית", desc: "בניית מסך יפיפה אחד קל לקליטה ב-Looker Studio המשלב את מקורות התנועה המורכבים ביותר למקום יעיל לעבודה שוטפת.", icon: <BarChart size={28} /> },
-                { title: "ניתוח ואופטימיזציה", desc: "סקירה חזותית שבועית על הביצועים המוכיחה איזה אפיק מביא את ההחזר הכספי המדויק והגבוה ביותר (החזר על שקל בודד).", icon: <TrendingUp size={28} /> }
+                { title: "הטמעות טכניות מתקדמות", desc: "פריסת אירועים (Events) באמצעות Google Tag Manager (GTM) שרת-צד כדי לנקות חריגות הנגרמות עקב חוסמי פרסומות.", icon: <Settings size={28} /> },
+                { title: "דאשבורדים מותאמים אישית", desc: "בניית מסך יפהפה אחד קל לקליטה ב-Looker Studio המשלב את מקורות התנועה המורכבים ביותר למקום יעיל לעבודה שוטפת.", icon: <BarChart size={28} /> },
+                { title: "ניתוח ואופטימיזציה", desc: "סקירה שבועית של הביצועים שמאפשרת לזהות אילו אפיקים מייצרים את ההחזר הטוב ביותר ביחס להשקעה.", icon: <TrendingUp size={28} /> }
             ],
             faqs: [
                 { q: "למה אנחנו צריכים מדידה אנליטית מתקדמת?", a: "אנליטיקס הוא הבסיס לקבלת החלטות עסקיות חכמות. ללא מדידה מתקדמת (מעקבי המרות, eCommerce ב-GA4) אתם בעצם מחליטים באופן עיוור. המדידה תראה לנו איזה קמפיין מביא רווח ואיזה ערוץ פחות משתלם." },
                 { q: "תוכלו לתקן לנו נתוני המרות שגויים?", a: "בהחלט. אנו מבצעים בניית דאטה קפדנית כדי למצוא טעויות במעקבי המרות, תקלות בהטמעת Facebook Pixel, כפילויות באירועים ושגיאות במעקב דרך Tag Manager." },
-                { q: "יש דרך נוחה לראות את הנתונים בזמן אמת?", a: "אנו יכולים להגדיר לכם דאשבורדים מותאמים אישית (בעזרת כלים כמו Looker Studio), כך שכל מדדי המפתח שחשובים לכם יהיו מרוכזים בלוח בקרה אחד שעובד בזמן אמת ויחסוך כניסה למערכות שונות." },
+                { q: "יש דרך נוחה לראות את הנתונים במקום אחד?", a: "אנו יכולים להגדיר לכם דאשבורדים מותאמים אישית (בעזרת כלים כמו Looker Studio), כך שכל מדדי המפתח שחשובים לכם יהיו מרוכזים בלוח בקרה אחד שמתעדכן באופן אוטומטי ויחסוך כניסה למערכות שונות." },
                 { q: "מהו למעשה 'מעקב צד שרת' (Server-Side Tracking)?", a: "במקום להסתמך על קוד פיקסל שרץ אצל הגולש וחוסם לעיתים על ידי דפדפנים (כמו iOS או אד-בלוקר), המעקב מבוצע בשרת ייעודי שלנו. זה משפר משמעותית את אמינות הנתונים וקצב ההמרות שמדווח למקימי הקמפיינים." },
                 { q: "איזה כלי אנליטיקה אתם מטמיעים לרוב?", a: "אנו בוחרים כלים בהתאם לפרויקט. הבסיס תמיד יהיה GA4 ו-GTM. עבור אזורי סחר (eCommerce), אנו מוסיפים פעמים רבות מפות חום (כמו Hotjar או Clarity) ומוצרים למפלוחי נתונים מורכבים (Looker / Mixpanel)." }
             ]
@@ -1650,9 +1662,35 @@ const DepartmentDetail = () => {
         "url": `https://www.sepros.co.il/service/${id}`
     };
 
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "בית",
+                "item": "https://www.sepros.co.il/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "שירותים",
+                "item": "https://www.sepros.co.il/service"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": dept.title,
+                "item": `https://www.sepros.co.il/service/${id}`
+            }
+        ]
+    };
+
     return (
         <Reveal className="min-h-screen bg-white pt-32 md:pt-40 pb-20 text-right">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
             <div className="max-w-[1400px] mx-auto px-6">
                 {/* Screen-reader-only semantic H1 to satisfy heading outline accessibility */}
                 <h1 className="sr-only">{dept.title}</h1>
