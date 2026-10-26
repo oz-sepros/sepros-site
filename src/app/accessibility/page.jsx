@@ -6,6 +6,8 @@ export const metadata = {
   alternates: {
     canonical: '/accessibility'
   },
+  // Draft: kept out of search results until the missing details are filled in
+  robots: { index: false, follow: true },
 };
 
 export default function AccessibilityPage() {

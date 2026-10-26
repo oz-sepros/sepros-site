@@ -57,7 +57,10 @@ const Footer = () => (
                         <h2 className="text-gray-900 font-black tracking-widest text-[10px] border-b border-gray-200 pb-2 inline-block">משפטי</h2>
                         <ul className="space-y-2 text-gray-600 font-bold text-xs md:text-sm">
                             <li><Link href="/privacy" className="hover:text-gray-900 transition-colors">מדיניות פרטיות</Link></li>
+                            <li><Link href="/terms" className="hover:text-gray-900 transition-colors">תנאי שימוש</Link></li>
                             <li><Link href="/accessibility" className="hover:text-gray-900 transition-colors">הצהרת נגישות</Link></li>
+                            {/* CookieYes opens its preferences window on any .cky-banner-element click */}
+                            <li><button type="button" className="cky-banner-element hover:text-gray-900 transition-colors">הגדרות עוגיות</button></li>
                         </ul>
                     </div>
                 </div>

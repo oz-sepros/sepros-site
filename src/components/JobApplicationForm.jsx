@@ -3,6 +3,7 @@ import { useState, useRef } from 'react';
 import { trackEvent } from '../utils/analytics';
 import { usePathname } from 'next/navigation';
 import Reveal from './Reveal';
+import FormNotice from './FormNotice';
 import { UploadCloud, FileText, X } from 'lucide-react';
 
 const JobApplicationForm = ({ jobTitle, onClose }) => {
@@ -215,6 +216,7 @@ const JobApplicationForm = ({ jobTitle, onClose }) => {
                 <button type="submit" disabled={status === 'loading' || status === 'success'} className={`w-full mt-4 text-white font-black py-4 tracking-widest text-lg transition-all rounded-lg ${status === 'success' ? 'bg-green-500 hover:bg-green-600' : status === 'error' ? 'bg-red-500 hover:bg-red-600' : 'bg-[#2f4ea1] hover:bg-[#1c3166] hover:-translate-y-1 shadow-lg hover:shadow-xl'}`}>
                     {status === 'loading' ? 'שולח...' : status === 'success' ? 'המועמדות נשלחה! ניצור קשר בהקדם.' : status === 'error' ? 'שגיאה בשליחה' : 'שלחו מועמדות'}
                 </button>
+                <FormNotice className="mt-4" />
             </form>
         </Reveal>
     );
