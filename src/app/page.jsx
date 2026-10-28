@@ -1,4 +1,5 @@
 import PageComponent from '../views/Home';
+import MadbrandPopup from '../components/MadbrandPopup';
 
 export const metadata = {
     title: 'ספרוס - סוכנות דיגיטל | Sepros Digital',
@@ -14,5 +15,10 @@ export const metadata = {
 };
 
 export default function HomePage() {
-    return <PageComponent />;
+    return (
+        <>
+            <PageComponent />
+            <MadbrandPopup />
+        </>
+    );
 }
