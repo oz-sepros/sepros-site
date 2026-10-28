@@ -65,14 +65,19 @@ const MadbrandPopup = () => {
                 className={`${inter.className} relative w-full max-w-[480px] md:max-w-[min(640px,85vh)] aspect-square overflow-hidden bg-black shadow-2xl`}
                 onClick={(e) => e.stopPropagation()}
             >
-                <Image
-                    src="/images/madbrand-jaguar.jpg"
-                    alt=""
-                    fill
-                    sizes="(max-width: 767px) 100vw, 640px"
-                    className="object-cover object-[78%_50%] [mask-image:linear-gradient(to_bottom,black_62%,transparent_76%)]"
-                    loading="eager"
-                />
+                {/* The jaguar from the MADBRAND home hero. Its source is only 789px
+                    tall, so it fills the top 72% (as in the design) rather than the
+                    whole square, and is served unresized to stay sharp. */}
+                <div className="absolute inset-x-0 top-0 h-[72%] [mask-image:linear-gradient(to_bottom,black_80%,transparent)]">
+                    <Image
+                        src="/images/madbrand-jaguar.jpg"
+                        alt=""
+                        fill
+                        unoptimized
+                        className="object-cover object-[80%_50%]"
+                        loading="eager"
+                    />
+                </div>
 
                 <button
                     ref={closeRef}
