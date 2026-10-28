@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { trackEvent } from '../utils/analytics';
 import { usePathname } from 'next/navigation';
 import Reveal from './Reveal';
+import FormNotice from './FormNotice';
 
 const ContactForm = ({ isMainSection = false }) => {
     const [formData, setFormData] = useState({ fullName: '', company: '', phone: '', email: '', msg: '', divur: false, privacy_policy: false });
@@ -186,6 +187,7 @@ const ContactForm = ({ isMainSection = false }) => {
                             <button type="submit" id="submit_lead_form" disabled={status === 'loading' || status === 'success'} className={`w-full mt-4 text-white font-black py-4 tracking-widest text-lg transition-all rounded-xl ${status === 'success' ? 'bg-green-500 hover:bg-green-600' : status === 'error' ? 'bg-red-500 hover:bg-red-600' : 'bg-[#2f4ea1] hover:bg-[#1c3166] hover:-translate-y-1 shadow-lg hover:shadow-xl'}`}>
                                 {status === 'loading' ? 'שולח...' : status === 'success' ? 'הפנייה נשלחה בהצלחה!' : status === 'error' ? 'שגיאה בשליחה' : 'בואו נדבר'}
                             </button>
+                            <FormNotice className="mt-4" />
                         </form>
                     </Reveal>
                 </div>
